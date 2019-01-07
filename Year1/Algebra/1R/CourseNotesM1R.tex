@@ -1,0 +1,239 @@
+
+%% CLASS MANUAL FOUND IN http://blog.poormansmath.net/latex-class-for-lecture-notes/ %%
+%% CLASS AUTHOR Stefano Maggiolo %%
+\documentclass[english,course]{Notes}
+
+\title{MATHEMATICS 1R}
+\subject{Mathematics}
+\author{Joao Almeida-Domingues}
+\email{2334590D@student.gla.ac.uk}
+\speaker{David Palazzo \ita{(Calculus)} \\
+Georgios Antoniou \ita{(Algebra)}}
+\date{17}{09}{2018}
+\dateend{30}{11}{2018}
+\place{University of Glasgow}
+
+ %%%%% GENERAL MATHEMATICAL NOTATION SHORTCUTS %%%%%
+ 
+\newcommand{\n}{\mathbb{N}}
+\newcommand{\z}{\mathbb{Z}}
+\newcommand{\q}{\mathbb{Q}}
+\newcommand{\cx}{\mathbb{C}}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\field}{\mathbb{F}}
+\newcommand{\ita}[1]{\textit{#1}}
+\newcommand{\oneton}{\{1,2,3,...,n\}}
+\newcommand\ef{\ita{f} }
+ %\qedhere to force QED in place
+\newcommand\inv[1]{#1^{-1}}
+\newcommand\setb[1]{\{#1\}}
+\newcommand\en{\ita{n }}
+\renewcommand\qedsymbol{QED}
+
+%%%%%%%%%%%%%%%%PACKAGES%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{lipsum}  
+\usepackage{MnSymbol,amsmath,amsthm,amssymb,graphicx,mathtools,tikz,pgfplots} %maths
+\usepackage{hyperref,framed,color,fancybox} %layout
+% framed :  \begin{shaded,frame,snugshade or leftbar} \definecolor{shadecolor}{rgb}{XYZ} to change color
+%fancybox: \shadowbox,ovalbox or doublebox
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%CLASS SHORTCUTS%%%%
+%\lecture{day}{month}{year} for margin note
+%\begin{theorem} sdfsdf\end{theorem}
+%\begin{proposition} dfsdfs\end{proposition}
+%\begin{lemma} dsfsd \end{lemma}
+%\begin{corollary} f ffew \end{corollary}
+%\begin{definition} fwewef w \end{definition}
+%\begin{example} feww e\end{example}
+%\begin{exercise} wefwe \end{exercise}
+%\begin{remark} wef we \end{remark}
+%\begin{fact} wefe \end{fact}
+%\begin{problem} wef ew \end{problem}
+%\begin{conjecture} ewfew \end{conjecture}
+%\begin{claim} few w \end{claim}
+%\begin{notation} fewf \end{notation}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%BIBLIO: mathworld.wolfram.com@Linear Algebra A modern Introduction 
+\begin{document}
+\newpage
+\section{Properties of Numbers}
+
+\subsection{Introduction}
+
+\defn{A set}{ is a finite or infinite collection of objects in which order has no significance, and multiplicity is generally also ignored}
+
+\nota{ $ A = \{ a_1 , a_2, a_3 \}$}
+
+\nota{$a \in A$ , The element \ita{a} belongs to the set \ita{A}}
+\nota{$ A \subseteq B$, \ita{A} is a subset of \ita{B}, all elements of \ita{A} appear in \ita{B}  but the opposite is not necessarily true}
+\nota{$ A \subset B$, the set \ita{B} has at least one element which does not belong to \ita{A}}
+\nota{$a \notin A , A \nsubseteq B , A \not\subset B $, are negations of the above}
+
+\defn{Natural Numbers}{ $\n$, the set of all positive whole numbers }
+\defn{Whole Numbers}{ $\n_0 \ ,\  \n + 0$}
+\defn{Integers}{ $\z \ ,\ \ \n_0 + $ negative whole numbers}
+\defn{Rational Numbers }{$\q$, the set of all fractions with  denom $\neq$ 0}
+\defn{Irrational Numbers}{ $\real \setminus \q$, the set of numbers which can not be expressed as a fraction}
+\defn{Real Numbers}{ $\real$, the set of all numbers in the real line}
+
+\rem{ $\n \subset \n_0 \subset \z \subset \q \subset \real$ and $ \real \setminus \q \subset \real $}
+
+\ex{Prove that $\sqrt{n} \in \real \setminus \q \ , \ n > 1$ for any squarefree integer n, e.g. $\sqrt{20}$}
+
+\textbf{Method}
+\begin{enumerate}
+	\item Proof that any $j \cdot g \in \real - \q , \text{ with } j,g \in \q \ , \ \real - \q$
+	\item Decompose $\sqrt{(n)} \text{ into } k\sqrt{(u)}$, where u is prime 
+	\item Prove that $\sqrt{(u)}$ is irrational by Euclid's Lemma Method
+\end{enumerate}
+
+\proofs{ \hphantom{.}
+\begin{itemize}
+	\item[  Step 1]
+	
+	Let $\frac{a}{b} , \frac{c}{d} \in \q \text{ and } x \in \real - \q$:
+	
+	\begin{alignat}{2} 
+	& x \cdot \frac{a}{b} &&= \frac{c}{b} \\ 
+	 \iff & x &&= \frac{cb}{da} \label{eq:cont1}
+	\end{alignat}
+	
+We reach a contradiction at \eqref{eq:cont1} since integers are closed under addition, i.e. $x$ must belong to $\q$  \mymarginpar{A set has closure under an operation if performance of that operation on members of the set always produces a member of the same set}
+\end{itemize}
+}
+
+ \begin{equation} \sqrt{20} = 2\sqrt{5} \tag{Step 2} \end{equation}
+
+\proofs{
+\begin{itemize}
+\item[  Step 3]
+It follows from \ref{Step 2} that $2\sqrt{5}$ is rational \ita{iff} 2 and $\sqrt{5}$ are both rational.
+
+
+	\item[Case 1:] 2 is rational is trivially true 
+	\item[Case 2:]
+
+Let's assume that $\sqrt{5} \in \q$. This assumption imples that 
+$$ \exists \ a, b \in \z , b \neq 0 | \sqrt{5} = \sfrac{a}{b}$$
+
+We can assume also that $\sfrac{a}{b}$ is in its most reduced form, i.e. it has no common factors. Then,
+
+\begin{gather}
+\sqrt{5}^2  = \frac{a^2}{b^2} \\
+5b^2  = a^2
+\end{gather}\label{eq:irr1}
+
+\lem{\textbf{Euclid's} : For a prime number $p$ if $p \divides mn$ then $p \divides m$ or $ p \divides n$\label{euclid}}
+
+It follows from \ref{eq:irr1} that 5 divides $a^2$. And from \ref{euclid} (by setting $p=5 , m,n=a$) that 5 divides $a$. \\
+We then have that $a = 5k , k \in \z$, and can therefore rewrite \ref{eq:irr1} :
+
+\begin{align}
+5b^2 &= (5k)^2 \\
+b^2 &= 5k^2
+\end{align}\label{eq:irr1}
+
+Similarly as above it follows then, that 5 divides $b$. Hence we reach the conclusion that 5 divides both $a$ and $b$. Which contradicts our original assumption that $ a \text{ and } b $ are coprime i.e. that $\frac{a}{b}$ was in its most reduced form.  \\
+
+$\therefore \sqrt{5}$ is not irrational $\implies \sqrt{20}$ is not irrational
+
+
+\end{itemize}
+
+}
+
+\lem{\textbf{Division Algorithm} Given two natural numbers $a \text{ and } b$, there integers $q \text{ and } r$ , such that: $$ a = bq + r \ \ \ q \geq 0 \text{ and } 0 \leq r < b $$} \label{DivAlg}
+
+\proofs{ Let $ \frac{a}{b}$ be the positive natural number between $q$ and $q+1$. 
+\begin{align*}
+ & q \leq \frac{a}{b}  < q + 1 \\
+ & bq \leq a < bq + b \\
+ & 0 \leq a - bq < b \\
+\end{align*}
+
+Setting $ r = a - bq$, we obtain $ a = bq+r , q \geq 0 \text{ and } 0 \leq r < b$
+}
+\lem{\textbf{Euclidean Algorithm} is obtained by repeated application of \ref{DivAlg}. 
+$$ \text{gcd}(a,b) = am + bn$$}
+ 
+ \proofs{
+ 
+ \begin{enumerate}
+ \item gcd $(a,b) =$ gcd$(b,r) = $ ... $=$ gcd$(z,0)$ \\ \\
+ Why is this true? \\
+ If $d | ab, \text{then there exists a } k, l \text{ s.t. } a = dk \text{ and } b = dl$ \ref{DivAlg} also tells us that $a = bq + r $, replacing $dk$ and $dl$ , we obtain the following: 
+ \begin{align*}
+ 	& dk = dlq + r \\
+	& r = d(k - lq)
+ \end{align*}
+ 
+ Hence, there exists a number (represented above by $(k-lq)$) that multiplied by $d$ gives us $r$. Therefore, by definition, $d$ must also divide $r$
+ 
+ \item Assuming that $ a > b > r$ , the sequence will decrease until eventually the remainder can not be further divided, i.e. $r = 0$. Hence,
+ 
+ $$ \text{gcd}(a,b) = \text{gcd}(b,r) = \text{gcd}(r,0) $$
+ 
+By looking at the last term of the equality we find that the gcd must by definition be r (since it divides exactly). Therefore, by back-substituting the result \footnote{recursively, haskell style} we find that the \textbf{gcd of the original expression is equal to the remainder of the penultimate}
+ \end{enumerate}}
+ 
+ \newpage
+ \ex{ Find integers m and n such that $55m + 7n  = 1$. Note that by the definition of the division algorithm, if such numbers exist, then we expect gcd$(55,7) = 1$. So, we start by applying the division algorithm to verify that it exists:
+ 
+ \begin{align*}
+ 55 &= 7 \cdot 7 + 6 \\
+ 7 &= 6 \cdot 1 + \pmb{1} \\
+ 6 &= 1 \dot 6 + 0
+ \end{align*}
+ 
+\noindent We can now rearrange the equations above in the form $ r = a - bq$, and backtrack until we reach the original equation in terms of 55 and 7.
+ 
+ \begin{alignat*}{2}
+& 6  &&= 55 - 7 \cdot 7 \\
+& 1 &&= 7 - 6 \cdot 1 \\
+&  &&= 7 - (55 - 7 \cdot 7)(1) \\
+& &&= 7(8) - 55
+ \end{alignat*}
+ 
+ \noindent Hence, $m = -1 \text{ and } n = 8$
+ }
+
+\defn{Polynomial}{ of degree $n \geq 0$ is an expression of the form:
+	$$ a_nx^n + a_{n-1}x^{n-1} + \dots + a_1x + a_0$$
+	
+Where $a_n$ is the leading coefficient}
+\rem{If $a_n = 1$, then the polynomial is said to be monic}
+\rem{0 is considered to be a polynomial}
+
+\rem{The Euclidean Algorithm can also be applied to polynomials, since: $$ f(x) = g(x)q(x) + r(x)$$ Where $0 \leq r(x) < g(x)$}
+
+\theorem{\textbf{Remainder:} Let $f(x)$ be a polynomial in $x$, and $c$ be a constant: $$ f(x) = (x-c) q(x) + f(c) $$}
+
+\theorem{\textbf{Factor:} If $f(c) = 0$ , then $(x-c)$ is a factor of $f(x)$}
+
+\newpage 
+\ex{Find the highest monic quadratic polynomial which divides both $$ g(x) = x^3 + 6x^2 + 11x + 6 \text{   and   } f(x) = x^4 + 5x^3 + 10x^2 + 20x + 24$$
+
+Following a similar procedure as before, we can apply the Euclidean Algorithm until we find a polynomial which divides $g(x)$ and $f(x)$ exactly (i.e. $r(x) = 0$). The key point is to keep  in mind the fact that \textbf{any polynomial wich divides both $f(x)$ and $g(x)$ must also divide their remainder}.
+
+\begin{enumerate}
+\item Dividing $f(x)$ by $g(x)$ , so as to find $q(x)$ and $r(x)$:
+
+$$\polylongdiv{x^4 + 5x^3 + 10x^2 + 20x + 24}{x^3 + 6x^2 + 11x + 6}$$
+
+Hence, we have that: $$ f(x) = g(x)(x-1) + 5(x^2 + 5x + 6)$$
+
+\item Continuing the algorithm, now with $g(x)$ and monic $r(x)$ obtained above:
+
+$$\polylongdiv{x^3 + 6x^2 + 11x + 6}{x^2 + 5x + 6}$$
+
+Since the remainder is 0, we find that $(x^2 + 5x + 6)$ divides exactly into $g(x)$, and therefore also divides into $f(x)$. Lastly, by looking at the remainder of the penultimate iteration, we can assert that, $x^2 + 5x + 6$ is the highest monic polynomial which divides both $f(x)$ and $g(x)$
+
+\end{enumerate}
+}
+
+\newpage
+\section{Complex Numbers}
+
+\end{document}
