@@ -7,7 +7,7 @@ The following notes were typeset using a modified version of @stefano-maggiolo c
 
 The modified version I'm using can be found in this repo [here](https://github.com/Joe-a-d/Algebra_1R_1S_UniversityGlasgow/notes.cls). It has some neat additions like:
 
-![Neat Box](/box.png 'Extra Material box')
+<img src="/box.png" alt="Extra Material Box" width=33% height=10%/>
 
 
 The original can be found at Stefano Maggiolo's personal blog [here](http://blog.poormansmath.net/files/notes.cls). I would also highly recommend chekcing his posts on $\LaTeX$ "best-practices".
