@@ -26,7 +26,6 @@
 \newcommand\inv[1]{#1^{-1}}
 \newcommand\setb[1]{\{#1\}}
 \newcommand\en{\ita{n }}
-\newcommand\vc[1]{\mathbf{#1}}
 
 %\renewcommand\qedsymbol{QED} %to use QED instead of square
 
@@ -35,7 +34,6 @@
 \usepackage{lipsum}  
 \usepackage{amsmath,amsthm,amssymb,graphicx,mathtools,tikz,pgfplots,minibox} %maths
 \pgfplotsset{compat=1.16}
-
 \usepackage{hyperref,framed,color,fancybox} %layout
 % framed :  \begin{shaded,frame,snugshade or leftbar} \definecolor{shadecolor}{rgb}{XYZ} to change color
 %fancybox: \shadowbox,ovalbox or doublebox
@@ -72,7 +70,7 @@
 
 \rem{If a vector has both a magnitude and direction of $0$, then that vector is  the zero vector. The zero vector can be thought as having no direction, or all directions}
 
-\defn{Equality:}{ Two vectors are equal if they have the same magnitude and the same direction}\label{eq}
+\defn{Equality:}{ Two vectors are equal if they have the same magnitude and the same direction\label{def:eq}}
 
 \rem{Every vector is unique}
 
@@ -101,7 +99,7 @@
 
 \defn{Scalar Multiplication}{For a vector $\vc{u}$, and a scalar $\lambda$. $\lambda\vc{u}$ scales the vector's magnitude  by $\lambda$, and if $\lambda<0$ inverts its direction}
 
-
+\lecture{8}{01}{2019}
 \subsubsection{Properties of Addition and Multiplication}
 \prop{Commutative }{$\vc{u} + \vc{v} = \vc{v} + \vc{u}$}
 \proofs{
@@ -138,10 +136,52 @@
 }
 
 \newpage
+\proofs{ \ita{2 , by a diagram} \\
+
+Let $\vc{u} , \vc{v}$ be two non-zero vectors, and A, B, C be 3 distinct points. Then:
+
+\begin{tikzpicture}
+\centering
+\draw (0,0) node[anchor=north]{$O$}
+  -- (2,0) node[anchor=north]{$A$}
+  -- (2,2) node[anchor=south]{$B$}
+    -- cycle;
+    \draw
+  -- (0.5,1) node[anchor=south]{$\vc{u} + \vc{v}$}
+  -- (2.2,0.5) node[anchor=south]{$\vc{u}$}
+  -- (1,0) node[anchor=south]{$\vc{v}$};
+
+
+\draw (0,0) node[anchor=north]{$O$}
+  -- (4,0) node[anchor=north]{$A'$}
+  -- (4,4) node[anchor=south]{$B'$}
+  -- cycle;
+  \draw
+    -- (2.5,3) node[anchor=south]{$\lambda(\vc{u} + \vc{v})$}
+  -- (4.2,2) node[anchor=south]{$\lambda\vc{u}$}
+  -- (3,0) node[anchor=south]{$\lambda\vc{v}$};
+  \end{tikzpicture}
+
+Let the "prime" triangle represent a $\lambda$ fold enlargement of the original triangle representing the original vectors and their addition. Hence we have that,
+
+\begin{align*}
+OB' = \lambda(\vc{u} + \vc{v}) & = OA' + A'B' \\
+& = \lambda\vc{v} + \lambda\vc{u}
+\end{align*}
+}
+
+
+
+
+
+
+
 \subsection{Parallel and Position vectors}
 
 \defn{Parallel:}{ Let $\vc{u} \ , \ \vc{v}$ be two non-zero vectors. Then, 
-$\vc{v}$ is parallel to $\vc{u}$ \ita{iff} $\vc{v} = \lambda\vc{u}$ and $\hat{\vc{u}} = \frac{1}{|\vc{u}|}\vc{u}$}
+$\vc{v}$ is parallel to $\vc{u}$ \ita{iff} $\vc{v} = \lambda\vc{u}$ (i.e. if they share the same or opposite directions) and $\hat{\vc{u}} = \frac{1}{|\vc{u}|}\vc{u}$}
+
+\rem{The non-zero vector is parallel to all vectors}
 
 \proofs{ The first part of the definition is self-evident as any scalar multiple of a vector will only alter its magnitude and/or reverse its direction. For the second part, we have that:
 
@@ -202,7 +242,7 @@ Since $A , B \text{ and } C$ are collinear, we can deduce the distance between t
 
 
 
-\prop{Section Formula}{ Let $A, B \text{ and } P$ be collinear points, s.t:
+\prop{Section Formula \label{secForm}}{ Let $A, B \text{ and } P$ be collinear points, s.t:
 
 $$ AP : PB = m : n $$
 
@@ -217,7 +257,7 @@ Then, $P$ has position vector $$ \vc{p} = \frac{m\vc{b} + n\vc{a}}{m + n} $$
 (9,0) node[anchor=north]{$B$};
 
 \end{tikzpicture}
-} \label{secForm}
+ }
 
 \proofs{ 
 \begin{align*}
@@ -229,6 +269,7 @@ n(\vc{p} - \vc{a}) &= m(\vc{b} -\vc{p}) \\
 
 \begin{corollary}{The midpoint of $AB$ has position vector $\tfrac{1}{2}(\vc{a} + \vc{b})$ \marginpar{special case of \ref{secForm}, where $m = n = 1$}}\end{corollary}
 
+\newpage
 \section{Logical Matters \& Proof}
 
 \defn{Direct Proof}{It consists of an argument that starts from the hypothesis and by a sequence of logical steps ends at the conclusion}
