@@ -7,10 +7,14 @@
 \subject{Philosophy}
 \author{Joao Almeida-Domingues}
 \email{2334590D@student.gla.ac.uk}
-\speaker{LECTURER}
+\speaker{Jennifer Corns}
 \date{07}{01}{2019}
 \dateend{24}{05}{2019}
 \place{University of Glasgow}
+
+\usepackage[backend=biber, style=reading]{biblatex}
+\bibliography{readings}
+
 
  %%%%% GENERAL MATHEMATICAL NOTATION SHORTCUTS %%%%%
  
@@ -23,11 +27,14 @@
 \newcommand{\ita}[1]{\textit{#1}}
 \newcommand{\oneton}{\{1,2,3,...,n\}}
 \newcommand\ef{\ita{f} }
-\newcommand\proofs[1]{\begin{proof}#1\end{proof}} %\qedhere to force QED in place
+ %\qedhere to force QED in place
 \newcommand\inv[1]{#1^{-1}}
 \newcommand\setb[1]{\{#1\}}
 \newcommand\en{\ita{n }}
 \renewcommand\qedsymbol{QED}
+\newcommand\readings{\textbf{Readings:} \\}
+\newcommand\sep{\\ \noindent\rule{10cm}{0.8pt} \\}
+
 
 %%%%%%%%%%%%%%%%PACKAGES%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{lipsum}  
@@ -55,6 +62,46 @@
 
 \begin{document}
 \newpage
+
+\section{Why be good?}
+
+\subsection{Don't be good! Just appear to be}
+\lecture{10}{01}{2019}
+
+\readings \cite{Nielsen1984} \\ \cite{PlatoRepublicI}
+\sep
+
+\par{ In trying to answer the question "Why be good?", we start by analysing the socratic dialogue in \ita{Plato's - The Republic, Book I}. The main issue raised , which is left unanswered by the end of this text can be put forward as \ita{"Must we really be moral, can't we just fake it?"}
+
+\par{ \mymarginpar{The Republic's analysis}The text opens with Socrates being invited to discuss philosophical matters with a well-to-do elder - Cephalus. For Cephalus, to be good is nothing but to be just, to follow some simple rules and nothing to worry much about. According to him and his son, one follows the rules, makes some money, pays his debt}
+\subsection{To avoid punishment}
+\lecture{14}{01}{2019}
+
+\readings \cite{PlatoRepublicII}
+
+\subsection{Because it's all you can do!}
+\lecture{15}{01}{2019}
+
+\readings \cite{PsychEgoism} \\ \cite{EthicalEgoism}
+
+\subsection{Because it's good for you to be good! }
+\lecture{16}{01}{2019}
+
+\readings \cite{PlatoRepublicIX} \\ \cite{PlatoRepublic2} \\ \cite{AristotleI}
+
+\subsection{Because of the sort of being that you are! }
+\lecture{21}{01}{2019}
+
+\readings \cite{HypotheticalImperatives}
+
+\subsection{Because (duh) it's good! }
+\lecture{23}{01}{2019}
+
+\readings \cite{Protagoras} \\ \cite{AristotleVII}
+
+\newpage
+\printbibliography
+
 
 
 \end{document}
