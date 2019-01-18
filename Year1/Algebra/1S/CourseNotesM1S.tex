@@ -12,6 +12,11 @@
 \dateend{24}{05}{2019}
 \place{University of Glasgow}
 
+\usepackage[backend=biber, style=reading]{biblatex}
+\bibliography{M1Sbiblio}
+
+
+
  %%%%% GENERAL MATHEMATICAL NOTATION SHORTCUTS %%%%%
  
 \newcommand{\n}{\mathbb{N}}
@@ -74,7 +79,7 @@
 
 \rem{Every vector is unique}
 
-\proofs{ Let $\vc{u}, \vc{v}$ be two vectors with magnitude $\lambda$ and the same direction. Hence by \ref{eq} , $\vc{u} = \vc{v}$}
+\proofs{ Let $\vc{u}, \vc{v}$ be two vectors with magnitude $\lambda$ and the same direction. Hence by \ref{def:eq} , $\vc{u} = \vc{v}$}
 
 
 \nota{ Generally, in printed text $\overrightarrow{v} \text{ or } \ \vc{v}$. Handwritten \underline{$v$}. Magnitude $\vc{|v|}$}
@@ -83,7 +88,7 @@
 \nota{Generally, for a given vector $\vc{v} \ , \ \hat{\vc{v}}$}
 
 \prop{Parallelogram }{$\overrightarrow{AB} = \overrightarrow{DC}$\ , i.e Traversing left-up is the same as up-right}
-\proofs{It follows from the fact that the opposite sides of a parallelogram are parallel and of equal length. Hence they are equal, by \ref{eq}}
+\proofs{It follows from the fact that the opposite sides of a parallelogram are parallel and of equal length. Hence they are equal, by \ref{def:eq}}
 
 \prop{Negative vectors }{$\overrightarrow{AB} = u \iff \overrightarrow{BA} = -u$}
 \proofs{It follows from the fact that they have the same magnitude but opposite directions}
@@ -181,6 +186,8 @@ OB' = \lambda(\vc{u} + \vc{v}) & = OA' + A'B' \\
 \defn{Parallel:}{ Let $\vc{u} \ , \ \vc{v}$ be two non-zero vectors. Then, 
 $\vc{v}$ is parallel to $\vc{u}$ \ita{iff} $\vc{v} = \lambda\vc{u}$ (i.e. if they share the same or opposite directions) and $\hat{\vc{u}} = \frac{1}{|\vc{u}|}\vc{u}$}
 
+\nota{$\vc{u} \parallel \vc{v}$}
+
 \rem{The non-zero vector is parallel to all vectors}
 
 \proofs{ The first part of the definition is self-evident as any scalar multiple of a vector will only alter its magnitude and/or reverse its direction. For the second part, we have that:
@@ -206,9 +213,11 @@ Hence, we've shown that $\frac{1}{|\vc{u}|}|\vc{u}|$ is a unit vector of $\vc{u}
 \ \ \ \ \ \  $
 \begin{aligned} \overrightarrow{ A B } & = \overrightarrow { A O } + \overrightarrow { O B } \\ & = ( - \mathbf { a } ) + \mathbf { b } \\ & = \mathbf { b } - \mathbf { a } \end{aligned}$
 }
+
+\lecture{09}{01}{2019}
 \subsection{Collinearity and the section formula}
 
-\defn{Collinear}{points, lie on a straight line}
+\defn{Collinear}{points lie on a straight line}
 
 \rem{One can test wether points are collinear by finding if their directed line segments, i.e. the vector formed starting at a point and ending at the other, are parallel.}
 
@@ -235,12 +244,7 @@ Since $A , B \text{ and } C$ are collinear, we can deduce the distance between t
   node[pos=1.5]{$<$}
   -- (10,0) node[anchor=north]{$B$};
    
-\end{tikzpicture} 
-
-*******CLARIFY POST LECTURE********
-
-
-
+\end{tikzpicture} x
 
 \prop{Section Formula \label{secForm}}{ Let $A, B \text{ and } P$ be collinear points, s.t:
 
@@ -267,8 +271,127 @@ n(\vc{p} - \vc{a}) &= m(\vc{b} -\vc{p}) \\
 \vc{p} &= \frac{m\vc{b} + n\vc{a}}{m + n}
 \end{align*}}
 
-\begin{corollary}{The midpoint of $AB$ has position vector $\tfrac{1}{2}(\vc{a} + \vc{b})$ \marginpar{special case of \ref{secForm}, where $m = n = 1$}}\end{corollary}
+\begin{corollary}{The midpoint of $AB$ has position vector $\tfrac{1}{2}(\vc{a} + \vc{b})$ \mymarginpar{special case of \ref{secForm}, where $m = n = 1$}}\end{corollary}
 
+\mymarginpar{TODO: Applications of  the section formula}
+
+
+\lecture{14}{01}{19}
+\subsection{Scalar/Dot Product}
+
+\defn{Scalar Product}{ of two unit vectors is the cosine of the angle between them. We obtain the scalar product of any two non-zero, non-unit vectors by scaling them by their magnitudes.}
+
+\nota{$ \vc{u} \cdot \vc{v}$}
+
+$$ \hat{\vc{u}} \cdot \hat{\vc{v}} = \cos\theta \ \ \ \& \ \ \  \vc{u} \cdot \vc{v} = |\vc{u}| |\vc{v}| \cos\theta $$
+
+\rem{Note that $\theta \in [0,\pi]$}
+
+\rem{If one of the vectors is a zero vector their scalar product is $0$}
+
+\prop{For any vector $\vc{u}$: $$ \vc{u} \cdot \vc{u} = |u|^2$$}
+
+\proofs{ It follows from the fact that $\theta = 0 , \cos\theta = 1$. Hence: 
+	$$  \vc{u} \cdot \vc{u} = |\vc{u}| |\vc{u}| (1) =  |u|^2 $$}
+
+\prop{Two non-zero vectors are perpendicular if their scalar product is $0$}
+
+\proofs{ $\vc{u} \bot \vc{v} \iff \theta = \tfrac{\pi}{2}$. Hence, $\cos\theta = 0$. Therefore: \\
+
+$ \vc{u} \cdot \vc{v} = |\vc{u}| |\vc{v}| (0) = 0$}
+
+\newpage\subsubsection{Properties of Scalar Products}
+
+\prop{Commutative }{$\vc{u} + \vc{v} = \vc{v} + \vc{u}$}
+
+\proofs{ 
+\begin{align*}
+\vc{u} \cdot \vc{v} &= u_1v_1 + u_2v_2 + \dots + u_nv_n \\
+&= v_1u_1 + v_2u_2 + \dots + v_nu_n \ \ \ita{(commutative multiplication of real numbers)}\\
+&= \vc{v}\cdot\vc{u}
+\end{align*}}
+
+\prop{Distributive  }{ $\vc { u } \cdot ( \vc { v } + \vc { w } ) = \vc { u } \cdot \vc { v } + \vc { u } \cdot \vc { w }$}
+
+\proofs{
+\begin{align*}
+\vc{u} \cdot (\vc{v} + \vc{w}) &= (u_1,u_2,\cdots,u_n) \cdot (v_1+w_1 , v_2+w_2 , \dots , v_n+w_n) \ \ \ita{(vector addition)} \\
+&= u_1(v_1+w_1) + u_2(v_2+w_2) + \dots +  u_n(v_n+w_n) \ \  \ita{(vector multiplication)} \\
+&= (u_1v_1 + u_1w_1) + (u_2v_2 + u_2w_2) + \dots +  (u_nv_n + u_nw_n) \ \ \ita{(scalar multiplication)} \\
+&= (u_1v_1 + u_2v_2 + \dots + u_nv_n) + (u_1w_1 + u_2w_2 + \dots + u_nw_n) \ \ \ita{(associativity of real numbers)} \\
+&= \vc{u}\vc{v} + \vc{u}\vc{w}
+\end{align*}
+}
+
+\prop{NON-Associative}{}
+\proofs{$\vc{u} \cdot (\vc{v} \cdot \vc{w})$ is an invalid expression, since the dot product returns a scalar and we cannot perform the dot product between a scalar and a vector}
+
+\subsection{Normal to a Plane}
+
+\defn{A normal to a plane}{ is a vector that is at right-angles to every vector contained within it}
+
+\rem{Every plane has two normals, one pointing "upwards" and another "downwards"}
+
+\rem{Note that there are infinitely many planes, lying parallel to one another~\mymarginpar{Think of stack}. Hence, to define a plane one needs to know its normal and a point within it.}
+
+\defn{Plane}{We observe that a point p lies on P, given a normal $\vc{n}$, \ita{iff} the dot product between the directed line segment on the plane and the normal is $0$.  $$ P = \text{\{points P } |  \ \vc{n} \cdot \overrightarrow{pP} = 0 \} $$}
+
+\newpage
+\lecture{15}{01}{2019}
+
+\subsection{Cross Product}
+
+\par{To start exploring the nature of the cross product of two 3D vectors, we first note that the two vectors form an area. We see this often exemplified by the parallelogram rule. Now let $A(\theta)$ represent the area demarcated by this parallelogram. This function of $\theta$ has its maximum when $\theta = \tfrac{\pi}{2}$ , i.e. when the parallelogram is a square, and its minimum when $\theta =  0$ , i.e. $\vc{u}$ and $\vc{v}$ are parallel.}
+
+$$A ( \theta ) = \left\{ \begin{array} { l l } { 0 } & { \text { when } \theta = 0 } \\ { | \mathbf { u } | | \mathbf { v } | } & { \text { when } \theta = \frac { \pi } { 2 } } \\ { 0 } & { \text { when } \theta = \pi } \end{array} \right.$$
+
+\defn{Cross Product}{$\vc{u} \times \vc{v}$ is a vector with magnitude $|\vc{u}||\vc{v}|\sin\theta$*\mymarginpar{*this is just the area of the parallelogram} and direction given by the normal~\ref{cross:rhr} of the plane on which the parallelogram lies}
+
+\defn{Righ-Hand Rule~\label{cross:rhr}}{Convention used to fix the direction of the parallelogram uniquely \scriptsize{(remember that this is because it could point "upwards" or "downwards")}. \normalsize By putting the index finger parallel to the palm, and orientating the thumb and first finger in the directions of $\vc{u} , \vc{v}$. The index finger gives us the fixed direction}
+
+\prop{Parallelism Criterion}{ Two non-zero vectors are parallel \ita{iff}  \\ $ \vc{u} \times \vc{v} = 0$}
+
+\proofs{This follows from the fact that two vectors are parallel if $\theta = 0$ or $\theta = \pi$ , either way $\sin\theta = 0$ , therefore $|\vc{u}||\vc{v}|\sin\theta = 0$}
+
+\rem{Note how for the dot product we start by looking at the parallelism of two vectors, and get a criterion for their perpendicularity. Whilst for the cross product the opposite is true.}
+
+\subsubsection{Properties of the Cross Product}
+
+\rem{Note that the cross product is only valid up to 3D}
+
+\prop{Anti-Commutative}{\ \ \ $\vc{a} \times \vc{b} \neq \vc{b} \times \vc{a}$ $$\vc{a} \times \vc{b} = - ( \vc{b} \times \vc{a})$$}
+
+\proofs{For non-parallel vectors, the result follows from the fact that even though the magnitude remains unchanged*~\mymarginpar{*just like in the dot product} , i.e. $|\vc{u} \times \vc{v}| = |\vc{v} \times \vc{u}| = |\vc{u}||\vc{v}|\sin\theta$, their direction is reversed.}
+
+\newpage
+\prop{NON-Associative}{}
+\proofs{ Let $\vc{a}$ and $\vc{v}$ be two distinct non-zero vectors. Then we have:
+
+\begin{align}
+&\vc{a} \times (\vc{a} \times \vc{c}) \neq 0~\label{assoc:1} \\ 
+&\underbrace{(\vc{a} \times \vc{a})}_{\ita{\scriptsize $0$ , since $\theta = 0$}}   \times \vc{c} = 0~\label{assoc:2}
+\end{align}
+
+\eqref{assoc:1} and \eqref{assoc:2} cannot both be true, hence we arrive at a contradiction.}
+
+\prop{Distributive across scalar multiplication and addition}{}
+\mymarginpar{addition proof beyond 1S's scope}
+
+\proofs{ \\
+$$\lambda (\vc{a} \times \vc{b}) = |\lambda\vc{a} \times \vc{b}| = |\vc{a} \times \lambda\vc{b}|$$
+$$\vc{c}(\vc{a} + \vc{b}) = \vc{c} \times \vc{a} + \vc{c} \times \vc{b}$$}
+
+\rem{Note that the dot and cross product do not distribute amongst themselves}
+\proofs{ \begin{align}
+& (\vc{a} \times \vc{b}) \cdot \vc{c}\ \ \  \ita{ Valid} \\
+& \underbrace{(\vc{a} \cdot \vc{b})}_{\ita{yields a scalar}} \times \vc{c} \ \ \ \ita{ Invalid, scalar $\times$ vector not allowed}
+\end{align}
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Logical Matters \& Proof}
 
@@ -287,6 +410,11 @@ n(\vc{p} - \vc{a}) &= m(\vc{b} -\vc{p}) \\
 \end{align*}
 
 Therefore, since $2kl + k + l \in \z$, $ab$ is odd.}
+
+\newpage
+\nocite{*}
+\printbibliography
+
 
 
 \end{document}
