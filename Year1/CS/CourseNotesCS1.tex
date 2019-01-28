@@ -15,6 +15,8 @@
 \usepackage[backend=biber, style=reading]{biblatex}
 \bibliography{CSbiblio}
 
+\graphicspath{{assets/}}
+
 %%%%circuits
 \usepackage{circuitikz, float}
 
@@ -39,7 +41,7 @@
 %%%%%%%%%%%%%%%%PACKAGES%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\usepackage{lipsum}  
 
-\usepackage{amsmath,amsthm,amssymb,graphicx,mathtools,tikz,pgfplots} %maths
+\usepackage{amsmath,amsthm,amssymb,graphicx,mathtools,tikz} %maths
 \usepackage{hyperref,framed,color,fancybox} %layout
 
 
@@ -301,7 +303,7 @@
       \centering
       \begin{minipage}{0.45\linewidth}
           \begin{figure}[H]
-              \includegraphics[width=\linewidth]{assets/mux.png}
+              \includegraphics[width=\linewidth]{mux.png}
           \end{figure}
       \end{minipage}
       \hspace{0.05\linewidth}
@@ -332,7 +334,7 @@
       \centering
       \begin{minipage}{0.45\linewidth}
           \begin{figure}[H]
-              \includegraphics[width=\linewidth]{assets/halfAdder.png}
+              \includegraphics[width=\linewidth]{halfAdder.png}
           \end{figure}
       \end{minipage}
       \hspace{0.05\linewidth}
@@ -359,7 +361,7 @@
       \centering
       \begin{minipage}{0.65\linewidth}
           \begin{figure}[H]
-              \includegraphics[width=\linewidth]{assets/fullAdder.png}
+              \includegraphics[width=\linewidth]{fullAdder.png}
           \end{figure}
       \end{minipage}
       \hspace{0.05\linewidth}
@@ -429,20 +431,91 @@ $$\begin{aligned} x \land ( x \lor y ) & = x \\ x \lor ( x \land y ) & = x \end{
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.7\textwidth]{assets/rippleAdder.png}
+\includegraphics[width=0.7\textwidth]{rippleAdder.png}
 \end{figure}
 
 \rem{Note how the carry from each previous operation is passed onto the next, just like how one does addition manually}
 
 \rem{Subtraction can be done much in the some way, by first applying 2's c to one of the inputs}
 
+\newpage
+
+\section{Synchronous Circuits}
+
+\par{Given that logic gates are physical devices, it sometimes happens that there is a time delay between an input change and the new output. This means that it often happens that the boolean laws are not followed}
+
+\rem{Even though the time delay for a gate is marginal, for a whole circuit the delays add up}
+
+\defn{Gate Delay}{Time taken for a gate to respond to a change of input with the correct output}
+
+\ex{ \begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{gateDelay}
+\end{figure}
+
+\par{The expected output of the following circuit would be $0$, however when changing from, $1 \text{ to } 0$, the delay of the inv gate will cause both inputs of the and gate to be $1$, which in turn will erroneously output a $1$ }}
+
+\defn{State}{!!!!GOOGLE PROPER DEFINITION}
+
+\defn{Delay Flip Flop (dff)}{component which endows a circuit with state. It has 2 inputs (saved value, clock tick) and 1 output (state value)}
+
+\par{Every time the \ita{dff} receives a clock signal, it updates its state value~\mymarginpar{There is only one clock signal for all flip flops, hence they are all updated simultaneously}. Since the physical components deal with analogue signals, the \ita{clock tick} can not be represented discretely. The workaround is to have the \ita{dff} treat the voltage spike as the tick}
+
+\begin{minipage}{\linewidth}
+      \centering
+      \begin{minipage}{0.45\linewidth}
+          \begin{figure}[H]
+              \includegraphics[width=\linewidth]{clock}
+          \end{figure}
+      \end{minipage}
+      \hspace{0.05\linewidth}
+\begin{minipage}{0.45\linewidth}
+          \begin{figure}[H]
+              \includegraphics[width=\linewidth]{clock2}
+          \end{figure}
+      \end{minipage}
+\end{minipage}
 
 
+\defn{Synchronous Circuit}{
+	\begin{enumerate}
+		\item Every flip flop must be directly connected to a global clock
+		\item No logical functions can be applied to the clock signal
+		\item Every clock tick much reach all flip flops simultaneously
+		\item Every feedback loop must pass through a flip flop
+		\item The inputs to the circuit remain stable throughout clock cycles~\mymarginpar{The cycle must be long enough to allow for all signals to become valid}
+	\end{enumerate}
+}
 
 
+\par{At every clock tick the \ita{dff} state gets updated, in order to store its state for longer we can use a register (\ita{reg1}). If the control input is 1, then the value from the \ita{dff} is loaded into the \ita{reg1} otherwise it remains the same. The conditional is implemented by an \ita{mux1}}
 
+\defn{Register}{Allows the bit to be recorded between cycles, until a new value is loaded. It takes 2 inputs (ld =1,0 and bit) and it outputs the state bit}
 
-	
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{reg1}
+\end{figure}
+
+$$\text{\textbf{dff\_input} $=$ mux1 ld old\_state x}$$
+
+\par{The register can be simulated by way of a simulation table: \\}
+$$
+\begin{tabular}{|c|c|c|c|c|}
+	Cycle & \multicolumn{2}{c}{Inputs}{} & State & Internal \\
+	\hline
+	& \multicolumn{2}{c}{Id}{x}  & r & dff\_input \\
+	\hline
+	0 & \multicolumn{2}{c}{1}{1} & ? & \textbf{1} \\
+	1 & \multicolumn{2}{c}{1}{0} & \textbf{1} & \underline{0}\\
+	2 & \multicolumn{2}{c}{0}{1} & \underline{0} & \textbf{0}  \\
+	3 & \multicolumn{2}{c}{1}{1}  & \textbf{0} & 1 \\ 
+\end{tabular}$$
+
+\section{Register Transfer Machine}
+
+\lecture{25}{01}{2019}
+
 
 
 \newpage

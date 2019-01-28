@@ -31,6 +31,8 @@
 \newcommand\inv[1]{#1^{-1}}
 \newcommand\setb[1]{\{#1\}}
 \newcommand\en{\ita{n }}
+\newcommand\comb[2]{^{#1}C_{#2}}
+\newcommand\perm[2]{^{#1}P_{#2}}
 
 %\renewcommand\qedsymbol{QED} %to use QED instead of square
 
@@ -223,13 +225,13 @@ Hence, we've shown that $\frac{1}{|\vc{u}|}|\vc{u}|$ is a unit vector of $\vc{u}
 
 \ex{ Let $\overrightarrow{AB} = \vc{u} , \overrightarrow{BC} = 2\vc{u} , \overrightarrow{AC} = \vc{u} + \vc{2u} = \vc{3u}$. Hence they are all parallel to $\vc{u}$, it follows then that they are collinear.}
 
-\rem{ $$ AB : BC = \beta : \alpha \implies \alpha \overrightarrow{AB} = \overrightarrow{BC} $$ 
+\rem{ $$ AB : BC = \beta : \alpha \implies \alpha \overrightarrow{AB} = \overrightarrow{BC} $$ }
 
 Setting $\lambda = \frac{\beta}{\alpha}$,
 
 $$ \overrightarrow{AB} = \lambda\overrightarrow{BC} \ \ \ AB : BC = \lambda : 1 $$
 
-Since $A , B \text{ and } C$ are collinear, we can deduce the distance between the points using their ratio \Big($\lambda = \tfrac{|AB|}{|BC|}$\Big). Furthermore, for $\lambda > 0 $ we have that the vectors have the same direction,  hence $B$ lies between $A$ and $C$. Note however that this is not true for $\lambda < 0$ \\} 
+\par{Since $A , B \text{ and } C$ are collinear, we can deduce the distance between the points using their ratio \Big($\lambda = \tfrac{|AB|}{|BC|}$\Big). Furthermore, for $\lambda > 0 $ we have that the vectors have the same direction,  hence $B$ lies between $A$ and $C$. Note however that this is not true for $\lambda < 0$} 
 
 
 \begin{tikzpicture}
@@ -334,7 +336,7 @@ $ \vc{u} \cdot \vc{v} = |\vc{u}| |\vc{v}| (0) = 0$}
 
 \rem{Note that there are infinitely many planes, lying parallel to one another~\mymarginpar{Think of stack}. Hence, to define a plane one needs to know its normal and a point within it.}
 
-\defn{Plane}{We observe that a point p lies on P, given a normal $\vc{n}$, \ita{iff} the dot product between the directed line segment on the plane and the normal is $0$.  $$ P = \text{\{points P } |  \ \vc{n} \cdot \overrightarrow{pP} = 0 \} $$}
+\defn{Plane~\label{vectors:plane}}{We observe that a point p lies on P, given a normal $\vc{n}$, \ita{iff} the dot product between the directed line segment on the plane and the normal is $0$.  $$ P = \text{\{points P } |  \ \vc{n} \cdot \overrightarrow{pP} = 0 \} $$}
 
 \newpage
 \lecture{15}{01}{2019}
@@ -387,6 +389,99 @@ $$\vc{c}(\vc{a} + \vc{b}) = \vc{c} \times \vc{a} + \vc{c} \times \vc{b}$$}
 & \underbrace{(\vc{a} \cdot \vc{b})}_{\ita{yields a scalar}} \times \vc{c} \ \ \ \ita{ Invalid, scalar $\times$ vector not allowed}
 \end{align}
 }
+
+\textbf{Application of the Cross Product}
+\lecture{21}{01}{2019}
+\ex{
+\par{Three points A, B and C determine the plane P containing them. Find a criterion for a point P to lie on P in terms of A, B and C. \\ }
+
+\par{It follows from (\ref{vectors:plane}), that we need to find the normal $n$ to the plane containing $A, B\text{ and }C$. And given that $\overrightarrow{AB}$ and $\overrightarrow{AC}$ lie in $P$:}
+
+$$\vc{n} = \overrightarrow{AB} \times \overrightarrow{AC}$$
+
+\par{So the criterion is:}
+
+$$\overrightarrow{AP} \times \cdot \vc{n} = \overrightarrow{AP} \cdot (\overrightarrow{AB} \times \overrightarrow{AC}) = 0$$}
+
+\newpage
+
+\section{Counting Methods}
+
+\subsection{The Multiplication Principle}
+
+\defn{Multiplication Principle}{Let the joint experiment $ \theta $, represent an experiment, with $k$ possible outcomes, composed by two other distinct experiments $\lambda_1$ and $\lambda_2$ each witch $n_1$ and $n_2$ possible outcomes, respectively. Then, $k = n_1 \cdot n_2$}
+
+\subsection{Combinations and Permutations}
+\defn{Combinations}{For a collection of $n$ different objects, by selecting $r$ of them, the number of possible combinations where the \textbf{order does not matter}  is given by: \mymarginpar{Note the similarity of the formulas, since the order is irrelevant, we should expect the possible \# of combinations to decrease, hence higher denominator}
+$$ {n \choose r} = \ \comb{n}{r} = \frac{n!}{(n-r)!r!}$$}
+
+\defn{Permutations}{For a collection of $n$ different objects and $n$ spaces, the number of permutations is the number of possible ordered arrangements. It is given by $n!$}
+
+\nota{More generally, when only wishing to select an $r$ number of those $n$ objects, where $0 \leq r \leq n$: $$\perm{n}{r} = \frac{n!}{(n-r)!}$$}
+
+\rem{More generally still, for repeated objects ($n_1$ of type 1, \dots, $ n_t $ of type $t$): $$ \frac{n!}{n_1!
+\times \dots \times n_t!}$$}
+
+\lecture{22}{01}{2019}
+\par{Note that we can obtain the permutations formula by looking at forming permutations of $r$ objects from$n$ as a two stage procedure:}
+
+\begin{enumerate}
+	\item Choose any combination of $r$ objects: $\comb{n}{r}$
+	\item Order the $r$ objects: $r!$
+\end{enumerate}
+
+\textbf{Properties of $n \choose r$}
+
+\prop{ For $n \in \n$ and $ r = 0,1,\dots$: $$ { n \choose n-r} = {n \choose r}$$~\label{choose:1}}
+
+\proofs{ \begin{align*}
+{n \choose n-r} & = \frac{n!}{(n-(n-r))!(n-r)! } \\ & = \frac{n!}{r! (n-r)!} \\ & = {n \choose r}
+\end{align*}}
+
+\ex{Determine, as efficiently as possible, the following:
+
+$$ {n \choose 0} , {n \choose 1} , {n \choose 2} , {n \choose 3} , {n \choose 4} , {n \choose 5}\\ $$
+
+\par{By using the symmetry which follows from (\ref{choose:1}) we have that:}
+
+$$ {n \choose 0} = {n \choose 5} = 1 \ ; \ {n \choose 1} = {n \choose 4 } = 5 \ ; \ {n \choose 2} = {n \choose 3} = 10 $$
+}
+
+
+\subsection{Combinations subject to Constraints}
+
+\begin{enumerate}
+	\item Exclusion of $k$ objects: $${n \choose r}\bigg| _{\text{exclude }k} = {n-k \choose r}$$	
+	\item Inclusion of $k$ objects: $${n \choose r}\bigg|_{\text{include }k} = {n-k \choose r-k}$$
+	\item Complement: The number of combinations that do satisfy a constraint is the complement of the number that do not $$ \text{Combinations which satisfy the constraint } = \text{Total - Combinations which do not }$$
+\end{enumerate}
+
+\newpage	
+\subsection{Pascal's Triangle}
+\lecture{28}{01}{2019}
+
+\par{The pascal's triangle is formed by setting the edges to $1$, and generating numbers for each row by summing the two numbers immediately above them. So that, for each row $n$, each entry represents choosing $n$ objects from $ 0 \to n$ }
+
+$$
+\begin{tabular}{rccccccccccccc}
+$n=0$:&    &    &    &    &    &    &  1\\\noalign{\smallskip\smallskip}
+$n=1$:&    &    &    &    &    &  1 &    &  1\\\noalign{\smallskip\smallskip}
+$n=2$:&    &    &    &    &  1 &    &  2 &    &  1\\\noalign{\smallskip\smallskip}
+$n=3$:&    &    &    &  1 &    &  3 &    &  3 &    &  1\\\noalign{\smallskip\smallskip}
+$n=4$:&    &    &  1 &    &  4 &    &  6 &    &  4 &    &  1\\\noalign{\smallskip\smallskip}
+$n=5$:&    &  1 &    &  5 &    & 10 &    & 10 &    &  5 &    &  1\\\noalign{\smallskip\smallskip}
+$n=6$:&  1 &    &  6 &    & 15 &    & 20 &    & 15 &    &  6 &    &  1\\\noalign{\smallskip\smallskip}
+\end{tabular}$$
+
+\par{This construction relies on the following:}
+ 
+\prop{For $n \in \n \text{ and } r = 1, 2, . . . , n,$ $$ {n+1 \choose r} = {n \choose r-1} + {n \choose r}}
+
+\proofs{}
+\mymarginpar{TODO: enquire about the exclusion bit of the proof}
+
+
+
 
 
 

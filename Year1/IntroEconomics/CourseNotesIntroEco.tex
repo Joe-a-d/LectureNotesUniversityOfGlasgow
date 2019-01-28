@@ -16,6 +16,8 @@
 \usepackage{csquotes}
 \newcommand\quo[1]{\begin{displayquote}\ita{\large{#1}}\end{displayquote}}
 
+\graphicspath{{assets/}}
+
 
 
  %%%%% GENERAL MATHEMATICAL NOTATION SHORTCUTS %%%%%
@@ -36,8 +38,8 @@
 
 %%%%%%%%%%%%%%%%PACKAGES%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{lipsum}  
-\usepackage{amsmath,amsthm,amssymb,graphicx,mathtools,tikz,pgfplots} %maths
-\usepackage{hyperref,framed,color,fancybox} %layout
+\usepackage{amsmath,amsthm,amssymb,graphicx,mathtools,tikz} %maths
+\usepackage{hyperref,framed,color} %layout
 % framed :  \begin{shaded,frame,snugshade or leftbar} \definecolor{shadecolor}{rgb}{XYZ} to change color
 %fancybox: \shadowbox,ovalbox or doublebox
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -65,7 +67,7 @@
 
 \subsection{Introduction}
 
-\lecture{08}{01}{2019}
+\lecture{10}{01}{2019}
 We start our journey into the science of economics by establishing its first principles. In particular, we'll focus on:
 
 \begin{itemize}
@@ -130,25 +132,25 @@ We start our journey into the science of economics by establishing its first pri
 	\item{Resources should be used efficiently to achieve society's goals}
 		\rem{Occasionally there are overriding reasons to efficiency, like equity~\ref{principles:equity}}
 	\item{Markets tend towards efficiency}
-	\item{When markets don?t achieve efficiency, government intervention can improve society?s welfare}
+	\item{When markets don't achieve efficiency, government intervention can improve society's welfare}
 	
 \subsection{Principles of Economy-Wide Interactions}
 
 	\item{One person's spending is another's income}
 		\rem{In a recession, for example, this causes a synergic effect. People lose jobs, they have less money, they spend less, other people have less, they also lose their jobs etc.}
-	\item{Overall Spending Sometimes Gets Out of Line with the Economy?s Productive Capacity}
+	\item{Overall Spending Sometimes Gets Out of Line with the Economy's Productive Capacity}
 		\rem{Underspending often leads to recessions. Overspending leads to \ita{inflation}~\ref{principles:inflation}}
 	\item{Government Policies Can Change Spending}
 	
 \end{enumerate}
 	
 	\defn{Equilibrium}{A situation in which individuals cannot make themselves better off by doing something different~\label{principles:equilibrium}}
-	\defn{Efficient Economy}{Resources are used efficiently when they are used in a way that has fully exploited all opportunities to make everyone better off~\label{principles:equilibrium}}
+	\defn{Efficient Economy}{Resources are used efficiently when they are used in a way that has fully exploited all opportunities to make everyone better off}
 	\defn{Equity}{Allowing for everyone to have his/her fair share~\label{principles:equity}}
-	\defn{Inflation}{A rise in prices throughout the economy. This occurs because when the amount that people want to buy outstrips the supply, producers can raise their prices and still find willing customers.~\label{principles:inflation}}
+	\defn{Inflation}{A rise in prices throughout the economy. This occurs when the amount that people want to buy outstrips the supply, producers can raise their prices and still find willing customers.~\label{principles:inflation}}
 	
 \section{Economic Models}
-\lecture{09}{01}{2019}
+\lecture{11}{01}{2019}
 
 In this section:
 \begin{enumerate}
@@ -157,6 +159,7 @@ In this section:
 	\item Explain the difference between normative and positive economics
 \end{enumerate}
 
+\subsection{Production Possibility Frontier}
 \defn{Model}{ Simplified representation of reality that is used to better understand real-life situations}
 	\rem{Models are essential to economics, because their relative simplicity allow economists to hold everything else constant and study how one change affects the overall economic outcome}
 	
@@ -168,9 +171,9 @@ In this section:
 \defn{Efficient in Production}{When an economy is in its production possibility frontier; we say that the economy is efficient in production~\label{model:efProd}}
 \defn{Efficient in Allocation}{When an economy allocate its resources so that consumers are as well off as possible~\label{model:efAl}}
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
-\includegraphics[width=0.8\textwidth]{assets/ppf.png}
+\includegraphics[width=0.8\textwidth]{ppf.png}
 \end{figure}
 
 \par{We can estimate the \ita{opportunity cost} of producing different goods by looking at the gradient of the line between the current point and the point we wish to investigate. The steeper the gradient (for greater $\Big|\frac{\mathrm{d}y}{\mathrm{d}x}\Big| $), the higher the opportunity cost}
@@ -180,10 +183,402 @@ In this section:
 \defn{Factors of Production}{Any resource needed for the creation of a good or service (land, labor, capital and entrepreneurship)~\label{model:prod}}
 
 
+\subsection{Comparative Advantage}
 
-\lecture{10}{01}{2019}
+\par{The basic idea behind this model is that \ita{it makes sense to produce that which you're particularly good at producing, and buy that which you are not}. By choosing to produce the product (A) which as a lower opportunity-cost, the factors of production are freed from the other possible products. Hence this others can be obtained from trading with another entity which also benefits, since the product being traded has a higher opportunity-cost for them.~\ref{advantage}}
+
+\defn{Comparative Advantage~\label{advantage}}{When an entity's opportunity-cost for some product is lower than that of some other entity's}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.9\textwidth]{jetsTrade.png}
+\end{figure}
+
+\rem{Note, how by trading, both production and consumption increase for both countries}
+
+\defn{Absolute Advantage}{when an entity can produce more output per worker than other countries}
+
+\par{Note that this doesn't mean that trading is no longer beneficial, what matters is the \ita{net gain}.It
+does not matter whether it takes Brazil more resources than the United States to make a small jet; what matters for trade is that for Brazil the opportunity cost of a small jet is lower than the U.S. opportunity cost. So Brazil, despite its absolute
+disadvantage, even in small jets, has a comparative advantage in the manufacture of small jets}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.9\textwidth]{jetsTrade2}
+\end{figure}
+
+\subsection{Interpreting the Simplification of Models}
+\lecture{15}{01}{2019}
+\par{The models used as examples above are grossly oversimplified, this of course has negative consequences, in particular makes the conclusions derived from them less reliable. Yet, as previously stated they are useful because they  illustrate best the fundamentals of economics.}
+
+\par{The \ita{circular-flow diagram} for example, allow us to analyse the complex transactions that take place in an economy by looking at \ita{the flow of things}, and \ita{the flow of money}. The simplest of these has only 2 entities  \ref{flow:house} \ita{households} and \ref{flow:firms} \ita{firms}, whose interaction is mediated by two types of markets those for \ref{flow:goods} \ita{goods and services} and those for the \ref{flow:factor} \ita{factors of production}.}
+
+\defn{Household~\label{flow:house}}{A person or group of people who share their income}
+\defn{Firms~\label{flow:firms}}{An entity which produces goods and services}
+\defn{Goods \& Services Market~\label{flow:goods}}{Where firms sell their products to households}
+\defn{Factor Market~\label{flow:factor}}{Where firms buy the factors of production (e.g. job market)}
+\newpage
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.7\textwidth]{flow.png}
+\end{figure}
+
+\rem{Note how the flows are opposite to each other, since \ita{in general} when an entity puts x into a system it gets y. As an illustration consider how the flow of money \ita{into} the market of goods \textbf{from} the household, leads to a flow of goods \ita{from} the market \textbf{into} the household.}
+
+\par{We need to once again bear in mind the shortcomings of this model, for example the distinction between households and firms is not always clearly distinct, firms interact with each other and the government is not illustrated}
+
+\subsection{Economic Analysis: Positive vs Normative}
+
+\defn{Positive Economics}{Concerns itself with establishing matters of fact. It is therefore purely descriptive, it is able to provide right and wrong answers, but it does not pass any value judgments}
+
+\defn{Normative Economics}{Prescriptive. It involves recommending courses of action to take in order to optimise an economy}
+
+\rem{Note that even though positive economics deals with facts, and does not aim to prescribe behaviour, its conclusions can still be used to guide policy (e.g. politicians might enact certain policies based on forecasts)}
+
+\rem{Even though there is no "right" answer \ita{per se} when it comes to normative economics, the reason it can still be used to guide public policy is because economists are able to agree on a certain course of action, regardless of their own personal values. Just like in ethics for example, where most scholars do not agree that there is one and one only way to live the \ita{good life} , yet most (if not all) agree that to kill an innocent child is morally blameworthy. In the realm of economics, think of two policies A and B  which achieve the same purpose, if A's net gains are higher then A is the right/preferable option. (e.g. rent control \& rent subsidies in the US)}
+
+\newpage
+\section{Supply and Demand}
+\lecture{17}{01}{2019}
+\subsection{Model of a Competitive Market}
+
+\defn{Competitive Market}{A market where there exists many buyers and sellers, therefore none of them have the power to influence market prices}
+
+\rem{Not all markets are competitive, if there are only a few major players, then they are able to set market prices}
+
+\par{There are five key elements to the CM model}
 
 
+\subsection{The Demand Curve}
+	
+	\par{The price of a product or service, affects the amount of that product that people will want to consume. In general, lower prices lead to higher demand~\ref{demand:law}. One can estimate the demand of a certain product by drawing out a table where we map the amount consumers would \ita{want} to buy for each price~\ref{demand:sch}. We can then observe how much would people be willing to pay for a certain quantity~\ref{demand:quantity}, it is by translating this information into a graph that we get the demand curve~\ref{demand:curve}}
+	
+	\defn{Law of Demand~\label{demand:law}}{A higher price for a good or service, \ita{other things equal}, leads people to demand a smaller quantity of that good or service}
+	
+	\defn{Demand Schedule~\label{demand:sch}}{How much of a good or service consumers will want to buy at different prices.}
+	
+	\defn{Quantity Demanded~\label{demand:quantity}}{actual amount of a good or service consumers are willing to buy at some specific price}
+	
+	\defn{Demand Curve~\label{demand:curve}}{a graphical representation of the demand schedule. It shows the relationship between quantity demanded and price}
+	
+	\rem{\textbf{N.B} It is paramount not to confuse quantity demanded with demand. Quantity demanded are the individual points on the demand curve}
+	\newpage
+	\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\textwidth]{demandCurve}
+\end{figure}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\textwidth]{demandShift}
+\end{figure}
+
+
+		
+	\par{One important distinction exemplified in the examples above is the graphical representation of a change in the market. We say that there is a shift in demand if \ita{for the same price, the quantity demanded increases}, hence this will translate into a horizontal translation of the curve. A shift of the quantity demanded simply moves us \ita{along the curve} (say for example if there's a sale). There are five major changes that can lead to a shift in demand:}
+	\begin{enumerate}
+	\item  prices of related goods or services. 
+	
+	\defn{Substitute}{Two goods whose demand and price relation is proportional (price rise of coal leads to demand rise of solar panels)}
+	\defn{Complement}{Two goods whose demand and price relation is inversely proportional (increased price of coffee decreased cookie consumption)}
+	
+	\item income
+	
+	\defn{Normal Good}{goods whose demand increases, when income increases (holidays)}
+	\defn{Inferior Good}{goods whose demand decreases, when income decreases (bus tickets)}
+	
+	
+	\item tastes
+	\item expectations
+	
+	\item number of consumers
+	
+	\defn{Individual Demand Curve}{illustrates the relationship between quantity demanded and price for an individual consumer.} 
+	
+	\par{The market demand curve is obtained by performing the horizontal sum of the total number of consumers. If the number of consumers grow and the price remains unchanged, then an increase in demand is necessary.}
+		\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{demandIndividual}
+\end{figure}
+
+	\end{enumerate}
+	
+	
+		
+\subsection{Supply Curve}
+
+\lecture{18}{01}{2019}
+
+\par{By considering the production of goods, instead of their consumption/demand, we get the analogous supply curve. Note that while the demand curve is in general decreasing (lower price $\implies$ more consumption), the supply curve is generally increasing. This makes sense, as \ita{all things equal}, higher pricers translate into higher profits}
+
+\defn{Quantity Supplied}{Actual amount a producer would be willing to sell their products for a specific price}
+
+\defn{Supply Schedule}{How much of a good or service producers will want to sell at different prices}
+
+\defn{Supply Curve}{Graphical representation of the relation between quantity supplied and price}
+
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\textwidth]{supplyCurve}
+\end{figure}
+
+\par{Note that just like when looking at the demand curve, it's important not to confuse quantity supplied with supply, and their corresponding changes; a movement along the supply curve (increase in q.s) and a shift of the whole curve (increase in supply). The five major causes of a change in supply are due to changes in one or more of the following:}
+
+\begin{enumerate}
+	\item Input prices
+	
+	\defn{input}{good or service used to produce other goods/services}
+	
+	\par{The supply curve shifts inversely to the price of inputs, i.e. if an input becomes costlier, there's a reduction in supply $=$ shift to the right, and vice-versa}
+	
+	\item Prices of related goods or service
+	
+	\par{An increase in the price of a \ita{substitute} product will lead to a decrease in supply of its "pair" product. The reverse is true for its \ita{complement}.}
+	
+	\ex{If a company sells products A,B which serve roughly the same purpose, an increase of the price of A will make it more profitable, hence the company will decide to allocate more resources to A and decrease supply of B}
+
+	\item Technology
+	
+	\par{Technological advancements lead to a decreased input cost, which in turn decreases the total cost of production leading to an increase in supply}
+	
+	\item Expectations
+	
+	\par{A producer may decide to store part of its goods to sell at a latter date, when demand is expected to be higher. This choice depends on a comparison of the current price versus the expected future price}
+	
+	\item Number of producers
+	
+	\par{Just like with the individual demand curve, if there are several producers of the same type of good, the supply curve will be equal to the horizontal sum of each producer's individual curve}
+	
+	\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\textwidth]{supplyIndividual}
+\end{figure}
+
+\end{enumerate}
+
+\subsubsection{Equilibrium}
+
+
+\defn{Equilibrium Price*~\mymarginpar{*market clearing price}}{The price where the quantity demanded and supplied match.}
+
+\rem{This is easily observed by finding the intersection of the supply and demand curves}
+
+\par{In general, the market price will tend towards an equilibrium due to the following:}
+
+\begin{enumerate}
+
+\item Homogeneity
+
+	\par{Given that both buyers and sellers are well informed of the "normal" prices in a certain area for a certain product, consumers will look for the cheaper products which achieve the same, or similar end. Sellers must have competitive prices (too low $\implies$ profit loss ; too high $\implies$ costumers loss)}
+	
+\item Price Fall
+
+	\par{If the prices are set above that of the equilibrium, there will be a \ita{surplus} of goods. The market will adjust, by lowering the price towards eq}
+	
+	\defn{Surplus}{Quantity demanded $<$ Quantity Supplied}
+	
+\item Price Rise
+
+	\par{If the prices are set below that of the equilibrium, there will be a \ita{shortage} of goods. The market will adjust, by raising the prices towards eq. so that quantity demanded is lowered}
+	
+\end{enumerate}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\textwidth]{supplySurplus}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\textwidth]{supplyShortage}
+\end{figure}
+
+	\par{Considering what happens to the equilibrium point when changes in supply and demand occur, one finds that:}
+	
+	\defn{Shortage}{Quantity Demanded $>$ Quantity Supplied}
+	\begin{enumerate}
+		\item An increase in demand leads to an upward movement along the supply curve, i.e. both the price and quantity demanded increase*~\mymarginpar{and vice-versa}
+		\item An increase in supply leads to a downward movement along the demand curve, i.e. the price decreases while the demand increases*
+	\end{enumerate}
+	
+	\rem{When there's a shift in both the demand and supply, if the price and quantity of equilibrium move together, then this is due do a change in demand. When they move in opposite directions, then it is due to a change in supply}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{supplydemandEq}
+\end{figure}
+
+\newpage
+\section{Consumer and Producer Surplus}
+
+\lecture{22}{01}{2019}
+\subsection{Consumer}
+
+\defn{Willingness to Pay}{maximum price at which the buyer would buy the good}
+
+\defn{Individual Consumer Surplus}{net gain to an individual buyer from a purchase}
+
+\nota{  S = Willing - Actual}
+
+\defn{Total Consumer Surplus}{net gain of all individuals}
+
+\rem{Economists use consumer plus to mean both total and individual, it can be differentiated from context}
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.7\textwidth]{consumerSurplus}
+\end{figure}
+
+\rem{It is intuitively obvious, that a change in market price varies inversely with consumer surplus}
+
+\subsection{Producer}
+
+\par{The producer surplus works much in the same way, but in reverse. The gains for sellers are calculated by looking at the difference between the min price a seller would be willing to sell his products/goods and the actual price it was sold}
+
+\defn{Cost}{the lowest price at which he or she is willing to sell a good}
+
+\defn{Individual Producer Surplus}{net gain to an individual producer from a sale}
+
+\defn{Total Producer Surplus}{net gain of all individual producers}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.7\textwidth]{producerSurplus}
+\end{figure}
+
+\rem{Once again it should be obvious that if the market price increases the producer surplus will also increase}
+
+\par{By looking at the net gains generated for both producers and consumers we can calculate the total surplus for a market. This is evidence that trade can be beneficial for both}
+
+\defn{Total Surplus}{the sum of the producer and consumer surplus}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.7\textwidth]{CPsurplus}
+\end{figure}
+
+
+\rem{The surplus is the area found below (producer) and above (consumer) the equilibrium price}
+
+
+\subsection{Efficiency}
+
+
+\par{We can analyse the efficiency of a market in the light of consumer and producer surplus. Say for example that one is aiming to improve the market equilibrium by increasing total surplus. How could this be achieved? In essence an efficient market performs the following four functions:}
+
+\begin{enumerate}
+	\item It Allocates consumption of the good to the potential buyers who have the highest willingness to pay.
+	
+	\item  It allocates sales to the potential sellers who most value the right to sell the good, as indicated by the fact that they have the lowest cost.
+	
+	\item It ensures that every consumer who makes a purchase values the good more than every seller who makes a sale, so that all transactions are mutually beneficial.
+	
+	\item It ensures that every potential buyer who doesn't make a purchase values the good less than every potential seller who doesn't make a sale, so that no mutually beneficial transactions are missed.
+\end{enumerate}
+
+\par{In general, \ita{any way of allocating the good other than the market equilibrium outcome lowers total surplus}. There is however things one must watch out for when relying purely on markets.}
+
+\begin{enumerate}
+	\item Equity/Fairness is often in conflict with efficiency: As a society we often don't think as efficiency as the only goal to be achieved, in fact most modern societies understand the trade-off between the two, and often prize the distribution of wealth over the maximisation of efficiency. The reason why this two conflict is that efficiency deals only with maximising a the output of a function given certain inputs, once the output/goal being optimised is defined that's what the optimising strategies will work to increase regardless of what extraneous consequences it might have
+	
+	\item Markets Fail: 
+		\begin{itemize}
+		\item in an attempt to capture more surplus, one party prevents mutually beneficial trades from occurring (monopoly)
+		\item actions of individuals sometimes have side effects*~\mymarginpar{externalities e.g. pollution} on the welfare of others that markets don't take into account
+		\item Markets for some goods fail because these goods, by their very nature, are unsuited for efficient management by markets. (e.g. problems of private information - used car)
+		\end{itemize}
+		
+	\item Even when the market equilibrium maximizes total surplus, this does not mean that it results in the best outcome for every individual consumer and produce
+\end{enumerate}
+
+\par{When markets are efficient, the economy as a whole is efficient. Even though economies where every market is efficient are a theoretical construct, some are much more efficient than others. Why is that? It all comes down to two main market features (1) Property Rights; (2) Prices as Economic Signals }
+
+\defn{Property Rights}{system in which valuable items in the economy have specific owners who can dispose of them as they choose}
+
+\par{By taking ownership full ownership of goods once bought, this reduces the opportunity-cost of the item. For example, by knowing in advance that I might be able to sellback a textbook which I only need for a semester, I will in recoup part of its original cost, and the student buying it will not only be able to buy it at a reduced cost, but will also gains the right to resell it} 
+
+\defn{Economic Signals}{any piece of information that helps people and businesses make better economic decisions}
+
+\par{Business analysts often know that a business is preparing to ramp production when it increases its purchase of cardboard boxes, we say that the boxes are a signal of changes in industrial production. In a more general case, prices in a market economy perform a similar function. By setting the market price of a good at $x$ , economic agents can derive information from useful to for deciding how to act. Sellers know that there are consumers willing to pay at least $x$, and consumers know that there are potential sellers with a cost of $x$ or less. The signal given by the market price ensures that total surplus is maximized by telling people whether to buy books, sell books, or do nothing at all.}
+
+\rem{ Note that since, in equilibrium, the quantity demanded equals the quantity supplied, all willing consumers will find willing sellers.}
+
+\rem{There are markets where prices are not a good economic signal, for example when there is uncertainty about the quality of a good. This is a well-known problem in economics know as \ita{"the market for lemons"}}
+
+\section{Meddling with Markets}
+
+\lecture{24}{01}{2019}
+
+\par{There is often the need for the government to implement price controls, this can come in the form of price floors or price ceiling}
+
+\subsection{Price Ceiling}
+
+\defn{Price Ceiling}{government mandated maximum price at which a good can be sold}
+
+\par{Price ceilings are often set in place during times of crises, where demand for certain goods sky-rockets, and producers tend to take advantage of the situation by charging way above market-price. However, when balanced markets are over-regulated predictable negative consequences arise, the main one being that producers seeing their profit margins decline tend to reduce supply, which leads to shortages. }
+
+\rem{If the price ceiling is set above market price, we say that it is \ita{non-binding}, i.e. it will not constraint market behaviour}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[height=0.3\textwidth, width=0.5\textwidth]{ceilling}
+\end{figure}
+
+
+\begin{itemize}
+	\item \textbf{Negative Consequences}
+	\begin{enumerate}
+		\item Low Quantity: given that producers will produce less, it necessarily follows that consumers will buy less. This mutual loss is called \ita{deadweight loss}, it represents the reduction in the total surplus.
+		
+		\defn{deadweight loss}{the loss in total surplus that occurs whenever an action or a policy reduces the quantity transacted below the efficient market equilibrium quantity}
+		
+		\begin{figure}[h]
+\centering
+\includegraphics[height=0.4\textwidth,width=0.8\textwidth]{deadweight}
+\end{figure}
+\begin{figure}[h]
+\centering
+\includegraphics[height=0.4\textwidth,width=0.8\textwidth]{deadweight2}
+\end{figure}
+	
+	\item Allocation to Consumers: apartment, some want one badly and are willing to pay a high price to get it. Others have a less urgent need and are only willing to pay a low price~\mymarginpar{Krugman correlates willing max price to urgency/necessity, but it doesn't necessarily follow! One might be in dire need of a house, but simply not be able to afford to go any higher}. By "lowering the bar" for everyone, other factors other than price (personal connections, luck) will take over the allocation, which often turns out to be inneficient
+		
+	\item Wasted Resources: people expend money, effort, and time to cope with the shortages caused by the price ceiling
+	
+	\item Low Quality: sellers offer low-quality goods at a low price even though buyers would rather have higher quality and would be willing to pay a higher price for it
+	
+	\item Black Markets
+	
+	\end{enumerate}
+	
+	\item \textbf{Why are ceilings needed?} \par{they give a small minority
+of buyer much cheaper products than they would get in an unregulated market, which they wouldn't otherwise be able to afford}
+
+\end{itemize}
+
+\subsection{Price Floors}
+
+
+\defn{Price Floor}{government mandated minimum price at which a good can be sold (e.g. min wage)}
+
+\par{Price floors are often set in place as an aid to highly competitive  markets (e.g. job market, farming), where supply for certain goods is plenty.}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{floor}
+\end{figure}
+
+\rem{Both ceilings and floors have the effect of reducing the quantity of a good bought and sold. When the quantity of a
+good supplied isn't equal to the quantity demanded, \textbf{the actual quantity sold is determined by the "short side" of the
+market (whichever quantity is less)}. Sellers don't want to sell as much as buyers want to buy, it's the sellers who determine the actual quantity sold. If buyers don't want to buy as much as sellers want to sell, it's the buyers who determine the actual quantity sold}
+
+\rem{The negative side effects are similar to those of price floors}
+
+\subsection{Controlling Quantities}
+\lecture{25}{01}{2019}
 
 
 
