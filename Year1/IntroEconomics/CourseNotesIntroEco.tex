@@ -35,10 +35,10 @@
 \newcommand\setb[1]{\{#1\}}
 \newcommand\en{\ita{n }}
 \renewcommand\qedsymbol{QED} %\qedhere to force QED in place
+\renewcommand{\TODO}[1]{\mymarginpar{TODO: #1}}
 
 %%%%%%%%%%%%%%%%PACKAGES%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{lipsum}  
-\usepackage{amsmath,amsthm,amssymb,graphicx,mathtools,tikz} %maths
+\usepackage{amsmath,amsthm,amssymb} %maths
 \usepackage{hyperref,framed,color} %layout
 % framed :  \begin{shaded,frame,snugshade or leftbar} \definecolor{shadecolor}{rgb}{XYZ} to change color
 %fancybox: \shadowbox,ovalbox or doublebox
@@ -269,7 +269,7 @@ disadvantage, even in small jets, has a comparative advantage in the manufacture
 
 
 		
-	\par{One important distinction exemplified in the examples above is the graphical representation of a change in the market. We say that there is a shift in demand if \ita{for the same price, the quantity demanded increases}, hence this will translate into a horizontal translation of the curve. A shift of the quantity demanded simply moves us \ita{along the curve} (say for example if there's a sale). There are five major changes that can lead to a shift in demand:}
+	\par{One important distinction exemplified in the examples above is the graphical representation of a change in the market. We say that there is a shift in demand if \ita{for the same price, the quantity demanded increases}, hence this will translate into a horizontal translation of the curve. A shift of the quantity demanded simply moves us \ita{along the curve} (say for example if there's a sale). There are five major changes that can lead to a shift in demand:\mymarginpar{see 77 Table 3-1}}
 	\begin{enumerate}
 	\item  prices of related goods or services. 
 	
@@ -325,7 +325,7 @@ disadvantage, even in small jets, has a comparative advantage in the manufacture
 	
 	\defn{input}{good or service used to produce other goods/services}
 	
-	\par{The supply curve shifts inversely to the price of inputs, i.e. if an input becomes costlier, there's a reduction in supply $=$ shift to the right, and vice-versa}
+	\par{The supply curve shifts inversely to the price of inputs, i.e. if an input becomes costlier, there's a reduction in supply $=$ shift to the left, and vice-versa}
 	
 	\item Prices of related goods or service
 	
@@ -490,7 +490,7 @@ disadvantage, even in small jets, has a comparative advantage in the manufacture
 
 \defn{Economic Signals}{any piece of information that helps people and businesses make better economic decisions}
 
-\par{Business analysts often know that a business is preparing to ramp production when it increases its purchase of cardboard boxes, we say that the boxes are a signal of changes in industrial production. In a more general case, prices in a market economy perform a similar function. By setting the market price of a good at $x$ , economic agents can derive information from useful to for deciding how to act. Sellers know that there are consumers willing to pay at least $x$, and consumers know that there are potential sellers with a cost of $x$ or less. The signal given by the market price ensures that total surplus is maximized by telling people whether to buy books, sell books, or do nothing at all.}
+\par{Business analysts often know that a business is preparing to ramp production when it increases its purchase of cardboard boxes, we say that the boxes are a signal of changes in industrial production. In a more general case, prices in a market economy perform a similar function. By setting the market price of a good at $x$ , economic agents can derive useful information from  it. Sellers know that there are consumers willing to pay at least $x$, and consumers know that there are potential sellers with a cost of $x$ or less. The signal given by the market price ensures that total surplus is maximized by telling people whether to buy, sell , or do nothing at all.}
 
 \rem{ Note that since, in equilibrium, the quantity demanded equals the quantity supplied, all willing consumers will find willing sellers.}
 
@@ -570,22 +570,36 @@ market (whichever quantity is less)}. Sellers don't want to sell as much as buye
 
 \par{Until now we have been focusing on government intervention on the prices of goods, in this section we'll focus on controlling quantities}
 
-\defn{Quota}{an upper limit on the quantity ofsome good that can be bought orsold.}
+\defn{Quota}{an upper limit on the quantity of
+some good that can be bought or
+sold.}
 
-\defn{Quota Limit}{the total amount of the goodthat can be legally transacted}
+\defn{Quota Limit}{the total amount of the good
+that can be legally transacted}
 
 \rem{This limits are usually enacted by issuing licenses, which limits the number of people which can sell the good}
 
-\defn{Demand Price}{the price at whichconsumers will demand that quantity.}
+\defn{Demand Price}{the price at which
+consumers will demand that quantity.}
 
-\defn{Supply Price}{the price at which producers willsupply that quantity.}
+\defn{Supply Price}{the price at which producers will
+supply that quantity.}
 
 \par{Licenses are not free, the owner of a licence must buy it from the local council, which makes it in itself a commodity separate of the good. Therefore, when analysing transactions one must consider two distinct (but related) markets (1) the transactions between customer-seller (2) transactions of licenses.}
 \par{Given that this cost of the license is usually carried over to customers, there is a a difference between what  customers pay and the profit the seller does, this difference can be see as the license fee which belongs to the license holder who usually leases it}
 
-\defn{wedge}{a difference between the demand priceand the supply price of a good; thatis, the price paid by buyers ends upbeing higher than that received bysellers.}
+\defn{wedge}{a difference between the demand price
+and the supply price of a good; that
+is, the price paid by buyers ends up
+being higher than that received by
+sellers.}
 
-\defn{quota rent}{the earnings thataccrue to the license-holder fromownership of the right to sell thegood. It is equal to the market priceof the license when the licenses aretraded.}
+\defn{quota rent}{the earnings that
+accrue to the license-holder from
+ownership of the right to sell the
+good. It is equal to the market price
+of the license when the licenses are
+traded.}
 
 \includegraphics[width=\textwidth]{control}
 
@@ -594,11 +608,129 @@ market (whichever quantity is less)}. Sellers don't want to sell as much as buye
 \section{Elasticity}
 
 
+\defn{Elasticity}{a measure of a variable's sensitivity to a change in another variable}
+
+\defn{Price Elasticity of Demand}{change in the quantity demanded in relation to a price change}
+
+$$ PED = \left|\frac{\% \ \Delta QD}{\% \ \Delta P} \right|$$
+
+\rem{remember to change the change to a percent value}
+
+\rem{Due to (\ref{demand:law}) , the value will always be negative, indicating that QD and P vary inversely. By convention the sign is dropped}
+
+\defn{Elastic}{A product $P$ is deemed to be elastic, if its $PED < 1$; i.e if the change in price is greater than the change of the quantity demanded}
+
+\defn{Inelastic}{$PED > 1$; change of qd is greater than price change}
+
+\defn{Unit Elastic}{$PED = 1$}
+
+\par{\textbf{The Midpoint Method} is used , instead of the method above, to avoid computing different elasticities for different pov's. For example, John is 180cm tall and Mary is 162cm tall. From John's perspective, their percentual difference is 110\% while from Mary's is 90\%} \TODO{Ask! if they vary by 10, when using the words taller/shorter than this is assumed. So why is it necessary}
+
+\par{The concept is still the same but the change of the variables is divided by its average}
+\ex{
+$$ \% \Delta QD = \frac{QD_2 - QD1}{\sfrac{(QD_2 + QD_1)}{2}}$$
+}
+
+\par{In general:}
+
+$$ \% PED = \frac{\tfrac{QD_2 - QD1}{\sfrac{(QD_2 + QD_1)}{2}}}{\tfrac{P_2 - P1}{\sfrac{(P_2 + P_1)}{2}}}$$
+
+\subsection{Interpreting PED}
+
+\defn{Perfectly Inelastic}{changes in price do not affect the quantity demanded}
+
+\par{Note that in the case where customers do not respond to changes in price (e.g. serious chronic disease medication), the demand curve will in fact just be a vertical line, since $\Delta QD = 0$}
+
+\defn{Perfectly Elastic}{changes in demand do not affect price}
+
+\par{Note that in the case where \ita{any} price change leads to extreme changes in the quantity demanded*\mymarginpar{*real life scenarios are scarce, but a close example would be of two products which are really good substitutes of each other}, the demand curve will then be an horizontal line, since for $+\Delta P , \Delta Q \to 0$ and  $-\Delta P, \Delta Q \to \infty$} \TODO{ASK! Should there not be two asymptotes instead of a horizontal line?}
+
+\rem{Note then that in general, since we represent price in the $y$ axes and qd in the $x$ axes, $PED = \frac{1}{\frac{dy}{dx}}$ , it follows then that the steeper the gradient , the less elastic a product is}
 
 
+              \includegraphics[width=0.65\linewidth]{elasticGrad} \includegraphics[width=0.335\linewidth]{elasticGrad2}
+
+\par{The notion of elasticity is obviously useful to predict how of possible changes in price will affect the \ita{total revenue}.}
+
+\defn{Total Revenue}{the total value of sales of a good, equal to the price multiplied by the quantity sold}
+
+$$T_n = P_n \cdot Q_n$$ 
+
+\par{where $T_n$ represents the total revenue of a good at the point $(Q_n,P_n)$ in the demand curve\\}
+
+\par{The total revenue after a change can still be calculated in the same way. We should expect the area to change due to the (1) price effect ; (2) demand effect. It should be intuitively obvious that by raising the price the p/product revenue will be higher, and the opposite is true when reducing quantities. However, the elasticity of the curve is useful to help us understand which of these effects will be stronger, and in turn what happens to the \ita{net total revenue}}
+
+\par{It is useful again to think of the gradient of the curve and the area of the rectangle strictly below the point we're looking at. Note the following for a price increase along the curve\mymarginpar{obviously the opposite is true for a decrease}:} 
+
+\begin{itemize}
+	\item{\textbf{Elastic:} for a steeper gradient, even a small decrease in qd will result in a very large increase in price (think of an exponential curve). Hence, \textbf{the revenue lost by the lost units will be compensated by the revenue gained by the increase in price}}
+	\item{ \textbf{Non-Elastic:} the opposite}
+	\item{ \textbf{Unit-Elastic:} still no change}
+\end{itemize}
+
+\includegraphics[width=\linewidth]{elasticRev}
+
+\rem{Price elasticity varies along the curve}
+
+\par{Given that the demand curve has a negative gradient, and following from the analysis above, the following are true:}
+
+\rem{If the price between two points $x_1 , x_2$ decreases and the total revenue increases, then $x_1$ is \ita{more elastic} than $x_2$, \textbf{but} both prices are elastic}
+
+\rem{f the price between two points $x_1 , x_2$ decreases and the total revenue decreases, then $x_1$ is \ita{less elastic} than $x_2$ \textbf{but} both prices are non-elastic}
+
+\includegraphics[height=0.8\linewidth, width=0.7\linewidth]{elasticVar}
 
 
-\newpage
+\rem{The revenue maximum occurs when demand is unite-elastic}
+
+\subsubsection{Factors of Influence}
+
+\begin{enumerate}
+	\item Luxury Vs Necessary Goods
+	\par{Luxury goods tend to be much more elastic, since people can "live without them" which wither forces sellers to reduce the price or the quantity demanded is low}
+	\item Availability of Close Substitutes
+	\par{If there are close substitutes for a good, its price elasticity will be higher, again because people have choices}
+	\item Share of Income Spent
+	\par{ If people spend a large chunk of their income in a good, they don't mind spending time finding ways to reduce its quantity demanded, hence higher elasticity}
+	\item Time Since Price Change
+	\par{ Elasticity tends to increase with time}
+\end{enumerate}
+
+\subsection{Other Demand Elasticities}
+
+\par{The quantity demanded of a good depends on variables other than price, we can study this variation with other elasticities}
+
+\defn{Cross-Price}{measures the effect of the change in one good's price on another's quantity demanded
+
+$$CP_{ab} =\% \frac{\Delta QD_{a}}{\Delta P_{b}}$$}
+
+\rem{$a , b$ substitutes $\implies CP_{ab} > 0 \implies$ right shift of the D curve}
+
+\defn{Income Elasticity}{measures the effect of a change in consumers' income on a good's demand
+$$IED =\% \frac{\Delta QD}{\Delta I}$$}
+
+\rem{Useful to understand if a good is inferior or normal}
+
+\rem{If $IED > 0 \implies $ normal good}
+
+
+\subsection{Price Elasticity of Supply}
+
+\defn{Price Elasticity of Supply}{change in the quantity supplied in relation to a price change}
+
+\subsubsection{Factors of Influence}
+
+\begin{enumerate}
+	\item Availability of Inputs
+	\par{Elasticity tends to be large when inputs are readily available and can be shifted into and out of production at a relative low cost}
+	\item Time
+	\par{Elasticity grows larger as producers have more time to respond to price changes}
+\end{enumerate}
+
+\subsection{Elasticity Summary}
+\includegraphics[height=1.1\textwidth]{elasticSum}
+ 
+ \newpage
 \nocite{*}
 \printbibliography
 

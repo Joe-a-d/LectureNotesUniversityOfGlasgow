@@ -38,6 +38,8 @@
 \newcommand\en{\ita{n }}
 \renewcommand\qedsymbol{QED} %QED instead of square
 \newcommand{\code}{\texttt}
+\renewcommand{\TODO}[1]{\mymarginpar{TODO: #1}}
+
 
 
 
@@ -111,7 +113,7 @@
 	
 	\defn{Byte}{8 bits}
 	
-	\par{Note that just like in any other positional number system, the number of possible representations grows exponentially with the number of digits added. In the binary system we only have $0 , 1$. But by using basic knowledge of combinatorics, one observes that for every new position $n$ the number of possible orderings doubles. It follows, for example, that for an 8 bit binary number one can represent up to $2^8 = 256$ different values ( $0 \to 255$ ). In general, for a $k$ bit number:
+	\par{Note that just like in any other positional number system, the number of possible representations grows exponentially with the number of digits added. In the binary system we only have $0 , 1$. But by using basic knowledge of combinatorics, one observes that for every new position $n$ the number of possible orderings doubles. It follows, for example, that for an 8 bit binary number one can represent up to $2^8 = 256$ different values ( $0 \to 255$ ). In general, for a $k$ bit number:}
 	
 	$$ 2^k \text{ possible values. From 0 until } 2^k - 1$$ 
 	
@@ -336,7 +338,7 @@
 		\begin{minipage}{\linewidth}
       \centering
       \begin{minipage}{0.45\linewidth}
-          \begin{figure}[H]
+          \begin{figure}[ht]
               \includegraphics[width=\linewidth]{dmux}
           \end{figure}
       \end{minipage}
@@ -362,7 +364,7 @@
 	\begin{minipage}{\linewidth}
       \centering
       \begin{minipage}{0.45\linewidth}
-          \begin{figure}[H]
+          \begin{figure}[ht]
               \includegraphics[width=\linewidth]{halfAdder.png}
           \end{figure}
       \end{minipage}
@@ -389,7 +391,7 @@
 	\begin{minipage}{\linewidth}
       \centering
       \begin{minipage}{0.65\linewidth}
-          \begin{figure}[H]
+          \begin{figure}[ht]
               \includegraphics[width=\linewidth]{fullAdder.png}
           \end{figure}
       \end{minipage}
@@ -456,7 +458,7 @@ $$\begin{aligned} x \land ( x \lor y ) & = x \\ x \lor ( x \land y ) & = x \end{
 
 \defn{4-bit Ripple Carry Adder}{Uses 4 full adders to add two 4-bit numbers}
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.7\textwidth]{rippleAdder.png}
 \end{figure}
@@ -476,7 +478,7 @@ $$\begin{aligned} x \land ( x \lor y ) & = x \\ x \lor ( x \land y ) & = x \end{
 
 \defn{Gate Delay}{Time taken for a gate to respond to a change of input with the correct output}
 
-\ex{ \begin{figure}[h]
+\ex{ \begin{figure}[ht]
 \centering
 \includegraphics[width=0.5\textwidth]{gateDelay}
 \end{figure}
@@ -495,13 +497,13 @@ $$\begin{aligned} x \land ( x \lor y ) & = x \\ x \lor ( x \land y ) & = x \end{
 \begin{minipage}{\linewidth}
       \centering
       \begin{minipage}{0.45\linewidth}
-          \begin{figure}[H]
+          \begin{figure}[ht]
               \includegraphics[width=\linewidth]{clock}
           \end{figure}
       \end{minipage}
       \hspace{0.05\linewidth}
 \begin{minipage}{0.45\linewidth}
-          \begin{figure}[H]
+          \begin{figure}[ht]
               \includegraphics[width=\linewidth]{clock2}
           \end{figure}
       \end{minipage}
@@ -523,14 +525,15 @@ $$\begin{aligned} x \land ( x \lor y ) & = x \\ x \lor ( x \land y ) & = x \end{
 
 \defn{Register~\label{primitive:reg}}{Allows the bit to be recorded between cycles, until a new value is loaded. It takes 2 inputs (\code{ ld =1,0} and the value bit) and it outputs the state bit}
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.7\textwidth]{reg1}
 \end{figure}
 
 $$\code{ dff\_input = mux1 ld old\_state x}$$
 
-\par{The register can be simulated by way of a simulation table: \\}
+\par{The register can be simulated by way of a simulation table: }
+
 $$
 \begin{tabular}{|c|c|c|c|c|}
 	Cycle & \multicolumn{2}{r|}{Inputs}{} & State & Internal \\
@@ -595,6 +598,7 @@ $$ \code{R1 := 2}$$}
 
 \includegraphics[width=\textwidth]{rtm}
 
+\newpage
 \par{\textbf{Inner Workings}}
 \begin{itemize}
 	\item A multiplexer is added, which allow the user to decide wether to pass onto the register a new value or to pass the result from the adder (hence the feedback)
@@ -603,21 +607,159 @@ $$ \code{R1 := 2}$$}
 \end{itemize}
 
 \begin{lstlisting}
-if ld     then if arith        then reg[d] := reg[sa] + reg[sb]        else reg[d] := x
+if ld 
+    then if arith
+        then reg[d] := reg[sa] + reg[sb]
+        else reg[d] := x
 \end{lstlisting}
 
-\par{So now we have a 3rd useful feature provided by the RTM ( on top of the 2 previously seen provided by the register), the possibility of adding two numbers \ita{in memory}. So the following is now possible:}
+\par{So now we have a 3rd useful feature provided by the RTM ( on top of the 2 previously seen provided by the register), the possibility of adding two numbers \ita{in memory}. So the following is now possible~\label{rtm:inst}:}
 
 \begin{enumerate}
 	\item{Assign an external input to a register \code{R[address] = constant}}
-	\item{Adding (or subtracting) two values in memory \code{R[a] = R[b] + R[c]}*\mymarginpar{the two values being added can be from the same register R[a] = R[b] + R[b]}}
+	\item{Adding (or subtracting) two values in memory \code{R[a] = R[b] + R[c]}*\mymarginpar{the two values being added can be from the same register R[a] = R[b] + R[b] or R[a] = R[a] + R[b]}}
 \end{enumerate}
 
 
 \rem{Note however that the following is not possible \ita{within one cycle} \code{R[a] = c + R[b]}, since \code{c} is not in memory}
 
 
+\newpage
+\section{Computer Architecture}
+\lecture{29}{01}{2019}
+\defn{Computer Architecture}{Defines the structure and the machine language of a computer}
 
+\rem{ Computer Systems' Abstraction Hierarchy}
+
+\begin{tikzpicture}
+\node[rectangle,draw,
+minimum size=7cm]
+at (0,0) {};
+\node[rectangle,draw,
+minimum size=5cm,
+label=90:{\scriptsize OS, compilers, system
+software, network protocols, and apps}]
+at (0,0) {};
+\node[rectangle,draw,
+minimum size=3cm,
+label=90:{\scriptsize C. Arch. : implemented using digital
+circuits}, label=-90:{\scriptsize supports compilers and operating systems}]
+at (0,0) {};
+\node[rectangle,draw=white,
+minimum size=0cm, label=90:{\scriptsize physics},
+label=-90:{\scriptsize transistors}, label=0:{\scriptsize circuits}]
+at (0,0) {};
+\end{tikzpicture}
+
+\subsection{Machine Language}
+
+\defn{Machine Language}{The language made up of binary-coded instructions that is used directly by the computer}
+
+\ex{ 
+\code{01010000 : operation specifier \\ (4-bit opcode , 1-bit register specifier , 3-bit addressing mode specifier) }\\
+\code{0000000001001000 : operand (\$0048 = char "H")}
+}
+
+\rem{Each CPU has its own machine language}
+
+\par{High-Level programming languages are \ita{compiled} (converted) into machine language by a compiler. This has the obvious advantage of making programming languages extremely versatile, since one language can be used across many machines, as long as a compiler for it exists }
+
+\defn{Compiler}{Software responsible for translating HLL (nowadays) directly into ML}
+
+\par{The first abstraction from ML was what is know as an \ita{assembly language}, where letter codes represent instructions, instead of bits.}
+
+\defn{Assembly Language}{A low-level programming language in which a mnemonic
+represents each of the machine-language instructions for a particular computer}
+
+\defn{Assembler}{Translates AL into ML}
+
+\rem{For this course we'll use a research architecture developed at the university : \code{Sigma16}}
+
+\begin{itemize}
+	\item[] \code{Sigma16} features:
+	\begin{enumerate}
+		\item it has only 16 16-bit registers
+		\item uses reduced instruction set
+	\end{enumerate}
+\end{itemize}
+
+\subsection{Main Subsystems}
+
+\subsubsection{Register File}
+
+\par{There are $16$ , $16$-bit registers. The register file is a volatile memory, used for storing variables for easy access like intermediate values in a calculation }
+
+\nota{\code{Rn} represents the register \code{n}}
+\nota{\code{\$0000} represents the data to be stored in \code{hex}}
+
+\rem{\code{R0} is reserved for the number $0$ , and \code{R15} for additional transient information (e.g. overflow?)}
+
+ 
+ \subsubsection{Arithmetic Logic Unit - ALU}
+ 
+ \defn{ALU}{the circuit that performs arithmetic operations and logical operations (comparison)}
+ 
+ \subsubsection{Memory}
+ 
+ \defn{Memory}{large collection of words}
+ 
+ \par{The memory is much larger (65,536 addresses) and slower, and no arithmetic takes place in it. Instead, it is used for long-term storage.}
+ 
+ \subsection{Input/Output - I/O}
+ 
+ \defn{Input Unit}{A device that accepts data to be stored in memory}
+ 
+ \defn{Output Unit}{A device that prints, displays data or copies it to another device}
+ 
+ \subsection{RTM Instructions}
+ 
+  \par{Remember from above (\ref{rtm:inst}) that the RTM was able to do two things (1) add two numbers; (2) store a number. The following instructions , are how this can be done in  \code{Sigma16}}
+  
+  \newpage
+  \begin{enumerate}
+  	\item \textbf{Arithmetic:} \code{op Rst, Rvar1, Rvar2} $\implies$ \code{Rst := Rvar1 op Rvar2}
+	
+	\nota{ \code{add , sub , mul , div}}
+	\ex{
+	\code{add R1,R2,R3 ; R1 := R2 + R3}}
+	\rem{Note that the \code{;} is used to terminate a sentence, everything after it, in the same line is a comment}
+	
+	\item \textbf{Memory Access:}
+		\begin{itemize} \TODO{Add reason for [R0]}
+			\item \code{load Rn, x[R0]} copies \code{x} from memory into \code{Rn}
+			\item \code{store Rn, x[R0]} copies the word in \code{Rn} into the var \code{y} in memory
+			\item \code{lea Rn, 23[R0]} loads a constant into \code{Rn}
+		\end{itemize}
+		
+		\rem{Note that usually the storage address is the first "argument" but when storing this is reversed}
+		
+	\item \textbf{Execution:} \code{trap R0,R0,R0} halts the program
+	
+	\item \textbf{Variable Definition:} \code{x data 98} creates a variable \code{x} with an initial value of $98$
+	
+	\rem{\code{data} statements must come after all the instructions in the program} \TODO{Confirm that this is due to the program being assembled bottom-top}
+	
+\ex{A program that adds two integers:}
+
+\begin{lstlisting}
+load R1,x[R0] ; R1 := x
+load R2,y[R0] ; R2 := y
+add R3,R1,R2 ; R3 := x + y
+store R3,z[R0] ; z := x + y
+trap R0,R0,R0 ; terminate
+
+;
+
+x data 23
+y data 14
+z data 99
+\end{lstlisting}
+
+\end{enumerate}
+
+\newpage
+\section{Control Structures}
+\lecture{31}{01}{2019}
 
 
 

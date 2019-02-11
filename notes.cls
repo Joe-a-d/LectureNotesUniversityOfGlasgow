@@ -28,11 +28,13 @@
  \newcommand\rem[1]{\begin{remark} #1 \end{remark}}
  \newcommand\ex[1]{\begin{example} #1\end{example}}
  \newcommand\lem[1]{\begin{lemma} #1 \end{lemma}}
+ \newcommand\claim[1]{\begin{claim} #1 \end{claim}}
  \newcommand\prop[2]{\begin{proposition}{\textbf{#1}}{#2}\footnotesize{ (see proof below)}\end{proposition}}
  \newcommand\extra[1]{\shadowbox{
 \parbox{\textwidth}{\textbf{EXTRA MATERIAL} \\ #1}}}
 \newcommand\proofs[1]{\begin{proof} \hphantom{.} #1\end{proof}}
 \newcommand\vc[1]{\mathbf{#1}}
+
 
 
 
@@ -167,7 +169,6 @@
   \newdate{@datelecture#2#3#4}{#2}{#3}{#4}%
   \mymarginpar{\notes@lecturename{}\ \arabic{notes@lecture} \ifthenelse{\equal{#1}{}}{}{\ (#1)}\\ \displaydate{@datelecture#2#3#4}}%
 }
-\newcommand{\TODO}{\mymarginpar{TODO}}%
 
 %%% Theorems and sections style
 \swapnumbers
