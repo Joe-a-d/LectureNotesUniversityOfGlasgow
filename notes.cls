@@ -22,8 +22,9 @@
   \newcommand{\notes@problemname}{problem}
   \newcommand{\notes@conjecturename}{conjecture}
   \newcommand{\notes@claimname}{claim}
-  \newcommand{\notes@notationname}{notation}}
+  \newcommand{\notes@notationname}{notation}
   \newcommand\defn[2]{\begin{definition}{\textbf{#1} {#2}}\end{definition}}
+  \newcommand\theorem[1]{\begin{theorem}#1\end{theorem}}
  \newcommand\nota[1]{\begin{notation}#1\end{notation}}
  \newcommand\rem[1]{\begin{remark} #1 \end{remark}}
  \newcommand\ex[1]{\begin{example} #1\end{example}}
@@ -34,6 +35,7 @@
 \parbox{\textwidth}{\textbf{EXTRA MATERIAL} \\ #1}}}
 \newcommand\proofs[1]{\begin{proof} \hphantom{.} #1\end{proof}}
 \newcommand\vc[1]{\mathbf{#1}}
+}
 
 
 

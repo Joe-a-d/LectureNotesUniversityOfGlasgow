@@ -1,7 +1,8 @@
 
 %% CLASS MANUAL FOUND at http://blog.poormansmath.net/latex-class-for-lecture-notes/ %%
 %% CLASS AUTHOR Stefano Maggiolo %%
-\documentclass[english,course]{Notes}
+\documentclass[english,course,draft]{Notes}
+%~/Library/texmf/tex/latex/notes.cls
 
 \title{MATHEMATICS 1S}
 \subject{Mathematics}
@@ -14,7 +15,6 @@
 
 \usepackage[backend=biber, style=reading]{biblatex}
 \bibliography{M1Sbiblio}
-
 
 
  %%%%% GENERAL MATHEMATICAL NOTATION SHORTCUTS %%%%%
@@ -48,7 +48,7 @@
 
 %%%CLASS SHORTCUTS%%%%
 %\lecture{day}{month}{year} for margin note 
-%\begin{theorem} sdfsdf\end{theorem}
+%\begin{theorem} sdfsdf\end{theorem} %theo
 %\begin{proposition} dfsdfs\end{proposition}
 %\begin{lemma} dsfsd \end{lemma} %lem
 %\begin{corollary} f ffew \end{corollary}
@@ -59,7 +59,7 @@
 %\begin{fact} wefe \end{fact}
 %\begin{problem} wef ew \end{problem}
 %\begin{conjecture} ewfew \end{conjecture}
-%\begin{claim} few w \end{claim}
+%\begin{claim} few w \end{claim} 
 %\begin{notation} fewf \end{notation} %nota
 
 \begin{document}
@@ -275,6 +275,7 @@ n(\vc{p} - \vc{a}) &= m(\vc{b} -\vc{p}) \\
 
 \begin{corollary}{The midpoint of $AB$ has position vector $\tfrac{1}{2}(\vc{a} + \vc{b})$ \mymarginpar{special case of \ref{secForm}, where $m = n = 1$}}\end{corollary}
 
+
 \mymarginpar{TODO: Applications of  the section formula}
 
 
@@ -351,6 +352,12 @@ $$A ( \theta ) = \left\{ \begin{array} { l l } { 0 } & { \text { when } \theta =
 
 \defn{Righ-Hand Rule~\label{cross:rhr}}{Convention used to fix the direction of the parallelogram uniquely \scriptsize{(remember that this is because it could point "upwards" or "downwards")}. \normalsize By putting the index finger parallel to the palm, and orientating the thumb and first finger in the directions of $\vc{u} , \vc{v}$. The index finger gives us the fixed direction}
 
+
+
+\includegraphics[width=0.3\textwidth]{assets/hand}
+
+
+
 \prop{Parallelism Criterion}{ Two non-zero vectors are parallel \ita{iff}  \\ $ \vc{u} \times \vc{v} = 0$}
 
 \proofs{This follows from the fact that two vectors are parallel if $\theta = 0$ or $\theta = \pi$ , either way $\sin\theta = 0$ , therefore $|\vc{u}||\vc{v}|\sin\theta = 0$}
@@ -395,7 +402,8 @@ $$\vc{c}(\vc{a} + \vc{b}) = \vc{c} \times \vc{a} + \vc{c} \times \vc{b}$$}
 \ex{
 \par{Three points A, B and C determine the plane P containing them. Find a criterion for a point P to lie on P in terms of A, B and C. \\ }
 
-\par{It follows from (\ref{vectors:plane}), that we need to find the normal $n$ to the plane containing $A, B\text{ and }C$. And given that $\overrightarrow{AB}$ and $\overrightarrow{AC}$ lie in $P$:}
+\par{It follows from (\ref{vectors:plane}), that we need to find the normal $n$ to the plane containing $A, B
+\text{ and }C$. And given that $\overrightarrow{AB}$ and $\overrightarrow{AC}$ lie in $P$:}
 
 $$\vc{n} = \overrightarrow{AB} \times \overrightarrow{AC}$$
 
@@ -423,7 +431,8 @@ $$ {n \choose r} = \ \comb{n}{r} = \frac{n!}{(n-r)!r!}$$}
 \times \dots \times n_t!}$$}
 
 \lecture{22}{01}{2019}
-\par{Note that we can obtain the permutations formula by looking at forming permutations of $r$ objects from$n$ as a two stage procedure:}
+\par{Note that we can obtain the permutations formula by looking at forming permutations of $r$ objects from
+$n$ as a two stage procedure:}
 
 \begin{enumerate}
 	\item Choose any combination of $r$ objects: $\comb{n}{r}$
@@ -475,16 +484,266 @@ $n=6$:&  1 &    &  6 &    & 15 &    & 20 &    & 15 &    &  6 &    &  1\\\noalign
 
 \par{This construction relies on the following:}
  
-\prop{For $n \in \n \text{ and } r = 1, 2, . . . , n,$ $$ {n+1 \choose r} = {n \choose r-1} + {n \choose r}}
+\prop{For $n \in \n \text{ and } r = 1, 2, . . . , n,$ $$ {n+1 \choose r} = {n \choose r-1} + {n \choose r}$$}
 
 \proofs{}
 \mymarginpar{TODO: enquire about the exclusion bit of the proof}
 
+\lecture{29}{01}{2019}
+
+\subsection{Binomial Theorem}
+
+\par{Note that when expanding polynomials of the type $(a + b)^n$, we obtain a
+number of factors which are $a$ and a certain number which are $b$ with
+the total number of factor always equal to $n$ terms of the following form:
+
+$$a ^ { n } , a ^ { n - 1 } b , a ^ { n - 2 } b ^ { 2 } , \dots , a ^ { 2 } b ^ { n - 2 } , a b ^ { n - 1 } , b ^ { n }$$
+
+If we let $r$ be a $0$-based index, then more generally, a term at position $r$ is given by:
+
+$$r = a^{n-r}b^r$$}
+
+\par{Using our knowledge of combinatorics we can calculate the number of times each term appears in the expanded expression , i.e. their \ita{binomial coefficients}}
+
+$${n \choose 0} a ^ { n } , {n \choose 1} a ^ { n - 1 } b , {n \choose 2} a ^ { n - 2 } b ^ { 2 } , \dots , {n \choose {n-2}} a ^ { 2 } b ^ { n - 2 } , {n \choose {n-1}} a b ^ { n - 1 } , {n \choose {n}} b ^ { n }$$
+
+
+\theo{$$( a + b ) ^ { n } = \sum _ { r = 0 } ^ { n } { n \choose r} a ^ { n - r } b ^ { r }$$} 
 
 
 
 
+\begin{corollary}
 
+$$(a-b)^n = (a+(-b))^n = \sum_{r=0}^n {n \choose r} a^{n-r}(-b)^r$$
+
+\end{corollary}
+
+\rem{the signs alternate between even and odd powers of $b$}
+
+\begin{corollary}
+
+$$(1+x)^n = \sum_{r=0}^n {n \choose r}x^r$$
+
+\end{corollary}
+
+\subsection{Applications to Trigonometry}
+\lecture{04}{02}{2019}
+\subsubsection{1}
+\par{Applying the binomial theorem in conjunction with de Moivre's we can write $\cos(n\theta)$ and $\sin(n\theta)$ in terms of $\cos(\theta)$ and $\sin(\theta)$.}
+
+\ex{ Express $\cos(5\theta)$ as a polynomial in $\cos(\theta)$ and $\sin(5\theta)$ as a polynomial in $\sin(\theta)$\\
+\par{Let $\cos(\theta) = c$ and $\sin(\theta) = s$}
+
+\begin{align*}
+	\cos(5\theta) + i\sin(5\theta) &= (c + is)^5 \quad \ita{de Moivre's} \\
+	&= c ^ { 5 } + 5 c ^ { 4 } ( i s ) + 10 c ^ { 3 } ( i s ) ^ { 2 } + 10 c ^ { 2 } ( i s ) ^ { 3 } + 5 c ( i s ) ^ { 4 } + ( i s ) ^ { 5 } \ita{  Binomial Theorem}\\
+	&= c ^ { 5 } + i \left( 5 c ^ { 4 } s \right) - 10 c ^ { 3 } s ^ { 2 } - i \left( 10 c ^ { 2 } s ^ { 3 } \right) + 5 c s ^ { 4 } + i s ^ { 5 } \\
+	&= c ^ { 5 } - 10 c ^ { 3 } s ^ { 2 } + 5 c s ^ { 4 } + i \left( 5 c ^ { 4 } s - 10 c ^ { 2 } s ^ { 3 } + s ^ { 5 } \right)
+\end{align*}
+
+
+\par{Equating the real parts:}
+
+\begin{align*}
+	\cos(5\theta) &= c^5 - 10c^3s^2 + 5cs^4 \\
+		&= c^5 - 10c^3(1-c^2) + 5c(1-c^2)^2 \\
+		&= c^5 - 10c^3 + 10c65 + 5c - 10c^3 + 5c^5 \\
+		&= \boxed{16\cos^5(\theta) - 20\cos^3(\theta) + 5\cos(\theta)}
+\end{align*}
+\newpage
+\par{Equating the imaginary parts:}
+
+\begin{align*}
+\sin(5\theta) &=  5 c ^ { 4 } s - 10 c ^ { 2 } s ^ { 3 } + s ^ { 5 }  \\ 
+&= 5 \left( 1 - s ^ { 2 } \right) ^ { 2 } s - 10 \left( 1 - s ^ { 2 } \right) s ^ { 3 } + s ^ { 5 }  \\ 
+&=  5 s - 10 s ^ { 3 } + 5 s ^ { 5 } - 10 s ^ { 3 } + 10 s ^ { 5 } + s ^ { 5 } \\ 
+&=  \boxed{16 \sin ^ { 5 } \theta - 20 \sin ^ { 3 } \theta + 5 \sin \theta}
+\end{align*}
+}
+ 
+ \subsubsection{2}
+ 
+ \par{Conversely, let $z= e^{ir\theta}$. Note that,
+ 
+ $$e^{i\theta} + e^{-i\theta} = \cos(\theta) + \cancel{\sin(\theta)} + \cos(\theta) - \cancel{\sin(\theta)} = 2\cos(\theta) \iff \boxed{\cos(r\theta) = \frac{1}{2}(z^{r} + z^{-r})}$$
+ 
+$$e^{i\theta} - e^{-i\theta} = \cancel{\cos(\theta)} + \sin(\theta) - \cancel{\cos(\theta)} + \sin(\theta) = 2i\sin(\theta) \iff \boxed{\sin(r\theta) = \frac{1}{2i}(z^{r} - z^{-r})}$$
+}
+
+\ex{Express $\cos^6{\theta}$ in the form $a \cos^6(\theta) + b \cos^4(\theta) + c \cos^2(\theta) + d$\\
+
+\par{Using the binomial theorem, and the formulae above with $2\cos(\theta)$ so that we get rid of the fraction during the working out we have that:}
+
+\begin{align*}
+2\cos^6(\theta) &= (z + z^{-1})^6 \\
+	&= z ^ { 6 } + 6 z ^ { 5 } z ^ { - 1 } + 15 z ^ { 4 } z ^ { - 2 } + 20 z ^ { 3 } z ^ { - 3 } + 15 z ^ { 2 } z ^ { - 4 } + 6 z z ^ { - 5 } + z ^ { - 6 } \\
+	&=  z ^ { 6 } + 6 z ^ { 4 } + 15 z ^ { 2 } + 20 + 15 z ^ { - 2 } + 6 z ^ { - 4 } + z ^ { - 6 }  \\ 
+	&= \left( z ^ { 6 } + z ^ { - 6 } \right) + 6 \left( z ^ { 4 } + z ^ { - 4 } \right) + 15 \left( z ^ { 2 } + z ^ { - 2 } \right) + 20  \\ 
+	&=  2 \cos ( 6 \theta ) + 12 \cos ( 4 \theta ) + 30 \cos ( 2 \theta ) + 20 
+\end{align*}
+
+\begin{align*}
+\iff \cos^6(\theta) &= \frac{1}{64}\left(2 \cos ( 6 \theta ) + 12 \cos ( 4 \theta ) + 30 \cos ( 2 \theta ) + 20 \right)
+\end{align*}
+
+}
+%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Coordinates \& 3D Geometry}
+\lecture{05}{02}{2019}
+
+\subsection{Standard Unit Vectors}
+
+\par{We represent the unit vectors with the same direction as the $x, y, z$ axes by $\vc{i} , \vc{j} , \vc{k}$ respectively. And we can represent any position vector by combining multiples of these (~\ref{3d:comp})}
+
+\nota{$P(\alpha, \beta, \lambda)$ represents an arbitrary point}
+
+\nota{$P = (\alpha, \beta, \lambda)$ represents an arbitrary vector}
+
+\par{So we have that $$ \vc{i} = (1,0,0) \quad \vc{j} = (0,1,0) \quad  \vc{k} = (0,0,1)$$}
+
+\prop{}{$$\vc{r}_p = \alpha\vc{i} + \beta\vc{j} + \lambda\vc{k}$$
+
+\par{and}
+
+$$|\vc{r}_p|^2 = \lambda^2 + \beta^2 + \lambda^2$$
+}
+
+\proofs{ (see figure 3.4 lecture notes)}
+
+\prop{Distance Formula~\label{3d:distance}}{ For two points $A(x,y,z), B(m,n,o)$
+
+$$|AB| = \sqrt{(m-x)^2 + (n-y)^2 + (z-o)^2}$$
+}
+
+\proofs{Follows from above, where $A$ is not the origin $(0,0,0)$}
+
+\subsection{Vector Products}
+
+\par{By noting that the standard unit vectors are at an angle of $\frac{\pi}{2}$ it follows that 
+
+$$ |\vc{i} \cdot \vc{j}| = |\vc{i}| |\vc{j}| \sin\left(\frac{\pi}{2}\right) = 1$$
+
+and by the rhr (~\ref{cross:rhr}) we also note that $ \vc{i} \cdot \vc{j} = \vc{k}$
+}
+
+\defn{Right-Handed System}{We call the \ita{triple} $(\vc{i},\vc{j},\vc{k})$ a rhs of vectors}
+
+\par{There are two easy ways to see if a rotation of $(\vc{i},\vc{j},\vc{k})$ is still a valid rhs. (1) make sure that all the positive axis are facing "your way" (2) using a circular diagram with i at the top, taking the positive , and hence valid, rotations to be anti-clock wise. So we have other two valid permutations which originate a rhs $(\vc{j}, \vc{k}, \vc{i}) , (\vc{k}, \vc{i}, \vc{j})$}
+
+\rem{lhs results in negative angles, hence negative products}
+
+\prop{}{ Let $\vc{i}, \vc{j}, \vc{k} $ be the standard unit vectors, then:
+
+$$\vc{i} \cdot \vc{j} = \vc{k} \quad \vc{j} \cdot \vc{k} = \vc{i} \quad \vc{k} \cdot \vc{i} = \vc{j}$$
+
+and
+
+$$\vc{k} \cdot \vc{j} = -\vc{i} \quad \vc{j} \cdot \vc{i} = \vc{k} \quad \vc{i} \cdot \vc{k} = \vc{j}$$
+}
+
+\subsection{Component Form}
+
+\defn{Component Form~\label{3d:comp}}{ vector represented in terms of $\vc{i} , \vc{j}, \vc{k}$. For a given point $P(\alpha, \beta, \lambda)$
+
+$$ \vc{u} = \alpha\vc{i} + \beta\vc{j} + \lambda\vc{k}$$
+}
+
+We can rewrite (\ref{3d:distance}) in terms of $(\alpha, \beta, \lambda)$
+
+\prop{}{For $\vc{u} = (\alpha, \beta, \lambda)$
+
+$$|\vc{u}| = \sqrt{\alpha^2 + \beta^2 + \lambda^2}$$
+}
+
+\lecture{11}{02}{2019}
+
+\subsection{Section Formula in Component Form}
+
+\ex{ 
+
+$$ \text{Points: } A ( 3 , - 2,4 ) , B ( 4,0,2 ) , C ( 7,6 , - 4 ) , D ( 1 , - 7,0 ) $$
+\begin{itemize}
+\item[a] Are $ A , B , D$ collinear? If so, find $A B : B D$ 
+\item[b] Find the point $P$ on $AC$ such that $ A P : P C = - 1 : 5 $ 
+\end{itemize}
+
+\par{ Note that the position vectors are given by the coordinates of the points, it follows then:}
+\begin{itemize}
+\item[a]
+
+$$AB = \vc{b} - \vc{a} = (1, 2, -2) \quad BD = \vc{d} - \vc{b} = (-2, -7, -2)$$
+
+\par{Given that the vectors found are not multiples of each other, they are not parallel, hence they're not collinear}
+
+\item[b] 
+
+\begin{align*}
+-AP &= \frac{1}{5} PC \\
+5(3 - P_x , -2 - P_y, 4 - P_z) &= 7-P_x, 6-P_y, -4-P_z \\
+&\implies P(2,-4,6)
+\end{align*}
+\end{itemize}
+}
+
+\lecture{12}{02}{2019}
+\subsection{Surfaces}
+
+\par{In $\real^3$ an equation $f(x,y,z) = 0$ \ita{(e.g. sphere)}. Formally:}
+
+\defn{Surface (S)}{ $ S = \setb{(x,y,z) \in \real^3 : f(x,y,z) = 0}$}
+
+\subsubsection{Spheres}
+
+\prop{}{Let $S$ be the sphere with centre $C(a,b,c)$ and radius $r$. Then, 
+
+$$ S =  \setb{(x,y,z) \in \real^3 : (x-a)^2 + (y-b)^2 + (z-c)^2  = r^2} $$}
+
+\proofs{Note that this is just a specific application of the distance formula, which can be seen as representing an infinite number of vectors, with infinite directions (depending on $P(x,y,z)$) but with a fixed magnitude equal to the radius of the sphere.
+
+\includegraphics[width=0.5\textwidth]{assets/sphere}}
+
+\ex{Exam 2017: Show that the following represents a sphere, and indicate its center and radius
+
+$$x^2 + y^2 + z^2 + 2(x-4y+z) + 15 = 0$$ 
+
+\par{By completing the square, we obtain the equation of the sphere in the canonical form, from where we can directly read the required data}
+
+$$(x+1)^2 + (y-4)^2 + (z+1)^2 = 3$$
+
+\par{Hence, $C(-1,4,-1) \quad r=\sqrt{3}$}
+}
+
+\newpage
+
+\subsection{Line Equations}
+
+\defn{Direction Vector}{any non-zero vector parallel to the line}
+
+\par{We can define any point on a line, and hence define the line in general, by using the notion of component vectors seen above. Consider a line which passes through $A(\alpha, \beta, \lambda)$ and has direction vector $\vc{u} = (l,m,n)$, then the position vector of a random point $P(x,y,z)$ can be given by the sum of $\vc{a}$ with some multiple of $\vc{u}$; i.e. we can get to $P$ by first travelling from the origin until a point $A$ on the line and then travel \ita{along} the line}
+
+\defn{Vector Form}{$$ \vc{p} = \vc{a} + t\vc{u}$$}
+
+\par{By expanding the vector equation into its component form, we get two other representations of a line}
+
+\defn{Parametric Form}{$$ (x,y,z) = (\alpha, \beta, \lambda) + t(l,m,n) = (\alpha + tl, \beta +tm, \lambda + tn)$$}
+
+\defn{Symmetric Form}{$$ \frac { x - \alpha } { l } = \frac { y - \beta } { m } = \frac { z - \lambda } { n } = t$$}
+
+\rem{Note that from the symmetric form one obtains directly the direction vector (denominator) and the coordinates of a point on the line (numerator)}
+
+\subsection{Intersection of Lines}
+
+\par{In $\real^3$, non-parallel lines need not intersect, they can be \ita{skew} for example varying their "z-index"/"height", shifts the plane they're in and they'll never meet. Hence, by equating two lines, we find}
+
+\begin{itemize}
+\item[] \textbf{Parallel} if their direction vectors are multiples of each other
+\item[] \textbf{Intersect} if the system of equations given by equating their line equations is consistent
+\item[] \textbf{Skew} if they are not parallel nor intersect
+\end{itemize}
+
+\lecture{18}{02}{2019}
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \newpage
