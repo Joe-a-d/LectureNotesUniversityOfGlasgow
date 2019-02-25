@@ -38,7 +38,7 @@
 \newcommand\en{\ita{n }}
 \renewcommand\qedsymbol{QED} %QED instead of square
 \newcommand{\code}{\texttt}
-\renewcommand{\TODO}[1]{\mymarginpar{TODO: #1}}
+\newcommand{\TODO}[1]{\mymarginpar{TODO: #1}}
 
 
 
@@ -338,7 +338,7 @@
 		\begin{minipage}{\linewidth}
       \centering
       \begin{minipage}{0.45\linewidth}
-          \begin{figure}[ht]
+          \begin{figure}[htp]
               \includegraphics[width=\linewidth]{dmux}
           \end{figure}
       \end{minipage}
@@ -725,7 +725,7 @@ represents each of the machine-language instructions for a particular computer}
 	\rem{Note that the \code{;} is used to terminate a sentence, everything after it, in the same line is a comment}
 	
 	\item \textbf{Memory Access:}
-		\begin{itemize} \TODO{Add reason for [R0]}
+		\begin{itemize}
 			\item \code{load Rn, x[R0]} copies \code{x} from memory into \code{Rn}
 			\item \code{store Rn, x[R0]} copies the word in \code{Rn} into the var \code{y} in memory
 			\item \code{lea Rn, 23[R0]} loads a constant into \code{Rn}
@@ -737,9 +737,8 @@ represents each of the machine-language instructions for a particular computer}
 	
 	\item \textbf{Variable Definition:} \code{x data 98} creates a variable \code{x} with an initial value of $98$
 	
-	\rem{\code{data} statements must come after all the instructions in the program} \TODO{Confirm that this is due to the program being assembled bottom-top}
-	
-\ex{A program that adds two integers:}
+	\rem{\code{data} statements must come after all the instructions in the program} 	
+\ex{A program that adds two integers: \label{program:add}}
 
 \begin{lstlisting}
 load R1,x[R0] ; R1 := x
@@ -761,6 +760,331 @@ z data 99
 \section{Control Structures}
 \lecture{31}{01}{2019}
 
+\defn{Control Structures}{Statements that control the flow of execution}
+
+\begin{itemize}
+	\item{Conditionals}
+	\item{Loops}
+	\item{Structuring Computation: functions, recursion, procedures}
+\end{itemize}
+
+\subsection{Low Level Constructs}
+
+\par{The \code{jump <label>} statements transfer control to the line of code with the label passed. In \code{Sigma16} there are also two \ita{conditional} jump instructions}
+
+\begin{itemize}
+	\item[]\code{ jumpf R1 , <label>[R0]} = if R1 is false, goto label
+	\item[]\code{ jumpt R1 , <label>[R0]} = if R1 is true, goto label
+\end{itemize}
+
+\rem{Labels must start with a letter, and must be at the beginning of the line}
+
+\par{We can compare expressions using the following:}
+
+\begin{itemize}
+	\item[]\code{cmplt R1 R2} ; returns true if R1 $<$ R2
+	\item[]\code{cmpeq R1 R2} ; returns true if R1 = R2	
+	\item[]\code{cmpgt R1 R2} ; returns true if R1 $>$ R2
+\end{itemize}
+
+\subsection{Compilation Patterns}
+
+\par{It is easier to translate high-level languages into machine language, if it is done as a two-step process:}
+\begin{enumerate}
+	\item Translate complex statements to pseudo-code
+	\item Translate pseud-code to machine language
+\end{enumerate}
+
+\ex{ Translating \ita{if $x<y$ then a = 1 else a = 2} }\\
+
+\textbf{1.Pseudo}
+
+\begin{lstlisting}
+R3 := (x<y) ; assign boolean to R3
+jumpf R4, else[R0] ; jump to label "else" if false
+a := 1 ;
+jump halt[R0]; jump to label "halt"
+else a := 2;
+
+halt trap R0 R0 R0; halt
+\end{lstlisting}
+
+\mymarginpar{See slides for more examples of common idioms}
+
+\textbf{2.Low Level}
+\begin{lstlisting}
+lea R1, 10[R0] ; 
+store R1, x[R0] ; 
+
+lea R2, 5[R0] ;
+store R2, y[R0] ;
+
+load R1, x[R0] ;
+load R2, y[R0];
+cmplt R3, R1,R2 ; R3 := (x<y)
+
+jumpf R3, else[R0] ;
+
+lea R4, 1[R0];
+store R4, a[R0];
+
+jump halt[R0];
+
+else lea R4, 2[R0];
+store R4, a[R0];
+
+halt trap R0 R0 R0;
+
+\end{lstlisting}
+
+\section{Stored Program Computer}
+\lecture{05}{02}{2019}
+\defn{SPC}{Both the program and the data are stored in the main memory}
+
+\par{In \code{Sigma16} there are 3 types of instructions, each with its own standard format\mymarginpar{The third will covered in future lectures}}
+
+\defn{Instruction Format}{systematic way to represent an instruction using a string of bits}
+
+\subsection{Machine Language}
+
+\rem{Hexadecimal is used to represent each field}
+
+\subsubsection{RRR}
+
+\par{RRR instructions consist of 1 operation and 3 register operands (destination + operands). The assembler reserves 4bits for each field, so that one instruction has a total of 16bits = 1word}
+
+\nota{Standard Names}{\begin{itemize} 
+\item[] op : op-code
+\item[] d   : destination register address
+\item[] a   : operand register address 1
+\item[] b   : operand register address 2
+\end{itemize}
+}
+
+\ex{ \code{add R13,R6,R9} becomes \code{0d69}}
+
+\subsubsection{RX}
+
+\par{RX instructions consist of 1 register - \ita{destination register} - and a memory location composed of the "label" used for the address - \ita{displacement} - and the \ita{index register}}
+
+\par{2 words are needed to represent it: the first has the 4 standard fields and the second contains the displacement}
+
+\ex{Let \code{x} be at the memory address \code{0008}, then \code{load R1,x[R0]} becomes \code{f101 0008}}
+
+\rem{In this case \code{f} is always used as op and \code{b} indicates which operation is being executed}
+
+\subsection{Assembler: Memory Allocation}
+
+\begin{enumerate}
+\item The assembler keeps track of where to put the next line of code, by maintaining a variable with a 0-based index - \ita{location counter}
+\item It reads each line of code , if a label is value it maps onto the current location and stores it in the \ita{symbol table}; it also decides how many memory an instruction requires and \ita{adds this to the counter}
+\item Reads the program a second time
+\item Generates the code for each statement, looking up the stored value for labels when needed
+\end{enumerate}
+
+\subsubsection{Adder Program (\ref{program:add}) in ML}
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{|c|c|c|}
+address & contents & Meaning &0000 & f101 & first word of load R1,x[R0] &0001 & 0008 & second word: address of x &0002 & f201 & first word of load R2,y[R0] &0003 & 0009 &  second word: address of y &0004 & 0312 & add R3,R1,R2 &0005 & f302 & first word of store R3,z[R0] &0006 & 000a & second word: address of z &0007 & d000 & trap R0,R0,R0 &0008 & 0017 & x = 23 &0009 & 000e & y = 14 &000a & 0063 & z = 99 &
+\end{tabular}
+\end{center}
+\end{table}%
+
+\subsection{Control Registers}
+
+\par{CR are registers which the machine uses to keep track of what it is doing, but which are usually not accessible in the program}
+
+\defn{Program Counter}{contains the address of the next line to be executed}
+
+\defn{Instruction Register}{contains the instruction being executed}
+
+\defn{Address Register}{for RX only; contains the address of the second operand}
+
+
+\section{Arrays}
+\lecture{07}{02}{2019}
+
+\defn{Data Structure}{Larger data entity composed of many smaller individual entities \ita{(e.g. arrays, dictionaries, etc.)}}
+
+\defn{Array/Vector}{sequence of indexed values}
+
+\nota{x[i] represents the $i^{th}$ element of the x array}
+
+\par{Arrays can be represented in a computer by placing its elements in consecutive memory locations. The address of the array is equal to that of its first element \code{x[0]}. Every other element can be found by simple \ita{address arithmetic}, i.e. $$\code{x[i] = x+i}$$}
+
+\nota{Defining the array:}
+
+\begin{lstlisting}
+; only x[0] has a label
+x    data    13   ; x[0]
+      data    189 ; x[1]
+\end{lstlisting}
+
+\subsection{Indexed Addressing}
+
+\par{Since the address of the array is given by the element at index $0$, a given element is accessed by its \ita{effective address}: the displacement value is added to the index register}
+
+\ex{ \code{x[R4]} where \code{x} represents the address of the element labeled \code{x} - \ita{displacement}; \code{R4} is the \ita{index register}}
+
+\rem{This is the reason why \code{[R0]} is used for simple variables}
+
+\defn{Addressing Mode}{scheme for specifying the address of data \ita{(e.g. displacement[index])}}
+
+\ex{Using Effective Addresses \code{x[i] := x[i] + 50}}
+
+\begin{lstlisting}
+lea    R1,50[R0]   ; R1 := 50
+load  R5,i[R0]      ; R5 := i
+load  R6,x[R5]     ; R6 := x[i]
+add   R6,R6,R1   ; R6 := x[i] + 50
+store R6,x[R5]     ; x[i] := x[i] + 50
+\end{lstlisting}
+
+\subsection{Array Transversal \& For Loops}
+
+\ex{!!!ADD COMPLETE PROGRAM INSTEAD!!!}
+
+
+\section{Records and Pointers}
+\lecture{12}{02}{2019}
+
+\subsection{Compilation Patterns}
+
+\par{Patterns make it easier to translate common idioms. When trying to perform a common task, all one needs to do is pay attention at (1) what common fixed parts you can reuse (2) what varies, i.e. what is specific to the task}
+
+\ex{While Loop}
+
+\begin{lstlisting}
+; < >  changeable parts
+
+; High level
+
+    while <bool> do
+    	<S>
+	
+; Low Level Pattern
+
+	label1
+	    if <bool> = False goto label2
+	    	<Statement>
+		goto label1
+	label2
+\end{lstlisting}
+
+\subsection{Pointers}
+
+\par{Pointers are a sort of "variable", which hold the address of an object. There are two operators, one which returns the address and the other which returns the value of the object}
+
+\nota{Pointer : \&}
+\nota{Pointer's Value : *}
+
+\code{lea R5,x[R0] ; R5 := \&x ; address of x is stored in R5}
+
+\code{load R5,x[R0] ; R5 := *x ; value at address [x + 0] stored in R5}
+
+\subsubsection{Comparing accessing a variable directly vs by pointer}
+
+\begin{lstlisting}
+; directly
+
+lea R1,5[R0] ; R1 := 5 (constant)load R2,x[R0] ; R2 := xadd R2,R2,R1 ; R2 := x + 5store R2,x[R0] ; x := x + 5
+
+; pointer
+
+; R3 := &xlea R3,x[R0] ; R3 := &x
+; Add 5 to whatever word R3 points tolea R1,5[R0] ; R1 := 5 (constant)load R4,0[R3] ; R4 := *R3add R4,R4,R1 ; R4 := *R3 + 5store R4,0[R3] ; *R3 := *R3 + 5
+\end{lstlisting}
+
+\subsection{Records}
+
+\par{Records are essentially an array where every entry is labeled. You can think of it as equivalent to a python dictionary. Each entry can be accessed directly, but the easiest way is to write a block of code using pointers, which can then be reused for all entries}
+
+\ex{ Given a record labeled from A to C}
+
+\begin{lstlisting}
+; Set x as the current record by making R3 point to itlea R3,x[R0] ; R3 := &x
+; Perform the calculation on the record that R3 pointsload R1,1[R3] ; R1 := (*R3).Bload R2,2[R3] ; R2 := (*R3).Cadd R1,R1,R2 ; R1 := (*R3).B + (*R3).Cstore R1,0[R3] ; *R3.A := (*R3).B + (*R3).C
+\end{lstlisting}
+
+\subsection{Requestes to OS}
+
+\par{Many operations cannot be perform directly by a user program, the main reason being that this would compromise the system's integrity. In order to perform those "sensitive" operations \ita{(e.g. kill exec, read/write, memory allocation, etc)} there are instructions reserved which transfer control to the OS}
+
+\rem{The specific codes used to make a request are defined by the OS, not by the hardware. This is the main reason of why compiled programs are not compatible across systems}
+
+
+\begin{itemize}
+	\item[]Termination : \code{trap R0 R0 R0}
+	\item[]Write : \code{trap R1 R2 R3}
+		\begin{itemize}
+		\item R1 :  the code that indicates a write request\item R2 : address of the first word of string to write\item R3 : the length of string
+		\end{itemize}
+\end{itemize}
+
+\begin{lstlisting}
+;To write a string named out, we use (1) lea to load a constant, (2) lea to load the address of an array, (3) load to get a variable
+; write out (size = k)lea R1,2[R0] ; trap code: writelea R2,animal[R0] ; address of string to printload R3,k[R0] ; string size = ktrap R1,R2,R3 ; write out (size = k)trap R0,R0,R0 ; terminatek data 4 ; length of animal
+; animal = string "cat"animaldata 99 ; character code for 'c'data 97 ; character code for 'a'data 116 ; character code for 't'data 10 ; character code for newline
+\end{lstlisting}
+
+
+\section{Procedures and Call Stack}
+\lecture{14}{02}{2019}
+
+\defn{Procedure}{Block of code that performs common tasks}
+
+\par{Instead of repeating code we can write a block of code and call it when necessary by restructuring the flow of the program. Once the procedure finishes the task, the value can be returned and the execution is transferred back to the main flow}
+
+\rem{To avoid breaking the main flow, it is convenient to write the procedure someplace else with a label}
+
+\subsubsection{Implementation}
+
+\par{Note that even though the call is always made to the same place, different calls must return to different places, so it is not possible to just label the caller statement. In order to remember the call origin the statement's address is saved into a register using the \code{jal} instrunction}
+
+\ex{Implementing Call \code{jal R13, fn[R0] ; saves fn address in R13} and Return \code{jump 0[R13]}}
+
+\subsubsection{Passing Parameters}
+
+\rem{By convention, arguments and results are passed in R1}
+
+\begin{lstlisting}
+;Main programload R1,x[R0] ; arg = xjal R13,work[R0] ; result = work (x)...load R1,y[R0] ; arg = yjal R13,work[R0] ; result = work (y)...
+; Function work (x) = 1 + 7*xwork lea R2,7[R0] ; R7 = 2lea R3,1[R0] ; R3 = 1mul R1,R1,R2 ; result = arg * 7add R1,R3,R1 ; result = 1 + 7*argjump 0[R13] ; return
+\end{lstlisting}
+
+\subsubsection{Recursive Calls}
+
+\par{Note that if a procedure is called recursively, then registers might be overwritten. In order to execute recursive calls, we need to \ita{save the state} of the caller. This can be achieved, by using a \ita{call stack}}
+
+\defn{Stack}{Data container which only supports \ita{push} and \ita{pop}, hence at any given time, only the top element is accessible}
+
+\par{Because most procedures usually need several registers, recursive calls would quickly exhaust the number of available registers. Hence the state needs to be saved in memory:}
+
+\begin{enumerate}
+	\item At the start of the procedure, there must be a store instruction for its return address \mymarginpar{By convention, R13 will always be used as the return}
+	\item At the end of the procedure, the return address must be loaded and passed to jump
+\end{enumerate}
+
+\subsubsection{Call Stack}
+
+\defn{Call Stack}{Data container which stores all the information about calls and returns}
+
+\par{Every call triggers the following to be stored in memory:}
+
+\begin{itemize}
+	\item[] a pointer to the previous stack frame (needed for pop)
+	\item[] the return address
+	\item[] the saved registers
+	\item[] local variables (frees up working memory for the procedure)
+\end{itemize}
+
+\par{We implement the stack by dedicating \code{R14} to the stack pointer , saving the word with the info at \code{0[R14] + 1} at call time, and reseting it when returning. (i.e. \code{0[R14] -1})}
+
+\rem{Note that \code{R14} must remain unchanged, otherwise the pointer to the stack will be overwritten}
+
+\section{Variables}
+\lecture{19}{02}{2019}
 
 
 \newpage

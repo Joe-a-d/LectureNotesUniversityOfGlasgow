@@ -337,7 +337,7 @@ $ \vc{u} \cdot \vc{v} = |\vc{u}| |\vc{v}| (0) = 0$}
 
 \rem{Note that there are infinitely many planes, lying parallel to one another~\mymarginpar{Think of stack}. Hence, to define a plane one needs to know its normal and a point within it.}
 
-\defn{Plane~\label{vectors:plane}}{We observe that a point p lies on P, given a normal $\vc{n}$, \ita{iff} the dot product between the directed line segment on the plane and the normal is $0$.  $$ P = \text{\{points P } |  \ \vc{n} \cdot \overrightarrow{pP} = 0 \} $$}
+\defn{Plane~\label{vectors:plane}}{We observe that a point p lies on P, given a normal $\vc{n}$, \ita{iff} the dot product between the directed line segment on the plane and the normal is $0$.  $$ P = \text{\{points P } |  \ \vc{n} \cdot \overrightarrow{pP} = 0 \} \label{plane:normal} $$}
 
 \newpage
 \lecture{15}{01}{2019}
@@ -372,7 +372,6 @@ $$A ( \theta ) = \left\{ \begin{array} { l l } { 0 } & { \text { when } \theta =
 
 \proofs{For non-parallel vectors, the result follows from the fact that even though the magnitude remains unchanged*~\mymarginpar{*just like in the dot product} , i.e. $|\vc{u} \times \vc{v}| = |\vc{v} \times \vc{u}| = |\vc{u}||\vc{v}|\sin\theta$, their direction is reversed.}
 
-\newpage
 \prop{NON-Associative}{}
 \proofs{ Let $\vc{a}$ and $\vc{v}$ be two distinct non-zero vectors. Then we have:
 
@@ -407,9 +406,8 @@ $$\vc{c}(\vc{a} + \vc{b}) = \vc{c} \times \vc{a} + \vc{c} \times \vc{b}$$}
 
 $$\vc{n} = \overrightarrow{AB} \times \overrightarrow{AC}$$
 
-\par{So the criterion is:}
-
-$$\overrightarrow{AP} \times \cdot \vc{n} = \overrightarrow{AP} \cdot (\overrightarrow{AB} \times \overrightarrow{AC}) = 0$$}
+\par{So the criterion is: $\overrightarrow{AP} \times \cdot \vc{n} = \overrightarrow{AP} \cdot (\overrightarrow{AB} \times \overrightarrow{AC}) = 0$}
+}
 
 \newpage
 
@@ -735,7 +733,7 @@ $$(x+1)^2 + (y-4)^2 + (z+1)^2 = 3$$
 
 \subsection{Intersection of Lines}
 
-\par{In $\real^3$, non-parallel lines need not intersect, they can be \ita{skew} for example varying their "z-index"/"height", shifts the plane they're in and they'll never meet. Hence, by equating two lines, we find}
+\par{In $\real^3$, non-parallel lines need not intersect, they can be \ita{skew} ; varying their "z-index"/"height", shifts the plane they're in and they'll never meet. Hence, by equating two lines, we find}
 
 \begin{itemize}
 \item[] \textbf{Parallel} if their direction vectors are multiples of each other
@@ -743,8 +741,74 @@ $$(x+1)^2 + (y-4)^2 + (z+1)^2 = 3$$
 \item[] \textbf{Skew} if they are not parallel nor intersect
 \end{itemize}
 
+\subsection{Dot Product}
+
+
+
 \lecture{18}{02}{2019}
 
+\par{In order to find the dot product of two non-zero vectors $\vc{a}$ and $\vc{b}$ we split the vector $\vc{a}$ into two components: parallel $\vc{a}_{||}$ and perpendicular $\vc{a}_{\bot}$. In general: }
+
+\prop{ }{$$ \vc{a} \cdot \vc{b} = a_{x}b_{x} + a_{y}b_{y} + a_{z}b_{z} $$}
+
+\proofs{
+\begin{align*}
+	\vc{a} \cdot \vc{b} &= (a_{x}\vc{i} + a_{y}\vc{j} + a_{z}\vc{k}) \cdot (b_{x}\vc{i} + b_{y}\vc{j} + b_{z}\vc{k}) \\
+	&=  \left( a _ { x } b _ { x } \right) ( \vc { i } \cdot \vc { i } ) + \left( a _ { y } b _ { y } \right) ( \vc { j } \cdot \vc { j } ) + \left( a _ { z } b _ { z } \right) ( \vc { k } \cdot \vc { k } ) \\ &+ \left( a _ { x } b _ { y } + a _ { y } b _ { x } \right) ( \vc { i } \cdot \vc { j } ) + \left( a _ { x } b _ { z } + a _ { z } b _ { x } \right) ( \vc { i } \cdot \vc { k } )  \\
+	 &+ \left( a _ { y } b _ { z } + a _ { z } b _ { y } \right) ( \vc { j } \cdot \vc { k } ) \\
+	&=  \left( a _ { x } b _ { x } \right) ( \vc { i } \cdot \vc { i } ) + \left( a _ { y } b _ { y } \right) ( \vc { j } \cdot \vc { j } ) + \left( a _ { z } b _ { z } \right) ( \vc { k } \cdot \vc { k } ) + 0 + 0 + 0^{*}  \\ 
+	&=  \left( a _ { x } b _ { x } \right) | \vc { i } | ^ { 2 } + \left( a _ { y } b _ { y } \right) | \vc { j } | ^ { 2 } + \left( a _ { z } b _ { z } \right) | \vc { k } | ^ { 2 } \\ 
+	&= \left( a _ { x } b _ { x } \right) + \left( a _ { y } b _ { y } \right) + \left( a _ { z } b _ { z } \right) 
+\end{align*}	
+}
+\mymarginpar{*because $\bot$}
+
+\subsection{Applications to geometry}
+
+\subsubsection{Equations of planes}
+
+\prop{}{ A plane $P$ with normal $(a,b,c)$ has equation: $ax + by + cz = d$}
+
+\proofs{ Let $\vc{u} = (a,b,c)$ and $A(\alpha,\beta,\lambda) \quad B(x,y,z)$ be two points on $P$. Then by (\ref{plane:normal}),
+\begin{align*}
+&\vc{u} \cdot \overrightarrow{AB} = 0 \\
+&(a,b,c) \cdot (x-\alpha, y-\beta, z-\lambda) = 0 \\
+&a(x-\alpha) + b(y-\beta) + c(z-\lambda) = 0 \\
+&ax + by + cz = \underbrace{a\alpha + b\beta + c\lambda}_{d}
+\end{align*}
+}
+	
+\ex{See 84 \#3.11}
+
+\subsection{Angles}
+
+\prop{}{There are two complimentary angles $(\alpha, \beta)$ between any two lines, which satisfy $\alpha + \beta = \pi$. These angles can be found by the dot product of their direction vectors}
+
+\prop{}{Similarly, the angle between two planes is the angle between normal vectors for each plane}
+
+\ex{Find the acute angle($\alpha$) between $P1 : x + 2y + 2z = 5 $ and $P2 : x - y - 4z = 6$ \\
+
+\par{Normals: $\vc{u}=(1,2,2)$ and $\vc{v}=(1,-1,-4)$ . By the dot product we have that:}
+
+\begin{align*}
+\vc{u} \cdot \vc{v} &= |\vc{u}||\vc{v}|\cos(\theta) \\
+\iff \cos(\theta) &= \frac{\vc{u} \cdot \vc{v}}{|\vc{u}||\vc{v}|} \\
+\iff \cos(\theta) &= \frac{-9}{3\sqrt{18}} = -\frac{1}{\sqrt{2}} \\
+&\implies \theta = \frac{3\pi}{4}
+\end{align*}
+
+\par{But since we were asked to find the \ita{acute} angle, we have that $\alpha = \frac{\pi}{4}$}
+}
+
+\subsection{Projection of a point onto a plane and line}
+
+\rem{Key insight is to realize that the projection ($B$) of the projected point ($A$) will be at the intersection of the line  $AB$ and the plane. This can be found by using the normal to the plane as the direction vector of the line $AB$, and equating the line and plane equations.}
+
+\ex{ 55 \#3.13}
+
+\rem{Similarly, to a line, all one needs to do is to find the intersection between the two perpendicular lines}
+
+\mymarginpar{TO-DO: Component Form Cross product}
 %%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Logical Matters \& Proof}
