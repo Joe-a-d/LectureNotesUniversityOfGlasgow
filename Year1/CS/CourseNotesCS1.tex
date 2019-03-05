@@ -338,9 +338,9 @@
 		\begin{minipage}{\linewidth}
       \centering
       \begin{minipage}{0.45\linewidth}
-          \begin{figure}[htp]
+     
               \includegraphics[width=\linewidth]{dmux}
-          \end{figure}
+ 
       \end{minipage}
       \hspace{0.05\linewidth}
       \begin{minipage}{0.45\linewidth}
@@ -364,9 +364,8 @@
 	\begin{minipage}{\linewidth}
       \centering
       \begin{minipage}{0.45\linewidth}
-          \begin{figure}[ht]
               \includegraphics[width=\linewidth]{halfAdder.png}
-          \end{figure}
+
       \end{minipage}
       \hspace{0.05\linewidth}
       \begin{minipage}{0.45\linewidth}
@@ -391,9 +390,9 @@
 	\begin{minipage}{\linewidth}
       \centering
       \begin{minipage}{0.65\linewidth}
-          \begin{figure}[ht]
+          
               \includegraphics[width=\linewidth]{fullAdder.png}
-          \end{figure}
+
       \end{minipage}
       \hspace{0.05\linewidth}
       \begin{minipage}{0.25\linewidth}
@@ -497,15 +496,15 @@ $$\begin{aligned} x \land ( x \lor y ) & = x \\ x \lor ( x \land y ) & = x \end{
 \begin{minipage}{\linewidth}
       \centering
       \begin{minipage}{0.45\linewidth}
-          \begin{figure}[ht]
+          
               \includegraphics[width=\linewidth]{clock}
-          \end{figure}
+
       \end{minipage}
       \hspace{0.05\linewidth}
 \begin{minipage}{0.45\linewidth}
-          \begin{figure}[ht]
+          
               \includegraphics[width=\linewidth]{clock2}
-          \end{figure}
+
       \end{minipage}
 \end{minipage}
 
@@ -795,7 +794,7 @@ z data 99
 	\item Translate pseud-code to machine language
 \end{enumerate}
 
-\ex{ Translating \ita{if $x<y$ then a = 1 else a = 2} }\\
+\ex{ Translating \ita{if $x<y$ then a = 1 else a = 2} }
 
 \textbf{1.Pseudo}
 
@@ -886,7 +885,18 @@ halt trap R0 R0 R0;
 \begin{table}[ht]
 \begin{center}
 \begin{tabular}{|c|c|c|}
-address & contents & Meaning &0000 & f101 & first word of load R1,x[R0] &0001 & 0008 & second word: address of x &0002 & f201 & first word of load R2,y[R0] &0003 & 0009 &  second word: address of y &0004 & 0312 & add R3,R1,R2 &0005 & f302 & first word of store R3,z[R0] &0006 & 000a & second word: address of z &0007 & d000 & trap R0,R0,R0 &0008 & 0017 & x = 23 &0009 & 000e & y = 14 &000a & 0063 & z = 99 &
+address & contents & Meaning \cr
+0000 & f101 & first word of load R1,x[R0] \cr
+0001 & 0008 & second word: address of x \cr
+0002 & f201 & first word of load R2,y[R0] \cr
+0003 & 0009 &  second word: address of y \cr
+0004 & 0312 & add R3,R1,R2 \cr
+0005 & f302 & first word of store R3,z[R0] \cr
+0006 & 000a & second word: address of z \cr
+0007 & d000 & trap R0,R0,R0 \cr
+0008 & 0017 & x = 23 \cr
+0009 & 000e & y = 14 \cr
+000a & 0063 & z = 99 \cr
 \end{tabular}
 \end{center}
 \end{table}%
@@ -988,12 +998,21 @@ store R6,x[R5]     ; x[i] := x[i] + 50
 \begin{lstlisting}
 ; directly
 
-lea R1,5[R0] ; R1 := 5 (constant)load R2,x[R0] ; R2 := xadd R2,R2,R1 ; R2 := x + 5store R2,x[R0] ; x := x + 5
+lea R1,5[R0] ; R1 := 5 (constant)
+load R2,x[R0] ; R2 := x
+add R2,R2,R1 ; R2 := x + 5
+store R2,x[R0] ; x := x + 5
 
 ; pointer
 
-; R3 := &xlea R3,x[R0] ; R3 := &x
-; Add 5 to whatever word R3 points tolea R1,5[R0] ; R1 := 5 (constant)load R4,0[R3] ; R4 := *R3add R4,R4,R1 ; R4 := *R3 + 5store R4,0[R3] ; *R3 := *R3 + 5
+; R3 := &x
+lea R3,x[R0] ; R3 := &x
+
+; Add 5 to whatever word R3 points to
+lea R1,5[R0] ; R1 := 5 (constant)
+load R4,0[R3] ; R4 := *R3
+add R4,R4,R1 ; R4 := *R3 + 5
+store R4,0[R3] ; *R3 := *R3 + 5
 \end{lstlisting}
 
 \subsection{Records}
@@ -1003,8 +1022,14 @@ lea R1,5[R0] ; R1 := 5 (constant)load R2,x[R0] ; R2 := xadd R2,R2,R1 ; R2 := x
 \ex{ Given a record labeled from A to C}
 
 \begin{lstlisting}
-; Set x as the current record by making R3 point to itlea R3,x[R0] ; R3 := &x
-; Perform the calculation on the record that R3 pointsload R1,1[R3] ; R1 := (*R3).Bload R2,2[R3] ; R2 := (*R3).Cadd R1,R1,R2 ; R1 := (*R3).B + (*R3).Cstore R1,0[R3] ; *R3.A := (*R3).B + (*R3).C
+; Set x as the current record by making R3 point to it
+lea R3,x[R0] ; R3 := &x
+
+; Perform the calculation on the record that R3 points
+load R1,1[R3] ; R1 := (*R3).B
+load R2,2[R3] ; R2 := (*R3).C
+add R1,R1,R2 ; R1 := (*R3).B + (*R3).C
+store R1,0[R3] ; *R3.A := (*R3).B + (*R3).C
 \end{lstlisting}
 
 \subsection{Requestes to OS}
@@ -1018,14 +1043,29 @@ lea R1,5[R0] ; R1 := 5 (constant)load R2,x[R0] ; R2 := xadd R2,R2,R1 ; R2 := x
 	\item[]Termination : \code{trap R0 R0 R0}
 	\item[]Write : \code{trap R1 R2 R3}
 		\begin{itemize}
-		\item R1 :  the code that indicates a write request\item R2 : address of the first word of string to write\item R3 : the length of string
+		\item R1 :  the code that indicates a write request
+\item R2 : address of the first word of string to write
+\item R3 : the length of string
 		\end{itemize}
 \end{itemize}
 
 \begin{lstlisting}
 ;To write a string named out, we use (1) lea to load a constant, (2) lea to load the address of an array, (3) load to get a variable
-; write out (size = k)lea R1,2[R0] ; trap code: writelea R2,animal[R0] ; address of string to printload R3,k[R0] ; string size = ktrap R1,R2,R3 ; write out (size = k)trap R0,R0,R0 ; terminatek data 4 ; length of animal
-; animal = string "cat"animaldata 99 ; character code for 'c'data 97 ; character code for 'a'data 116 ; character code for 't'data 10 ; character code for newline
+
+; write out (size = k)
+lea R1,2[R0] ; trap code: write
+lea R2,animal[R0] ; address of string to print
+load R3,k[R0] ; string size = k
+trap R1,R2,R3 ; write out (size = k)
+trap R0,R0,R0 ; terminate
+k data 4 ; length of animal
+
+; animal = string "cat"
+animal
+data 99 ; character code for 'c'
+data 97 ; character code for 'a'
+data 116 ; character code for 't'
+data 10 ; character code for newline
 \end{lstlisting}
 
 
@@ -1049,8 +1089,20 @@ lea R1,5[R0] ; R1 := 5 (constant)load R2,x[R0] ; R2 := xadd R2,R2,R1 ; R2 := x
 \rem{By convention, arguments and results are passed in R1}
 
 \begin{lstlisting}
-;Main programload R1,x[R0] ; arg = xjal R13,work[R0] ; result = work (x)...load R1,y[R0] ; arg = yjal R13,work[R0] ; result = work (y)...
-; Function work (x) = 1 + 7*xwork lea R2,7[R0] ; R7 = 2lea R3,1[R0] ; R3 = 1mul R1,R1,R2 ; result = arg * 7add R1,R3,R1 ; result = 1 + 7*argjump 0[R13] ; return
+;Main program
+load R1,x[R0] ; arg = x
+jal R13,work[R0] ; result = work (x)
+...
+load R1,y[R0] ; arg = y
+jal R13,work[R0] ; result = work (y)
+...
+
+; Function work (x) = 1 + 7*x
+work lea R2,7[R0] ; R7 = 2
+lea R3,1[R0] ; R3 = 1
+mul R1,R1,R2 ; result = arg * 7
+add R1,R3,R1 ; result = 1 + 7*arg
+jump 0[R13] ; return
 \end{lstlisting}
 
 \subsubsection{Recursive Calls}
@@ -1086,6 +1138,264 @@ lea R1,5[R0] ; R1 := 5 (constant)load R2,x[R0] ; R2 := xadd R2,R2,R1 ; R2 := x
 \section{Variables}
 \lecture{19}{02}{2019}
 
+\par{Variables are distinguished according to 3 features:}
+\begin{enumerate}
+	\item Lifetime: When it is created and destroyed
+	\item Scope: From where it can be accessed
+	\item Location: Address in memory
+\end{enumerate}
+
+\subsection{Static}
+
+\par{Static Variables are created at the start of the program, and retain their values until the program terminates. The variables defined using the \code{data} instruction, initialized after the trap instruction are static}
+
+\par{To avoid the duplication of instructions, and to allow for executable code to be shared, variables and code are often separated.}
+
+\defn{Code Segment}{Shareable, read-only part of the program}
+\defn{Data Segment}{Non-Shareable, read-write part of the program}
+
+\subsection{Local}
+
+\par{Local Variables on the other hand are defined within the program (e.g. within a function, a block etc.). Local variables have only one name, but there may be many instances of it (e.g. recursive calls). Hence, instead of storing them in memory using \code{data}, they are kept in \ita{stack frames}}
+
+\par{Local Variables can be accessed by addressing them \ita{relative} to the stack frame}
+
+\subsection{Dynamic}
+
+\par{Dynamic Variables are created explicitly, and therefore they are not limited to blocks of code, and need not follow the  push-pop order of the stack. Hence, they can neither be kept in the stack frame nor in the static data segment. They are instead kept in the \ita{heap}}
+
+\defn{Heap}{Data structure composed of a very large number of small objects. It contains a \ita{free space list} - a data structure which points to all the free words of memory}
+
+\par{When the variable is created a small chunk of memory from the heap points to the object, once the variable is destroyed the memory pointer is released back into the \ita{free space list}}
+
+\subsection{Call Stack}
+
+????
+
+
+
+\newpage
+
+\section{Linked Lists}
+
+\defn{Linked List}{Linear chain of nodes}
+
+\defn{Node}{Record with two fields: (1) \ita{value} - word containing info (2) \ita{next} - pointer to the next node}
+
+\rem{The last element of a linked list has \ita{value} $=$ \ita{nil}}
+
+\par{As seen above, we can access the fields of a record using pointers' arithmetic. Hence, for a given pointer \code{p}}
+
+\begin{lstlisting}
+; load the pointer to the node into R1
+load R1,p[R0] ; R1 := p 
+; load the value field at position 0 into R2load R2,0[R1] ; R2 := (*p).value 
+; load the next field at position 1 into R3load R3,1[R1] ; R3 := (*p).next 
+\end{lstlisting}
+
+\par{
+
+\subsection{Basic Operations}
+
+\rem{Assuming that \code{p,q} are in memory. Normally, these will be kept in registers so as to minimize the number of \code{load,store} instructions}
+
+\subsubsection{Is Empty?}
+
+\begin{lstlisting}
+load R1,p[R0]cmpeq R2,R1,R0jumpt R2,pIsEmpty[R0]
+; Not empty Body
+...
+; Empty Body
+pIsEmpty ...
+\end{lstlisting}
+
+\subsubsection{Return Value}
+\begin{lstlisting}
+load R1,p[R0] ; R1 := pload R2,0[R1] ; R2 := *p.valuestore R2,x[R0] ; x := *p.value
+\end{lstlisting}
+
+\subsubsection{Return Next}
+\begin{lstlisting}
+load R1,p[R0] ; R1 := pload R2,1[R1] ; R2 := *p.valuestore R2,q[R0] ; q := *p.value
+\end{lstlisting}
+
+\rem{Nothing new! Just like accessing a record,\code{value} has an offset of 0 and \code{next} has an offset of 1}
+
+\subsection{Transversing}
+
+\par{Using a while loop, with the stoping condition of \ita{pointer} $\neq 0 $. Since the last element of the list is nil}
+
+\subsection{Cons}
+
+\defn{Cons}{A term from functional languages. To \ita{cons x onto y} loosely means to create a new object from y by "appending" an object x of the same type}
+
+\ex{ Given a list \code{p = [1,2]} , \code{q = [3,1,2] ; cons(3, p)}}
+
+\begin{lstlisting}
+cons (x, p)	{ q := newnode ();	(*q).value := x;	(*q).next := p;	return q;	}
+\end{lstlisting}
+
+\rem{Note that p is unchanged. A new node is created, which points to p with the new added value}
+
+\mymarginpar{memory management too detailed?}
+
+\subsection{Lists Vs Arrays}
+
+\begin{table}[htp]
+\begin{center}
+\begin{tabular}{|c|c|c|}
+Feature & Array & List \\
+\hline
+\textbf{Direct Element Access} & Yes (with arbitrary index) & No (only to element with pointer) \\
+\hline
+\textbf{Traversing} & Yes (for loop i++) & Yes (set pointer to p.next, until p is nil) \\
+\hline
+\textbf{Memory p/el} & = element & = el + node \\
+\hline
+\textbf{Flexibility} & Fixed \& Fully Allocated & Variable \& Dynam Allocated \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\subsection{General Data Structures}
+
+\par{By using more pointers, more general structures can be created. For example: (1) Double Linked List (points back-forward) (2) Circular (no nill valued node)}
+
+\subsection{Abstract Data Type}
+
+\defn{ADT}{A data type defined by its behaviour (semantics) , i.e. the operations it supports. Thought of from the point of view of the user instead of the implementer}
+
+\par{An example of this type of structure is a stack. The core idea behind it is to support "push-pop" of data, but it can be implemented in more than one way, depending on what is required by the program. For example, instead of array, a linked list can be used:}
+
+\begin{lstlisting}
+; List Stack
+
+Empty stack as nilPush x is implemented by stack := cons (x, stack)Pop x is implemented by stack := (*stack).next
+
+; Array Stack
+
+; PUSH; stack[stTop] := R1; stTop := stTop + 1
+push load R1,x[R0] ; R1 := xload R2,stTop[R0] ; R2 := stTopstore R1,stack[R2] ; stack[stTop] := xlea R3,1[R0] ; R3 := constant 1add R2,R2,R3 ; R2 := stTop + 1store R2,stTop[R0] ; stTop := stTop + 1
+
+; POP
+
+; pop the stack, store top element into x; stTop := stTop - 1; x := stack[stTop]
+pop load R2,stTop[R0] ; R2 := stToplea R3,1[R0] ; R3 := constant 1sub R2,R1,R3 ; R2 := stTop - 1load R1,stack[R2] ; R1 := stack[stTop-1]store R1,x[R0] ; x := stack[stTop-1]store R2,stTop[R0] ; stTop := stTop - 1
+
+\end{lstlisting}
+
+\subsection{Error Checking}
+
+\par{The previous implementation does not check for errors, which might cause the program to crash or to output the wrong data. In order to prevent that, programs need to be able to check and handle errors.}
+
+\begin{itemize}
+	\item Error message
+	\item Error code to caller, and transfer control
+	\item Throw an exception
+	\item Terminate Execution
+\end{itemize}
+
+\lecture{25}{02}{2019}
+
+\section{Programming Techniques}
+
+\subsection{Compound Boolean Expressions: Short Circuit}
+
+\defn{Short Circuit}{When two conditions need to be satisfied, if the first fails, we can save resources by skipping the evaluation of the second}
+
+\begin{lstlisting}
+; while i<n && x[i]>0 do S
+; if not (i<n && x[i]>0) then goto loopDone
+load R1,i[R0] ; R1 := iload R2,n[R0] ; R2 := ncmplt R3,R1,R2 ; R3 := i<njumpf R3,loopDone[R0] ; if not (i<n) then goto loopDoneload R3,x[R1] ; R3 := x[i] safe because i<ncmpgt R4,R3,R0 ; R4 := x[i]>0jumpf R4,loopDone[R0] ; if not (x[i]>0) then goto loopDo
+\end{lstlisting}
+
+\subsection{Condition Code}
+
+\par{Instead of storing the comparison boolean in a register and jump, it is possible to use the instruction \code{cmp} which stores the result - \ita{condition code} - in \code{R15} and then one of the condition jump operators (e.g. \code{jumplt})}
+
+\subsection{Repeat-until Loop}
+
+\begin{lstlisting}
+; stopping condition checked at the end
+
+repeat	{S1; S2; S3}until i>n;
+\end{lstlisting}
+
+\section{Arrays \& Pointers}
+
+\subsection{Accessing Elements with Pointers}
+
+\begin{lstlisting}
+lea R1,x[R0] ; point p to first el of array x store in R1
+load R2,0[R1] ; access the value p points to store in R2
+lea R1,1[R1] ; p++
+\end{lstlisting}
+
+\rem{Note that the arithmetic happens on the pointers}
+
+\subsection{Sum}
+
+\begin{lstlisting}
+; R1 = p = pointer to current element of array x; R2 = q = pointer to end of array x; R3 = sum of elements of array x
+	lea R1,x[R0] ; p := &x	lea R2,xEnd[R0] ; q := %xEnd	add R3,R0,R0 ; sum := 0sumLoop	cmplt R4,R1,R2 ; R4 := p<q	jumpf sumLoopDone ; if not p<q then goto sumLoopDone	load R4,0[R1] ; R4 := *p (this is current element of x)	add R3,R3,R4 ; sum := sum + *p	lea R1,1[R1] ; p := p+1 (point to next element of x)	jump sumLoop[R0] ; goto sumLoopsumLoopEnd
+x 	data 23 ; first element of x	data 42 ; next element of x	data 19 ; last element of xxEnd
+\end{lstlisting}
+
+\rem{It is easier to use ArraySum with pointers for records}
+
+\subsection{Traverse}
+
+\begin{lstlisting}
+
+; LOW LEVEL
+
+; sum := 0;; p := &RecordArray;; q := &RecordArrayEnd;; RecordLoop; if (p<q) = False then goto recordLoopDone;; *p.fieldA := *p.fieldB + *p.fieldC;; sum := sum + *p.fieldA;; p := p + RecordSize;; goto recordLoop;; RecordLoopDone
+
+; Sigma16
+
+; R1 = sum; R2 = p (pointer to current element); R3 = q (pointer to end of array); R4 = RecordSize
+	lea R1,0[R0] ; sum := 0	lea R2,RecordArray[R0] ; p := &RecordArray;	lea R3,RecordArrayEnd[R0] ; q := &RecordArray;	load R4,RecordSize[R0] ; R4 := RecordSizeRecordLoop	cmplt R5,R2,R3 ; R5 := p<q	jumpf R5,RecordLoopDone[R0] ; if (p<q) = False then goto RecordLoopDone	load R5,1[R2] ; R5 := *p.fieldB	load R6,2[R2] ; R6 := *p.fieldC	add R7,R5,R6 ; R7 := *p.fieldB + *p.fieldC	store R7,0[R2] ; *p.fieldA := *p.fieldB + *p.fieldC	add R1,R1,R7 ; sum := sum + *p.fieldA	add R2,R2,R4 ; p := p + RecordSize	jump RecordLoop[R0] ; goto RecordLoopRecordLoopDone
+\end{lstlisting}
+
+\subsection{Stack Overflow}
+
+\rem{ \code{R12, R11} registers dedicated to store info for procedures. 12 - \ita{stack top} , 11 - \ita{stack limit}}
+
+\subsubsection{Initialize Stack}
+\begin{lstlisting}lea R14,CallStack[R0] ; initialise stack pointerstore R0,0[R14] ; main program dynamic link = nillea R12,1[R14] ; initialise stack topload R1,StackSize[R0] ; R1 := stack sizeadd R11,R14,R1 ; StackLimit := &CallStack + StackSize
+\end{lstlisting}
+
+\newpage
+\subsubsection{Call, Return, Stack Overflow}
+
+\rem{arguments are passed in the first registers}
+
+\begin{lstlisting}
+; Create stack framestore R14,0[R12] ; save dynamic linkadd R14,R12,R0 ; stack pointer := stack toplea R12,6[R14] ; stack top := stack ptr + frame cmp R12,R11 ; stack top ~ stack limitjumpgt StackOverflow[R0] ; if top>limit then goto stack store R13,1[R14] ; save return addressstore R1,2[R14] ; save R1store R2,3[R14] ; save R2store R3,4[R14] ; save R3store R4,5[R14] ; save R4
+
+; returnload R1,2[R14] ; restore R1load R2,3[R14] ; restore R2load R3,4[R14] ; restore R3load R13,1[R14] ; restore return addressload R14,0[R14] ; pop stack framejump 0[R13] ; return
+
+; If the stack is full and a procedure is called, this is a fatal error. Error message is printed; StackOverflow
+lea R1,2[R0]lea R2,StackOverflowMessage[R0]lea R3,15[R0] ; string lengthtrap R1,R2,R3 ; print "Stack overflow\n"trap R0,R0,R0 ; halt
+StackOverflowMessage	data 83 ; 'S'	data 116 ; 't'	data 97 ; 'a'	data 99 ; 'c'	data 107 ; 'k'...
+\end{lstlisting}
+
+\section{Nested Conditionals}
+
+\lecture{28}{02}{2019}
+
+\subsection{Jump Tables}
+
+\par{A bunch of \ita{if-then} or \ita{case} statements are inefficient if we're looking to match a numeric code directly. This can instead be done by constructing an array made of jumps to certain conditional statements which match the code passed as an argument. A sort of table of "tasks"}
+
+\begin{lstlisting}
+; Jump to operation specified by codeadd R4,R4,R4 ; code := 2*codelea R5,CmdJumpTable[R0] ; R5 := pointer to jump tableadd R4,R5,R4 ; address of jump to operationjump 0[R4] ; jump to jump to operation
+CmdJumpTable	jump CmdTerminate[R0] ; code 0: terminate the program	jump CmdInsert[R0] ; code 1: insert	jump CmdDelete[R0] ; code 2: delete	jump CmdSearch[R0] ; code 3: search	jump CmdPrint[R0] ; code 4: print
+CmdDone	load R5,InputPtr[R0]	lea R6,3[R0]	add R5,R5,R6	store R5,InputPtr[R0]	jump CommandLoop[R0]
+\end{lstlisting} 
+
+\rem{If the code passed does not exist in the table, program will jump to random instruction. Error Check by comparing code with least/largest value in table}
 
 \newpage
 \nocite{*}

@@ -135,7 +135,7 @@
 \prop{Distributive }{$\lambda(\vc{u} + \vc{v}) = \lambda\vc{u} +\lambda\vc{v}$}
 \proofs{
 \begin{align*}
-	\lambda(\vc{u} + \vc{v}) & = \lambda([u_1 + v_1 , u_2 + v_2 , \dots , u_n + v_n]   \text{  \ita{vector addition}} \\ 
+	\lambda(\vc{u} + \vc{v}) & = \lambda([u_1 + v_1 , u_2 + v_2 , \dots , u_n + v_n])   \text{  \ita{vector addition}} \\ 
 	& = [\lambda(u_1 + v_1) , \lambda(u_2 + v_2) , \dots , \lambda(u_n + v_n)] \text{  \ita{scalar multiplication} }\\
 	& = [\lambda u_1 + \lambda v_1 , \lambda u_2 + \lambda v_2 , \dots , \lambda u_n + \lambda v_n] \text{  \ita{distributive for real numbers}} \\
 	& = \lambda\vc{u} + \lambda\vc{v}
@@ -778,7 +778,7 @@ $$(x+1)^2 + (y-4)^2 + (z+1)^2 = 3$$
 \end{align*}
 }
 	
-\ex{See 84 \#3.11}
+\ex{See 54 \#3.11}
 
 \subsection{Angles}
 
@@ -800,6 +800,7 @@ $$(x+1)^2 + (y-4)^2 + (z+1)^2 = 3$$
 \par{But since we were asked to find the \ita{acute} angle, we have that $\alpha = \frac{\pi}{4}$}
 }
 
+\lecture{19}{02}{2019}
 \subsection{Projection of a point onto a plane and line}
 
 \rem{Key insight is to realize that the projection ($B$) of the projected point ($A$) will be at the intersection of the line  $AB$ and the plane. This can be found by using the normal to the plane as the direction vector of the line $AB$, and equating the line and plane equations.}
@@ -808,11 +809,93 @@ $$(x+1)^2 + (y-4)^2 + (z+1)^2 = 3$$
 
 \rem{Similarly, to a line, all one needs to do is to find the intersection between the two perpendicular lines}
 
-\mymarginpar{TO-DO: Component Form Cross product}
-%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Cross Product}
+
+\prop{}{Let $\vc{a}$ and $\vc{b}$ be two non-zero vectors. Then, $$ \vc{a} \times \vc{v} = (a_yb_z - a_zb_y)\vc{i} + (a_xb_z - a_zb_x)\vc{j} +(a_xb_y - a_yb_x)\vc{k}$$}
+
+\proof{Apply the distributive property, eliminate the product of perpendicular vectors ($=0$) and group like terms in terms of unit vectors}
+
+\prop{Determinant Formula }{ Let $R1$ of a $3\times3$ matrix represent the standard unit vectors $\vc{i}, \vc{j}, \vc{k}$ , and $R2, R3$ represent the coordinates of $\vc{a} , \vc{b}$. Then, their cross product can be calculated by taking the determinant of the matrix
+$$
+\vc{a} \times \vc{b} =
+\left|\begin{matrix}
+\vc{i} &  \vc{j} & \vc{k}  \\
+a_x &  a_y & a_z  \\
+ b_x &  b_y & b_z \\
+\end{matrix}\right|$$
+}
+
+\mymarginpar{TODO: applications}
+
+\subsection{Applications}
+
+\subsubsection{Area}
+
+For $ \vc{u} = (u_x , u_y , u_z) \ , \ \vc{v} = (v_x , v_y , v_z)$ , the magnitude of the cross-product represents the area of the parallelogram $$Area = |\vc{u} \times \vc{v}|$$
+
+\lecture{25}{02}{2019}
+
+\subsection{Vector Triple Products}
+
+\prop{Product Formula }{ For any vectors $\vc{u}, \vc{v}, \vc{w}$ $$ \vc{u} \times (\vc{v} \times \vc{w}) = (\vc{u} \cdot \vc{w})\vc{v} - (\vc{u} \cdot \vc{v})\vc{w}$$}
+
+\subsection{Scalar Triple Products}
+
+\nota{ $[\vc{u}, \vc{v} , \vc{w}]$}
+
+\par{The STP of $\vc{u}, \vc{v} , \vc{w}$ (in that order) is given by $\vc{u} \cdot (\vc{v} \times \vc{w})$. Which is equal to the determinant of their $3\times3$ matrix}
+
+\prop{STP }{ $$[\vc{u}, \vc{v} , \vc{w}] = \left|\begin{matrix}
+u_x &  u_y & u_z  \\
+v_x &  v_y & v_z  \\
+ w_x &  w_y & w_z \\
+\end{matrix}\right|$$
+}
+
+\proofs{ $$\vc{v} \times \vc{w} =
+\left|\begin{matrix}
+\vc{i} &  \vc{j} & \vc{k}  \\
+v_x &  v_y & v_z  \\
+ w_x &  w_y & w_z \\
+\end{matrix}\right| = \left| \begin{array}{cc}{v_{y}} & {v_{z}} \\ {w_{y}} & {w_{z}}\end{array}\right| \mathbf{i}-\left| \begin{array}{cc}{v_{x}} & {v_{z}} \\ {w_{x}} & {w_{z}}\end{array}\right| \mathbf{j}+\left| \begin{array}{cc}{v_{x}} & {v_{y}} \\ {w_{x}} & {w_{y}}\end{array}\right| \mathbf{k}$$
+
+Hence, 
+$$
+\begin{aligned} \mathrm{LHS} &=\mathbf{u} \cdot(\mathbf{v} \times \mathbf{w}) \\ &=u_{x} \left| \begin{array}{cc}{v_{y}} & {v_{z}} \\ {w_{y}} & {w_{z}}\end{array}\right|-u_{y} \left| \begin{array}{cc}{v_{x}} & {v_{z}} \\ {w_{x}} & {w_{z}}\end{array}\right|+u_{z} \left| \begin{array}{cc}{v_{x}} & {v_{y}} \\ {w_{x}} & {w_{y}}\end{array}\right| \\ &=\left|\begin{matrix}
+u_x &  u_y & u_z  \\
+v_x &  v_y & v_z  \\
+ w_x &  w_y & w_z \\
+\end{matrix}\right| = \mathrm{RHS} \end{aligned}
+$$
+}
+
+\subsection{Coplanarity}
+
+\defn{Coplanar}{4+ points are coplanar, if they lie on the same plane}
+
+
+\prop{}{ Given 4 distinct points $O, U, V, W$, let $\vc{u} , \vc{v} , \vc{w}$ represent the coplanar position vectors from $O$, then $$[\vc{u},\vc{v},\vc{w}] = 0$$
+}
+
+\rem{If any two vectors are equal, then $[\vc{u},\vc{v},\vc{w}] = 0$}
+
+\subsection{Symmetry}
+
+\prop{}{ $$ [\vc{v},\vc{w},\vc{u}] =  [\vc{u},\vc{v},\vc{w}] =  [\vc{w},\vc{u},\vc{v}] \quad (1) $$ \\
+and
+
+$$  [\vc{v},\vc{u},\vc{w}] =  [\vc{w},\vc{v},\vc{u}] =  [\vc{u},\vc{w},\vc{v}] = - (1) $$
+}
+
+\proofs{It follows from the fact that interchanging two matrix rows, is equal to taking the symmetric of the original matrix , i.e.$$ \left| \begin{array}{lll}{a} & {b} & {c} \\ {p} & {q} & {r} \\ {x} & {y} & {z}\end{array}\right|=-\left| \begin{array}{lll}{p} & {q} & {r} \\ {a} & {b} & {c} \\ {x} & {y} & {z}\end{array}\right|$$}
+
+\ex{Prove that $(\vc{a} \times \vc{b}) \times (\vc{a} \times \vc{c}) = [\vc{a}, \vc{b}, \vc{c}]\vc{a}$
+
+$$\begin{aligned}(\mathbf{a} \times \mathbf{b}) \times(\mathbf{a} \times \mathbf{c}) &=((\mathbf{a} \times \mathbf{b}) \cdot \mathbf{c}) \mathbf{a}-((\mathbf{a} \times \mathbf{b}) \cdot \mathbf{a}) \mathbf{c} \\ &=(\mathbf{c} \cdot(\mathbf{a} \times \mathbf{b})) \mathbf{a}-(\mathbf{a} \cdot(\mathbf{a} \times \mathbf{b})) \mathbf{c} \\ &=[\mathbf{c} \cdot \mathbf{a}, \mathbf{b}] \mathbf{a}-[\mathbf{a}, \mathbf{a}, \mathbf{b}] \mathbf{c} \\ &=[\mathbf{c}, \mathbf{a}, \mathbf{b}] \mathbf{a}-0 \mathbf{c} \\ &=[\mathbf{a}, \mathbf{b}, \mathbf{c}] \mathbf{a} \end{aligned}$$
+}
 \newpage
 \section{Logical Matters \& Proof}
-
+\lecture{26}{02}{2019}
 \defn{Direct Proof}{It consists of an argument that starts from the hypothesis and by a sequence of logical steps ends at the conclusion}
 
 \rem{A common misconception is starting from the conclusion and finding something "true", by using both sides of the equation simultaneously}
@@ -828,6 +911,86 @@ $$(x+1)^2 + (y-4)^2 + (z+1)^2 = 3$$
 \end{align*}
 
 Therefore, since $2kl + k + l \in \z$, $ab$ is odd.}
+
+
+\subsection{\ita{if...then} \quad $\implies$}
+
+\par{For any two propositions $p, q$ $p \implies q$ , reads \ita{ p implies q}. The truth values of the compound statement can be shown on a truth table. \\}
+
+\begin{minipage}[c]{.5\textwidth}
+	\begin{tabular}{|c|c|c|}
+		$p$ & $q$ & $p \implies q$  \\
+		\hline
+		T & T & T \\
+		T & F & F \\
+		F & T & T \\
+		F & F & T
+	\end{tabular}
+	\end{minipage}
+
+\rem{Statements of this type show a truth \ita{relationship} between two statements, but say nothing about the truth value of the atomic propositions}
+
+\par{The \ita{converse} of the above is $q \implies p$}
+
+\begin{minipage}[c]{.5\textwidth}
+	\begin{tabular}{|c|c|c|c|}
+		$p$ & $q$ & $p \implies q$ & $q \implies p$ \\
+		\hline
+		T & T & T & T\\
+		T & F & F & T\\
+		F & T & T & F\\
+		F & F & T & T 
+	\end{tabular}
+	\end{minipage}
+	
+\ex{ Let $ p = \text{\ita{x is a dog}}$ and $q = \text{\ita{x is a mammal}}$
+
+$$ p \implies q = T \quad \quad q \implies p = F$$
+}
+
+\par{The negation of the atomic propositions is called the \ita{contrapositive}}
+
+\rem{Contrapositive statements are equivalent}
+
+$$\neg q \implies \neg \text{ p is the contrapositive of } p \implies q$$
+
+\begin{minipage}[c]{.5\textwidth}
+	\begin{tabular}{|c|c|c|c|c|c|}
+		$p$ & $q$ & $\neg q$ & $\neg p$ & $\neg q \implies \neg p$ & $p \implies q$\\
+		\hline
+		T & T & F & F & T & T\\
+		T & F & T & F & F & F\\
+		F & T & F & T & T & T\\
+		F & F & T & T & T & T
+	\end{tabular}
+\end{minipage}
+
+\subsection{ \ita{if and only iff} , \ \ita{iff} , \ \ita{equivalent} , $\iff$}
+
+\par{The compound statement is only true, if both atomic propositions have the same truth value. When carrying out a proof of this type, one usually splits the proof into two parts (1) $p \implies q$ (2) $q \implies p$ \\}
+
+\begin{minipage}[c]{.5\textwidth}
+	\begin{tabular}{|c|c|c|c|c|}
+		$p$ & $q$ & $p \implies q$ & $q \implies p$ & $p \iff q$ \\
+		\hline
+		T & T & T & T & T\\
+		T & F & F & T & F\\
+		F & T & T & F & F\\
+		F & F & T & T & T
+	\end{tabular}
+\end{minipage}
+
+\ex{Prove that $ x^2 < 1 \iff -1 < x < 1$ \\
+
+\par{(1) $p \implies q$ :$ \begin{array}{l}{\text { Suppose that } x^{2}<1 . \text { Then } x^{2}-1=(x+1)(x-1)<0 . \text { This }} \\ {\text { means that factors } x+1 \text { and } x-1 \text { have opposite signs and so }} \\ {\text { either }(x>-1 \text { and } x<1) \text { or }(x<-1 \text { and } x>1) . \text { The latter case }} \\ {\text { is impossible and so }-1<x<1, \text { as required. }}\end{array}$ }
+
+\par{(2) $q \implies p$ : $\begin{array}{l}{\text {Suppose that }-1<x<1 . \text { Then } x>-1 \text { and } x<1, \text { i.e. } x+1>0} \\ {\quad \text { and } x-1<0 . \text { Therefore } x^{2}-1=(x+1)(x-1)<0, \text { and hence }} \\ {x^{2}<1, \text { as required. }}\end{array}$}
+
+\par{Hence, $ p \iff q$}
+}
+
+\lecture{04}{03}{2019}
+
 
 \newpage
 \nocite{*}
