@@ -643,6 +643,68 @@ f(-x) &=  5(-x)^{7}+7 (-x)^{3}+9 (-x)^{5} \\
 Hence, odd.
 }
 
+\section{Ordinary Differential Equations}
+
+\defn{ODE}{Equation which relates a function $y(x)$ , $x$ and at least one $n^{th}$ derivative of $y$ with respect to $x$, i.e. $\frac{d^{n}y}{dx^{n}}$}
+
+\rem{The order of an ODE is given by the degree of its highest derivative}
+
+\defn{Linear ODE}{An ODE where there are no (1) products of $y$ and its derivatives (2) no functions of $y$ and its derivatives}
+
+\ex{ 
+\begin{itemize}
+\item[]
+\item $y + \frac{dy}{dx} = xy$ \quad \quad LODE
+\item $y^2 + \frac{dy}{dx} = xy$ \quad \quad Not Linear ($y \times y$)
+\item $\cos(y) + \frac{dy}{dx} = xy$ \quad \quad Not Linear ($\cos(y)$)
+\end{itemize}
+}
+
+\subsection{Separable}
+
+\defn{Separable ODE}{An ODE is said to be separable if it can be written in the form $\frac{dy}{dx} = f(x)g(y)$}
+
+\par{To solve $1^{\text{st}}$ order ODEs, all it needs to be done is to \ita{"split"} the \ita{"y's"} and \ita{"x's"} into each side of the equation, and integrate for the respective variable}
+
+\ex{ 
+\begin{align*}
+\frac{dy}{dx} &= (6x^2 +1)y  \\
+\int \frac{1}{y} \ dy &= \int 6x^2 + 1 \ dx \\
+log|y| &= 2x^3 + x + C \\
+y &= e^{2x^3 + x + C} = C^{*}e^{2x^3 + x}
+\end{align*}
+}\mymarginpar{* $e^C$ is just a constant}
+
+\subsection{Integration Factor}
+
+\defn{Integrating Factor ( $\mu(x)$ )}{Factor which when multiplied by the LHS of a general linear ODE, transforms it into the total derivative $\frac{d}{dx}\left(\mu(x)p(x)y(x)\right)$}
+
+\rem{In general $\mu(x) = e^{\int p(x) dx}$ , see 4.7 lecture notes for full derivation}
+
+\begin{itemize}
+\item[]\textbf{Method:}
+\begin{enumerate}
+	\item Make sure that the ODE is in standard form 
+	\item Find the Integrating Factor $\mu(x)$
+	\item Multiply standard ODE by $\mu(x)$ in order to transform the LHS into the total derivative $\frac{d}{dx}\left(\mu(x)p(x)y(x)\right)$
+	\item Integrate both sides
+	\item Solve for $y(x)$
+\end{enumerate}
+\end{itemize}
+
+\rem{Note that when integrating the LHS, the integration and differential operators will simply cancel out}
+
+$$ \mu(x) = exp\left(\int{\frac{x+2}{x}}\right) = e^xx^2 \quad \quad (2)$$
+\ex{ 
+\begin{alignat*}{2}
+&\frac{dy}{dx} +\left( \frac{x +2}{x}\right)y = e^{-x} \quad \quad &(1)\\
+&\frac{d}{dx}\left[(e^xx^2)(y)\right] = e^{-x}(e^xx^2) \quad \quad &(3)\\
+&e^xx^2(y) = \int{x^2} \quad \quad &(4) \\
+&y = \frac{e}{x}\left( \frac{1}{3}x + \frac{C}{x^2} \right) \quad \quad &(4) , (5)
+\end{alignat*}{2}
+}
+	
+
 \newpage
 \nocite{*}
 \printbibliography
