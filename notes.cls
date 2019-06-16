@@ -116,7 +116,7 @@
 \ifthenelse{\isundefined{\notes@lang}}{\ExecuteOptions{english}}{}
 
 %%% Common macroes
-
+\RequirePackage[table,xcdraw]{xcolor}
 \RequirePackage[pdftex,colorlinks,linkcolor=black,urlcolor=black,citecolor=black]{hyperref}
 \RequirePackage{fancyhdr}
 \RequirePackage{tikz}

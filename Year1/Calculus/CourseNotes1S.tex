@@ -6,7 +6,7 @@
 \subject{Mathematics}
 \author{Joao Almeida-Domingues}
 \email{2334590D@student.gla.ac.uk}
-\speaker{Sergio Giron}
+\speaker{}
 \date{10}{01}{2019}
 \dateend{24}{05}{2019}
 \place{University of Glasgow}
@@ -582,7 +582,19 @@ $$ \int u \ dv = uv - \int v \ du $$\end{theorem}
 
 \subsection{Trigonometric}
 
-\subsubsection{Squares} !! TO DO @REVISION!!
+\subsubsection{Squares} 
+
+\par{Remember the following identities:}
+
+$$\tan^{2}(x) = \sec^{2}(x) - 1 \quad \cos^{2}(x)+\sin^{2}(x) = 1 \quad \cos^{2}(x) = \frac{\cos(2x) + 1}{2} \quad \sin^{2}(x) = \frac{1 - \cos(2x)}{2}$$
+
+\par{Then:}
+
+\begin{itemize}
+\item[] $\int \tan ^{2} x d x=\int\left(\sec ^{2} x-1\right) d x=\tan x-x+c$
+\item[] $\int \cos ^{2} x d x=\int \frac{1}{2}+\frac{1}{2} \cos 2 x d x=\frac{1}{2} x+\frac{1}{2} \cdot \frac{1}{2} \sin 2 x+c=\frac{1}{2} x+\frac{1}{4} \sin 2 x+c$
+\item[] $\int \sin ^{2} x d x=\int \frac{1}{2}-\frac{1}{2} \cos 2 x d x=\frac{1}{2} x-\frac{1}{4} \sin 2 x+c$
+\end{itemize}
 
 \subsubsection{Irreducible Quadratic}
 
@@ -603,8 +615,20 @@ $$ \int u \ dv = uv - \int v \ du $$\end{theorem}
 $$ \sin 2 x=2 \cos x \sin x \quad \quad \text{ and } \quad \quad \sin ^{2} x=\frac{1-\cos 2 x}{2}$$
 Then,  $$\begin{aligned} \int \sin ^{2} x \cos ^{2} x d x=\int\left(\frac{1}{2} \sin 2 x\right)^{2} d x &=\frac{1}{4} \int \sin ^{2}(2 x) d x \\ &=\frac{1}{4} \times \frac{1}{2} \int 1-\cos 4 x d x \\ &=\int \frac{1}{8}-\frac{1}{8} \cos 4 x d x \\ &=\frac{1}{8} x-\frac{1}{32} \sin 4 x+c \end{aligned}$$}
 
-\subsubsection{Trig Substitutions} !! COMEBACK!!
+\subsubsection{Trig Substitutions} 
 
+\par{Let $a > 0$, and a constant}
+
+\begin{enumerate}
+\item For $(a^{2} - x^{2})^{n}$ , apply the substitution $\boxed{x = a\sin\theta}$. So that,
+
+$$a^{2} - (a\sin\theta)^{2} = a^{2}\cos^{2}\theta \quad \text{ and } \quad dx = a\cos\theta d\theta$$
+
+\item For $(a^{2} + x^{2})^{n}$ , apply the substitution $\boxed{ x = a\tan\theta}$. So that,
+
+$$a^{2} + (a\tan\theta)^{2} = a\sec^{2}\theta \quad \text{ and } \quad dx = a\sec^{2}\theta $$
+
+\end{enumerate}
 \subsection{Logarithmic}
 
 \begin{theorem} $$ \int \frac{f^{\prime}(x)}{f(x)} d x=\log |f(x)|+c $$ \end{theorem}
@@ -619,7 +643,41 @@ $$\frac{d}{d x}(\log (-f(x)))=\frac{-f^{\prime}(x)}{-f(x)}=\frac{f^{\prime}(x)}{
 \par{Therefore, $\log|f(x)|$ is an antiderivative of $\frac{f'(x)}{f(x}$}
 }
 
-\subsection{Rational Functions} !!!TODO!!!
+\subsection{Rational Functions} 
+
+\mymarginpar{Recall: Proper $\iff \frac{p(x)}{q(x)}$ , deg $p < \text { deg } q$}
+
+\begin{enumerate}
+
+\item Write as the sum of a proper rational and polynomial
+\item Expand newly found rational into partial fractions \mymarginpar{For non-expandable (e.g. irreducible quadratics) it might be needed to complete the square, before applying a trig substitution}
+\item Integrate each term as \ita{per usual}
+
+\end{enumerate}
+
+\ex{$ \int \frac{x^{3}-4}{x^{2}-x-2} d x$
+
+\mymarginpar{See 3.18/19 lec notes for +examples}
+
+\begin{enumerate}
+\item 
+$$\polylongdiv{x^{3}-4}{x^{2}-x-2}$$
+
+\item
+
+$$\frac{3x-2}{x^{2}-x-2} = \frac{4}{3(x-2)} + \frac{5}{3(x+1)}$$
+
+\item*
+
+$$\int \frac{x^{3}-4}{x^{2}-x-2} \ d x = \int \left[ (x+1) + \frac{4}{3(x-2)} + \frac{5}{3(x+1)} \right] \ d x$$\mymarginpar{*Then apply S.I}
+\end{enumerate}
+
+}
+
+
+
+
+ 
 
 \section{Symmetry and Definite Integrals} \mymarginpar{ $t = -x$}
 
@@ -677,7 +735,9 @@ y &= e^{2x^3 + x + C} = C^{*}e^{2x^3 + x}
 
 \subsection{Integration Factor}
 
-\defn{Integrating Factor ( $\mu(x)$ )}{Factor which when multiplied by the LHS of a general linear ODE, transforms it into the total derivative $\frac{d}{dx}\left(\mu(x)p(x)y(x)\right)$}
+\defn{Integrating Factor ( $\mu(x)$ )}{Factor which when multiplied by the LHS of a general linear ODE, transforms it into the total derivative $\frac{d}{dx}\left(\mu(x)y(x)\right)$}
+
+\defn{Standard Form  }{$\boxed{\frac{dy}{dx} + p(x)y(x) = \lambda(x)}$ , where $\lambda(x)p(x)$ are functions of $x$ only}
 
 \rem{In general $\mu(x) = e^{\int p(x) dx}$ , see 4.7 lecture notes for full derivation}
 
@@ -686,7 +746,7 @@ y &= e^{2x^3 + x + C} = C^{*}e^{2x^3 + x}
 \begin{enumerate}
 	\item Make sure that the ODE is in standard form 
 	\item Find the Integrating Factor $\mu(x)$
-	\item Multiply standard ODE by $\mu(x)$ in order to transform the LHS into the total derivative $\frac{d}{dx}\left(\mu(x)p(x)y(x)\right)$
+	\item Multiply standard ODE by $\mu(x)$ in order to transform the LHS into the total derivative $\frac{d}{dx}\left(\mu(x)y(x)\right)$
 	\item Integrate both sides
 	\item Solve for $y(x)$
 \end{enumerate}
@@ -700,10 +760,93 @@ $$ \mu(x) = exp\left(\int{\frac{x+2}{x}}\right) = e^xx^2 \quad \quad (2)$$
 &\frac{dy}{dx} +\left( \frac{x +2}{x}\right)y = e^{-x} \quad \quad &(1)\\
 &\frac{d}{dx}\left[(e^xx^2)(y)\right] = e^{-x}(e^xx^2) \quad \quad &(3)\\
 &e^xx^2(y) = \int{x^2} \quad \quad &(4) \\
-&y = \frac{e}{x}\left( \frac{1}{3}x + \frac{C}{x^2} \right) \quad \quad &(4) , (5)
+&y = {e}^{-x}\left( \frac{1}{3}x + \frac{C}{x^2} \right) \quad \quad &(4) , (5)
 \end{alignat*}{2}
 }
-	
+
+\subsection{Second Order ODEs}
+
+$$ \text{General Form: } p(x)y'' + q(x)y' + r(x)y = f(x)$$
+
+\par{At this level, priority is given to the simpler form of the above (Constant 2ODE), where the functions with respect to $x$ have no variables, i.e. $p(x),q(x),r(x)$  are constants}
+
+\defn{Homogeneous}{An ODE is said to be homogeneous if it is composed only of $y$ and its derivatives, i.e. if $f(x) = 0$}
+
+\defn{Non-Homogenous}{An ODE with functions other than $y$, i.e. $f(x) \neq 0$}
+
+\ex{ H : $y'' + 5y' + 6y = 0$ \quad \quad NH: y'' + 5y' + 6y = 3x}
+
+\begin{theorem}{\textbf{Superposition: }}{If $y_1(x)$ and $y_2(x)$ are both solutions of a \ita{linear} homogenous ODE, so it is any linear combination of them $$y(x) = c_1y_1(x) + c_2y_2(x)$$}\end{theorem}
+
+\subsubsection{Characteristic/Auxiliary Equation}
+
+\par{To understand the concept of a characteristic equation, its best if we start with an example. Note the following second order linear homogenous ODE:}
+
+$$y'' + 5y' + 6y = 0$$
+
+\par{We know that there is some function $g(x)$ which solves the above. In this case the solution seems to be simple, maybe a function whose derivatives vary only in its coefficients. A common example given in the literature is to take $g(x) = e^{rx}$. Let's then, by inspection,  see if its simplest form $e^x$ could be a solution:}
+
+$$ (e^x)'' = e^x \quad \quad (e^x)' = e^x $$
+
+\par{Hence, for $g(x) = e^x$, we have that,}
+
+$$e^x + 5e^x + 6e^x = 12e^x \neq 0 \ \forall \  x , \text{ hence not a solution}$$
+
+\par{So, $r=1$ does not satisfy the equation. We can then ask ourselves if there's any value of $r$ which could. In order to find it, all we need to do is to essentially solve for $r$. Repeating the process above:}
+
+$$(e^{rx})'' = (re^{rx})' = r^2e^rx \quad \quad (e^{rx})' = re^{rx}$$
+
+\par{Hence, for $g(x) = e^{rx}$, we have that}
+$$r^2e^rx + 5(re^{rx}) + 6e^{rx} = 0 \iff e^{rx} \boxed{(r^2 + 5r + 6)} = 0$$
+
+\par{Note that $e^{rx}$ is never $0$ , hence we find our $r$(s) by solving the quadratic boxed above. It is that quadratic which we call the \textbf{\ita{characteristic equation}} of a 2ODE , and the polynomial on the left its \textbf{\ita{characteristic polynomial}}.\\
+So, finding the roots to specify $r$, and by the superposition principle defined above, we can define the GS for our example}
+
+$$y(x) = C_1e^{-2x} + C_2e^{-3x}$$
+
+\par{\textbf{In General:} if $r$ satisfies the characteristic equation $pr^2 + qr + n$ , then $e^{rx}$ is a solution of the 2ODE\mymarginpar{PS ($C_1, C_{2}$) are found by solving for 2 initial conditions instead of one}}
+
+\par{The GS can take different forms, depending on the roots of the CE}
+
+\begin{enumerate}
+	\item Distinct : $C_1e^{r_1x} + C_2e^{r_2x} $
+	\item Repeated : $C_1e^{r_1x} + C_2xe^{r_2x}$
+	\item Complex $(\alpha \pm i\beta)$ : $e^{\alpha x}\left(A\cos(\beta)x + B\sin(\beta)x\right)$
+\end{enumerate}
+
+\subsubsection{Particular Integrals}
+
+\par{To construct particular solutions for \ita{non-homogenous} equations one starts by using a general, functionally equal $g(x)$ to $f(x)$, i.e. for a trig function, use general trig, poly to poly etc.}
+
+\ex{ Find GS for $y'' + 3y' + 2y = 6e^{2x}$
+
+\begin{enumerate}
+
+\item LHS is Homogeneous, hence we know:
+
+$$\text{CE: } r^{2} + 3r + 2 = 0 \iff r = -2 , -1$$
+$$y(x) = Ae^{-2x} + Be^{-x}$$
+
+\item RHS is NH and of exponential type, hence
+
+$$y = Ae^{Bx} \quad y' = ABe^{Bx} \quad y'' = AB^{2}e^{Bx}$$
+
+\item Substituting in original ODE
+
+$$(AB^{2}e^{Bx}) + 3ABe^{Bx} + 2Ae^{Bx} = 6e^{2x}$$
+
+\item Equating LHS\&RHS Coefficients
+
+$$B = 2 \quad \text{ and } \quad 4Ae^{2x} + 6Ae^{2x} + 2Ae^{2x} = 6e^{2x} \iff A = \frac{1}{2}$$
+Hence, we have that
+$$ \frac{1}{2}e^{2x} $$
+
+\item Finally, by the superposition principle, given that both are solutions, their linear combination must also be
+
+$$y(x) =  Ae^{-2x} + Be^{-x} + \frac{1}{2}e^{2x} $$
+
+\end{enumerate}
+}
 
 \newpage
 \nocite{*}

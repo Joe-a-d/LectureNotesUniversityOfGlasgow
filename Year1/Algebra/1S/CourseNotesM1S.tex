@@ -1,7 +1,7 @@
 
 %% CLASS MANUAL FOUND at http://blog.poormansmath.net/latex-class-for-lecture-notes/ %%
 %% CLASS AUTHOR Stefano Maggiolo %%
-\documentclass[english,course,draft]{Notes}
+\documentclass[english,course]{Notes}
 %~/Library/texmf/tex/latex/notes.cls
 
 \title{MATHEMATICS 1S}
@@ -368,7 +368,7 @@ $$A ( \theta ) = \left\{ \begin{array} { l l } { 0 } & { \text { when } \theta =
 
 \rem{Note that the cross product is only valid up to 3D}
 
-\prop{Anti-Commutative}{\ \ \ $\vc{a} \times \vc{b} \neq \vc{b} \times \vc{a}$ $$\vc{a} \times \vc{b} = - ( \vc{b} \times \vc{a})$$}
+\prop{Anti-Commutative}{\ \ \ $\vc{a} \times \vc{b} \neq \vc{b} \times \vc{a}$ $$\vc{a} \times \vc{b} = - \vc{b} \times \vc{a}$$}
 
 \proofs{For non-parallel vectors, the result follows from the fact that even though the magnitude remains unchanged*~\mymarginpar{*just like in the dot product} , i.e. $|\vc{u} \times \vc{v}| = |\vc{v} \times \vc{u}| = |\vc{u}||\vc{v}|\sin\theta$, their direction is reversed.}
 
@@ -574,7 +574,7 @@ $$e^{i\theta} - e^{-i\theta} = \cancel{\cos(\theta)} + \sin(\theta) - \cancel{\c
 \par{Using the binomial theorem, and the formulae above with $2\cos(\theta)$ so that we get rid of the fraction during the working out we have that:}
 
 \begin{align*}
-2\cos^6(\theta) &= (z + z^{-1})^6 \\
+(2\cos(\theta))^{6} &= (z + z^{-1})^6 \\
 	&= z ^ { 6 } + 6 z ^ { 5 } z ^ { - 1 } + 15 z ^ { 4 } z ^ { - 2 } + 20 z ^ { 3 } z ^ { - 3 } + 15 z ^ { 2 } z ^ { - 4 } + 6 z z ^ { - 5 } + z ^ { - 6 } \\
 	&=  z ^ { 6 } + 6 z ^ { 4 } + 15 z ^ { 2 } + 20 + 15 z ^ { - 2 } + 6 z ^ { - 4 } + z ^ { - 6 }  \\ 
 	&= \left( z ^ { 6 } + z ^ { - 6 } \right) + 6 \left( z ^ { 4 } + z ^ { - 4 } \right) + 15 \left( z ^ { 2 } + z ^ { - 2 } \right) + 20  \\ 
@@ -605,7 +605,7 @@ $$e^{i\theta} - e^{-i\theta} = \cancel{\cos(\theta)} + \sin(\theta) - \cancel{\c
 
 \par{and}
 
-$$|\vc{r}_p|^2 = \lambda^2 + \beta^2 + \lambda^2$$
+$$|\vc{r}_p|^2 = \alpha^2 + \beta^2 + \lambda^2$$
 }
 
 \proofs{ (see figure 3.4 lecture notes)}
@@ -621,9 +621,9 @@ $$|AB| = \sqrt{(m-x)^2 + (n-y)^2 + (z-o)^2}$$
 
 \par{By noting that the standard unit vectors are at an angle of $\frac{\pi}{2}$ it follows that 
 
-$$ |\vc{i} \cdot \vc{j}| = |\vc{i}| |\vc{j}| \sin\left(\frac{\pi}{2}\right) = 1$$
+$$ |\vc{i} \times \vc{j}| = |\vc{i}| |\vc{j}| \sin\left(\frac{\pi}{2}\right) = 1$$
 
-and by the rhr (~\ref{cross:rhr}) we also note that $ \vc{i} \cdot \vc{j} = \vc{k}$
+and by the rhr (~\ref{cross:rhr}) we also note that $ \vc{i} \times \vc{j} = \vc{k}$
 }
 
 \defn{Right-Handed System}{We call the \ita{triple} $(\vc{i},\vc{j},\vc{k})$ a rhs of vectors}
@@ -634,11 +634,11 @@ and by the rhr (~\ref{cross:rhr}) we also note that $ \vc{i} \cdot \vc{j} = \vc{
 
 \prop{}{ Let $\vc{i}, \vc{j}, \vc{k} $ be the standard unit vectors, then:
 
-$$\vc{i} \cdot \vc{j} = \vc{k} \quad \vc{j} \cdot \vc{k} = \vc{i} \quad \vc{k} \cdot \vc{i} = \vc{j}$$
+$$\vc{i} \times \vc{j} = \vc{k} \quad \vc{j} \times \vc{k} = \vc{i} \quad \vc{k} \times \vc{i} = \vc{j}$$
 
 and
 
-$$\vc{k} \cdot \vc{j} = -\vc{i} \quad \vc{j} \cdot \vc{i} = \vc{k} \quad \vc{i} \cdot \vc{k} = \vc{j}$$
+$$\vc{k} \times \vc{j} = -\vc{i} \quad \vc{j} \times \vc{i} = \vc{k} \quad \vc{i} \times \vc{k} = \vc{j}$$
 }
 
 \subsection{Component Form}
@@ -979,18 +979,112 @@ $$\neg q \implies \neg \text{ p is the contrapositive of } p \implies q$$
 		F & F & T & T & T
 	\end{tabular}
 \end{minipage}
-
+~\\
 \ex{Prove that $ x^2 < 1 \iff -1 < x < 1$ \\
 
 \par{(1) $p \implies q$ :$ \begin{array}{l}{\text { Suppose that } x^{2}<1 . \text { Then } x^{2}-1=(x+1)(x-1)<0 . \text { This }} \\ {\text { means that factors } x+1 \text { and } x-1 \text { have opposite signs and so }} \\ {\text { either }(x>-1 \text { and } x<1) \text { or }(x<-1 \text { and } x>1) . \text { The latter case }} \\ {\text { is impossible and so }-1<x<1, \text { as required. }}\end{array}$ }
 
-\par{(2) $q \implies p$ : $\begin{array}{l}{\text {Suppose that }-1<x<1 . \text { Then } x>-1 \text { and } x<1, \text { i.e. } x+1>0} \\ {\quad \text { and } x-1<0 . \text { Therefore } x^{2}-1=(x+1)(x-1)<0, \text { and hence }} \\ {x^{2}<1, \text { as required. }}\end{array}$}
+\par{~\\(2) $q \implies p$ : $\begin{array}{l}{\text {Suppose that }-1<x<1 . \text { Then } x>-1 \text { and } x<1, \text { i.e. } x+1>0} \\ {\quad \text { and } x-1<0 . \text { Therefore } x^{2}-1=(x+1)(x-1)<0, \text { and hence }} \\ {x^{2}<1, \text { as required. }}\end{array}$}
 
 \par{Hence, $ p \iff q$}
 }
 
 \lecture{04}{03}{2019}
 
+\subsection{Proof by Contradiction}
+
+\par{A proof by cotrandiction, or \ita{reductio ad absurdum}, relies on the simple logical necessity that for a given statement $P$ , either $P$ is true or $\not P$ is true, but given that we know the truth value of one, we can immediately deduce the other's. In particular, we assume $\not P$ to be true, and then work towards a contradiction}
+
+\ex{ Given that $\sqrt{2}$ is know to be irrational, proof by contradiction that $\sqrt{2} - 1$ is also irrational}
+
+\proofs{ We have the 2 following propositions: $$P_1 : \sqrt{2} \notin \q \quad \quad P_2 : \sqrt{2} + 1 \in \q $$
+\par{Given that we know $P_1$ to be true, and assuming that $P_2$ is true. Then, it follows , by virtue of the fact that $\q$ is closed under subtraction, that $(\sqrt{2}+1) -1 \in \q$ , which in turn implies that $\sqrt{2} \in \q$. But, this contradicts $P_1$ which we \ita{know} to be true, hence $P_2$ is false , which means that $\neg P_2$ is true, i.e. 
+$$ \neg P_2 = \neg(\sqrt{2} + 1 \in \q) = \sqrt{2} + 1 \notin \q $$ \quad \quad QED}}
+
+\ex{Let A, B be $n \times n$ matrices. Show that if A is singular, then AB is also singular.}
+
+\proofs{Let A be singular. Assume that AB is non-singular, with inverse Q satisfying (AB)Q = I. Using the associativity of matrix multiplication, A(BQ) = I and so A is non-singular (with inverse BQ). This is a contradiction of the hypothesis. It follows that AB must be singular.}
+
+\subsection{Counterexample}
+
+\par{Although, when trying to proof a statement it is necessary to find a general proof that covers all possible cases. To disprove it, one only needs to find a single case which does not satisfy it. We call this a \ita{counterexample}}
+
+\ex{ The sum of two irrational numbers is irrational}
+\proofs{ $\sqrt{2} + -\sqrt{2} = 0$ , 0 is not irrational, hence the statement is false}
+
+\lecture{05}{03}{2019}
+
+\subsection{Proof by Induction}
+
+\defn{Induction Principle: }{let $P(n)$ be a statement which involves a natural number $n$; if (A) $P(1)$ is true and (B) $P(k) \implies P(k+ 1)$ for all natural numbers $k$, then $P(n)$ is true for all $n$}
+
+\par{The goal here is to have a simple base case ($m$) which is easily shown to be true, then choose a random number ($k$) greater than $m$. Then, assuming that $P_k$ is true , and showing that $P_{k+1}$ is true , we also show that $P$ is true for any $k \geq m$.\mymarginpar{Useful to think of the domino effect}}
+
+\begin{enumerate}
+	\item Clearly identify and state $P$
+	\item Check that $P_m$ is true 
+	\item \ita{Inductive Hypothesis: } For arbitrary $k \geq m$, assume $P_k$ to be true * \mymarginpar{(*3) , (4) show that $P_k \implies P_{k+1}$ , for any $k\geq m$}
+	\item From (3) , deduce that $P_{k+1}$ is true
+\end{enumerate}
+\newpage
+\ex{Proof by induction the following: $$\sum_{i=1}^{n}{i^3} = \frac{1}{4}n^2(n+1)^2$$}
+
+\proofs{
+
+\begin{enumerate}
+\item $P$ is the statement above
+\item Checking that $P$ is true for $n=1$
+
+$$\sum_{i=1}^{1}{1^3} = 1 = \frac{1}{4}1^2(1+1)^2$$
+
+\item Inductive Hypothesis : we assume true for $n = k$, 
+
+\item Using our assumption in (3), for $n = k+1$ we have that:
+
+\begin{align*}
+	\sum_{i=1}^{k+1}{i^3} &= \sum_{i=1}^{k}{i^3} + (k+1)^3 \\
+		&= \frac{1}{4}\left(k^2(k+1)^2 + 4(k+1)^3\right) \\
+		&= \frac{1}{4}\left((k+1)^2(k^2 + 4(k+1))\right) \\
+		&= \frac{1}{4}\left((k+1)^2(k+2)^2\right) \\
+		&= \frac{1}{4}n^2(n+1)^2
+\end{align*}
+\end{enumerate}
+
+\par{Hence, it follows from the principle of induction that $P$ is true}
+}
+
+\newpage
+
+\subsection{Inequalities*}
+\mymarginpar{*EXTRA: Non-Examinable}
+
+\newpage
+\section{Complex Numbers}
+
+\defn{Complex Polynomial}{ For a given complex number $\alpha$ $$f(\alpha)=a_{n} \alpha^{n}+a_{n-1} \alpha^{n-1}+\cdots+a_{2} \alpha^{2}+a_{1} \alpha+a_{0}$$}
+
+
+\prop{}{If $a$ is a \textbf{non-real}, complex root of a real polynomial $f(x)$, then $a$ is a second root of $f(x)$}
+
+\proofs{\par{From the complex conjugate's properties covered in 1R, we have that:} \mymarginpar{Given that $a_j \in \real \quad \overline{a_j} = a_j$ }
+$$\begin{aligned} \overline{f(\alpha)} &=\overline{a_{n}}(\overline{\alpha})^{n}+\overline{a_{n-1}}(\overline{\alpha})^{n-1}+\cdots+\overline{a_{2}}(\overline{\alpha})^{2}+\overline{a_{1}} \overline{\alpha}+\overline{a}_{0} \\ &=a_{n}(\overline{\alpha})^{n}+a_{n-1}(\overline{\alpha})^{n-1}+\cdots+a_{2}(\overline{\alpha})^{2}+a_{1} \overline{\alpha}+a_{0} \\ &=f(\overline{\alpha}) \end{aligned}$$
+
+\par{It follows, that if $f(\alpha)=0$ then $f(\overline{\alpha}) = \overline{0} = 0$. Hence, we can extrapolate the above proposition}}
+
+\prop{}{$f(x)$ has real irreducible quadratic factor $$(x-\alpha)(x-\overline{\alpha}) = x^2 - 2xRe(\alpha) + |\alpha|^2$$, or in polar form , $$= x^2 - 2x\cos(\alpha) + r^2$$ \mymarginpar{Recall the polar form: $re^{i\theta} = r(\cos(\theta) + i\sin(\theta))$}}
+
+\proofs{By the factor theorem, and from $(5.2)$, it follows that $f(x)$ has quadratic factor 
+
+\begin{align*}
+(x-\alpha)(x-\overline{\alpha}) &= x^2 - x\overline{\alpha} - x\alpha + \alpha\overline{\alpha} \\
+	&= x^2 - x(\overline{\alpha} + \alpha) + (a^2 + b^2) \\
+	&= x^2 - 2xRe(\alpha) + |\alpha|^2
+\end{align*}
+}
+
+\theorem{}{Every real polynomial can be factorised as a product of real linear and real irreducible quadratic factors}
+
+\proofs{}
 
 \newpage
 \nocite{*}
