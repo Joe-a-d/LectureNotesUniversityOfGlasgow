@@ -1,5 +1,10 @@
 # LectureNotesUniversityOfGlasgow
-Personal Lecture Notes CS Student (+ Economics, Mathematics, Philosophy). Typeset in LaTeX
+
+
+## Personal Lecture Notes CS Student - `Typeset in LaTeX`
+---
+Theoretical CS, Economics, Mathematics, Philosophy
+---
 
 [![button](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/Joe-a-d)
 
