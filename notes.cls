@@ -35,6 +35,7 @@
 \parbox{\textwidth}{\textbf{EXTRA MATERIAL} \\ #1}}}
 \newcommand\proofs[1]{\begin{proof} \hphantom{.} #1\end{proof}}
 \newcommand\vc[1]{\mathbf{#1}}
+\newcommand\placeholder{\includegraphics[width=\textwidth]{example-image-a}}
 }
 
 
