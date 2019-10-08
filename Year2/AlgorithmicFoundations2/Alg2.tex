@@ -1,0 +1,91 @@
+
+%% CLASS MANUAL FOUND IN http://blog.poormansmath.net/latex-class-for-lecture-notes/ %%
+%% CLASS AUTHOR Stefano Maggiolo %%
+\documentclass[english,course]{Notes}
+
+\title{COURSE CODE}
+\subject{SUBJECT AREA}
+\author{Joao Almeida-Domingues}
+\email{2334590D@student.gla.ac.uk}
+\speaker{LECTURER}
+\date{07}{07}{1993}
+\dateend{07}{07}{1994}
+\place{University of Glasgow}
+
+ %%%%% GENERAL MATHEMATICAL NOTATION SHORTCUTS %%%%%
+ 
+\newcommand{\n}{\mathbb{N}}
+\newcommand{\z}{\mathbb{Z}}
+\newcommand{\q}{\mathbb{Q}}
+\newcommand{\cx}{\mathbb{C}}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\field}{\mathbb{F}}
+\newcommand{\ita}[1]{\textit{#1}}
+\newcommand{\oneton}{\{1,2,3,...,n\}}
+\newcommand\ef{\ita{f} }
+
+\newcommand\inv[1]{#1^{-1}}
+\newcommand\setb[1]{\{#1\}}
+\newcommand\en{\ita{n }}
+\renewcommand\qedsymbol{QED} %QED instead of square
+
+
+
+%%%%%%%%%%%%%%%%PACKAGES%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{lipsum}  
+
+\usepackage{amsmath,amsthm,amssymb,graphicx,mathtools,tikz,pgfplots} %maths
+\usepackage{hyperref,framed,color,fancybox} %layout
+
+\renewcommand{\abstractname}{\vspace{3\baselineskip}} %hack to remove abstract
+
+% framed :  \begin{shaded,frame,snugshade or leftbar} \definecolor{shadecolor}{rgb}{XYZ} to change color
+%fancybox: \shadowbox,ovalbox or doublebox
+%\extra for Extra content layout box
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%CLASS SHORTCUTS%%%%
+%\lecture{day}{month}{year} for margin note 
+%\begin{theorem} sdfsdf\end{theorem}  --> \theorem
+%\begin{proposition} dfsdfs\end{proposition} --> \prop
+%\begin{lemma} dsfsd \end{lemma} --> \lem
+%\begin{corollary} f ffew \end{corollary}
+%\begin{definition} fwewef w \end{definition} --> \defn
+%\begin{example} feww e\end{example} --> \ex
+%\begin{exercise} wefwe \end{exercise}
+%\begin{remark} wef we \end{remark} --> \rem
+%\begin{fact} wefe \end{fact}
+%\begin{problem} wef ew \end{problem}
+%\begin{conjecture} ewfew \end{conjecture}
+%\begin{claim} few w \end{claim}
+%\begin{notation} fewf \end{notation} --> \nota
+%\mymarginpar for scriptsize margin
+
+\begin{document}
+\newpage
+
+\begin{abstract}
+\par{These lecture notes were collated by me from a mixture of sources , the two main sources being the lecture notes provided by the lecturer and the content presented in-lecture. All other referenced material (if used) can be found in the \ita{Bibliography} and \ita{References} sections.}
+\par{The primary goal of these notes is to function as a succinct but comprehensive revision aid, hence if you came by them via a search engine , please note that they're not intended to be a reflection of the quality of the materials referenced or the content lectured.}
+\par{Lastly, with regards to formatting, the pdf doc was typeset in \LaTeX , using a modified version of Stefano Maggiolo's \href{http://blog.poormansmath.net/latex-class-for-lecture-notes/}{\underline{\textcolor{blue}{class}}}}
+\end{abstract}
+
+\newpage
+
+
+\section{TODO}
+\par{See slide annotations}
+\par{Truth table for all connectives , use the succinct style, where for large statements the result is written under the connective}
+\par{Write a remark explaining the use of the succinct form of the tables for large compound propositions (e.g. (p > q) & (~p v q) one would not make a separate column for the conjunction, but instead just write the result under the &)}
+\par{Write a remark explaining that for any n propositions, rows = 2^{n}, since for every p {1,0}}
+
+
+\newpage
+\section{BIBLIO: ADD TO BIBTEX}
+
+Truth Tables : Michael Rieppel ``mrieppel '' @https://github.com/mrieppel/TruthTableGenerator
+
+
+\end{document}
+
+\end{document}

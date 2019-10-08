@@ -1,0 +1,142 @@
+
+%% CLASS MANUAL FOUND IN http://blog.poormansmath.net/latex-class-for-lecture-notes/ %%
+%% CLASS AUTHOR Stefano Maggiolo %%
+\documentclass[english,course]{Notes}
+
+\title{2F : Foundations of Pure Mathematics}
+\subject{Mathematics}
+\author{Joao Almeida-Domingues}
+\email{2334590D@student.gla.ac.uk}
+\speaker{Ken Brown}
+\date{23}{09}{2019}
+\dateend{05}{12}{2019}
+\place{University of Glasgow}
+
+ %%%%% GENERAL MATHEMATICAL NOTATION SHORTCUTS %%%%%
+ 
+\newcommand{\n}{\mathbb{N}}
+\newcommand{\z}{\mathbb{Z}}
+\newcommand{\q}{\mathbb{Q}}
+\newcommand{\cx}{\mathbb{C}}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\field}{\mathbb{F}}
+\newcommand{\ita}[1]{\textit{#1}}
+\newcommand{\oneton}{\{1,2,3,...,n\}}
+\newcommand\ef{\ita{f} }
+
+\newcommand\inv[1]{#1^{-1}}
+\newcommand\setb[1]{\{#1\}}
+\newcommand\en{\ita{n }}
+\renewcommand\qedsymbol{QED} %QED instead of square
+\newcommand\handleft{\HandCuffLeft}
+\newcommand\handright{\HandCuffRight}
+
+
+
+%%%%%%%%%%%%%%%%PACKAGES%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{lipsum}  
+
+\usepackage{amsmath,amsthm,amssymb,graphicx,mathtools,tikz,pgfplots} %maths
+\usepackage{hyperref,framed,color,fancybox} %layout
+\usepackage{bbding} %dingbats  for signposting
+
+\renewcommand{\abstractname}{\vspace{-\baselineskip}} %hack to remove abstract
+
+% framed :  \begin{shaded,frame,snugshade or leftbar} \definecolor{shadecolor}{rgb}{XYZ} to change color
+%fancybox: \shadowbox,ovalbox or doublebox
+%\extra for Extra content layout box
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%CLASS SHORTCUTS%%%%
+%\lecture{day}{month}{year} for margin note 
+%\begin{theorem} sdfsdf\end{theorem}  --> \theorem
+%\begin{proposition} dfsdfs\end{proposition} --> \prop
+%\begin{lemma} dsfsd \end{lemma} --> \lem
+%\begin{corollary} f ffew \end{corollary}
+%\begin{definition} fwewef w \end{definition} --> \defn
+%\begin{example} feww e\end{example} --> \ex
+%\begin{exercise} wefwe \end{exercise}
+%\begin{remark} wef we \end{remark} --> \rem
+%\begin{fact} wefe \end{fact}
+%\begin{problem} wef ew \end{problem}
+%\begin{conjecture} ewfew \end{conjecture}
+%\begin{claim} few w \end{claim}
+%\begin{notation} fewf \end{notation} --> \nota
+%\mymarginpar for scriptsize margin
+
+\begin{document}
+
+\begin{abstract}
+\par{These lecture notes were collated by me from a mixture of sources , the two main sources being the lecture notes provided by the lecturer and the content presented in-lecture. All other referenced material (if used) can be found in the \ita{Bibliography} and \ita{References} sections.}
+\par{The primary goal of these notes is to function as a succinct but comprehensive revision aid, hence if you came by them via a search engine , please note that they're not intended to be a reflection of the quality of the materials referenced or the content lectured.}
+\par{Lastly, with regards to formatting, the pdf doc was typeset in \LaTeX , using a modified version of Stefano Maggiolo's \href{http://blog.poormansmath.net/latex-class-for-lecture-notes/}{\underline{\textcolor{blue}{class}}}}
+\end{abstract}
+
+\newpage
+
+\section{Sets}
+
+\defn{Set :}{an unordered collection of objects, which we call its \ita{elements/members}}
+
+\notation{$A = \set{a,b,c}$}{, represents a set $A$ with members $a , b , c$}
+\notation{It is conventional to use capital letters to denote sets, and lowercase ones for their members}
+\notation{$x \in A$}{ , means that the element $x$ belongs to the set $A$ } \\
+
+\par{Instead of listing a members of a set exhaustively, we can define a rule whose truth value tells us if a given object should be a member of the set}
+
+\notation{$ A = \set{x | P(x)}$ ,}{where $P(x)$ can be any statement with a truth value (e.g. \ita{``has 2 legs''} , $ x > 0$)}
+
+\defn{Subset :}{ a set whose elements belong to another set of equal or larger size. $$ A \subset B = \set{x \ | \ \forall \ x \in A \ , \ x \in B}$$}
+
+\rem{Subsets can be differentiated into \ita{proper} , if  $A \neq B$, or  \ita{improper} if $A = B$.}
+
+\notation{$ A \subset B$}{, reads as \ita{``$A$ is a subet of $B$''}. $\subseteq$ for improper}
+
+\notation{$\emptyset$}{ is the empty set, the set who has no members}
+
+\rem{$ \emptyset \subset S \forall S$}
+
+\defn{Equality}{ $A = B \iff A \subseteq B \text{ and } B \subseteq A$ \qquad \mymarginpar{\handright}}
+
+\defn{Power Set}{ is the set composed by all possible combinations of a sets members}
+
+\notation{$P(X)$ or $2^{X}$}
+
+\example{Let $X = \set{1,2,3}$ , then $P(X) = \set{\emptyset, \set{1},\set{2}, \set{3}, \set{1,2} , \set{1,3}, \set{2,3}, \set{1,2,3}}$}
+
+\theorem{For $|S| = n \text{ , } |P(S)| = 2^{n}$}
+
+\mymarginpar{TODO}\proofs{}
+
+\defn{Union}{  set of all elements belonging to \ita{at least one} of the sets 
+$$ A \cup B = \set{x | x \in A \text{ or } x \in B}  $$}
+\notation{$A \cup B$}
+
+\defn{Intersection}{ set of all elements which are part of both sets
+$$ A \cap B = \set{x | x \in A \text{ and } x \in B}$$}
+
+\notation{$A \cap B$}
+
+\begin{theorem} The union of sets is associative, i.e $(A \cup B) \cup C = A \cup (B \cup C)$\end{theorem}
+
+\proofs{
+\par{ Our \textbf{first step} , is to understand what it is that the sentence actually says. We have an equality , by the definition of equality \ita{(1.11)}, we need to show that \textbf{(1)} LHS  $\subseteq$ RHS , and \textbf{(2)} the converse.}
+\par{At this stage we have two tasks to accomplish, which seem to have something in common. Note that both require showing that one set is a subset of another. So, our \textbf{second step} should be to figure out, what being a subset means, again resorting to a definition. So, by \ita{(1.6)} we have that for an arbitrary $x$ chosen from the subset , $x$ must also be in its parent set.}
+\par{Hence, starting with \textbf{(1)}, our next step is to show that for an arbitrary $x$ in $(A \cup B) \cup C = A$ , $x$ is also in $A \cup (B \cup C)$. Therefore, we assume that $x \in (A \cup B) \cup C = A$ . What does that mean? It means that $x \in A \cup B $ or $ x \in C$. Hence, $x \in A \text{ or } x \in B \text{ or } x \in C$.}
+\par{Now, we have deconstructed, as it were, our compound statement into simpler ones. At this stage it's usually good to look back at what we are trying to prove. It seems very similar to what we have. We seem to have ``atomic'' building blocks, and we need only to start building it again into a compound statement.}
+\par{Note that $ x \in B \text{ or } x \in C$, just means $x \in B \cup C$. Finally, from $x \in A \text{ or } x \in B \cup C$ we get $A \cup (B \cup C) =$ RHS , as required}
+
+\mymarginpar{\textbf{(2)} will be omitted, as \textbf{(1)} is painstakingly detailed, and should work as a template}}
+
+\rem{It is key in this type of set proofs to assume that some arbitrary element is in a set and show that it is (or is not) in the other. The rest is common to many other proofs where one aims to ``unpack'' the definitions enough until reaching a point where the expression matches the other side of the equality, or it can be built upon so as to match it}
+
+\par{Both the union and the intersection are associative. Formally, we write:
+
+$$\bigcup_{i=1}^{n}A_{i} = A_{1} \cup A_{2} \cup \dots \cup A_{n}$$ 
+
+$$\bigcap_{i=1}^{n}A_{{i}} = A_{1} \cap A_{2} \cap \dots \cap A_{n}$$
+}
+
+\end{document}
+
+\end{document}

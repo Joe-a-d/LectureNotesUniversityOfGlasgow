@@ -1,0 +1,124 @@
+
+%% CLASS MANUAL FOUND IN http://blog.poormansmath.net/latex-class-for-lecture-notes/ %%
+%% CLASS AUTHOR Stefano Maggiolo %%
+\documentclass[english,course]{Notes}
+
+\title{MATHS 2P : Graphs \& Networks}
+\subject{Discrete Mathematics}
+\author{Joao Almeida-Domingues}
+\email{2334590D@student.gla.ac.uk}
+\speaker{Professor Tara Brendle}
+\date{25}{09}{2019}
+\dateend{04}{12}{2019}
+\place{University of Glasgow}
+
+ %%%%% GENERAL MATHEMATICAL NOTATION SHORTCUTS %%%%%
+ 
+\newcommand{\n}{\mathbb{N}}
+\newcommand{\z}{\mathbb{Z}}
+\newcommand{\q}{\mathbb{Q}}
+\newcommand{\cx}{\mathbb{C}}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\field}{\mathbb{F}}
+\newcommand{\ita}[1]{\textit{#1}}
+\newcommand{\oneton}{\{1,2,3,...,n\}}
+\newcommand\ef{\ita{f} }
+\newcommand\inv[1]{#1^{-1}}
+\newcommand\setb[1]{\{#1\}}
+\newcommand\en{\ita{n }}
+\renewcommand\qedsymbol{QED} %QED instead of square
+\newcommand\placeholder[1]{\begin{center}\includegraphics[width=#1\textwidth]{example-image-a}\end{center}}
+
+
+%%%%%%%%%%%%%%%%PACKAGES%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{lipsum}  
+
+\usepackage{amsmath,amsthm,amssymb,graphicx,mathtools,tikz,pgfplots} %maths
+\usepackage{hyperref}
+%\hypersetup{param1,param2,...} %overrides hyperreff package options setup in class
+\usepackage{framed,color,fancybox} %layout
+\usepackage{cleveref}
+
+\renewcommand{\abstractname}{\vspace{2\baselineskip}} %hack to remove abstract
+
+% framed :  \begin{shaded,frame,snugshade or leftbar} \definecolor{shadecolor}{rgb}{XYZ} to change color
+%fancybox: \shadowbox,ovalbox or doublebox
+%\extra for Extra content layout box
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%CLASS SHORTCUTS%%%%
+%\lecture{day}{month}{year} for margin note 
+%\begin{theorem} sdfsdf\end{theorem}  --> \theorem
+%\begin{proposition} dfsdfs\end{proposition} --> \prop
+%\begin{lemma} dsfsd \end{lemma} --> \lem
+%\begin{corollary} f ffew \end{corollary}
+%\begin{definition} fwewef w \end{definition} --> \defn
+%\begin{example} feww e\end{example} --> \ex
+%\begin{exercise} wefwe \end{exercise}
+%\begin{remark} wef we \end{remark} --> \rem
+%\begin{fact} wefe \end{fact}
+%\begin{problem} wef ew \end{problem}
+%\begin{conjecture} ewfew \end{conjecture}
+%\begin{claim} few w \end{claim}
+%\begin{notation} fewf \end{notation} --> \nota
+%\mymarginpar for scriptsize margin
+% bold vectors --> \vc
+% Placeholder figure -> \palceholder
+\begin{document}
+
+\begin{abstract}
+\par{These lecture notes were collated by me from a mixture of sources , the two main sources being the lecture notes provided by the lecturer and the content presented in-lecture. All other referenced material (if used) can be found in the \ita{Bibliography} and \ita{References} sections.}
+\par{The primary goal of these notes is to function as a succinct but comprehensive revision aid, hence if you came by them via a search engine , please note that they're not intended to be a reflection of the quality of the materials referenced or the content lectured.}
+\par{Lastly, with regards to formatting, the pdf doc was typeset in \LaTeX , using a modified version of Stefano Maggiolo's \href{http://blog.poormansmath.net/latex-class-for-lecture-notes/}{\underline{\textcolor{blue}{class}}}}
+\end{abstract}
+
+\newpage
+
+\section{Fundamentals}
+\lecture{25}{09}{2019}
+\subsection{Graphs}
+
+\par{A graph $G$ is a pair $(V,E)$, where $V$ is any finite set, and $E$ is a set whose elements are pairs of elements of $V$. We call the elements of $V$ the \ita{vertices}*\mymarginpar{* often also referred as nodes} of $G$ and those of $E$ its \ita{edges}. e.g. $G=\set{\set{a,b,c} , \set{ab,ac}}$}
+
+\defn{Adjacent Vertices}{are vertices connected directly through an edge. Formally, if  $e = \set{u,v} \in E$ , then $u , v$ are adjacent}
+
+\defn{Incident Edges}{are edges which share a vertex. We say that they are \ita{``incident to v''}}
+
+\lecture{27}{09}{19}
+\subsubsection{Representing Graphs}
+
+\begin{enumerate}
+\item[] Pictorially \mymarginpar{Note that the representation need not be unique}
+	\placeholder{0.4}
+	
+\item[] Adjacency Matrix
+ 
+ \mymarginpar{Note that this definition only holds for simple graphs, i.e without loops. But , it is easily generalised if the binary requirement is dropped} 
+ \defn{Adjacency Matrix}{ is the $ n \times n$ binary matrix , where $n = |V|$ and $a_{ij} =1 \iff e = \set{u,v} \in E$ ; i.e iff $u , v$ are adjacent }
+ 
+ $$ A= \left(\begin{matrix}0&1&1&1\\1&0&1&0\\1&1&0&1\\1&0&1&0\end{matrix}\right) $$
+ 
+ \rem{In this course, we'll only deal with \ita{simple}, \ita{undirected} graphs. Note that AMs of this type have the nice property of being symmetric (see 2B notes for properties)}
+\end{enumerate}
+
+\subsubsection{Subgraphs}
+
+\defn{Subgraphs}{ are graphs obtained by deleting edges and/or edges of another graph}
+
+\defn{Induced Subgraph}{ is a graph formed by deleting only nodes and its incident edges. Formally: Let $W \subset V$, then the induced subgraph of G is given by $G[W] = \set{W , \set{\set{xy} | xy \in G }}$. We say that \ita{``G is induced by W''} }
+
+
+\example{ 
+
+$$ G(V) = \set{ \set{a,b,c} , \set{ab, ac}} \text{ and } U = \set{c}  \text{ then } G[U] = \set{\set{a,b,\cancel{c}} ,\set{ab,\cancel{ac}}}$$}
+
+\defn{Spanning Subgraph}{ similar to the induced, but edges are deleted instead}
+
+\lecture{2}{10}{19}
+\subsection{Graph Properties}
+
+
+
+\end{document}
+
+\end{document}
