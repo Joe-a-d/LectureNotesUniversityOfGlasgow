@@ -1,0 +1,171 @@
+
+%% CLASS MANUAL FOUND IN http://blog.poormansmath.net/latex-class-for-lecture-notes/ %%
+%% CLASS AUTHOR Stefano Maggiolo %%
+\documentclass[english,course]{Notes}
+
+\title{2B : Linear Algebra}
+\subject{Mathematics}
+\author{Joao Almeida-Domingues}
+\email{2334590D@student.gla.ac.uk}
+\speaker{Dr. Chris Athorne}
+\date{23}{09}{2019}
+\dateend{04}{12}{2019}
+\place{University of Glasgow}
+
+ %%%%% GENERAL MATHEMATICAL NOTATION SHORTCUTS %%%%%
+ 
+\newcommand{\n}{\mathbb{N}}
+\newcommand{\z}{\mathbb{Z}}
+\newcommand{\q}{\mathbb{Q}}
+\newcommand{\cx}{\mathbb{C}}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\field}{\mathbb{F}}
+\newcommand{\ita}[1]{\textit{#1}}
+\newcommand{\oneton}{\{1,2,3,...,n\}}
+\newcommand\ef{\ita{f} }
+
+\newcommand\inv[1]{#1^{-1}}
+\newcommand\setb[1]{\{#1\}}
+\newcommand\en{\ita{n }}
+\renewcommand\qedsymbol{QED} %QED instead of square
+\newcommand\handleft{\HandCuffLeft}
+\newcommand\handright{\HandCuffRight}
+
+%MATRICES
+\usepackage[delims={[]}]{spalign}
+\let\mat=\spalignmat
+\let\amat=\spalignaugmat
+\let\vec=\spalignvector
+
+% row ops
+\newcommand\ro[2]{\xrightarrow[#2]{#1}}
+
+\setlength\parindent{0pt}
+%%%%%%%%%%%%%%%%PACKAGES%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{lipsum}  
+
+\usepackage{amsmath,amsthm,amssymb,graphicx,mathtools,tikz,pgfplots} %maths
+\usepackage{hyperref,framed,color,fancybox} %layout
+\usepackage[backend=biber, style=reading]{biblatex} %bibliography
+\bibliography{} %add bib file name
+
+\renewcommand{\abstractname}{\vspace{3\baselineskip}} %hack to remove abstract
+\usepackage{bbding} %dingbats  for signposting
+
+% framed :  \begin{shaded,frame,snugshade or leftbar} \definecolor{shadecolor}{rgb}{XYZ} to change color
+%fancybox: \shadowbox,ovalbox or doublebox
+%\extra for Extra content layout box
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%CLASS SHORTCUTS%%%%
+%\lecture{day}{month}{year} for margin note 
+%\begin{theorem} sdfsdf\end{theorem}  --> \theorem
+%\begin{proposition} dfsdfs\end{proposition} --> \prop
+%\begin{lemma} dsfsd \end{lemma} --> \lem
+%\begin{corollary} f ffew \end{corollary}
+%\begin{definition} fwewef w \end{definition} --> \defn
+%\begin{example} feww e\end{example} --> \ex
+%\begin{exercise} wefwe \end{exercise}
+%\begin{remark} wef we \end{remark} --> \rem
+%\begin{fact} wefe \end{fact}
+%\begin{problem} wef ew \end{problem}
+%\begin{conjecture} ewfew \end{conjecture}
+%\begin{claim} few w \end{claim}
+%\begin{notation} fewf \end{notation} --> \nota
+%\mymarginpar for scriptsize margin
+
+\begin{document}
+
+
+\begin{abstract}
+\par{These lecture notes were collated by me from a mixture of sources , the two main sources being the lecture notes provided by the lecturer and the content presented in-lecture. All other referenced material (if used) can be found in the \ita{Bibliography} and \ita{References} sections.}
+\par{The primary goal of these notes is to function as a succinct but comprehensive revision aid, hence if you came by them via a search engine , please note that they're not intended to be a reflection of the quality of the materials referenced or the content lectured.}
+\par{Lastly, with regards to formatting, the pdf doc was typeset in \LaTeX , using a modified version of Stefano Maggiolo's \href{http://blog.poormansmath.net/latex-class-for-lecture-notes/}{\underline{\textcolor{blue}{class}}}}
+\end{abstract}
+\newpage
+
+
+\section{Vectors}
+
+\subsection{Basics}
+
+\mymarginpar{Most of this has been covered already, if too succinct check 1R/1S notes}
+
+\defn{Vector}{ displacement from one point to another in space ; geometrically represented by a directed line segment}
+
+\rem{In general we use the origin of the cartesian coordinate system as the displacement origin}
+
+\defn{$\real^{n}$}{ the set of all $n$-tuples of real number , for $n \in \real$ $$\real^{n} = \set{(x_{1}, \dots , x_{n}) : x_{1} , \dots, x_{n} \in R}$$}
+
+\rem{remember that $( )$ are used for ordered objects}
+
+\notation{$\vc{v} \quad ; \quad  \underline{v} \qquad \quad ; \quad \vc{v} = \mat{v_{1};\vdots;v_{n}} ; \quad \vc{v} = \mat{v_{1}\dots \ v_{n}}$}
+
+
+\defn{Vector Addition}{$\vc{u} + \vc{v} = (u_{1} + v_{1} , \dots , u_{n} + v_{n})$}
+
+\defn{Scalar Multiplication}{$\lambda\vc{v} = (\lambda v_{1}  , \dots ,  \lambda v_{n})$}
+
+\begin{itemize}
+\item []Algebraic Properties of Vector Addition
+$$\begin{array}{l}{\mathbf{u}+\mathbf{v}=\mathbf{v}+\mathbf{u} \scriptsize\text { (commutativity of vector addition) }} \\ {(\mathbf{u}+\mathbf{v})+\mathbf{w}=\mathbf{u}+(\mathbf{v}+\mathbf{w}) \scriptsize\text { (commutativity of vector addition) }} \\ {\mathbf{u}+\mathbf{0}=\mathbf{u}} \\ {\mathbf{u}+(-\mathbf{u})=\mathbf{0}} \\ {c(\mathbf{u}+\mathbf{v})=c \mathbf{u}+c \mathbf{v} \scriptsize\text { (distributivity of vector addition) }} \\ {(c+d) \mathbf{u}=c \mathbf{u}+d \mathbf{u} \scriptsize\text { (distributivity of scalar addition) }} \\ {c(d \mathbf{u})=(c d) \mathbf{u}} \\ {\mathbf{1} \mathbf{u}=\mathbf{u}}\end{array}
+$$\end{itemize}
+
+\subsection{Linear Combination and Independence}
+
+\defn{Linear Combination}{Sum of the members of a set, where each member is multiplied by a constant \label{genLC}}
+
+\par{It follows from~\ref{genLC} that for a set composed of vectors , we can say that an arbitary vector $\vc{v}$ is a linear combination of $\vc{u} , \vc{w}$ \ita{iff}}
+
+$$ \vc{v} = j\vc{u} + k\vc{w} \quad , \quad \text{ for } j, k \in \real~\label{lc}$$
+
+\subsubsection{Systems of Linear Equations and Matrices}
+
+\par{Note that for a vector in $\real^{n}$ we have a linear equation in $n$ variables whose solution is  a vector of size $n$. In other words, the linear equation $a_{1} x_{1}+a_{2} x_{2}+\cdots + a_{n} x_{n}=b$ has solution $a_{1} s_{1}+a_{2} s_{2}+\cdots +a_{n} s_{n}=b$}
+
+\par{Hence, we can find the values which satisfy~\ref{lc} by finding the solution vector which satisfies all linear equations simultaneously, i.e  by constructing and solving the appropriate system of equations. This becomes clearer if we rewrite~\ref{lc} in vector form }
+
+$$ \mat{v_{1};\vdots;v_{n}} = j\mat{u_{1};\vdots;u_{n}} + k\mat{w_{1};\vdots;w_{n}} $$
+
+\par{Recall also that we can transform the above in an augment matrix, where each column represents a vector and its unknown coefficient, and by performing successive EROs we can simplify the system enough so as to hopefully be able to glean the solution vector from the matrix}
+
+\defn{Pivot}{leading non-zero entry}
+
+\defn{Row Echelon Form}{Matrix which satisfies the following:}
+\begin{minipage}{\linewidth}
+      \centering
+      \begin{minipage}{0.45\linewidth}
+      	\begin{enumerate}
+		\item All pivots in lower rows are strictly to the right of those of the rows above it
+		\item All non-zero rows are above zero rows
+	\end{enumerate}
+       \end{minipage}
+      \hspace{0.05\linewidth}
+\begin{minipage}{0.45\linewidth}
+	$$\mat{1,2,5;0,1,3;0,0,5}$$
+\end{minipage}
+\end{minipage}
+
+\defn{Reduced Row Echelon Form}{Matrix which is in REF and}
+\begin{minipage}{\linewidth}
+      \centering
+      \begin{minipage}{0.45\linewidth}
+      	\begin{enumerate}
+		\item All pivots in lower rows are equal to 1
+		\item Every element above the pivots is equal to 0
+	\end{enumerate}
+       \end{minipage}
+      \hspace{0.05\linewidth}
+\begin{minipage}{0.45\linewidth}
+	$$\mat{1,0,0;0,1,0;0,0,1}$$
+\end{minipage}
+\end{minipage}
+
+
+\[            \def\spalignendline{\cr}\spalignrun{\bordermatrix{\the\spaligntoks}}{,            j           k;                        ,1,            0; ,                        0            1}            \]
+
+\newpage
+\nocite{*}
+\printbibliography
+
+\end{document}
