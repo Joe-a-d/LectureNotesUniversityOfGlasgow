@@ -31,8 +31,8 @@
  \newcommand\lem[1]{\begin{lemma} #1 \end{lemma}}
  \newcommand\claim[1]{\begin{claim} #1 \end{claim}}
  \newcommand\prop[2]{\begin{proposition}{\textbf{#1}}{#2}\footnotesize{ (see proof below)}\end{proposition}}
- \newcommand\extra[1]{\shadowbox{
-\parbox{\textwidth}{\textbf{EXTRA MATERIAL} \\ #1}}}
+ \newcommand\extra[2]{\shadowbox{
+\parbox{\textwidth}{\textbf{#1} \\ #2}}}
 \newcommand\proofs[1]{\begin{proof} \hphantom{.} #1\end{proof}}
 \newcommand\vc[1]{\mathbf{#1}}
 \newcommand\placeholder{\includegraphics[width=\textwidth]{example-image-a}}

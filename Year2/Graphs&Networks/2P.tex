@@ -32,13 +32,13 @@
 
 %%%%%%%%%%%%%%%%PACKAGES%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\usepackage{lipsum}  
-
+\usepackage{todo}
 \usepackage{amsmath,amsthm,amssymb,graphicx,mathtools,tikz,pgfplots} %maths
 \usepackage{hyperref}
 %\hypersetup{param1,param2,...} %overrides hyperreff package options setup in class
 \usepackage{framed,color,fancybox} %layout
 \usepackage{cleveref}
-
+\usepackage{algorithm2e}
 \renewcommand{\abstractname}{\vspace{2\baselineskip}} %hack to remove abstract
 
 % framed :  \begin{shaded,frame,snugshade or leftbar} \definecolor{shadecolor}{rgb}{XYZ} to change color
@@ -105,7 +105,7 @@
 
 \defn{Subgraphs}{ are graphs obtained by deleting edges and/or edges of another graph}
 
-\defn{Induced Subgraph}{ is a graph formed by deleting only nodes and its incident edges. Formally: Let $W \subset V$, then the induced subgraph of G is given by $G[W] = \set{W , \set{\set{xy} | xy \in G }}$. We say that \ita{``G is induced by W''} }
+\defn{Induced Subgraph}{ is a graph formed by deleting only nodes and their incident edges. Formally: Let $W \subset V$, then the induced subgraph of G is given by $G[W] = \set{W , \set{\set{xy} | xy \in G }}$. We say that \ita{``G is induced by W''} }
 
 
 \example{ 
@@ -117,8 +117,139 @@ $$ G(V) = \set{ \set{a,b,c} , \set{ab, ac}} \text{ and } U = \set{c}  \text{ the
 \lecture{2}{10}{19}
 \subsection{Graph Properties}
 
+\defn{Walk}{from $u$ to $v$ is a sequence of vertices $w1, \dots ,wp$ (for some natural number $p \geq 2$), with $w_{1} = u$ and $w_{p} = v$, such that $w_{i}w_{i+1}$ is an edge for every $1 \leq i \leq p - 1$\label{1:walk}}
 
+\par{Informally, a walk is just a sequence of vertices, where each subsequent vertex added to the sequence forms an edge with the preceding one}
+
+\defn{Trail}{a walk with distinct edges}
+
+\defn{Path}{a walk with distinct vertices}
+
+\rem{In general, every walk  between two vertices contains a path \todo*{Remove commented out cits}}%\cite{Diestel}} 
+
+\example{For a graph $P(\set{a,b,c,d,e,f} , \set{ab,ac,ad,bc,bd,cd,de,ef,}$) , ~\todo*{Add pictorial representation}
+
+\begin{itemize}
+\item[]\textbf{Walk: } $W = \set{abcdeacd}$ 
+\item[] \textbf{Trail :} $T = \set{abcdea} = W \setminus \set{cd}_{2} $ 
+\item[] \textbf{Path: } $P = \set{abcde} = W \setminus \set{acd}_{2}$ 
+\mymarginpar{where $\set{x}_{2}$ is improper notation for the repeated instances of x in a set}
+\end{itemize}
+}
+\prop{Number of Paths }{For a graph with $n$ vertices, there are $(n-1)^{n}$ paths}~\todo*{proof paths}
+\defn{Connected}{A graph $G = (V, E) $ is connected if, for every two distinct vertices $u , v \in V$, there is a path in $G$ from $u$ to $v$}
+
+\rem{A single vertex graph is connected. Since it has not distinct vertices, we say that the definition holds \ita{vacuously}}
+
+\defn{Connected Component}{$H$ is a connected component of $G$ if $H$ is a connected induced subgraph of $G$ and, forany subgraph $H'$ of $G$ such that $V(H) \subset V(H'), H'$ is not connected}
+
+\rem{The vertex sets of distinct connected components are necessarily disjoint}
+
+\placeholder{0.4}
+
+\defn{Vertex Degree}{$d(v) = |E(v)|$ , i.e. it is the size of the set of all edges connected to $v$}
+
+\defn{Minimum Degree}{$\min _{v \in V(G)} d(v)$ , i.e. a graph's minimum degree is equal to the lowest degree of its vertices} \mymarginpar{The converse is true of the maximum}
+
+\subsection{Isomorphisms}
+
+\defn{Isomorphism}{from $G_{1} = (V_{1}, E_{1})$ to $G_{2} = (V_{2}, E_{2})$ is abijection $f : V_{1} \rightarrow V_{2}$ such that, for every $u, v \in V_{1}, f(u) f(v) \in E_{2}\equiv uv \in E_{1}$}
+
+\rem{Specifically, we can consider $f$ to be a process whereby one \ita{relabels} the vertices}
+
+\placeholder{0.5}
+
+\todo{methods to determine isomorphism}
+
+\section{Special Graphs}
+
+\defn{Complete Graphs}{Every pair of distinct vertices forms an edge}
+
+\notation{$K_{n}$ , for a graph with $n$ vertices}
+
+\prop{Number of Edges}{ \ $K_{n}$ has $\frac{1}{2}n(n-1)$ edges}~\todo{proof \#edges}
+
+\defn{Paths}{a path on n vertices is a graph that is isomorphic to the graph $(V, E)$ where $V = \set{v_{1}, \dots, v_{n}}$ and $E = \set{v_{i}v_{i+1}}: 1 \leq i \leq n - 1$}
+\notation{$P_{n}$}
+
+\rem{$P_{n} $ has $n-1$ edges}
+
+\defn{Cycle}{a cycle on $n$ vertices is a graph that is isomorphic to the graph $(V, E)$ where $V=\set{v_{1}, \ldots, v_{n}} \text{ and } E=\set{v_{i} v_{i+1}}: 1 \leq i \leq n-1 \cup \set{v_{n} v_{1}}$. i.e, it's a path with the end vertices connected}
+
+\notation{$C_{n}$}
+
+\section{Trees}
+
+\defn{Forest}{an \ita{acyclic} graph, i.e. without cycles}
+
+\defn{Tree}{connected acyclic graph}
+
+\defn{Leaf}{vertex of degree 1}
+
+\placeholder{0.5} \todo{Take fig.1 from lectures and connect the adjacent endpoints of all trees do contrast with forest}
+
+\subsection{Basic Properties}
+
+\prop{Leafs }{Every tree as at least one leaf}
+
+\prop{Number of Edges }{$T_{n} \implies |E(T)| = n-1$}
+
+\prop{Connected Graph }{Every connected graph with $n$ vertices and $n-1$ edges is a Tree}
+
+\prop{Forests }{For a forest $F_{n}$ with $c$ connected components , $|E(T)| = n-c$}
+
+\rem{Hence, note that a tree is just a special case of a forest, where $c=1$}
+
+\subsection{Spanning Trees}
+
+\defn{Spanning Tree}{Spanning subgraph which is not a tree}~\todo{Add example of sp.sub  is vs is not}
+
+\placeholder{0.5}
+
+\prop{Necessity }{Every connected graph contains a spanning tree}
+as
+\theorem{Cayley's Formula : A complete graph with $n$ vertices has $n^{n-2}$ (labelled) spanning trees}~\label{2:caley}
+
+\par{It follows from \ref{2:caley} that , if we're interested in finding a \ita{minimum spanning tree} (a weighted sp.tree of minimum weight), an exhaustive search through all possible trees becomes a gruelling task very quickly. There are however two \ita{greedy} algorithms which help}
+
+\subsection{Kruskal's Algorithm}
+
+\par{For every edge not in the tree, add the one which has minimum weight and does not form a cycle. Stop when connected}
+
+\begin{algorithm}[H]
+\SetAlgoLined\KwData{this text}
+\KwResult{how to write algorithm with \LaTeX2e }initialization\;
+	\While{not at end of this document}{read current\;
+		\eIf{understand}{go to next section\;
+			current section becomes this one\;
+		}{go back to the beginning of current section\;
+		}
+	}
+\caption{How to write algorithms}
+\end{algorithm}
+
+\todo*{Add Kruskal's typesetting. Change label to header}
+\todo*{Fix broken layout, where theorem environment after caley's is spilling over the rest of the text}
+
+
+
+\theorem{Kruskal's }{will always output a M.S.T}
+
+\proofs{\mymarginpar{Reproduction not examinable, merely analysis}}
+
+\subsection{Prim's}
+
+\par{Similar to Kruskal's but instead of looking for $min(E)$, we look for the smallest which adjacent to a node in the last iteration}
+
+\section{Proof Techniques}
+
+
+
+\newpage
+
+\todo*{BibTex : Diestel,Reinhard ; Graph Theory}
+\todo*{Adjust class to remove italics from prop}
+\todos
 
 \end{document}
 
-\end{document}
