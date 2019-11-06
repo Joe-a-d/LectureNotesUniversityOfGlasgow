@@ -38,7 +38,7 @@
 %\usepackage{lipsum}  
 
 \usepackage{amsmath,amsthm,amssymb,graphicx,mathtools,tikz,pgfplots} %maths
-\usepackage{hyperref,framed,color,fancybox} %layout
+\usepackage{hyperref,framed,color,fancybox,todo} %layout
 
 \usepackage[backend=biber, style=reading]{biblatex} %bibliography
 \bibliography{}
@@ -239,7 +239,7 @@ following Axioms of Probability laid down by \ita{Kolmogorov (1933)}}
  \end{align}
 }
 
-\prop{\label{rule2}}{$P(\emptyset) = 0$~\label{rule2}}
+\prop{\label{rule2}}{$P(\emptyset) = 0$}
 
 \proofs{ We take $S^{c} = \emptyset$ then,  from~\ref{rule1} $ , P(\emptyset) = 1 - P(S) = 0$}
 
@@ -311,14 +311,19 @@ L.H.S = P\Bigg(\bigcup_{i=1}^{n+1}E_{i}\Bigg) &= P\Bigg(\bigcup_{i=1}^{n}E_{i}\B
 \example{See Workshop 1.6 , 1.7}
 
 
+\section{Distributions}
+
+\todo{Add to continuous subsec} 
+\rem{For continuous distributions, $P(X=x)=0$, so the expressions $P(X \leq x) = P(X < x)$}
+\todo{Computing prob from distr}\url{http://webcache.googleusercontent.com/search?q=cache:H-Y9t4CPADEJ:www.mathwave.com/articles/calculate-probability-distributions.html+&cd=23&hl=en&ct=clnk&gl=uk}
 
 \newpage
-\section{TODO}
-ADD TO BIB FILE
-\begin{enumerate}
-	\item \url{https://en.wikipedia.org/wiki/Experiment_(probability_theory)}
-	\item \url{https://www3.nd.edu/~dgalvin1/10120/10120_S16/Topic09_7p2_Galvin.pdf}
-\end{enumerate}
+
+\todo*{\url{https://en.wikipedia.org/wiki/Experiment_(probability_theory)}}
+\todo*{\url{https://www3.nd.edu/~dgalvin1/10120/10120_S16/Topic09_7p2_Galvin.pdf}}
+\todos
+
+
 
 
 %\printbibliography

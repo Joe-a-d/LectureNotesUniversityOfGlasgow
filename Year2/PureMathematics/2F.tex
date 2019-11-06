@@ -1,7 +1,7 @@
 
 %% CLASS MANUAL FOUND IN http://blog.poormansmath.net/latex-class-for-lecture-notes/ %%
 %% CLASS AUTHOR Stefano Maggiolo %%
-\documentclass[english,course]{Notes}
+\documentclass[english,course,draft]{Notes}
 
 \title{2F : Foundations of Pure Mathematics}
 \subject{Mathematics}
@@ -137,6 +137,37 @@ $$\bigcup_{i=1}^{n}A_{i} = A_{1} \cup A_{2} \cup \dots \cup A_{n}$$
 $$\bigcap_{i=1}^{n}A_{{i}} = A_{1} \cap A_{2} \cap \dots \cap A_{n}$$
 }
 
-\end{document}
+\section{Functions}
+
+\section{Relations}
+
+\section{Modular Arithmetic}
+
+\defn{Congruence}{For $a,b,m,k \in \z , a \equiv b \mod m \iff (a - b)k = m$. We say that \ita{``a is congruent to b modulo m''}. $a ,b$ share the same remainder when divided by $m$}
+
+\defn{Congruence Classes}{For $m \in \z$ , each congruence class represents a partition of $\z$. Each partition represents all possible remainders $\set{0,\dots,m-1}$ when diving the elements within it by $m$}
+
+\example{Take , $m=3$
+
+$$\begin{array}{l}{[0]=\{\ldots,-6,-3,0,3,6, \ldots\}} \\ {[1]=\{\ldots,-5,-2,1,4,7, \ldots\}} \\ {[2]=\{\ldots,-4,-1,2,5,8, \ldots\}}\end{array}$$}
+
+\rem{Note that each partition is unique, but we can replace the number inside the brackets by any member of the class. $[0] = [3] = [60]$ , since $0 \mod 3 = 3 \mod 3 = 60 \mod 3 = 0$}
+
+\theorem{}{If $a \equiv b \mod m$ and $c \equiv d \mod m$ , then
+
+$$ a \pm c \equiv b \pm d \mod m  \qquad \text{ and } \qquad ac = bd \mod m$$
+
+}
+
+\lemma{}{It follows from the above theorem  that operating on classes, is the same as operating on their representatives (since each rep is a placeholder for the same remainder)
+$$\begin{array}{l}{[a]+[c] := [a+c]} \\ {[a]-[c]:=[a-c]} \\ {[a][c]:=[a]}\end{array}$$
+}
+
+\example{
+\par{$\text { Show that } n^{2} \equiv 1 \text { mod } 8 \text { for every odd integer } n$ . If $n$ is odd, then it must be congruent to an odd representative, i.e it must belong to one of the following possible classes $ {[1],[3],[5],[7]}$. $n^{2} = n \times n$ . Hence, $n^{2}$ must belong to ${[1 \times 1],[3 \times 3],[5 \times 5],[7\times 7] = [1],[9],[25],[49]} = [1]$}. Therefore $n^{2} = 1 \mod 8$}
+
+\subsection{Linear Congruences}
+
+
 
 \end{document}
