@@ -27,13 +27,13 @@
 \newcommand\setb[1]{\{#1\}}
 \newcommand\en{\ita{n }}
 \renewcommand\qedsymbol{QED} %QED instead of square
-\newcommand\placeholder[1]{\begin{center}\includegraphics[width=#1\textwidth]{example-image-a}\end{center}}
+\newcommand\placehold[1]{\begin{center}\includegraphics[width=#1\textwidth]{example-image-a}\end{center}}
 
 
 %%%%%%%%%%%%%%%%PACKAGES%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\usepackage{lipsum}  
 \usepackage{todo}
-\usepackage{amsmath,amsthm,amssymb,graphicx,mathtools,tikz,pgfplots} %maths
+\usepackage{amsmath,amsthm,amssymb,graphicx,mathtools,tikz} %maths
 \usepackage{hyperref}
 %\hypersetup{param1,param2,...} %overrides hyperreff package options setup in class
 \usepackage{framed,color,fancybox} %layout
@@ -63,17 +63,19 @@
 %\begin{notation} fewf \end{notation} --> \nota
 %\mymarginpar for scriptsize margin
 % bold vectors --> \vc
-% Placeholder figure -> \palceholder
+% Placeholder figure -> \placeholder
 \begin{document}
 
+\newpage
+\vspace*{\fill}
 \begin{abstract}
 \par{These lecture notes were collated by me from a mixture of sources , the two main sources being the lecture notes provided by the lecturer and the content presented in-lecture. All other referenced material (if used) can be found in the \ita{Bibliography} and \ita{References} sections.}
 \par{The primary goal of these notes is to function as a succinct but comprehensive revision aid, hence if you came by them via a search engine , please note that they're not intended to be a reflection of the quality of the materials referenced or the content lectured.}
 \par{Lastly, with regards to formatting, the pdf doc was typeset in \LaTeX , using a modified version of Stefano Maggiolo's \href{http://blog.poormansmath.net/latex-class-for-lecture-notes/}{\underline{\textcolor{blue}{class}}}}
 \end{abstract}
-
+\vspace*{\fill}
 \newpage
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Fundamentals}
 \lecture{25}{09}{2019}
 \subsection{Graphs}
@@ -82,6 +84,8 @@
 
 \defn{Adjacent Vertices}{are vertices connected directly through an edge. Formally, if  $e = \set{u,v} \in E$ , then $u , v$ are adjacent}
 
+\rem{Also referred to as \ita{neighbours}}
+
 \defn{Incident Edges}{are edges which share a vertex. We say that they are \ita{``incident to v''}}
 
 \lecture{27}{09}{19}
@@ -89,7 +93,7 @@
 
 \begin{enumerate}
 \item[] Pictorially \mymarginpar{Note that the representation need not be unique}
-	\placeholder{0.4}
+	\placehold{0.4}
 	
 \item[] Adjacency Matrix
  
@@ -141,11 +145,13 @@ $$ G(V) = \set{ \set{a,b,c} , \set{ab, ac}} \text{ and } U = \set{c}  \text{ the
 
 \rem{A single vertex graph is connected. Since it has not distinct vertices, we say that the definition holds \ita{vacuously}}
 
-\defn{Connected Component}{$H$ is a connected component of $G$ if $H$ is a connected induced subgraph of $G$ and, forany subgraph $H'$ of $G$ such that $V(H) \subset V(H'), H'$ is not connected}
+\defn{Connected Component}{$H$ is a connected 
+component of $G$ if $H$ is a connected induced subgraph of $G$ and, for
+any subgraph $H'$ of $G$ such that $V(H) \subset V(H'), H'$ is not connected}
 
 \rem{The vertex sets of distinct connected components are necessarily disjoint}
 
-\placeholder{0.4}
+\placehold{0.4}
 
 \defn{Vertex Degree}{$d(v) = |E(v)|$ , i.e. it is the size of the set of all edges connected to $v$}
 
@@ -153,14 +159,16 @@ $$ G(V) = \set{ \set{a,b,c} , \set{ab, ac}} \text{ and } U = \set{c}  \text{ the
 
 \subsection{Isomorphisms}
 
-\defn{Isomorphism}{from $G_{1} = (V_{1}, E_{1})$ to $G_{2} = (V_{2}, E_{2})$ is abijection $f : V_{1} \rightarrow V_{2}$ such that, for every $u, v \in V_{1}, f(u) f(v) \in E_{2}\equiv uv \in E_{1}$}
+\defn{Isomorphism}{from $G_{1} = (V_{1}, E_{1})$ to $G_{2} = (V_{2}, E_{2})$ is a
+bijection $f : V_{1} \rightarrow V_{2}$ such that, for every $u, v \in V_{1}, f(u) f(v) \in E_{2}
+\equiv uv \in E_{1}$}
 
 \rem{Specifically, we can consider $f$ to be a process whereby one \ita{relabels} the vertices}
 
-\placeholder{0.5}
+\placehold{0.5}
 
 \todo{methods to determine isomorphism}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Special Graphs}
 
 \defn{Complete Graphs}{Every pair of distinct vertices forms an edge}
@@ -177,7 +185,7 @@ $$ G(V) = \set{ \set{a,b,c} , \set{ab, ac}} \text{ and } U = \set{c}  \text{ the
 \defn{Cycle}{a cycle on $n$ vertices is a graph that is isomorphic to the graph $(V, E)$ where $V=\set{v_{1}, \ldots, v_{n}} \text{ and } E=\set{v_{i} v_{i+1}}: 1 \leq i \leq n-1 \cup \set{v_{n} v_{1}}$. i.e, it's a path with the end vertices connected}
 
 \notation{$C_{n}$}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Trees}
 
 \defn{Forest}{an \ita{acyclic} graph, i.e. without cycles}
@@ -186,7 +194,9 @@ $$ G(V) = \set{ \set{a,b,c} , \set{ab, ac}} \text{ and } U = \set{c}  \text{ the
 
 \defn{Leaf}{vertex of degree 1}
 
-\placeholder{0.5} \todo{Take fig.1 from lectures and connect the adjacent endpoints of all trees do contrast with forest}
+\placehold{0.5} 
+
+\todo{Take fig.1 from lectures and connect the adjacent endpoints of all trees do contrast with forest}
 
 \subsection{Basic Properties}
 
@@ -204,11 +214,11 @@ $$ G(V) = \set{ \set{a,b,c} , \set{ab, ac}} \text{ and } U = \set{c}  \text{ the
 
 \defn{Spanning Tree}{Spanning subgraph which is not a tree}~\todo{Add example of sp.sub  is vs is not}
 
-\placeholder{0.5}
+\placehold{0.5}
 
-\prop{Necessity }{Every connected graph contains a spanning tree}
-as
-\theorem{Cayley's Formula : A complete graph with $n$ vertices has $n^{n-2}$ (labelled) spanning trees}~\label{2:caley}
+\prop{Necessity}{Every connected graph contains a spanning tree}
+
+\begin{theorem}{Cayley's Formula : A complete graph with $n$ vertices has $n^{n-2}$ (labelled) spanning trees}~\label{2:caley}\end{theorem}
 
 \par{It follows from \ref{2:caley} that , if we're interested in finding a \ita{minimum spanning tree} (a weighted sp.tree of minimum weight), an exhaustive search through all possible trees becomes a gruelling task very quickly. There are however two \ita{greedy} algorithms which help}
 
@@ -229,7 +239,6 @@ as
 \end{algorithm}
 
 \todo*{Add Kruskal's typesetting. Change label to header}
-\todo*{Fix broken layout, where theorem environment after caley's is spilling over the rest of the text}
 
 
 
@@ -240,15 +249,137 @@ as
 \subsection{Prim's}
 
 \par{Similar to Kruskal's but instead of looking for $min(E)$, we look for the smallest which adjacent to a node in the last iteration}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proof Techniques}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bipartite Graphs}
+
+\defn{Bipartite Graph}{ The set of vertices can be partitioned into two, and every edge has one endpoint in each partition}
+
+\rem{A graph is bipartite \ita{iff} every connected component is bipartite}
+
+\todo{Write it in algo form}
+
+\par{Check if bipartite : (1) pick a v in V , and add it to V1 . Set V2 to empty ; (2) While V1 U V2 != V , keep picking vertices which are not in V1 or V2, but are adjacent to V1 or V2; (3) If adjacent to V1 and not V2 add to V2 and vice versa (4) if adjacent to both then not bipartite}
+
+\rem{For disconnected graphs, this would be repeated for each connected component}
+
+\defn{Complete Bipartite}{ For $G(V,E)$ , where $V = V_{1} \cup V_{2}$ such that $E = \set{v_{1}v_{2} : v_{1} \in V_{1} , v_{2} \in V2}$ . Informally, it is a complete graph which is also bipartite}
+
+\notation{$K_{p,q}$ , where $p,q = |V_{1}| , |V_{2}|$}
+
+
+\par{Practical modelling applications will be all cases where one is not interested , or there's simple no connection between elements within the elements of a set. For example, matching patients with a certain disease to genetic anomalies in certain genes}
+
+\subsection{Characterisation} 
+
+\defn{Closed Walk}{Sequence of vertices $w_{1},\dots,w_{p}$ , such that $w_{i}w_{i+1}$ , for $p \geq 3$ and $1 \leq i \leq p-1$ and with $w_{1}w_{p}$ as an edge}
+
+\rem{It is essentially a sort of cycle which allows for repeated vertices}
+
+\placehold{0.5}
+\todo{\url{https://slideplayer.com/slide/14901866/}}
+
+\defn{Distance}{ between two vertices $u,v$ is the number of edges in the shortest path between $u$ and $v$}
+
+\notation{$d(u,v)$}
+
+\begin{theorem} G is bipartite \ita{iff} it contains no cycle of odd length as a subgraph \end{theorem}
+
+\mymarginpar{expected to reproduce some part of}
+\proofs{} 
+
+\subsection{Matchings}
+
+\defn{Matching}{set of independent edges , i.e. a set of edges from which no two have a common endpoint.}
+
+\defn{Perfect Matching}{a matching that covers all the vertices, i.e. a bijection $f_{M} : V_{1} \to V_{2}$ where each $v \in V_{1}$ is mapped to the other endpoint of the edge in M that is incident with $v$}
+
+\defn{Neighbourhood}{If $X$ is a set of vertices in $G$, then the neighbourhood of $X$ in $G$ is the set of all vertices in $G$ which have a neighbour in $X$}
+
+\notation{$N_{G}(X)$}
+
+\begin{theorem}
+	\textbf{Hall's Marriage Theorem :} Let $G$ be a bipartite graph with bipartition $(U,W)$, where $|U| = |W| = p$. Then G contains a perfect matching \ita{iff} for all $U' \subseteq U$ , we have $|N_{G}(U')| \geq |U'|$
+\end{theorem}
+
+\rem{ every subset $U'$ of $U$ has sufficiently many adjacent vertices in $W$.}
+
+\mymarginpar{Complex}
+\proofs{ See lecture notes}
+
+\example{}
+\par{A common illustration of the theorem is in pairing couples. If in a group of $k$ people there's a total of $k-1$ options, then there can be no perfect matching. Say for example, that two people find the same and only that person acceptable, then one of them will be left unmatched. In this case the subset of people $U= \set{u_{1}, u_{2}}$ , while their matching set , their neighbourhood $ W=\set{w_{2}}$. We have then, $|U| = 2 \leq |W| = 1$}
+
+\IfFileExists{hallExample.png}{}{\write18{wget https://cdn.mathpix.com/snip/images/bPNzKL84kHw9E1U8HWUzvQ8QmXQUO_sQvz3eXeIiTNE.original.fullsize.png -O hallExample.png}}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.3\textwidth]{hallExample.png}
+\end{figure}
+
+
+
+\section{Colouring}
+
+\defn{Proper k-colouring}{$f : V(G) \to \set{1,\dots,k} $ such that $f(u) \neq f(v)$ , whenever $uv \in E(G)$ , i.e we assign \ita{``colours}'' to each vertex, using only $k$ colours, so that no two adjacent vertices have the same colour}
+
+\par{This can be done trivially, by simply assigning a different colour to each vertex, however often colouring problems fall within the optimisation category, where we look to minimise the number of colours used}
+
+\defn{Chromatic Number}{Smallest number $k$ such that $G$ is colourable}
+
+\notation{$\chi(G)$}
+
+\defn{Clique}{Complete subgraph}
+
+\defn{Clique Number}{Largest  $t$ , such that $K_{t}$ is an induced subgraph of $G$, i.e. $|max(Clique(G))|$}
+
+\rem{In other words, the subgraph formed by removing the least amount of vertices, so as to make G complete}
+
+\notation{$\omega(G)$}
+
+\subsection{Chromatic Number and Graph Properties}
+
+\par{Finding the chromatic number of a graph is an np-hard problem, so in general we use certain techniques in order to find a lower bound}
+
+\begin{enumerate}
+\item If $H$ is a subgraph of $G$ and $\chi(H) \geq k$, then $\chi(G) \geq k$
+
+\item $\chi(K_{n}) = n$
+\end{enumerate}
+
+\par{From this, we deduce that $\chi(G) \geq \omega(G)$} 
+
+\defn{Independent Set}{For $U \subseteq V$ if no edge in $E$ has both endpoints in $U$}
+
+\defn{Independence Number}{size of the largest independence set}
+
+\notation{$\alpha(G)$}
+
+\rem{Note that by definition, every partition in a bipartite graph is an independent set}
+
+\par{Note then that
+
+\begin{theorem}{For $|V(G)| = n$ , $\chi(G) \geq \frac{n}{\alpha(G)}$}\end{theorem}
+\todo{proof lower bound chrom\&indp}
+\mymarginpar{expected to reproduce some part of}
+\proofs{}
+
+
+\subsection{Greedy Algorithm}
+
+\lemma{For $max(V(G)) = d$ , $\chi(G) \leq d + 1$}
+
+\mymarginpar{Full reproduction expected}
+\todo{lower bound chromatic}
+\proof{}
 
 
 \newpage
 
 \todo*{BibTex : Diestel,Reinhard ; Graph Theory}
-\todo*{Adjust class to remove italics from prop}
+
 \todos
 
 \end{document}
