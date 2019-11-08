@@ -33,7 +33,7 @@
 %%%%%%%%%%%%%%%%PACKAGES%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\usepackage{lipsum}  
 \usepackage{todo}
-\usepackage{amsmath,amsthm,amssymb,graphicx,mathtools,tikz} %maths
+\usepackage{amsmath,amsthm,amssymb,graphicx,mathtools,float} %maths
 \usepackage{hyperref}
 %\hypersetup{param1,param2,...} %overrides hyperreff package options setup in class
 \usepackage{framed,color,fancybox} %layout
@@ -76,7 +76,10 @@
 \vspace*{\fill}
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Fundamentals}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section
+{Fundamentals}
 \lecture{25}{09}{2019}
 \subsection{Graphs}
 
@@ -169,13 +172,21 @@ bijection $f : V_{1} \rightarrow V_{2}$ such that, for every $u, v \in V_{1}, f(
 
 \todo{methods to determine isomorphism}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Special Graphs}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section
+{Special Graphs}
 
 \defn{Complete Graphs}{Every pair of distinct vertices forms an edge}
 
 \notation{$K_{n}$ , for a graph with $n$ vertices}
 
 \prop{Number of Edges}{ \ $K_{n}$ has $\frac{1}{2}n(n-1)$ edges}~\todo{proof \#edges}
+
+\proofs{
+
+\par{Note that an edge $VU$ is formed by picking two distinct vertices $v,u$. Hence, we can think of the total number of edges of a complete graph as the number of possible combinations of two vertices from $V(G) = n$ , since $VU = UV$. Hence, the number of edges is given by ${n\choose{2}} = \frac{1}{2}n(n-1)$}
+}
 
 \defn{Paths}{a path on n vertices is a graph that is isomorphic to the graph $(V, E)$ where $V = \set{v_{1}, \dots, v_{n}}$ and $E = \set{v_{i}v_{i+1}}: 1 \leq i \leq n - 1$}
 \notation{$P_{n}$}
@@ -186,7 +197,10 @@ bijection $f : V_{1} \rightarrow V_{2}$ such that, for every $u, v \in V_{1}, f(
 
 \notation{$C_{n}$}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Trees}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section
+{Trees}
 
 \defn{Forest}{an \ita{acyclic} graph, i.e. without cycles}
 
@@ -250,10 +264,16 @@ bijection $f : V_{1} \rightarrow V_{2}$ such that, for every $u, v \in V_{1}, f(
 
 \par{Similar to Kruskal's but instead of looking for $min(E)$, we look for the smallest which adjacent to a node in the last iteration}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Proof Techniques}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section
+{Proof Techniques}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Bipartite Graphs}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section
+{Bipartite Graphs}
 
 \defn{Bipartite Graph}{ The set of vertices can be partitioned into two, and every edge has one endpoint in each partition}
 
@@ -321,7 +341,10 @@ bijection $f : V_{1} \rightarrow V_{2}$ such that, for every $u, v \in V_{1}, f(
 
 
 
-\section{Colouring}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section
+{Colouring}
 
 \defn{Proper k-colouring}{$f : V(G) \to \set{1,\dots,k} $ such that $f(u) \neq f(v)$ , whenever $uv \in E(G)$ , i.e we assign \ita{``colours}'' to each vertex, using only $k$ colours, so that no two adjacent vertices have the same colour}
 
@@ -335,7 +358,7 @@ bijection $f : V_{1} \rightarrow V_{2}$ such that, for every $u, v \in V_{1}, f(
 
 \defn{Clique Number}{Largest  $t$ , such that $K_{t}$ is an induced subgraph of $G$, i.e. $|max(Clique(G))|$}
 
-\rem{In other words, the subgraph formed by removing the least amount of vertices, so as to make G complete}
+\par{In other words, the subgraph formed by removing the least amount of vertices, so as to make G complete}
 
 \notation{$\omega(G)$}
 
@@ -369,11 +392,131 @@ bijection $f : V_{1} \rightarrow V_{2}$ such that, for every $u, v \in V_{1}, f(
 
 \subsection{Greedy Algorithm}
 
-\lemma{For $max(V(G)) = d$ , $\chi(G) \leq d + 1$}
+\begin{lemma}{For $max(V(G)) = d$ , $\chi(G) \leq d + 1$}\end{lemma}
 
 \mymarginpar{Full reproduction expected}
 \todo{lower bound chromatic}
-\proof{}
+\proofs{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Ramsey Theory}
+
+\par{As a case study, say that out of $n$ people you need to pick four to sit at a table, such that either they all know each other, or know no one. Ramsey theory tries to find an $n$ such that such a pairing is possible. We call $n$ the \ita{Ramsey Number}}
+
+\par{We can model this situation by representing each person as a node in a complete graph, and colour its edges to represent their relation, i.e. colour 1 if two people know each other, colour 2 if they don't. Hence, our goal is to find a complete subgraph , representing the relations between the four people sitting at the table, such that all the edges are either coloured 1 or 2. We call this subgraph \ita{monochromatic $K_{4}$}
+
+\defn{Ramsey Number}{the smallest natural number $n$ such that every colouring of the edges of $K_{n}$ with 1 and 2 contains either a copy of $K_{s}$
+with all edges 1 or a copy of $K_{t}$ with all edges 2.}
+
+\notation{$R(s,t)$}
+
+\todo{Cite http://mathworld.wolfram.com/RamseyNumber.html}
+\mymarginpar{* Alternative general definition for all graphs, whether complete or not}
+
+\defn{Ramsey Number*}{$n=R(s,t)$ such that all graphs of order $v$ contain a clique of order $s$ or an independent set of order $t$}
+
+\begin{theorem}
+\textbf{Ramsey Theorem} For all $s,t \geq 2$ , there is an $n \in \n$ such that such that every colouring of the edges of $K_{n}$ with 1 and 2 contains either a copy of $K_{s}$ with all edges 1 or a copy of $K_{t}$ with all edges 2
+\end{theorem}
+
+\begin{theorem}
+\textbf{Ramsey Number*} For all $s,t \geq 2$ , there exists an $n=R(s,t)$ such that all graphs of order $v$ contain a clique of order $s$ or an independent set of order $t$
+\end{theorem}
+
+\par{In order to illustrate the second formulation of the theorem, take the following incomplete graph}
+
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\IfFileExists{ramsey.png}{}{\write18{wget https://cdn.mathpix.com/snip/images/bnBKhrYZqmrpiZLVUGdDcVsDq8dhpg2DsPZNzU9Rwbc.original.fullsize.png -O ramsey.png}}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\textwidth]{ramsey.png}
+\end{figure}
+
+\par{The theorem essentially states, that either we have a clique of size $s$, $S = \set{\set{0,1,2,3},\set{01,12,13}}$ , or we have an independent set of edges of size $t$, i.e the set of edges which are not in $G$, $T = \set{02, 03, 23}$ but which if added would form a $K_{n}$}
+\par{So we start with a graph $G$ with  colouring 1, and we add all edges with colouring 2, until $G \rightsquigarrow K_{n}$. Now we can see the equivalence to the first formulation}
+
+
+\remark{Note that the theorem just states that there's a Ramsey number for all $s,t$}
+
+\remark{Note that $R(s,t) = R(t,s)$ , as the colours can be reversed , i.e. we look at $\bar{G}$ , $G$'s complement.}
+
+\todo{Cite \url{https://en.wikipedia.org/wiki/Complement_graph}}
+\remark{An independent set in $G$ is a clique in the $\bar{G}$ and vice versa}
+
+\example{
+
+\par{Given a complete graph with all edges coloured red or blue, what is the minimum number of vertices that I must have, such that I can find a blue $K_{2}$ or a red $K_{2}$ subgraph?}
+
+\par{Note that $K_{2}$ is just an edge, hence it is clear to see that I need no more than 2 vertices in order to find either a red or blue edge. Hence $R(2,2) = 2$}
+
+
+}
+
+\subsection{Calculating $R(s,t)$}
+
+\begin{lemma}
+For any $t \in \z , t \geq 2$ we have $R(2,t) = t$
+\end{lemma}
+
+\par{This should be clear from the fact we can always found an edge $K_{2}$ of colour 1, except in the case where all edges have colour 2 in which case $K_{t}$ with colour 2 is satisfied , and from the fact that $R(2,t) = R(t,2)$. Formally,}
+
+\proofs{
+\par{Note that $R(2,t) \geq t$, since there is a colouring of the edges $K_{t-1}$ which does not contain either a red $K_{2}$  or a blue $K_{t}$ . 
+Suppose $R(2,t) \leq t$ , for example $ R(2,t) = t-1$ , then by definition we must be able to find either (1) a red $K_{2}$ or (2) a blue $K_{t}$. Note that (2) is clearly impossible, since $|K_{t-1}| < |K_{t}|$ , hence no $K_{t-1}$ can have a subgraph $K_{t}$. (1) can be proven to be false in the \ita{extreme} case where all edges are coloured blue.}
+\newline
+\par{So, we've shown that it cannot be smaller than t, but can it be greater? Suppose that $R(2,t) \neq t$, such that $R(2,t) > t$ , then by definition there is no $t$ for which either a red $K_{2}$ or blue $K_{t}$ exist. If any edge is red then, we have a red $K_{2}$, therefore all edges must be blue. But, if all edges are blue then we have a blue $K_{t}$. Both cases cannot both be true, we have a contradiction , hence either a red $K_{2}$ or blue $K_{t}$ exist }
+}
+
+\example{ 
+
+\par{ Given a complete graph with all edges coloured either red or blue,
+how many vertices $n$ must I have to guarantee either a blue $K_{3}$ or a red $K_{2}$ as a subgraph.}
+
+\par{Take, $n =2$. Then, all possible colourings of a $K_{2}$ graph are given by red $K_{2}$ or blue $K_{2}$. Hence, there is one possible colouring which does not contain either a blue $K_{3}$ or a red $K_{2}$, hence $R(2,3) \neq 2$.}
+\par{Now, take $n = 3$. Then we have the following $2^{3\choose2} = 2^{3} =  8 $  possible colourings}
+
+
+\IfFileExists{r33.png}{}{\write18{wget https://cdn.mathpix.com/snip/images/1VblkPjTjfbu2nmh8MBX1zOZqBtguHORaL27qoP7OxY.original.fullsize.png -O r33.png}}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.7\textwidth]{r33.png}
+\end{figure}
+
+\par{Hence, by inspection, $R(2,3) = 3$}
+
+\begin{theorem}
+\textbf{Erd\H{o}s and Szekeres, 1938} $R(s,t)$ is finite for all integers $s,t \geq 2$ . Moreover, for $s,t \geq 3 $
+
+$$ R(s,t) \leq R(s,t-1) + R(s-1, t)$$
+
+\end{theorem}
+
+\mymarginpar{complex}
+
+\proofs{see lecture notes}
+
+\par{We can use these 2 results to calculate upper bounds on $R(s,t) \ \forall \ s,t$}
+
+\IfFileExists{ramseybounds.png}{}{\write18{wget https://cdn.mathpix.com/snip/images/tCH0GOawEZgZCTq7gewEwr65H3g9k_wcjk4rACOk2LU.original.fullsize.png -O ramseybounds.png}}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{ramseybounds.png}
+\end{figure}
+
+
+\begin{lemma} $R(3,4) = 9$ \end{lemma}
+
+\mymarginpar{complex}
+
+\proofs{See lecture notes}
+
+
+
+
+
 
 
 \newpage
