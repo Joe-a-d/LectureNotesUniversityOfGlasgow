@@ -31,7 +31,8 @@
 \renewcommand\qedsymbol{QED} %QED instead of square
 \newcommand\handleft{\HandCuffLeft}
 \newcommand\handright{\HandCuffRight}
-
+\usepackage{setspace}
+\onehalfspacing
 
 
 %%%%%%%%%%%%%%%%PACKAGES%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -255,7 +256,7 @@ P(F) &= P(E) + P(F \setminus E) (Axiom \ref{itm:ax3}) \\
 
 \example{See Workshop1.6}
 
-\prop{\label{rule4}}{$P(A \cup B) = P(A) + P(B) - P(A \cap B)$ \mymarginpar{\handleft Generalization of \ref{itm:ax3} , where we take into account the fact that for non-disjoint events $A \cap B$ is counted twice}}
+\prop{\label{rule4}}{$P(A \cup B) = P(A) + P(B) - P(A \cap B)$ \mymarginpar{\handright Generalization of \ref{itm:ax3} , where we take into account the fact that for non-disjoint events $A \cap B$ is counted twice}}
 
 \proofs{
 \begin{enumerate}
@@ -310,12 +311,56 @@ L.H.S = P\Bigg(\bigcup_{i=1}^{n+1}E_{i}\Bigg) &= P\Bigg(\bigcup_{i=1}^{n}E_{i}\B
 
 \example{See Workshop 1.6 , 1.7}
 
+\section{Random Variables}
 
+\defn{Random Variable}{A function $X : S \to \real $ , which associates a unique numerical value $X(s)$ with every outcome $s \in S$}
+
+\par{When working with random variables, we can summarise each outcome of an experiment with a single numerical value. In general, R.V can be split into two broad categories ,  depending on the values they can assume, they can either be (i) Discrete (ii) Continuous .}
+
+\subsection{Discrete Random Variables}
+
+\defn{DRV}{a random variable with countable range, i.e where $X(s)$ is countable for all $s$}
+
+\defn{Realisation}{Each $X(s)$}
+
+\defn{Range Space}{All possible $X(s)$}
+
+\notation{$R_{x}$}
+
+\example{
+\textbf{Likert scale} , we have $S = \set{\text{``Strongly disagree``} , \dots , \text{``Strongly Agree''}}$ , and we can map each response into a numerical value such that $X(s) = \set{-2 , \dots , 2}$}
+
+\par{Although  usually we speak of probabilities associated with $X$ , $P(X = 0) , P(X < 2)$ , these probabilities are induced from probabilities of equivalent events in the original sample space. For example $P(X = x)$ corresponds to the probability of the equivalent event $\set{s \in S : X(S) = x}$}
+
+\defn{Probability Mass Function}{list of probabilities associated with each of its possible values.  $p_{x}(x) = P(X = x) , x \in \real$ , such that $0 \leq p_{x}(X) \leq 1 , x \in \real$ and $\sum_{x \in R_{x}} p_{x}(x) =1$}
+
+\rem{$p_{x}(x) = 0 , \ \forall \ x \not\in R_{x}$}
+
+\rem{It is common to represent p.m.f as the set of pairs $\set{(x , p_{x}(x)) , x \in R_{x}}$}
+
+\defn{Cumulative Distribution Function}{function giving the probability that  $X \leq x$ : $ F_{x}(x) = P(X \leq x)$ , such that 
+
+\begin{enumerate}
+	\item $0 \leq F_{x}(X) \leq 1$ 
+	\item $F_{x}(-\infty) = P(X \leq -\infty) = 0 \text{  and  } F_{x}(\infty) = P(X \leq \infty) = 1$
+	\item $ x_{1} \leq x_{2}$ , then $P(X \leq x_{1}) \leq P(X \leq x_{2}) \equiv F_{x}(x_{1}) \leq F_{x}(x_{2})$ , i.e \textbf{increasing function}
+\end{enumerate}
+}
+
+\rem{Given the discrete nature of the drv , then c.d.f for a given $x$ is just the sum of the p.m.f for each discrete value smaller than $x$ , i.e $F_{x}(x) = \sum_{r \in R_{x} \leq x} p_{x}(x) , x \in \real$} 
+
+\par{Given the relation between p.m.f and c.d.f , we can always revert the relation and instead recover the first from the latter by subtracting consecutive terms : $p_{x}(1) = F_{x}(1) - F_{x}(0)$ , in general $$p_{x}(x) = F_{x}(x) - F_{x}(x-1)$$}
+
+\todo{complete example 8.4 lecture notes ; p.45,56,48,49}
 \section{Distributions}
 
 \todo{Add to continuous subsec} 
 \rem{For continuous distributions, $P(X=x)=0$, so the expressions $P(X \leq x) = P(X < x)$}
 \todo{Computing prob from distr}\url{http://webcache.googleusercontent.com/search?q=cache:H-Y9t4CPADEJ:www.mathwave.com/articles/calculate-probability-distributions.html+&cd=23&hl=en&ct=clnk&gl=uk}
+
+\subsection{Gamma}
+
+
 
 \newpage
 
