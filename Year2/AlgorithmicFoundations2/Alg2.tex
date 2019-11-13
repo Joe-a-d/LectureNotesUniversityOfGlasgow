@@ -34,8 +34,8 @@
 %%%%%%%%%%%%%%%%PACKAGES%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\usepackage{lipsum}  
 
-\usepackage{amsmath,amsthm,amssymb,graphicx,mathtools,tikz,pgfplots} %maths
-\usepackage{hyperref,framed,color,fancybox} %layout
+\usepackage{amsmath,amsthm,amssymb,graphicx,mathtools} %maths
+\usepackage{hyperref,framed,color,fancybox,todo,proof} %layout
 
 \renewcommand{\abstractname}{\vspace{3\baselineskip}} %hack to remove abstract
 
@@ -77,20 +77,124 @@
 
 \defn{Propostion}{declarative sentence which is either true or false}
 
+\todo{See slide annotations}
 
-\section{TODO}
-\par{See slide annotations}
-\par{Truth table for all connectives , use the succinct style, where for large statements the result is written under the connective}
-\par{Write a remark explaining the use of the succinct form of the tables for large compound propositions (e.g. (p > q) & (~p v q) one would not make a separate column for the conjunction, but instead just write the result under the \&)}
-\par{Write a remark explaining that for any n propositions, rows = 2^{n}, since for every p {1,0}}
+\todo{Truth table for all connectives , use the succinct style, where for large statements the result is written under the connective}
+\todo{Write a remark explaining the use of the succinct form of the tables for large compound propositions (e.g. (p > q) \& (~p v q) one would not make a separate column for the conjunction, but instead just write the result under the \&)}
+\todo{Write a remark explaining that for any n propositions, rows = $2^{n}$, since for every p {1,0}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proofs}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Rules of Inference}
+
+\defn{Valid Argument}{the truth of the premises logically guarantees the truth of the conclusion , \ita{i.e.} $(p \land q \land r \land \dots) \rightarrow q$ is a tautology}
+
+\mymarginpar{Memorising not required}
+
+\subsubsection{Modus Ponens}
+\begin{minipage}{.5\textwidth}
+\infer{q}{p & (p \rightarrow q)}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+\centering
+\begin{tabular}{@{ }c@{ }@{ }c | c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c}
+$p$ & $q$ &  & ( & $p$ & $\land$ & ( & $p$ & $\rightarrow$ & $q$ & ) & ) & $\rightarrow$ & $q$ & \\
+\hline 
+1 & 1 &  &  & 1 & 1 &  & 1 & 1 & 1 &  &  & \textcolor{red}{1} & 1 & \\
+1 & 0 &  &  & 1 & 0 &  & 1 & 0 & 0 &  &  & \textcolor{red}{1} & 0 & \\
+0 & 1 &  &  & 0 & 0 &  & 0 & 1 & 1 &  &  & \textcolor{red}{1} & 1 & \\
+0 & 0 &  &  & 0 & 0 &  & 0 & 1 & 0 &  &  & \textcolor{red}{1} & 0 & \\
+\end{tabular}
+\end{minipage}
+
+
+\subsubsection{Modus Tolens}
+
+\begin{minipage}{.5\textwidth}
+\infer{\lnot q}{\lnot q & (p \rightarrow q)}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+\centering
+\begin{tabular}{@{ }c@{ }@{ }c | c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c}
+$p$ & $q$ &  & ( & $\lnot$ & $q$ & $\land$ & ( & $p$ & $\rightarrow$ & $q$ & ) & ) & $\rightarrow$ & $\lnot$ & $p$ & \\
+\hline 
+1 & 1 &  &  & 0 & 1 & 0 &  & 1 & 1 & 1 &  &  & \textcolor{red}{1} & 0 & 1 & \\
+1 & 0 &  &  & 1 & 0 & 0 &  & 1 & 0 & 0 &  &  & \textcolor{red}{1} & 0 & 1 & \\
+0 & 1 &  &  & 0 & 1 & 0 &  & 0 & 1 & 1 &  &  & \textcolor{red}{1} & 1 & 0 & \\
+0 & 0 &  &  & 1 & 0 & 1 &  & 0 & 1 & 0 &  &  & \textcolor{red}{1} & 1 & 0 & \\
+\end{tabular}
+\end{minipage}
+
+\todo{Tautology truth tables}
+
+\subsubsection{Hypothetical Syllogism}
+
+\begin{minipage}{.5\textwidth}
+\infer{p \rightarrow r}{(p \rightarrow q) & (q \rightarrow r)}
+\end{minipage}
+
+\subsubsection{Disjunctive Syllogism}
+
+\begin{minipage}{.5\textwidth}
+\infer{q}{p \lor q & \lnot p}
+\end{minipage}
+
+\subsubsection{Resolution}
+
+\begin{minipage}{.5\textwidth}
+\infer{q \lor r}{p \lor q & \lnot p \lor r}
+\end{minipage}
+
+\subsubsection{Addition}
+
+\begin{minipage}{.5\textwidth}
+\infer{p \lor q}{p}
+\end{minipage}
+
+\subsubsection{Simplification}
+
+\begin{minipage}{.5\textwidth}
+\infer{p}{p \land q}
+\end{minipage}
+
+\subsubsection{Conjunction}
+
+\begin{minipage}{.5\textwidth}
+\infer{p \land q}{p & q}
+\end{minipage}
+
+\todo{Example slides 26,27}
+
+\subsection{Constructing a Proof Tree}
+
+\par{Continuing with the example above, we can construct a \ita{proof tree}, where each \ita{leaf} is composed of axioms - the premises, and theconclusion sits at the \ita{root}}
+
+\todo{slide 33}
+
+\subsection{Quantifiers}
+
+
+
 
 
 \newpage
-\section{BIBLIO: ADD TO BIBTEX}
-
-Truth Tables : Michael Rieppel ``mrieppel '' @https://github.com/mrieppel/TruthTableGenerator
 
 
-\end{document}
+\todo{add bib: Truth Tables : Michael Rieppel ``mrieppel '' @https://github.com/mrieppel/TruthTableGenerator}
+
+\todos
 
 \end{document}
