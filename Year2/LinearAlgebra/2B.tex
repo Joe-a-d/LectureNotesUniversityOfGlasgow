@@ -31,12 +31,17 @@
 \newcommand\handright{\HandCuffRight}
 
 %MATRICES
-\usepackage{todo}
+\usepackage{todo,float}
 \usepackage[delims={[]}]{spalign}
 \let\mat=\spalignmat
 \let\amat=\spalignaugmat
 \let\vec=\spalignvector
 
+%%%%%%%%%%OPERATORS
+
+
+
+%%%%%%%%%%%%%%%%%%
 % row ops
 \newcommand\ro[2]{\xrightarrow[#2]{#1}}
 
@@ -76,6 +81,8 @@
 
 \begin{document}
 
+\newpage
+%\todo{Winter Break : Tidy up rushed remarks ; Complete}
 
 \begin{abstract}
 	\par{These lecture notes were collated by me from a mixture of sources , the two main sources being the lecture notes provided by the lecturer and the content presented in-lecture. All other referenced material (if used) can be found in the \ita{Bibliography} and \ita{References} sections.}
@@ -161,12 +168,14 @@
 	      	\end{minipage}
 	      \end{minipage}
 	   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% WEEK 2 %%%%%%%%%%%%%%%%%%
-	      \section{}
+	      \section{Matrix Operations}
 	      
-	      \defn{Span}{}
+	      \defn{Span}{collection of all possible linear combinations of a set of vectors}
 	      
 	      $$\operatorname{span}(S)=\left\{\sum_{i=1}^{k} \lambda_{i} v_{i} | k \in \mathbb{N}, v_{i} \in S, \lambda_{i} \in K\right\}
-	      $$ \todo{\url{https://en.wikipedia.org/wiki/Linear_span}}
+	      $$
+	      
+	       %\todo{\url{https://en.wikipedia.org/wiki/Linear_span}}
 	      
 	      \defn{Linearly Independent}{}
 	      
@@ -187,21 +196,94 @@
 	      
 	      \rem{Note that $S = \text{span}(\vc{w} , \vc{z} , \vc{v}) = \text{span}(\vc{w} , \vc{z})$ , since as noted above $\vc{v}$ is redundant because it is accounted for by $\lambda\vc{w} + \theta\vc{z}$}
 	      
-	     \mymarginpar{$dim(P)$ is the dimension of the vector space e.g. $dim(R^{3}) = 3$} \extra{Cheatsheet: Does $V$ span $P$? }{
+	     \mymarginpar{$dim(P)$ is the dimension of the vector space e.g. $dim(R^{3}) = 3$} \mymarginpar{V can be represented by a matrix}\extra{Cheatsheet: Does $V$ span $P$? }{
 	      \rule{\textwidth}{1pt}
-	      	Where V is a vector set $\vc{v_{1}}, \dots, \vc{v_{n}}$, and P is a vector space $R^{n}$\\
+	      	Where V is a vector set $\vc{v_{1}}, \dots, \vc{v_{n}}$, and P is a vector space $R^{n}$ \\ 
 		\vphantom{.} \\
 	      			 Check that $V\vc{x} = \vc{p}$ , for arbitrary $\vc{p} \in P $ \\
-	      			 Check that $rk(V) = dim(P)$ \todo{ADD REF TO RANK SEC4} \\
+	      			 Check that $rk(V) = dim(P)$ %\todo{ADD REF TO RANK SEC4} \\
 				 Check that $V$ contains the standard basis. If it does, then it must contain all of $P$
 	  
 			} 
 	      	
+		\subsection{Inverse}
+		
+		\defn{Non-Singular}{If there exists $A'$ such that $A'A = I$ and $AA' = I$}
+		
+		\prop{}{A square matrix $A$ is non-singular \ita{iff} $\det{(A)} \neq 0$}
+		
+		\par{Note that if $A\vc{x} = I$ , then $AA^{-1}\vc{x} = A^{-1}I \iff \vc{x} = A^{-1}$ , i.e we can always get the inverse by reducing the augmented matrix $A | I$}
+		
+		
+		\subsection{Matrix Algebra}
+		
+		\par{Computationally, in order to simplify, one usually pre/post-multiplies by inverses}
+		
+		
+		$(AB)^{-1} = B^{-1}A^{-1}$
+	       $AX + BX = C == (A + B)X = C == (A + B)X^{-1}X = CX^{-1}$ \mymarginpar{Note the order, not necessarily commutative}
+	       
+	       \par{Row Swap $A$ $\equiv$ Col Swap $A^{-1}$ . Hence note that for row equivalent matrices: }
+	       $A B^{-1} , B = A R1 \leftrightarrow R3 \implies A B^{-1} = I C1 \leftrightarrow C3$
+	       
+	       \example{
+$$	       \begin{aligned} A^{2} X B A &=A B \\ A^{2} X B A &=A B \\ A^{-2} A^{2} X B A &=A B \\ X B A &=A^{-2} A B \\ X B A A^{-1} &=A^{-1} B A^{-1} \\ X B &=A^{-1} B A^{-1} \\ X B B^{-1} &=A^{-1} B A^{-1} B^{-1} \\ X &=A^{-1} B A^{-1} B^{-1} \end{aligned}$$
+	      }
+	      
+	      \par{For a  $2 \times 2$ matrix $A$}
+	      
+	      $A^{-1} = \frac{1}{\det(A)} \mat{d,-b;-c,a}$
 	      
 	      
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% WEEK 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	      	\section{Elementary Matrices \& Subspaces}
+		
+		\subsection{Elementary Matrices}
+		%\todo{\url{http://sites.millersville.edu/bikenaga/linear-algebra/inverse/inverse.html}}
+		
+		\begin{enumerate}
+			\item  $i \leftrightarrow j$
+			
+			\IfFileExists{ero1.png}{}{\write18{wget https://cdn.mathpix.com/snip/images/_J-9spFZ5GhbNDgwCPVO_ij9o7A-ESoLGXmMk-qDKeg.original.fullsize.png -O ero1.png}}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{ero1.png}
+\end{figure}
+
+			\item $i = a \times i$
+			
+			\IfFileExists{ero2.png}{}{\write18{wget https://cdn.mathpix.com/snip/images/w3ZfprTl-QheBb3U_I8ewNn9otmE_6E-7HOG5EPGqbg.original.fullsize.png -O ero2.png}}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{ero2.png}
+\end{figure}
+			
+			\item $ i = i + aj$
+			
+			\IfFileExists{ero3.png}{}{\write18{wget  https://cdn.mathpix.com/snip/images/fzYJHq5aPf7y9Hio2iAdrAaaOV8gnyyG-5ORD7kARiE.original.fullsize.png -O ero3.png}}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{ero3.png}
+\end{figure}
+
+\end{enumerate}
+		
+		\par{Key Insight: Each RO on $A$ is equivalent to left-multiplying $A$ by the equivalent elementary matrix}
 	      	
+		
+		\extra{Computation}{
+		Express an invertible matrix as a product of elementary matrices
+		\begin{enumerate}
+			\item Write down the augmented matrix $A | I$
+			\item Apply subsequent  EROs , until $ I | A^{-1}$ . Taking note of each ERO
+			\item Premultiply each ERO by $A$ in the order applied ,  $E_{n} \dots E_{1}A = I$
+			\item Simplify , $(E_{n} \dots E_{1})^{-1}A = (E_{n} \dots E_{1})^{-1} \iff A = E_{n}^{-1} \dots E_{1}^{-1}$
+		\end{enumerate}
+		}
+		 
+		
+		\subsection{Spaces}
+		
 	      	\defn{Space}{}
 	      	
 	      	\par{Informally, a space is a set of vectors composed of all possible linear combinations of all vector(s) in that space. In other words, I can choose one or more vectors in that space and I can add and multiply them and never leave that space. Crucially, this must include a way to get back to the origin, hence the $0$ vector must be part of every space.}
@@ -231,14 +313,17 @@
 	      	
 		\rem{A basis is never unique}
 	      	
-	      	% RANK COMPUTATION : Once in row echelon form, the rank is clearly the same for both row rank and column rank, and equals the number of pivots (or basic columns) and also the number of non-zero rows
+	      	 RANK COMPUTATION : Once in row echelon form, the rank is clearly the same for both row rank and column rank, and equals the number of pivots (or basic columns) and also the number of non-zero rows
 		
 		\par{It is sometimes convenient to find a basis for the row space from among the rows of the original matrix instead . Since row operations can affect linear dependence relations of the row vectors, $A^{T}$ can be used instead. If a column of $A^{T}$ forms a basis of the column space of $A^{T}$ (i.e if there's a leading one), then it indicates that the corresponding rows in $A$ form a basis of the row space of $A$, before any EROs are applied. This is because $col(A) = row(A^{T})$  }
 	      	
-	      	\todo*{Colum Space example MIT lecture}
-	      	\todo*{Bibtex: \url{http://sites.millersville.edu/bikenaga/linear-algebra/inverse/inverse.html} ; \url{https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/video-lectures/lecture-6-column-space-and-nullspace/} ; \url{https://math.stackexchange.com/questions/56201/how-to-tell-if-a-set-of-vectors-spans-a-space}}
-	      	\todos
-	      	\nocite{*}
-	      	\printbibliography
+	      	%\todo*{Colum Space example MIT lecture}
+	      	%\todo*{Bibtex: \url{http://sites.millersville.edu/bikenaga/linear-algebra/inverse/inverse.html} ; \url{https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/video-lectures/lecture-6-column-space-and-nullspace/} ; \url{https://math.stackexchange.com/questions/56201/how-to-tell-if-a-set-of-vectors-spans-a-space}}
+		
+		
+	      	%\todos
+		
+	      	%\nocite{*}
+	      	%\printbibliography
 	      	
 \end{document}
