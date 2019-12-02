@@ -223,6 +223,8 @@ following Axioms of Probability laid down by \ita{Kolmogorov (1933)}}
  \end{enumerate}
  \end{itemize}
  
+
+ 
 \section{Rules of Probability}
 
 \par{A common task within a given probability model is to calculate unknown probabilities from known ones. This could be calculated by successful application of the axioms above, however there are more key general results which can be derived from the axioms which make this process here. We call these results the \ita{rules of probability}}
@@ -354,11 +356,61 @@ L.H.S = P\Bigg(\bigcup_{i=1}^{n+1}E_{i}\Bigg) &= P\Bigg(\bigcup_{i=1}^{n}E_{i}\B
 \todo{complete example 8.4 lecture notes ; p.45,56,48,49}
 \section{Distributions}
 
-\todo{Add to continuous subsec} 
+\defn{Gamma Function}{ $$\Gamma(\alpha) = \int x^{\alpha - 1} e^{-x} dx = (\alpha - 1)! , \; \alpha = 1,2,\dots$$}
+
+\subsection{Continuous Random Variables}
+
+\par{For continuous variables it doesn't make sense to look at $P(X = x)$, instead we look at the probability for a given range of $x$}
+
+\prop{}{$P(X = x) = 0 \; \forall x $}
+
 \rem{For continuous distributions, $P(X=x)=0$, so the expressions $P(X \leq x) = P(X < x)$}
-\todo{Computing prob from distr}\url{http://webcache.googleusercontent.com/search?q=cache:H-Y9t4CPADEJ:www.mathwave.com/articles/calculate-probability-distributions.html+&cd=23&hl=en&ct=clnk&gl=uk}
+
+
+\todo{Computing prob from distr}
+
+
+\subsubsection{Normal}
+
+\extra{Computation}{Standard Normal}{
+\begin{enumerate}
+	\item Compute the mean $\mu = E(X)$ , and standard deviation $\sigma = \sqrt{Var(X)}$
+	\item Input into formula $Z = \frac{X -  \mu}{\sigma}$
+	\item Find appropriate $Z$ in cdf tables ; Recall for $x$ in table , we have $\phi(x) = Z  \leq x$ and for $-x$ we have $1-\phi(x)$ = $Z \leq -x $
+\end{enumerate}
+}
+
+
+
+\example{ For $X\sim N(-1, 0.25)$ we have $Z = \frac{X - (-1)}{\sqrt{0.25}} \sim N(0,1)$. Hence,
+
+\begin{enumerate}
+\item  $\mathbf{P(X < 0.5)}$
+
+$P(Z < \frac{0.5 - (-1)}{\sqrt{0.25}}) = P(Z < 3)$ , consulting the values of the $\mathop{c.d.f}$ we have $\phi(3) = P(X < 0.5) = 0.9987$
+
+\item $\mathbf{P(X < -1.25)}$
+
+$P(Z < \frac{-1.25 - (-1)}{\sqrt{0.25}}) = P(Z < -0.5)$ , consulting the values of the $\mathop{c.d.f}$ we have $1 - \phi(0.5) = P(X < -1.25) = 0.3805$
+
+\item $\mathbf{P(-2 < X < 0)}$
+
+$P(\frac{-2 - (-1)}{\sqrt{0.25}} < Z < \frac{0 - (-1)}{\sqrt{0.25}}) = P(-2 < Z < 2)$. Hence $Z > -2$ and $Z < 2$, which gives us the range $P(Z < 2) - P(Z < -2)$ consulting the values of the $\mathop{c.d.f}$ we have $\phi(2) = P(X < 2) = 0.9772$ and $ 1- \phi(2) = P(X < -2) $ therefore, $P(Z < 2) - P(Z < -2) = P(-2 < X < 0) = 2\phi(2) - 1 = 0.9544$ 
+
+\item \textbf{Expected  value,  variance ,  standard deviation , median of X}
+
+$E(X) = -1 \; ; \; \mathop{Var}(X) = 0.25 \; ; \; \sigma = 0.5 \; ; \; P(X < \varepsilon_{50}) = 0.5 \implies \varepsilon_{50} = -1 $
+
+
+\end{enumerate}
+}
+
+
+
+\todo{Add to continuous subsec} 
 
 \subsection{Gamma}
+
 
 
 
