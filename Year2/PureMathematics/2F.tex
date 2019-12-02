@@ -1,0 +1,398 @@
+
+%% CLASS MANUAL FOUND IN http://blog.poormansmath.net/latex-class-for-lecture-notes/ %%
+%% CLASS AUTHOR Stefano Maggiolo %%
+\documentclass[english,course]{Notes}
+
+\title{2F : Foundations of Pure Mathematics}
+\subject{Mathematics}
+\author{Joao Almeida-Domingues}
+\email{2334590D@student.gla.ac.uk}
+\speaker{Ken Brown}
+\date{23}{09}{2019}
+\dateend{05}{12}{2019}
+\place{University of Glasgow}
+
+ %%%%% GENERAL MATHEMATICAL NOTATION SHORTCUTS %%%%%
+ 
+\newcommand{\n}{\mathbb{N}}
+\newcommand{\z}{\mathbb{Z}}
+\newcommand{\q}{\mathbb{Q}}
+\newcommand{\cx}{\mathbb{C}}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\field}{\mathbb{F}}
+\newcommand{\ita}[1]{\textit{#1}}
+\newcommand{\oneton}{\{1,2,3,...,n\}}
+\newcommand\ef{\ita{f} }
+
+\newcommand\inv[1]{#1^{-1}}
+\newcommand\setb[1]{\{#1\}}
+\newcommand\en{\ita{n }}
+\renewcommand\qedsymbol{QED} %QED instead of square
+\newcommand\handleft{\HandCuffLeft}
+\newcommand\handright{\HandCuffRight}
+
+
+%%%%%%%%%%%OPERATORS%%%%%%%%%%%%%%%%%%%
+\DeclareMathOperator{\perm}{Perm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%PACKAGES%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{lipsum}  
+
+\usepackage{amsmath,amsthm,amssymb,graphicx,mathtools,tikz,pgfplots} %maths
+\usepackage{hyperref,framed,color,fancybox} %layout
+\usepackage{bbding,todo} %dingbats  for signposting
+
+\renewcommand{\abstractname}{\vspace{-\baselineskip}} %hack to remove abstract
+
+% framed :  \begin{shaded,frame,snugshade or leftbar} \definecolor{shadecolor}{rgb}{XYZ} to change color
+%fancybox: \shadowbox,ovalbox or doublebox
+%\extra for Extra content layout box
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%CLASS SHORTCUTS%%%%
+%\lecture{day}{month}{year} for margin note 
+%\begin{theorem} sdfsdf\end{theorem}  --> \theorem
+%\begin{proposition} dfsdfs\end{proposition} --> \prop
+%\begin{lemma} dsfsd \end{lemma} --> \lem
+%\begin{corollary} f ffew \end{corollary}
+%\begin{definition} fwewef w \end{definition} --> \defn
+%\begin{example} feww e\end{example} --> \ex
+%\begin{exercise} wefwe \end{exercise}
+%\begin{remark} wef we \end{remark} --> \rem
+%\begin{fact} wefe \end{fact}
+%\begin{problem} wef ew \end{problem}
+%\begin{conjecture} ewfew \end{conjecture}
+%\begin{claim} few w \end{claim}
+%\begin{notation} fewf \end{notation} --> \nota
+%\mymarginpar for scriptsize margin
+
+\begin{document}
+
+\begin{abstract}
+\par{These lecture notes were collated by me from a mixture of sources , the two main sources being the lecture notes provided by the lecturer and the content presented in-lecture. All other referenced material (if used) can be found in the \ita{Bibliography} and \ita{References} sections.}
+\par{The primary goal of these notes is to function as a succinct but comprehensive revision aid, hence if you came by them via a search engine , please note that they're not intended to be a reflection of the quality of the materials referenced or the content lectured.}
+\par{Lastly, with regards to formatting, the pdf doc was typeset in \LaTeX , using a modified version of Stefano Maggiolo's \href{http://blog.poormansmath.net/latex-class-for-lecture-notes/}{\underline{\textcolor{blue}{class}}}}
+\end{abstract}
+
+\newpage
+
+\section{Sets}
+
+\defn{Set :}{an unordered collection of objects, which we call its \ita{elements/members}}
+
+\notation{$A = \set{a,b,c}$}{, represents a set $A$ with members $a , b , c$}
+\notation{It is conventional to use capital letters to denote sets, and lowercase ones for their members}
+\notation{$x \in A$}{ , means that the element $x$ belongs to the set $A$ } \\
+
+\par{Instead of listing a members of a set exhaustively, we can define a rule whose truth value tells us if a given object should be a member of the set}
+
+\notation{$ A = \set{x | P(x)}$ ,}{where $P(x)$ can be any statement with a truth value (e.g. \ita{``has 2 legs''} , $ x > 0$)}
+
+\defn{Subset :}{ a set whose elements belong to another set of equal or larger size. $$ A \subset B = \set{x \ | \ \forall \ x \in A \ , \ x \in B}$$}
+
+\rem{Subsets can be differentiated into \ita{proper} , if  $A \neq B$, or  \ita{improper} if $A = B$.}
+
+\notation{$ A \subset B$}{, reads as \ita{``$A$ is a subet of $B$''}. $\subseteq$ for improper}
+
+\notation{$\emptyset$}{ is the empty set, the set who has no members}
+
+\rem{$ \emptyset \subset S \forall S$}
+
+\defn{Equality}{ $A = B \iff A \subseteq B \text{ and } B \subseteq A$ \qquad \mymarginpar{\handright}}
+
+\defn{Power Set}{ is the set composed by all possible combinations of a sets members}
+
+\notation{$P(X)$ or $2^{X}$}
+
+\ex{Let $X = \set{1,2,3}$ , then $P(X) = \set{\emptyset, \set{1},\set{2}, \set{3}, \set{1,2} , \set{1,3}, \set{2,3}, \set{1,2,3}}$}
+
+\theorem{For $|S| = n \text{ , } |P(S)| = 2^{n}$}
+
+\mymarginpar{TODO}\proofs{}
+
+\defn{Union}{  set of all elements belonging to \ita{at least one} of the sets 
+$$ A \cup B = \set{x | x \in A \text{ or } x \in B}  $$}
+\notation{$A \cup B$}
+
+\defn{Intersection}{ set of all elements which are part of both sets
+$$ A \cap B = \set{x | x \in A \text{ and } x \in B}$$}
+
+\notation{$A \cap B$}
+
+\begin{theorem} The union of sets is associative, i.e $(A \cup B) \cup C = A \cup (B \cup C)$\end{theorem}
+
+\proofs{
+\par{ Our \textbf{first step} , is to understand what it is that the sentence actually says. We have an equality , by the definition of equality \ita{(1.11)}, we need to show that \textbf{(1)} LHS  $\subseteq$ RHS , and \textbf{(2)} the converse.}
+\par{At this stage we have two tasks to accomplish, which seem to have something in common. Note that both require showing that one set is a subset of another. So, our \textbf{second step} should be to figure out, what being a subset means, again resorting to a definition. So, by \ita{(1.6)} we have that for an arbitrary $x$ chosen from the subset , $x$ must also be in its parent set.}
+\par{Hence, starting with \textbf{(1)}, our next step is to show that for an arbitrary $x$ in $(A \cup B) \cup C = A$ , $x$ is also in $A \cup (B \cup C)$. Therefore, we assume that $x \in (A \cup B) \cup C = A$ . What does that mean? It means that $x \in A \cup B $ or $ x \in C$. Hence, $x \in A \text{ or } x \in B \text{ or } x \in C$.}
+\par{Now, we have deconstructed, as it were, our compound statement into simpler ones. At this stage it's usually good to look back at what we are trying to prove. It seems very similar to what we have. We seem to have ``atomic'' building blocks, and we need only to start building it again into a compound statement.}
+\par{Note that $ x \in B \text{ or } x \in C$, just means $x \in B \cup C$. Finally, from $x \in A \text{ or } x \in B \cup C$ we get $A \cup (B \cup C) =$ RHS , as required}
+
+\mymarginpar{\textbf{(2)} will be omitted, as \textbf{(1)} is painstakingly detailed, and should work as a template}}
+
+\rem{It is key in this type of set proofs to assume that some arbitrary element is in a set and show that it is (or is not) in the other. The rest is common to many other proofs where one aims to ``unpack'' the definitions enough until reaching a point where the expression matches the other side of the equality, or it can be built upon so as to match it}
+
+\par{Both the union and the intersection are associative. Formally, we write:
+
+$$\bigcup_{i=1}^{n}A_{i} = A_{1} \cup A_{2} \cup \dots \cup A_{n}$$ 
+
+$$\bigcap_{i=1}^{n}A_{{i}} = A_{1} \cap A_{2} \cap \dots \cap A_{n}$$
+}
+
+\section{Functions}
+
+\section{Relations}
+
+\section{Modular Arithmetic}
+
+\defn{Congruence}{For $a,b,m,k \in \z , a \equiv b \mod m \iff (a - b)k = m$. We say that \ita{``a is congruent to b modulo m''}. $a ,b$ share the same remainder when divided by $m$}
+
+\defn{Congruence Classes}{For $m \in \z$ , each congruence class represents a partition of $\z$. Each partition represents all possible remainders $\set{0,\dots,m-1}$ when diving the elements within it by $m$}
+
+\ex{Take , $m=3$
+
+$$\begin{array}{l}{[0]=\{\ldots,-6,-3,0,3,6, \ldots\}} \\ {[1]=\{\ldots,-5,-2,1,4,7, \ldots\}} \\ {[2]=\{\ldots,-4,-1,2,5,8, \ldots\}}\end{array}$$}
+
+\rem{Note that each partition is unique, but we can replace the number inside the brackets by any member of the class. $[0] = [3] = [60]$ , since $0 \mod 3 = 3 \mod 3 = 60 \mod 3 = 0$}
+
+\theorem{}{If $a \equiv b \mod m$ and $c \equiv d \mod m$ , then
+
+$$ a \pm c \equiv b \pm d \mod m  \qquad \text{ and } \qquad ac = bd \mod m$$
+
+}
+
+\lemma{}{It follows from the above theorem  that operating on classes, is the same as operating on their representatives (since each rep is a placeholder for the same remainder)
+$$\begin{array}{l}{[a]+[c] := [a+c]} \\ {[a]-[c]:=[a-c]} \\ {[a][c]:=[a]}\end{array}$$
+}
+
+\ex{
+\par{$\text { Show that } n^{2} \equiv 1 \text { mod } 8 \text { for every odd integer } n$ . If $n$ is odd, then it must be congruent to an odd representative, i.e it must belong to one of the following possible classes $ {[1],[3],[5],[7]}$. $n^{2} = n \times n$ . Hence, $n^{2}$ must belong to ${[1 \times 1],[3 \times 3],[5 \times 5],[7\times 7] = [1],[9],[25],[49]} = [1]$}. Therefore $n^{2} = 1 \mod 8$}
+
+\subsection{Linear Congruences}
+
+
+\section{Permutations}
+
+\defn{Permutation}{A permutation of $X$ is a bijective function from $X$ to $X$}
+
+\notation{$\perm(X)$ , set of permutations of $X$}
+
+\defn{Group}{A group $G$ is a finite or infinite set of elements together with a binary operation , \ita{the group operation}, that together satisfy the four fundamental properties of closure, associativity, the identity property, and the inverse property.}
+
+\defn{Symmetric Group}{of degree $n$ is the group of all permutations on $n$ symbols}
+
+\notation{$S_{n}$}
+
+\begin{theorem}$\|S_{n}\| = n!$\end{theorem}
+
+\par{Permutations can be represented in one of three ways}
+
+\notation{Two-Line $$\sigma=\left(\begin{array}{llll}{a_{1}} & {a_{2}} & {\ldots} & {a_{n}} \\ {b_{1}} & {b_{2}} & {\ldots} & {b_{n}}\end{array}\right)$$}
+
+$\text { where } a_{1}, \ldots, a_{n} \text { is a list of the members of } X \text { and where } \sigma\left(a_{i}\right)=b_{i}$
+
+\notation{ One-Line $${b_{1}} \; {b_{2}} \; {\ldots} \; {b_{n}}$$}
+
+\notation{Permutation cycles $$(a_{1} b_{2} a_{3} b_{1})(b_{3} a_{2})$$}
+
+\rem{Generally, elements of $X$ which map onto themselves , i.e $a_{i} \mapsto a_{i} = (a_{i})$, are not explicitly represented}
+
+\defn{Cycle}{a permutation of the elements of  $X$ which maps the elements of a subset $S = {a_{1}, . . . ,a_{k}} \mapsto X$ to each other
+in a cyclic fashion}
+
+\defn{Transposition}{$k$-cycle, with $k =2$}
+
+\par{So, for example, the bijection rules for the two cycles introduced above, are respectively  :}
+
+$$a_{1} \mapsto b_{2}  \mapsto a_{3} \mapsto b_{1} \mapsto a_{1} \text{   and   } b_{3} \mapsto a_{2} \mapsto b_{3}$$
+
+\defn{Disjoint Cycles}{two cycles $A,B$ are disjoint if $\forall \, a,b \in A , B \; a \neq b$}
+
+\begin{lemma} disjoint cycles commute \mymarginpar{This should be clear, from the fact that each disjoint set only maps onto itself} \end{lemma} 
+
+\extra{Computation}{Constructing Cycles}{
+\begin{enumerate}
+	\item Apply the mapping for each $\sigma(a_{k})$
+	\item If $\sigma(a_{k}) = a_{k}$ , close the cycle
+	\item Repeat (1) , (2) untill all elements in $X$ have been mapped
+\end{enumerate}
+}
+
+
+\rem{In particular , most texts have the operation being right-associative, i.e for $(x y)(z y)$ one has $z \mapsto y \mapsto x$ and not $x \mapsto y \mapsto z$}
+
+\ex{
+${\text { Express } \sigma, \tau, \sigma \tau, \tau \sigma \text { and } \sigma^{-1} \text { as compositions of disjoint cycles. }}$
+
+$$\sigma=\left(\begin{array}{ccccc}{1} & {2} & {3} & {4} & {5} \\ {2} & {5} & {4} & {3} & {1}\end{array}\right), \tau=\left(\begin{array}{ccccc}{1} & {2} & {3} & {4} & {5} \\ {3} & {5} & {1} & {2} & {4}\end{array}\right)$$
+
+$\begin{array}{l}{\text { We consider what happens to each element of }\{1, \ldots, 5\} \text { when } \sigma \text { is }} \\ {\text { applied repeatedly. The action of } \sigma \text { can be described as }} 
+\end{array}
+$
+
+$${1 \mapsto 2 \mapsto 5 \mapsto 1, \quad 3 \mapsto 4 \mapsto 3,}$$ 
+
+$
+{\text { so } \sigma=(1,2,5)(3,4) \text { . Similarly  }} 
+$
+
+
+\begin{center}${\qquad \begin{aligned}  \tau=(1,3)(2,5,4), & \sigma \tau=(1,4,5,3,2) \\ \tau \sigma=(1,5,3,2,4), & \sigma^{-1}=(1,5,2)(3,4) \end{aligned}}$
+\end{center}
+
+}
+
+\par{Note that this is a composition , which in general is not commutative for non-disjoint cycles. In particular, we can think of each cycle having its own function $\sigma , \theta , etc$ , where mapping elements between cycles corresponds to their composition $\theta(\sigma(a_{k})) = a_{k} \mapsto \sigma(a_{k}) \mapsto \theta(\sigma(a_{k}))$ . Hence, the order is important}
+
+\extra{Computation}{Product of Cycles}{
+\begin{enumerate}
+	\item Map each element between cycles, starting from the right
+	\begin{enumerate}
+		\item {Pick an element from right cycle, map to the left until either the leftmost cycle is reached (or it is not present in any ``to-the-left'' cycles [see remark])}
+	\end{enumerate}
+	\item Repeat (1) , taking the last mapped as the starting element
+	\item Repeat until all elements are in a cycle
+\end{enumerate}
+}
+
+\ex{
+$$\tau=(1,2,6)(2,4,6)(3,7)(2,6)$$
+
+\begin{itemize}
+\item[] $\mathbf{2} \mapsto 6 \mapsto 2 \mapsto 6 \quad (2\;6\; \dots) \mbox{ All cycles covered}$
+\item[] $6 \mapsto 2 \mapsto 4 \quad (2\;6\;4\; \dots) \mbox{``no longer present''}$
+\item[] $4 \mapsto 6 \mapsto 1 \quad (2\;6\;4\;1\;\dots) \mbox{All cycles covered}$
+\item[] $1 \mapsto \mathbf{2} \quad (2\;6\;4\;1) \mbox{Cycle found}$
+\end{itemize}
+
+\begin{itemize}
+\item[] $\mathbf{7} \mapsto 3  \quad (7\;3 \dots \mbox{``no longer present''}$
+\item[] $3 \mapsto \mathbf{7} \quad (7\;3) \mbox{Cycle found}$
+\end{itemize}
+
+$$\tau = (2 \;6\; 4 \;1)(3 \;7) $$
+}
+
+\mymarginpar{This also means that above when we say not present in any ``to-the-left'' cycles, is just the same as reaching the leftmost cycle, where each function whose cycle does not contain the element, just maps it into itself until the last cycle is reached}
+
+\rem{Note that when an element is not in a cycle, you can think of it as a mapping onto itself. For example , above whenever the mapping function of $(3,7)$ took $2$ or $6$ it just spat them back, so actually we had $2 \mapsto 6 \mapsto 6 \mapsto 2 \mapsto 6$ etc} 
+
+\rem{Sometimes it is useful to write a permutation as a product of transpositions, this is particularly easy from the disjoint cycle notation form}
+
+$$(2\;6\;4\;1)(3\;7) = (2\;1)(2\;4)(2\;6)(3\;7)$$
+
+\subsection{Parity}
+
+\defn{Sign}{ For $\sigma$  written as the composite of disjoint cycles  $\gamma_{1}, \ldots, \gamma_{k}$, where  $\gamma_{i}$ is an  $r_{i} $ cycle  $$\sgn(\sigma) :=(-1)^{r_{1}-1}(-1)^{r_{2}-1} \cdots(-1)^{r_{k}-1}$$}
+
+\begin{theorem}
+Let $\sigma$ and $\tau$ be permutations of a finite set $X$. Then  $\operatorname{sgn} \sigma \circ \tau=\operatorname{sgn} \sigma \cdot \operatorname{sgn} \tau$
+\end{theorem}
+
+\mymarginpar{Note that the corollary includes not-disjoint $\gamma$  }
+\begin{corollary}
+For $\sigma=\gamma_{1} \gamma_{2} \ldots \gamma_{k}$ , where $\gamma_{i}$ is a $r_{i}$-cycle , $$\sgn(\sigma)=(-1)^{r_{1}-1}(-1)^{r_{2}-1} \ldots(-1)^{r_{k}-1}
+$$\end{corollary}
+
+
+\defn{Alternating Group}{the subset of $S_{n}$ consisting of the even permutations}
+
+\notation{$A_{n}$}
+
+\ex{}
+
+\prop{Order}{when a permutation is written as a composition of disjoint cycles, its order is the least common multiple of the lengths of the cycles}
+
+\section{Groups}
+
+\defn{Binary Operation}{ $f : X \times X \to X$}
+
+\example{ The operations of addition, subtraction and multiplication in  $\real$}
+
+\nota{ $+ , \times, \circ , \ast$ \scriptsize{(and several more)}}
+
+\rem{It is important to define the set being operated on by the binary operator}
+
+\example{ $m \ast n = m^{n}$ is a binary operation in $\real$ , but not in $\z$. \\Take $n = -1$ , then we get $m^{-1} = \frac{1}{m}$ , which does not satisfy the definition, since $-1 \in \z$ but $\frac{1}{m} \not\in \z , \forall \, m \neq |1|$}
+
+\defn{Group}{Let $G$ be a set and let $\ast$ be a binary operation on $G$. Then, the pair $(G,\ast)$ is a group \ita{iff} 
+
+\begin{enumerate}
+	\item $\forall x,y,z \in G$ we have $(x \ast y) \ast z = x \ast (y \ast z)$ \qquad \texttt{Associativity Law} 
+	\item There is an element $e \in G$ such that $x \ast e = e \ast x = x\ \forall x \in G$ \qquad \texttt{Identity} 
+	\item There is an element $y \in G$ such that $x \ast y = y \ast x = e\ \forall x \in G$ \qquad \texttt{Inverse} 
+\end{enumerate}
+}
+
+\rem{The group operation is often called \ita{product}}
+
+\rem{Usually one says that ''$G$ \ita{is a group}'', omitting the $\ast$}
+
+\rem{In a group where the operator is understood as addition, for all $x$ one represents the identity element by $0$ and its inverse by $-x$}
+
+\rem{In general, $e = 1$ and $x^{-1}$ represents the inverse}
+
+\example{Show that the pair $(\z,+)$ is a group \\
+
+\par{Let $m,n \in \z$. Then $n+m \in \z$ , so the binary operation of addition is defined on $\z$. Now note that,}
+
+\begin{enumerate}
+	\item Let $p,q,r \in \z$ . Then, we have (p+q) + r = p + (q+r) \checkmark
+	\item $0 \in \z$ , such that $0 + n = n + 0 = n \forall\ n \in \z$ . Hence, $0$ is the identity element \checkmark
+	\item Let $n \in \z$ . Then, $-n \in \z$ and $n + (-n) = (-n) + n = 0$. hence, $-n \in \z$ and $-n$ is the inverse of $n$ \checkmark
+\end{enumerate}
+}
+
+\todo*{Read up on fields}\extra{Extra}{Fields}{}
+
+\defn{Abelian}{$G$ for which $x \ast y = y \ast x \forall\ x,y \in G$}
+
+\defn{Order}{$|G|$}
+
+\subsection{Subgroups}
+
+\defn{Subgroup}{a subset $H$ of $G$ with satisfies the following: 
+\begin{enumerate}
+	\item $\forall x,y \in H$ we have $x \ast y =\in H$
+	\item $e \in H$ 
+	\item If $x \in H$ , then $x^{-1} \in H$
+\end{enumerate}
+
+}
+
+\nota{$H \leq G$ , $H \subseteq G$}
+
+\rem{$e_{H} = e_{G}$ }
+
+\rem{If $H \neq G$ , then H is a \ita{proper subgroup}}
+
+\nota{$H < G$ , $H \subset G$}
+
+\example{$(\z , +) < (\real ,  +)$}
+
+\example{Show that the alternating group on $n$ elements of $A$ , $A_{n}$, is a subgroup of the symmetric group $(S_{n},\circ)$
+
+\begin{enumerate}
+	\item For $\sigma, \tau \in A_{n}$ we have that $$\sigma\tau \in A_{n} \because \mathop{sgn}(\sigma\tau) =  \mathop{sgn}(\sigma) \mathop{sgn}(\tau) = (1)(1) \implies \text{Even} \ \checkmark$$ 
+	\item $Id \in S_{n}$ and $ \mathop{sgn}(Id) = 1$ , since $Id = (1)(2) \dots (n)$ \checkmark
+	\item $ \mathop{sgn}(\sigma) = 1$ and $ \mathop{sgn}(\sigma) \mathop{sgn}(\sigma^{-1}) =  \mathop{sgn}(Id) = 1$ \checkmark
+\end{enumerate}
+}
+
+\section{Isometries of the Plane}
+
+\subsection{Introduction}
+
+\subsubsection{Vector Geometry Essentials - Revision Level 1}
+
+\subsubsection{Generalities and Examples}
+
+\defn{Isometry}{a transformation $\Phi$ on the plane, such that the distance between any two points remains unchanged. Formally, for $\Phi : \real^{2} \to \real^{2}$ $$\mathop{d}(
+\Phi(P),\Phi(Q)) = \mathop{d}(Q,P) , \quad \forall\; P,Q \in \real^{2}$$
+}
+
+\newpage
+\todos
+\end{document}
