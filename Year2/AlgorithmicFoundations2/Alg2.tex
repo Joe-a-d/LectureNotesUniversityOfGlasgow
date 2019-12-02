@@ -180,7 +180,7 @@ $p$ & $q$ &  & ( & $\lnot$ & $q$ & $\land$ & ( & $p$ & $\rightarrow$ & $q$ & ) &
 
 \subsection{Constructing a Proof Tree}
 
-\par{Continuing with the example above, we can construct a \ita{proof tree}, where each \ita{leaf} is composed of axioms - the premises, and theconclusion sits at the \ita{root}}
+\par{Continuing with the example above, we can construct a \ita{proof tree}, where each \ita{leaf} is composed of axioms - the premises, and the conclusion sits at the \ita{root}}
 
 \todo{slide 33}
 
@@ -188,9 +188,64 @@ $p$ & $q$ &  & ( & $\lnot$ & $q$ & $\land$ & ( & $p$ & $\rightarrow$ & $q$ & ) &
 
 
 
+\newpage
+
+\section{Induction and Recursive Definitions}
+
+\defn{Kleene Star}{is a unary operation on strings or , more generally , sets of symbols}
+
+\nota{$V^{\ast}$ , where $V$ is the set being operated on}
 
 
 \newpage
+
+\section{Graphs}
+
+\par{See 2P notes \url{https://github.com/Joe-a-d/LectureNotesUniversityOfGlasgow/tree/master/Year2/Graphs\&Networks/2P.pdf}}
+
+\begin{itemize}
+	\item Fundamentals
+	\item Isomorphism
+	\item Eulerian 
+	\item Hamiltonian
+\end{itemize}
+
+\example{ How many simple undirected graphs are there with 20 vertices and 60 edges? \\
+
+\par{For every pairs of vertices one has a possible edge, hence $K_{20}$ has ${20\choose2} = 190$ edges  For a  graph  to  have  $60$  edges  we  need  to  choose  $60$  out  of  $190$  possible  edges.  The number of graphs therefore equals ${190\choose60} = \frac{190!}{60!30!}
+$}
+}
+\section{Relations}
+
+\defn{Binary Relation}{for two sets $A , B$ , $R \subseteq A \times B$ , where each element of $R$ is the set of related ordered pairs $(a,b) $ for $a \in A , b \in B$  . We say that \ita{``a is related to b by $R$''}}
+
+\par{We can also represent relations as graphs, where the nodes are the individual elements of $A,B$ present in $R$, and its edges are the ordered pairs}
+
+\example{Take $A = 1,2,3,4$ and $R = a | b $ for $a , b \in A $. In this case $R$ operates over the same set, hence $R \subseteq A \times A$. Now let $G(V,E)$ be the graph representing this relation then :
+
+$$V = \{1,2,3,4\} \text{   and   } E=\{(1,1),(1,2),(1,3),(1,4),(2,2),(2,4),(3,3),(4,4) $$
+
+\IfFileExists{relationGraph.png}{}{\write18{wget https://cdn.mathpix.com/snip/images/kjGI8Fl8m-lGFWL8E0dg77jv7-AN1UAEKTuinYhTPEI.original.fullsize.png -O relationGraph.png}}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\textwidth]{relationGraph.png}
+\end{figure}
+
+\rem{Relations are not exclusively binary , for a relation between $n$ sets we have a set $R$ of $n-$tupples}
+
+\subsection{Properties}
+
+\begin{itemize}
+	\item[] Reflexive : $a \in A \implies (a,a) \in R $
+	\item[] Symmetric $a , b \in A , a \neq b \text{ and } (a,b) \in R \implies (b,a) \in R$
+	\item[] Anti-Symmetric $a , b \in A , a \neq b \text{ and } (a,b) \in R \implies (b,a) \not\in R$
+	\item[] Transitive $a , b , c \in A , a \neq b \neq c \; (a,b) , (b,c) \in R \implies (a,c) \in R$
+\end{itemize}
+
+\defn{Equivalence Relation}{$R$ is an equivalence relation \ita{iff} it is reflexive, symmetric and transitive}
+
+\example{Take $(a,b) \in R \iff ``a$ is strictly taller than $b$'' , i.e $\mathop{height}(a) > \mathop{height}(b)$  . Then, (1) $R$ is not reflexive, since $\mathop{height}(a) = \mathop{height}(a)$ (2) $R$ is not symmetric given that $b$ is strictly smaller (not taller) than $a$ , $\mathop{height}(b) < \mathop{height}(a)$ (3) $R$ is anti-symmetric since, $\mathop{height}(b) < \mathop{height}(a)$. Finally (4) $R$ is transitive since if $a$ is taller than $b$ and $b$ is taller than $c$ then $a$ is taller than $c$}
+
 
 
 \todo{add bib: Truth Tables : Michael Rieppel ``mrieppel '' @https://github.com/mrieppel/TruthTableGenerator}
