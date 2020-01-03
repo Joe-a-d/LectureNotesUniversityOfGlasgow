@@ -11,73 +11,17 @@
 \dateend{04}{12}{2019}
 \place{University of Glasgow}
 
- %%%%% GENERAL MATHEMATICAL NOTATION SHORTCUTS %%%%%
- 
-\newcommand{\n}{\mathbb{N}}
-\newcommand{\z}{\mathbb{Z}}
-\newcommand{\q}{\mathbb{Q}}
-\newcommand{\cx}{\mathbb{C}}
-\newcommand{\real}{\mathbb{R}}
-\newcommand{\field}{\mathbb{F}}
-\newcommand{\ita}[1]{\textit{#1}}
-\newcommand{\oneton}{\{1,2,3,...,n\}}
-\newcommand\ef{\ita{f} }
+%%%%%%%%%%%% BIB CONFIG %%%%%%%%%%%%%%%
+\usepackage[backend=biber, style=reading]{biblatex} 
 
-\newcommand\inv[1]{#1^{-1}}
-\newcommand\setb[1]{\{#1\}}
-\newcommand\en{\ita{n }}
-\renewcommand\qedsymbol{QED} %QED instead of square
-\newcommand\handleft{\HandCuffLeft}
-\newcommand\handright{\HandCuffRight}
-
-%MATRICES
-\usepackage{todo,float}
-\usepackage[delims={[]}]{spalign}
-\let\mat=\spalignmat
-\let\amat=\spalignaugmat
-\let\vec=\spalignvector
-
-%%%%%%%%%%OPERATORS
-
-
-
-%%%%%%%%%%%%%%%%%%
-% row ops
-\newcommand\ro[2]{\xrightarrow[#2]{#1}}
-
-\setlength\parindent{0pt}
-%%%%%%%%%%%%%%%%PACKAGES%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\usepackage{lipsum}  
-
-\usepackage{amsmath,amsthm,amssymb,graphicx,mathtools,tikz} %maths
-\usepackage{hyperref,framed,color,fancybox} %layout
-\usepackage[backend=biber, style=reading]{biblatex} %bibliography
 \bibliography{} %add bib file name
 
+%%%%%%%%%%% LAYOUT  %%%%%%%%%%%%%%%
+
 \renewcommand{\abstractname}{\vspace{3\baselineskip}} %hack to remove abstract
-\usepackage{bbding} %dingbats  for signposting
 
-% framed :  \begin{shaded,frame,snugshade or leftbar} \definecolor{shadecolor}{rgb}{XYZ} to change color
-%fancybox: \shadowbox,ovalbox or doublebox
-%\extra for Extra content layout box
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%CLASS SHORTCUTS%%%%
-%\lecture{day}{month}{year} for margin note 
-%\begin{theorem} sdfsdf\end{theorem}  --> \theorem
-%\begin{proposition} dfsdfs\end{proposition} --> \prop
-%\begin{lemma} dsfsd \end{lemma} --> \lem
-%\begin{corollary} f ffew \end{corollary}
-%\begin{definition} fwewef w \end{definition} --> \defn
-%\begin{example} feww e\end{example} --> \ex
-%\begin{exercise} wefwe \end{exercise}
-%\begin{remark} wef we \end{remark} --> \rem
-%\begin{fact} wefe \end{fact}
-%\begin{problem} wef ew \end{problem}
-%\begin{conjecture} ewfew \end{conjecture}
-%\begin{claim} few w \end{claim}
-%\begin{notation} fewf \end{notation} --> \nota
-%\mymarginpar for scriptsize margin
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
@@ -194,18 +138,20 @@
 	      
 	      \rem{In sum , if any vector within a vector set can be rewritten as a linear combination of any other vector within the same set. Then that vector is redundant, and the set is linearly dependent.}
 	      
-	      \rem{Note that $S = \text{span}(\vc{w} , \vc{z} , \vc{v}) = \text{span}(\vc{w} , \vc{z})$ , since as noted above $\vc{v}$ is redundant because it is accounted for by $\lambda\vc{w} + \theta\vc{z}$}
-	      
-	     \mymarginpar{$dim(P)$ is the dimension of the vector space e.g. $dim(R^{3}) = 3$} \mymarginpar{V can be represented by a matrix}\extra{Cheatsheet: Does $V$ span $P$? }{
-	      \rule{\textwidth}{1pt}
+	      \rem{Note that $S = \text{span}(\vc{w} , \vc{z} , \vc{v}) = \text{span}(\vc{w} , \vc{z})$ , since as noted above $\vc{v}$ is redundant because it is accounted for by $\lambda\vc{w} + \theta\vc{z}$}  
+	      	      
+	    \extra{Cheatsheet:}{ Does $V$ span $P$? }{
 	      	Where V is a vector set $\vc{v_{1}}, \dots, \vc{v_{n}}$, and P is a vector space $R^{n}$ \\ 
 		\vphantom{.} \\
 	      			 Check that $V\vc{x} = \vc{p}$ , for arbitrary $\vc{p} \in P $ \\
 	      			 Check that $rk(V) = dim(P)$ %\todo{ADD REF TO RANK SEC4} \\
-				 Check that $V$ contains the standard basis. If it does, then it must contain all of $P$
-	  
-			} 
-	      	
+		  		 Check that $V$ contains the standard basis. If it does, then it must contain all of $P$
+			}       	
+			
+			\mymarginpar{\\ $dim(P)$ is the dimension of the vector space e.g. $dim(R^{3}) = 3$} 
+			\mymarginpar{V can be represented by a matrix}
+
+			
 		\subsection{Inverse}
 		
 		\defn{Non-Singular}{If there exists $A'$ such that $A'A = I$ and $AA' = I$}
@@ -272,7 +218,7 @@ $$	       \begin{aligned} A^{2} X B A &=A B \\ A^{2} X B A &=A B \\ A^{-2} A^{2}
 	      	
 		
 		\extra{Computation}{
-		Express an invertible matrix as a product of elementary matrices
+		Express an invertible matrix as a product of elementary matrices}{
 		\begin{enumerate}
 			\item Write down the augmented matrix $A | I$
 			\item Apply subsequent  EROs , until $ I | A^{-1}$ . Taking note of each ERO
@@ -284,7 +230,7 @@ $$	       \begin{aligned} A^{2} X B A &=A B \\ A^{2} X B A &=A B \\ A^{-2} A^{2}
 		
 		\subsection{Spaces}
 		
-	      	\defn{Space}{}
+	      	\defn{Space}{lk}
 	      	
 	      	\par{Informally, a space is a set of vectors composed of all possible linear combinations of all vector(s) in that space. In other words, I can choose one or more vectors in that space and I can add and multiply them and never leave that space. Crucially, this must include a way to get back to the origin, hence the $0$ vector must be part of every space.}
 	      	

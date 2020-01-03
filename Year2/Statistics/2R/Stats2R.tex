@@ -13,7 +13,6 @@
 \place{University of Glasgow}
 
  %%%%% GENERAL MATHEMATICAL NOTATION SHORTCUTS %%%%%
- 
 \newcommand{\n}{\mathbb{N}}
 \newcommand{\z}{\mathbb{Z}}
 \newcommand{\q}{\mathbb{Q}}
@@ -70,7 +69,6 @@
 %\mymarginpar for scriptsize margin
 
 \begin{document}
-
 \begin{abstract}
 \par{These lecture notes were collated by me from a mixture of sources , the two main sources being the lecture notes provided by the lecturer and the content presented in-lecture. All other referenced material (if used) can be found in the \ita{Bibliography} and \ita{References} sections.}
 \par{The primary goal of these notes is to function as a succinct but comprehensive revision aid, hence if you came by them via a search engine , please note that they're not intended to be a reflection of the quality of the materials referenced or the content lectured.}
@@ -219,7 +217,7 @@ following Axioms of Probability laid down by \ita{Kolmogorov (1933)}}
  \item~\label{itm:ax1} $0 \leq P(E) \leq 1$ , for any event $E \subseteq S$ 
  \item~\label{itm:ax2} $P(S) = 1$ 
  \item~\label{itm:ax3}  $P(E_{1} \cup E_{2}) = P(E_{1}) + P(E_{2})$ if $E_{1} \cap E_{2} = \emptyset$ \mymarginpar{note that~\ref{itm:ax3} is a special case of~\ref{itm:ax4} where $E_{i>2} = \emptyset$}
- \item~\label{itm:ax4} If $\bigcup_{i=1}^{n}E_{i} = \emptyset$ , then $P(\bigcup_{i=1}^{n}E_{i}) = \sum_{i=1}^{n} P(E_{i})$ 
+ \item~\label{itm:ax4} If $\bigcap_{i=1}^{n}E_{i} = \emptyset$ , then $P(\bigcup_{i=1}^{n}E_{i}) = \sum_{i=1}^{n} P(E_{i})$ 
  \end{enumerate}
  \end{itemize}
  
@@ -336,7 +334,24 @@ L.H.S = P\Bigg(\bigcup_{i=1}^{n+1}E_{i}\Bigg) &= P\Bigg(\bigcup_{i=1}^{n}E_{i}\B
 
 \defn{Probability Mass Function}{list of probabilities associated with each of its possible values.  $p_{x}(x) = P(X = x) , x \in \real$ , such that $0 \leq p_{x}(X) \leq 1 , x \in \real$ and $\sum_{x \in R_{x}} p_{x}(x) =1$}
 
+\par{In essence, \ita{p.m.f} maps all the possible discrete values a random variable could take on, and maps them to their probabilities}
+
 \rem{$p_{x}(x) = 0 , \ \forall \ x \not\in R_{x}$}
+
+\mymarginpar{ \ita{weighted} just means that one takes into consideration their likelihood/probability}
+
+\defn{Expect Value / Mean}{the sum of the weighted possible values for $X$ $$\mu = E(X) = \sum_{x \in S}^{n} x p(x)$$}
+
+\defn{Variance}{a measure of the spread of the possible values $$\sigma^{2} = E\left[(X - \mu)^{2}\right]$$ 
+
+Where $E(X^{2})$ corresponds to the sum of the weighted possible values squared, i.e. 
+
+$$E\left[X^{2}\right]=\sum_{x \in S} x^{2} \cdot p(x)$$
+
+Therefore,
+
+$$ \begin{aligned} \sigma^{2} &=\sum_{x \in S}\left[x^{2} \cdot p(x)\right]-\mu^{2} \\ &=\sum_{x \in S}\left[x^{2} \cdot p(x)\right]-\left[\sum_{x \in S} x \cdot p(x)\right]^{2} \end{aligned}$$
+}
 
 \rem{It is common to represent p.m.f as the set of pairs $\set{(x , p_{x}(x)) , x \in R_{x}}$}
 
@@ -366,8 +381,36 @@ L.H.S = P\Bigg(\bigcup_{i=1}^{n+1}E_{i}\Bigg) &= P\Bigg(\bigcup_{i=1}^{n}E_{i}\B
 
 \rem{For continuous distributions, $P(X=x)=0$, so the expressions $P(X \leq x) = P(X < x)$}
 
+\rem{Note that by definition of $\mu$ and c.d.f , we have $\mu = F_{X}(x)= \frac{1}{2}$ . We want the value for which $X \leq \frac{1}{2} \equiv X = \frac{1}{2}$}
 
-\todo{Computing prob from distr}
+
+\par{ The c.d.f can be expressed as the integral of its p.d.f} 
+
+$$F_{X}(x)=\int_{-\infty}^{x} f_{X}(t) d t$$
+
+\par{For $X$ within a range, we have}
+
+$$\mathrm{P}(a<X \leq b)=F_{X}(b)-F_{X}(a) = \int_{a}^{b} f_{X}(t) dt$$
+
+\example{ Take a distribution with the p.d.f $f_{X}(x) = \frac{2}{a}-\frac{2}{a^{2}} x, \quad 0<x<a$ . Then, }
+
+\prop{Median}{ $x$ such that $F_{X}(x) = \frac{1}{2}$}
+
+\par{More generally, given the definition of c.d.f, given $F_{X}(x)$ we can find the quartile of a given distribution by finding the $x$ which gives the desired cut-off point. For more complex distributions, which cannot be integrated in closed form, $x$ can be read from tables of numerical approximations}
+
+\defn{Percentile}{$\varepsilon_{k} = F_{X}(x) \geq \frac{k}{100}$ , as discussed above, given the continuous nature of the variable $F_{X}(x) \geq \frac{k}{100}$}
+
+\rem{Note that is just the same as asking for the cut-off point for quartiles, the $\frac{1}{100}$ is just a convention in order for quantiles to be expressed as percentages. e.g , median = $\varepsilon_{50} = \frac{50}{100} = \frac{1}{2} $}
+
+\defn{Quantile Function}{$F_{X}^{-1}(x)$}
+
+
+\defn{Mean}{$E(X) = \int_{a}^{b} xf_{X}(x)$}
+
+\defn{Variance}{$\mathop{Var}(X) = [E(X^{2}) - E(X)^{2}]$ , where 
+
+$$E(X^{2}) =  \int_{a}^{b} x^{2}f_{X}(x)$$}
+
 
 
 \subsubsection{Normal}
@@ -418,6 +461,7 @@ $E(X) = -1 \; ; \; \mathop{Var}(X) = 0.25 \; ; \; \sigma = 0.5 \; ; \; P(X < \va
 
 \todo*{\url{https://en.wikipedia.org/wiki/Experiment_(probability_theory)}}
 \todo*{\url{https://www3.nd.edu/~dgalvin1/10120/10120_S16/Topic09_7p2_Galvin.pdf}}
+\todo*{\url{https://socratic.org/questions/how-do-you-use-a-probability-mass-function-to-calculate-the-mean-and-variance-of}}
 \todos
 
 
