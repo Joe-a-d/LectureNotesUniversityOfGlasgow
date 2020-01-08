@@ -18,11 +18,11 @@ The modified version I'm using can be found in this repo [here](https://github.c
 
 Shadowed Box           |  SMatrices & EROs
 :-------------------------:|:-------------------------:
-<img src="/box.png" alt="Extra Material Box" width=400px height=200px> |  <img src="/mat.png" alt="Extra Material Box" width=300px height=100px/>
+<img src="media/box.png" alt="Extra Material Box" width=400px height=200px> |  <img src="media/mat.png" alt="Extra Material Box" width=301px height=100px/>
 
 
 
-The original can be found at Stefano Maggiolo's personal blog [here](http://blog.poormansmath.net/files/notes.cls). I would also highly recommend checking his posts on LaTeX "best-practices".
+The original can be found at Stefano Maggiolo's personal blog [here](http://blog.poormansmath.net/files/notes.cls), aling an interesting read on LaTeX "best-practices".
 
 **N.B:** Besides the mods to Stefano's class, I've also included some shortcuts to common mathematical symbols, which can be found in the preamble of the tex files.
 
@@ -30,4 +30,4 @@ The original can be found at Stefano Maggiolo's personal blog [here](http://blog
 - Bold Vectors
 - Code Font Environment
 - Algorithm Environment
-
+- Insert image from url 

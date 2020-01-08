@@ -4,7 +4,6 @@
 \RequirePackage[nodayofweek]{datetime}
 
 %%% Options
-% Language (english,italian)
 \DeclareOption{english}{
   \newcommand{\notes@lang}{english}
   \newdateformat{usvardate}{\monthname[\THEMONTH] \ordinal{DAY}, \THEYEAR}
@@ -23,20 +22,72 @@
   \newcommand{\notes@conjecturename}{conjecture}
   \newcommand{\notes@claimname}{claim}
   \newcommand{\notes@notationname}{notation}
-  \newcommand\defn[2]{\begin{definition}{\textbf{#1} {#2}}\end{definition}}
-  \newcommand\theorem[1]{\begin{theorem}#1\end{theorem}}
- \newcommand\nota[1]{\begin{notation}#1\end{notation}}
- \newcommand\rem[1]{\begin{remark} #1 \end{remark}}
- \newcommand\ex[1]{\begin{example} #1\end{example}}
- \newcommand\lem[1]{\begin{lemma} #1 \end{lemma}}
- \newcommand\claim[1]{\begin{claim} #1 \end{claim}}
- \newcommand\prop[2]{\begin{proposition}{\textbf{#1}}{#2}\footnotesize{ (see proof below)}\end{proposition}}
- \newcommand\extra[2]{\shadowbox{
-\parbox{\textwidth}{\textbf{#1} \\ #2}}}
-\newcommand\proofs[1]{\begin{proof} \hphantom{.} #1\end{proof}}
-\newcommand\vc[1]{\mathbf{#1}}
-\newcommand\placeholder{\includegraphics[width=\textwidth]{example-image-a}}
-}
+  
+    %%%%%%%%%%%%%%%%% LAYOUT & CONTAINERS %%%%%%%%%%%%%%%%%%%%%%
+	
+     \newcommand\placeholder{\includegraphics[width=\textwidth]{example-image-a}} %PALCEHOLDER
+     
+     \newcommand\handleft{\HandCuffLeft}
+     \newcommand\handright{\HandCuffRight}
+     \setlength\parindent{0pt}
+     
+      \newcommand\extra[3]{\shadowbox{
+	\parbox{\textwidth}{\textbf{#1}{\ #2} \\ \rule{\textwidth}{1pt} \\   #3}}}
+     
+  
+  %%%%%%%%%%%%%%%%% List Definitions %%%%%%%%%%%%%%%%%%%%%%
+  \newcommand{\printDefn}{\defnlist\gdef\defnlist{}}
+  \newcommand\defnlist{} 
+  \newcommand\defn[2]{\begin{definition}{\textbf{#1} {#2}}\end{definition} 
+        \g@addto@macro{\defnlist}{\item \textbf{#1} \space : \space #2}
+        }
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+  %%%%%%%%%%%%%%%%% List Theorems %%%%%%%%%%%%%%%%%%%%%%
+   \newcommand{\printThm}{\thmList\gdef\thmList{}}
+   \newcommand\thmList{} 
+   \newcommand\theo[1]{\begin{theorem}#1\end{theorem}}
+        \g@addto@macro{\thmList}{\item \textbf{#1} \space : \space #2}
+        }
+  %%%%%%%%%%%%%%%%% OTHER THEOREM ENVS %%%%%%%%%%%%%%%%%%%%%
+  
+  \newcommand\nota[1]{\begin{notation}#1\end{notation}}
+  \newcommand\rem[1]{\begin{remark} #1 \end{remark}}
+  \newcommand\ex[1]{\begin{example} #1\end{example}}
+  \newcommand\lem[1]{\begin{lemma} #1 \end{lemma}}
+  \newcommand\prop[2]{\begin{proposition}{\textbf{#1}}{#2}\end{proposition}}
+  \newcommand\proofs[1]{\begin{proof} \hphantom{.} #1\end{proof}}
+  
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%%%%% CS ENVS %%%%%%%%%%%%%%%%%%%%%
+ 
+  
+  
+  %%%%%%%%%%%%%%%%%%  OPERATORS & MATH NOTATION  %%%%%%%%%%%%%%%%%%%%
+   
+   
+   \newcommand\vc[1]{\mathbf{#1}}
+   \newcommand\set[1]{\{#1\}}
+    \newcommand{\n}{\mathbb{N}}
+    \newcommand{\z}{\mathbb{Z}}
+    \newcommand{\q}{\mathbb{Q}}
+    \newcommand{\cx}{\mathbb{C}}
+    \newcommand{\real}{\mathbb{R}}
+    \newcommand{\field}{\mathbb{F}}
+    \newcommand{\ita}[1]{\textit{#1}}
+    \newcommand{\oneton}{\{1,2,3,...,n\}}
+    \newcommand\ef{\ita{f} }
+    \newcommand\inv[1]{#1^{-1}}
+    \newcommand\setb[1]{\{#1\}}
+    \newcommand\en{\ita{n }}
+    \newcommand\qedsymbol{QED} %QED instead of square
+    
+    
+
+    
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 
 
@@ -116,11 +167,13 @@
 \ifthenelse{\isundefined{\notes@type}}{\ExecuteOptions{course}}{}
 \ifthenelse{\isundefined{\notes@lang}}{\ExecuteOptions{english}}{}
 
-%%% Common macroes
-\RequirePackage[table,xcdraw]{xcolor}
+%%%%%%%%%%%%%%%%  PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \RequirePackage[pdftex,colorlinks,linkcolor=black,urlcolor=black,citecolor=black]{hyperref}
 \RequirePackage{fancyhdr}
+\RequirePackage{framed,color,fancybox}
 \RequirePackage{tikz}
+\RequirePackage{bbding}
 \usetikzlibrary{arrows}
 \usetikzlibrary{patterns}
 \usetikzlibrary{shapes}
@@ -129,7 +182,7 @@
 \RequirePackage[osf,sc]{mathpazo}
 \linespread{1.05} % Palatino
 \RequirePackage{amsfonts}
-\RequirePackage{amsthm}
+\RequirePackage{amsthm , amsmath , mathtools}
 \RequirePackage{amsxtra}
 \RequirePackage{amssymb}
 \RequirePackage{mathdots}
@@ -147,10 +200,13 @@
 \RequirePackage{mparhack}
 \RequirePackage{booktabs}
 \RequirePackage{multirow}
-
+\RequirePackage{todo,float}
 \RequirePackage{Commons}
+\RequirePackage[linesnumbered,ruled,vlined]{algorithm2e}
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \delimitershortfall=5pt
 
@@ -212,8 +268,8 @@
 \renewcommand{\cftsecpagefont}{\normalfont}%
 \setcounter{secnumdepth}{2}
 \setcounter{tocdepth}{2}
-\ifthenelse{\equal{\notes@type}{seminar}}{\renewcommand{\thesubsection}{\arabic{subsection}}}{}  
-\ifthenelse{\equal{\notes@type}{talk}}{\renewcommand{\thesubsection}{\arabic{subsection}}}{}  
+\ifthenelse{\equal{\notes@type}{seminar}}{\renewcommand{\thesubsection}{\arabic{subsection}}}{}
+\ifthenelse{\equal{\notes@type}{talk}}{\renewcommand{\thesubsection}{\arabic{subsection}}}{}
 
 \renewcommand{\descriptionlabel}[1]{\hspace*{\labelsep}\smallcaps{#1}}
 
@@ -274,7 +330,7 @@
   \ifthenelse{\isundefined{\notes@email}}{\email{}}{}
   \ifthenelse{\isundefined{\notes@speaker}}{\speaker{}}{}
   \ifthenelse{\isundefined{\notes@conference}}{\conference{}}{}
-  \ifthenelse{\isundefined{\notes@place}}{\place{}}{}  
+  \ifthenelse{\isundefined{\notes@place}}{\place{}}{}
   \hypersetup{
     pdftitle={\@title},
     pdfsubject={\notes@subject},
