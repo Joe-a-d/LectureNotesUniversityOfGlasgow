@@ -1,6 +1,7 @@
 draft*
 .*
 !.gitignore
+!*.bib
 *.aux
 *.lof
 *.log
