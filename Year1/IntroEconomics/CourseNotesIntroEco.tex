@@ -3,7 +3,7 @@
 %% CLASS AUTHOR Stefano Maggiolo %%
 
 
-\documentclass[english,course]{Notes}
+\documentclass[english,course,draft]{Notes}
 \title{ INTRODUCTORY ECONOMICS}
 \subject{Economics}
 \author{Joao Almeida-Domingues}
@@ -27,48 +27,9 @@
 
 
 
- %%%%% GENERAL MATHEMATICAL NOTATION SHORTCUTS %%%%%
- 
-\newcommand{\n}{\mathbb{N}}
-\newcommand{\z}{\mathbb{Z}}
-\newcommand{\q}{\mathbb{Q}}
-\newcommand{\cx}{\mathbb{C}}
-\newcommand{\real}{\mathbb{R}}
-\newcommand{\field}{\mathbb{F}}
-\newcommand{\ita}[1]{\textit{#1}}
-\newcommand{\oneton}{\{1,2,3,...,n\}}
-\newcommand\ef{\ita{f} } 
-\newcommand\inv[1]{#1^{-1}}
-\newcommand\setb[1]{\{#1\}}
-\newcommand\en{\ita{n }}
-\renewcommand\qedsymbol{QED} %\qedhere to force QED in place
-\newcommand{\TODO}[1]{\mymarginpar{TODO: #1}}
-
-%%%%%%%%%%%%%%%%PACKAGES%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{amsmath,amsthm,amssymb} %maths
-\usepackage{hyperref,framed,color} %layout
-% framed :  \begin{shaded,frame,snugshade or leftbar} \definecolor{shadecolor}{rgb}{XYZ} to change color
-%fancybox: \shadowbox,ovalbox or doublebox
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%CLASS SHORTCUTS%%%%
-%\lecture{day}{month}{year} for margin note
-%\begin{theorem} sdfsdf\end{theorem}
-%\begin{proposition} dfsdfs\end{proposition}
-%\begin{lemma} dsfsd \end{lemma}
-%\begin{corollary} f ffew \end{corollary}
-%\begin{definition} fwewef w \end{definition}
-%\begin{example} feww e\end{example}
-%\begin{exercise} wefwe \end{exercise}
-%\begin{remark} wef we \end{remark}
-%\begin{fact} wefe \end{fact}
-%\begin{problem} wef ew \end{problem}
-%\begin{conjecture} ewfew \end{conjecture}
-%\begin{claim} few w \end{claim}
-%\begin{notation} fewf \end{notation}
-
 \begin{document}
 \newpage
+
 
 \section{Microeconomics}
 
@@ -836,7 +797,9 @@ $$AC = \frac{TC}{Q}$$
 
 \par{In sum: increasing output has two opposing effects on AC:}
 
-\defn{Spreading Effect}{ The larger the output, the greater the quantity of outputover which \ita{fixed cost is spread}, leading to lower average fixed cost.}\defn{Diminishing Returns Effect}{The larger the output, the \ita{greater the amount of variable input required} to produce additional units, leading to higher average variable cost.}
+\defn{Spreading Effect}{ The larger the output, the greater the quantity of output
+over which \ita{fixed cost is spread}, leading to lower average fixed cost.}
+\defn{Diminishing Returns Effect}{The larger the output, the \ita{greater the amount of variable input required} to produce additional units, leading to higher average variable cost.}
 
 \defn{Minimum-Cost Output}{The quantity of output that corresponds to the minimum AC}
 
@@ -886,13 +849,16 @@ $$AC = \frac{TC}{Q}$$
 \section{Perfect Competition}
 \lecture{07}{02}{19}
 
-\defn{Price-TakingProducer/Consumer}{A producer/consumer whose actions have no effect on the market price of the good or service it sells.}
+\defn{Price-Taking
+Producer/Consumer}{A producer/consumer whose actions have no effect on the market price of the good or service it sells.}
 
 \defn{Perfectly Competitive Market}{Market in which all market participants are price-takers.}
 
 \defn{Perfectly Competitive Industry is an industry in which producers are price-takers}
 
-\rem{The supply and demand model, is a model of a perfectly competitive market. Itdepends fundamentally on the assumption that no individual buyer or seller believes that it is possible to affectthe price at which he or she can buy or sell the good.}
+\rem{The supply and demand model, is a model of a perfectly competitive market. It
+depends fundamentally on the assumption that no individual buyer or seller believes that it is possible to affect
+the price at which he or she can buy or sell the good.}
 
 \subsection{Necessary Conditions for Perfect Competition}
 
@@ -933,7 +899,8 @@ $$\boxed{MR = MC}$$
 
 \rm{In a competitive market MR = Market Price}
 
-\defn{Price-Taking Firm's Optimal Output Rule }{A price-takingfirm's profit is maximized by producing the quantity of output at which the market price is equal to the marginal cost of the last unit produced. $P = MC$}
+\defn{Price-Taking Firm's Optimal Output Rule }{A price-taking
+firm's profit is maximized by producing the quantity of output at which the market price is equal to the marginal cost of the last unit produced. $P = MC$}
 
 \subsubsection{Profitability}
 
@@ -1150,7 +1117,8 @@ $$\boxed{MR = MC}$$
 
 \defn{Social Optimal Quality of X}{the quantity of X that an informed society would choose if all the costs and benefits of pollution were fully accounted for}
 
-\par{A common example is pollution, even though there are no benefits to polluting, a certain amount of pollution is necessary to provide us with essential commodities which we can read as its MSB. At high levels of pollution, the cost of achieving a reduction in pollution is fairly small. However, as pollution levels drop, it becomes progressively more costlyto engineer a further fall in pollution as more expensive techniques must be used, so the MSB is higher at lower levels of pollution. Hence, the argument is that the resources needed to achieve a $0$ amount of pollution is counter productive, hence SOQ is not necessarily 0}
+\par{A common example is pollution, even though there are no benefits to polluting, a certain amount of pollution is necessary to provide us with essential commodities which we can read as its MSB. At high levels of pollution, the cost of achieving a reduction in pollution is fairly small. However, as pollution levels drop, it becomes progressively more costly
+to engineer a further fall in pollution as more expensive techniques must be used, so the MSB is higher at lower levels of pollution. Hence, the argument is that the resources needed to achieve a $0$ amount of pollution is counter productive, hence SOQ is not necessarily 0}
 
 \par{However, the current market levels of pollution are far from optimal. Why? Because, similarly to our analysis of Monopolies, the costs inferred by society as a whole are converted into profits for firms. This means that as a whole the MSC end up being higher than its MSB, which necessarily means that pollution market rate is inefficient. A mutual beneficial trade is being overlooked, in particular the fact that people would be happy to pay extra for the polluter to reduce emissions}
 
@@ -1177,7 +1145,13 @@ $$\boxed{MR = MC}$$
 
 \par{We can differentiate goods , using this 2 dimensional criteria , into 4 different kinds}
 \begin{enumerate}
-	\item Private goods : excludable and rival in consumption like wheat\item Public goods : non-excludable and nonrival in consumption, like apublic sewer system\item Common resources: non-excludable but rival in consumption, likeclean water in a river\item Artificially scarce goods: excludable but nonrival in consumption,like on-demand movies on Netflix
+	\item Private goods : excludable and rival in consumption like wheat
+\item Public goods : non-excludable and nonrival in consumption, like a
+public sewer system
+\item Common resources: non-excludable but rival in consumption, like
+clean water in a river
+\item Artificially scarce goods: excludable but nonrival in consumption,
+like on-demand movies on Netflix
 \end{enumerate}
 
 \par{Markets are only good at supplying private goods, because non-excludable goods favour everyone, even consumers who are not willing to pay for them. Hence, firms will not be motivated to improve the service, given that the supply/demand model  breaks down}
@@ -1215,17 +1189,26 @@ $$\boxed{MR = MC}$$
 
 \par{As the name indicates , it focuses on the economy as a whole}
 
-\defn{Self-Regulating}{problems such as unemploymentare resolved without governmentintervention, through the working ofthe invisible hand}
+\defn{Self-Regulating}{problems such as unemployment
+are resolved without government
+intervention, through the working of
+the invisible hand}
 
-\defn{Keynesian}{economic slumps arecaused by inadequate spending, andthey can be mitigated by governmentintervention through monetary and/or fiscal policies}
+\defn{Keynesian}{economic slumps are
+caused by inadequate spending, and
+they can be mitigated by government
+intervention through monetary and/or fiscal policies}
 
-\defn{Monetary Policy}{uses changes in the quantity of money to alterinterest rates, which in turn affect the level of overall spending}
+\defn{Monetary Policy}{uses changes in the quantity of money to alter
+interest rates, which in turn affect the level of overall spending}
 
 \defn{Fiscal Policy}{uses changes in taxes and government spending to affect overall spending.}
 
 \subsection{Business Cycle}
 
-\defn{Business Cycle}{short-runalternation between recessions andexpansions.}
+\defn{Business Cycle}{short-run
+alternation between recessions and
+expansions.}
 
 \defn{Recession}{Periods of economic downturn, where output and output are falling}
 
@@ -1244,26 +1227,39 @@ $$\boxed{MR = MC}$$
 \defn{Price Stability}{When inflation/deflation is nill or close to nill}
 
 \par{Price stability is paramount to governments, because sudden  inflation and deflation have nefarious consequences to society as a whole.}
-\par{Inflation discourages people from holding onto cash, because the amount ofgoods and services you can buy with a given amount of cash falls. While deflation has the opposite effect}
+\par{Inflation discourages people from holding onto cash, because the amount of
+goods and services you can buy with a given amount of cash falls. While deflation has the opposite effect}
 
 \subsection{Economic Indicators}
 
-\defn{National Accounts}{keep track of the flows of moneybetween different sectors of theeconomy}
+\defn{National Accounts}{keep track of the flows of money
+between different sectors of the
+economy}
 
 \par{We can keep tabs on a nation accounts using the circular-flow diagram we've used for industries. We start with the natural assumption that whatever money goes into the global economy must remain in it, and we can then probe into a nation's analysis by balancing the flow of money within and outside of it (e.g. trade with other nations)}
-\par{In order to do this we split trading entities into four main categories \ita{ households, firms, government, and therest of the world} and we examine the flow of money through 3 types of markets \ita{the factormarkets, the markets for goods and services, and thefinancial markets} }
+\par{In order to do this we split trading entities into four main categories \ita{ households, firms, government, and the
+rest of the world} and we examine the flow of money through 3 types of markets \ita{the factor
+markets, the markets for goods and services, and the
+financial markets} }
 
 \includegraphics[width=0.9\textwidth]{macroFlow}
 
 \subsubsection{GDP and CPI}
 
-\defn{Intermidiate Goods/Services}{goods/services (boughtfrom one firm by another firm) thatare inputs for production of finalgoods and services (e.g. steel, factors of production)}
+\defn{Intermidiate Goods/Services}{goods/services (bought
+from one firm by another firm) that
+are inputs for production of final
+goods and services (e.g. steel, factors of production)}
 
 \defn{Final Goods/Services}{goods/services sold to the end user (e.g. car)}
 
 
-\defn{Gross Domestic Product}{the total value of all finalgoods and services produced in theeconomy during a given year}
-\par{ The most important use of GDP is as a measure of the size of the economy,providing us a scale against which to measure the economic performance ofother years or to compare the economic performance of other countries}
+\defn{Gross Domestic Product}{the total value of all final
+goods and services produced in the
+economy during a given year}
+\par{ The most important use of GDP is as a measure of the size of the economy,
+providing us a scale against which to measure the economic performance of
+other years or to compare the economic performance of other countries}
 
 \par{Since the flow of money is circular the GDP can be calculated in one out of 3 ways, depending where it is more convenient to look}
 
@@ -1273,34 +1269,62 @@ $$\boxed{MR = MC}$$
 	\includegraphics[width=0.7\textwidth]{GDP}
 	
 	\par{Note that we make sure to count only the added value for each firm, in this way we avoid double counting the value of intermediate goods (e.g. steel as raw material and steel in car)}
-		\item adding up spending on all domestically produced goods and services
 	
-	\par{Keeping in mind the circular flow of money nationwide now, we should expect every unit of currency spent within the country in whatever form it takes place (households, firms, government, and therest of the world exports) to go to other national entity in one way or another, unless imports from other countries were needed. Hence:}
+	\item adding up spending on all domestically produced goods and services
+	
+	\par{Keeping in mind the circular flow of money nationwide now, we should expect every unit of currency spent within the country in whatever form it takes place (households, firms, government, and the
+rest of the world exports) to go to other national entity in one way or another, unless imports from other countries were needed. Hence:}
 	
 	\begin{tabbing}
   GDP  \== Internal Spending - External Spending\\
   \>= [Consumer Spending + Investments + Bonds + Exports] - Imports
   	\end{tabbing}
-		\item adding up total factor income earned by households from firms in the economy
+	
+	\item adding up total factor income earned by households from firms in the economy
 \end{enumerate}
 
 \subsubsection{Real Vs Nominal GDP}
 
-\par{good way to compare the size ofdifferent economies, but it?s not a good measure of the economy?s growth overtime. GDP can grow because the economy grows, but it can also grow simplybecause of inflation. Even if an economy?s output doesn?t change, GDP will goup if the prices of the goods and services the economy produces have increased.}
+\par{good way to compare the size of
+different economies, but it?s not a good measure of the economy?s growth over
+time. GDP can grow because the economy grows, but it can also grow simply
+because of inflation. Even if an economy?s output doesn?t change, GDP will go
+up if the prices of the goods and services the economy produces have increased.}
 
-\defn{Aggregate Output}{The economy?stotal quantity of output of final goodsand services}
+\defn{Aggregate Output}{The economy?s
+total quantity of output of final goods
+and services}
 
-\defn{Real GDP}{the total value of allfinal goods and services producedin the economy during a given year,calculated using the prices of aselected base year.}
+\defn{Real GDP}{the total value of all
+final goods and services produced
+in the economy during a given year,
+calculated using the prices of a
+selected base year.}
 
-\defn{Nominal GDP}{the value of allfinal goods and services producedin the economy during a given year,calculated using the prices currentin the year in which the output isproduced}
+\defn{Nominal GDP}{the value of all
+final goods and services produced
+in the economy during a given year,
+calculated using the prices current
+in the year in which the output is
+produced}
 
 \defn{GDP per Capita}{Used to compare economy sizes between nations, since higher GDP means nothing if a country has a significantly higher population}
 
 \subsubsection{Price Indexes}
 
-\defn{Aggregate Price Level}{Ameasure of the overall level of pricesin the economy.}
-\defn{Market Basket}{Hypotheticalset of consumer purchases of goodsand services.}
-\defn{Price Index}{Measures the costof purchasing a given market basketin a given year, where that cost isnormalized so that it is equal to 100in the selected base year (i.e. percentual )}
+\defn{Aggregate Price Level}{A
+measure of the overall level of prices
+in the economy.}
+
+\defn{Market Basket}{Hypothetical
+set of consumer purchases of goods
+and services.}
+
+\defn{Price Index}{Measures the cost
+of purchasing a given market basket
+in a given year, where that cost is
+normalized so that it is equal to 100
+in the selected base year (i.e. percentual )}
 
 $$PI_{n} = \frac{\text{cost year n}}{\text{cost base year}} \ \times 100$$
 
@@ -1318,7 +1342,9 @@ $$I = \frac{PI_{2} - PI_{1}}{PI_{1}} \times 100$$
 
 \includegraphics[width=0.5\textwidth]{CPI2}
 
-\defn{GDP Deflator}{for a given year is100 times the ratio of nominal GDPto real GDP in that year}
+\defn{GDP Deflator}{for a given year is
+100 times the ratio of nominal GDP
+to real GDP in that year}
 
 $$GDP\% = \frac{NGDP}{RGDP} \times 100 $$
 
@@ -1340,11 +1366,15 @@ $$LFPR = \frac{LB}{\text{Working Age Pop}} \times 100$$
 
 $$UR = \frac{U}{LF} \times 100$$
 
-\par{The UR is good indicator of how easy or difficult it isto find a job given the current state of the economy. Like most single indicators it does translate directly to reality}
+\par{The UR is good indicator of how easy or difficult it is
+to find a job given the current state of the economy. Like most single indicators it does translate directly to reality}
 \par{It can overstate the true level of unemployment, for example people who are switching between jobs need time to apply and go through the interviewing process, and decide to quit to have more time to focus on the process. Note that this was a conscious decision, and they are not unemployed due to lack of jobs.
 \par{ On the other hand it can also understate unemployment, for example someone that stops looking for a job after a while since there are no job available, i.e it falls out of the ``4 week search'' criteria - \ita{discouraged workers}}
 
-\defn{Discouraged Workers}{nonworking people who are capableof working but have given up lookingfor a job given the state of the jobmarket}
+\defn{Discouraged Workers}{nonworking people who are capable
+of working but have given up looking
+for a job given the state of the job
+market}
 
 \defn{Underemployed}{People who work part-time because they cant find full-time jobs}
 
@@ -1352,16 +1382,28 @@ $$UR = \frac{U}{LF} \times 100$$
 
 \par{In general there has been a negative relationship between economic growth and the unemployment rate, in particular if we take the rule-of-thumb that for output to grow firms need more workers, to be true. It is however important to note that this is not necessarily the case, as we've seen if a company improves its means of production the opposite might be true (e.g. automation)}
 
-\defn{Jobless Recovery}{A period inwhich the real GDP growth rate ispositive but the unemployment rateis still rising}
+\defn{Jobless Recovery}{A period in
+which the real GDP growth rate is
+positive but the unemployment rate
+is still rising}
 
 \subsubsection{Natural Rate of Unemployment}
 
-\par{Some unemployment is natural (lower bound throughout the years), given that continual job creation and destruction are a feature ofmodern economies, making a naturally occurring amountof unemployment inevitable. However, in order to know how to intervene economists find it useful to classify as 3 separate forms}
+\par{Some unemployment is natural (lower bound throughout the years), given that continual job creation and destruction are a feature of
+modern economies, making a naturally occurring amount
+of unemployment inevitable. However, in order to know how to intervene economists find it useful to classify as 3 separate forms}
 
 \begin{enumerate}
-	\item Frictional : isunemployment due to the timeworkers spend in job search. (e.g. a skilled worker whose company has filed for bankruption
-	\item Structural : more people are seeking jobs in aparticular labor market than there arejobs available at the current wagerate, even when the economy is atthe peak of the business cycle. These are commonly cause by good incentives (e.g. wages above market value) that are made to attract the best, but also attract a greater number of people who will necessarily not get the job 
-	\item Cyclical : deviation of the actual rate of unemployment from thenatural rate which arises from the downturns of the business cycle
+	\item Frictional : is
+unemployment due to the time
+workers spend in job search. (e.g. a skilled worker whose company has filed for bankruption
+	\item Structural : more people are seeking jobs in a
+particular labor market than there are
+jobs available at the current wage
+rate, even when the economy is at
+the peak of the business cycle. These are commonly cause by good incentives (e.g. wages above market value) that are made to attract the best, but also attract a greater number of people who will necessarily not get the job 
+	\item Cyclical : deviation of the actual rate of unemployment from the
+natural rate which arises from the downturns of the business cycle
 \end{enumerate}
 
 \par{(1) and (2) together form \ita{natural unemployment}, they are just a consequence of the nature of the job markets. We can measure \ita{actual unemployment} by adding to it the cyclical unemployment brought by the cyclical nature of business}
@@ -1391,13 +1433,18 @@ $$I\% = \frac{PI_{2} - PI_{1}}{PI_{1}} \times 100$$
 
 \par{If inflation rates are wrongly predicted, this will cause some to shoulder most of the costs of inflation whilst others to profit from it.}
 
-\defn{Interest Rate}{eturn a lender receives for allowingborrowers the use of their savings for one year, calculated as a percentage of theamount borrowed}
+\defn{Interest Rate}{eturn a lender receives for allowing
+borrowers the use of their savings for one year, calculated as a percentage of the
+amount borrowed}
 
 \defn{Nominal Interest Rate}{the interest rate in dollar terms}
 
-\defn{Real Interest Rate}{the nominal interest rateminus the rate of inflation}
+\defn{Real Interest Rate}{the nominal interest rate
+minus the rate of inflation}
 
-\par{Now note that at the time of the agreement, what a dollar mean might change drastically due to inflation. Say, for example that a loan carries an interest rate of $8\%$,but there is $5\%$ inflation, the real interest rate is $8\% ? 5\% = 3\%$. If the actual inflation rate ishigher than expected, borrowers gain at the expense of lenders}
+\par{Now note that at the time of the agreement, what a dollar mean might change drastically due to inflation. Say, for example that a loan carries an interest rate of $8\%$,
+but there is $5\%$ inflation, the real interest rate is $8\% ? 5\% = 3\%$. If the actual inflation rate is
+higher than expected, borrowers gain at the expense of lenders}
 
 \par{Bringing inflation down once it becomes significantly high, can lead to high levels of unemployment. 
 Because \ita{deflation} is very difficult and costly once a higher rate of inflation has become well established in the economy}
