@@ -1,0 +1,156 @@
+\section{Analysis Techniques} 
+
+\key{running time}{experimental analysis}{theoretical analysis}{primitive operations}{growth rate of running time}{Big-Oh}
+
+		\defn{Data Structure}{is a systematic way of organising and accessing data}
+
+		\defn{Algorithm}{is a step-by-step procedure for performing some task in a finite amount of data}
+
+		\defn{Running Time}{is the amount of time it takes an algorithm to execute in full}
+
+		\par{The main criteria used to compare different algorithms are running time and memory usage. In general the running time of an algorithm increases with the
+		input size, and may vary depending on the hardware and software environments on which it is run. When comparing algorithms one aims to control those variables
+		and express a relation between their run times and inputs via some function}
+
+\subsection{Experimental Analysis vs Theoretical Analysis}
+
+		\par{One way to study the efficiency of an algorithm is to run an empirical study. The dependent and independent variables are set, several trials are run a
+		with appropriate inputs and then a statistical analysis is carried out on the output of the experiments.}
+
+		%INSERT PLOT p.141
+
+		%\caption{The plot above compares two algorithms for string concatenation in Java.}
+
+		\par{\mymarginpar{Drawbacks}Though the experiment itself is relatively straightforward to run (once the algorithm is implemented), the analysis can be quite quite complicated to
+		perform. Especially given that it can be hard to know which inputs are appropriate to use and , more importantly , given that fully implementing a complex algorithm is hard
+		work and time-consuming. Hence, if possible a higher-level analysis is performed, if an algorithm can be deemed to be inferior by application of theoretical
+		methods then no experimental analysis is required}
+
+
+\par{So, when developing theoretical methods of analysis one's goal is to overcome the drawbacks mentioned above in order to achieve the following:}
+
+\begin{enumerate}
+	\item System Independence
+	\item Input Coverage
+	\item High-Level Description
+\end{enumerate}
+
+\subsubsection{Primitive Operations}
+
+\defn{Primitive Operations}{are \ita{low-level} instructions with constant execution time (e.g. variable assignment, function call)}
+
+\par{In order to express running time as a function of input size we use primitive operations, which are identifiable from abstract implementations (like
+pseudocode) and taken to have a constant time of completion. In this way, one can compare the total number $t$ of ops for a given implementation, since by
+assuming a constant time for all ops one can assume that the total running time will be \ita{proportional} to $t$} 
+
+\par{Ideally the average of all possible inputs would be used to characterize a given algorithm. However,finding the average often involves finding an
+		appropriate distribution for the sample inputs. Hence, we characterize it instead in terms of its \ita{worst case} input which is far easier to
+		identify. }
+\rem{Another advantage is that minimising for the worst case by definition implies that we're optimising the running time for all other possible
+inputs}
+
+\subsection{Common Functions}
+
+\par{This relation between input and running time is often expressed in terms of one of the following 7 functions}
+
+\subsubsection{Constant}
+
+	\par{The simplest function of them all is the constant function which simply
+	assigns a given constant $c$ to any input $n$ . It is particularly useful,
+	since it allows us to express the \ita{number of steps} needed to perform a basic
+	operation}
+	
+	$$f(n) = c , \forall n \in \text{ input set }$$
+
+	\rem{The essential constant functions if $g(n) = 1$ given that we can
+	express any other constant function in the form $g(n)f(n)$}
+
+\subsubsection{Logarithm}
+
+	\par{The logarithmic function, in particular $\log_2$ , pops up all the
+	time. A logarithmic runtime is characterized by larger differences in
+	runtime for smaller inputs, with a significant decrease for larger inputs.}
+
+	\defn{ceiling (of $x$)}{the smallest integer greater than x}
+
+	\nota{$\lceil x \rceil$}
+
+	\par{We can think of the ceiling function as an approximation of x. We can
+			use it in a similar manner to approximate any given algorithm. By
+			definition $\log_b(x)$ is just the power to which $b$ has to be
+			raised to give $x$. Hence, we define $\lceil\log_b x\rceil$ as the
+	smallest number for which $b$ has to be raised so that it includes $x$. So,
+	we can divide repeatedly divide $x$ by $b$ until we get a number less or
+	equal to 1} 
+	
+	\ex{ $\lceil\log_{2}12\rceil = 4$ since $2^3 < 12 < 2^4$} 
+
+\subsubsection{Linear}
+
+	\par{The linear function assigns the input to itself. It is useful to
+	characterize single basic operations on $n$ elements}
+
+	$$f(n) = n$$
+
+\subsubsection{N-Log-N}
+
+	\par{For any given input $n$ it assigns $n$ times $\log(n)$}
+
+	$$f(n) = n\log(n)$$
+
+\subsection{Quadratic}
+
+	\par{The quadratic function appears primarily in algorithms with nested
+			loops, since the inner loop performs an operation $n$ times and the
+	outer loop will repeat each loop a \ita{linear} number of times}
+
+	$$f(n) = n^2$$
+
+\subsubsection{Polynomials}
+
+\par{A more general class which subsumes the quadratic ($d=2$), linear ($d=1$)
+		and constant ($d=0$) functions, where $d$ is the degree of the
+		polynomial which corresponds to the largest exponent in the polynomial
+		expression. In general, polynomials with lower degrees have better
+running times}
+
+$$f(n) = \sum_{i=0}^{d} a_{i}n^{i}$$
+
+\subsubsection{Exponential}
+
+	\par{Exponential time polynomials are generally the worst-case running time
+			for an algorithm, since they grow very rapidly. As an example, take
+			a loop which doubles the number of operations it performs with every
+			iteration. Then, the total number of operations it performs will be
+	$2^n$}
+
+
+\subsection{Growth Rates}
+
+
+	\par{If we take $f(n)$ to be the function which gives the total number of
+			operations in the \ita{worst-case}, and $a\;z$ to be the time taken
+			by the fastest and slowest primitive op , respectively. Then, the
+			worst-case running time $T(n)$ for the algorithm is bounded by the two
+	linear functions $af(n);zf(n)$ , i.e}
+
+	$$af(n) \leq T(n) \leq bf(n)$$
+
+	\par{Note that the growth rate of the worst-case running time is an
+			intrinsic property of the algorithm which is not affected by by
+	hardware or software environments. These factors affect $T(n)$ by a constant
+	factor. Hence, when running an analysis one can \texbf{disregard} constant
+	and lower-degree terms}
+
+	\rem{Ideally we want operations on data structures to run in times
+			proportional to the constant or log functions, and algorithms to run
+	in linear or n-log-n}
+
+\placeholder{Ch4.151}
+
+
+\subsection{Big-Oh Notation}
+
+
+
+	
