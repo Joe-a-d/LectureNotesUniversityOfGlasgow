@@ -1,0 +1,60 @@
+
+\section{Modelling}
+
+\lecture{13}{01}{20}
+	\key{Object}{Encapsulation}{Polymorphism}{Inheritance}{Abstraction}{Class}{Methods}{Attributes}{End-User}
+
+	\par{This course will focus on the basic concepts of OOP. The main idea
+being that one can model real world objects as abstractions in software. We take
+the object's attributes and functions and convert them into a single entity
+consisting of data and methods which operate on that data}
+
+\subsection{3 Principles of OOP}
+
+	\defn{Encapsulation}{when data and operations exist within the same entity}
+	\defn{Inheritance}{classes can inherit attributes and methods from other
+classes}
+	\defn{Polymorphism}{ability of an entity to take many forms}
+
+	\par{As seen in JP2, the data and methods are defined within the class, and
+are often protected from outside access unless via getter and setters. If a
+class is a subset of another class then it inherits all (or most) of its
+behaviours and attributes and so it can be \ita{subclassed}. This ability of the
+superclass to take many forms depending on which child is called is one of the
+crucial aspects of OOP. When methods are \ita{overridden} by child class a
+method of an object reference to a superclass is invoked at compile time, and it
+is later dispatched to the overridden of the specific class instance at run time} 
+
+\subsection{OO Design}
+
+	\par{Software design relies on a symbiotic relation between the end-user and
+the designer. Often one is given a spec/problem statement by a client, or given
+a certain user story (recall HCI:1F) and from there the designer will use its
+modelling knowledge to interpret it in the light of OOP paradigms}
+	
+\begin{enumerate}
+	\item Identify real world objects (look at the nouns in the spec)
+	\item Identify relationships between objects
+		\begin{enumerate}
+			\item[] Generalization : Abstract common features (e.g \ita{move})
+			\item[] Containment : Object A $\subseteq$ B (e.g \ita{Dog} $\subset$
+					\ita{Animal})
+			\item[] Multiplicity : Quantity relation (e.g Dog (1)
+					$\leftrightarrow$ (Many) Paws)
+		\end{enumerate}
+	\item{Identify operations and associate them with objects (this is usually
+		done by looking at the verbs in the spec)}
+	\item{Create an Interface}
+		\begin{itemize}
+			\item[]{it is essentially a contract which guaranteed that each object
+					represented by a given class will behave in a specified manner}
+			\item[]{it must include a \ita{return type} ,
+\ita{purpose/description} , \ita{pre-conditions} , i.e what must be true prior
+to the method being called , \ita{post-conditions} , what must be true when
+returning}
+		\end{itemize}
+		\item{Object Encapsulation , which describes how objects communicate
+		via operations and how this affects the end-user} 
+\end{enumerate}
+
+
