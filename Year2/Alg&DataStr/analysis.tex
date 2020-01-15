@@ -35,7 +35,6 @@
 	\item High-Level Description
 \end{enumerate}
 
-\subsubsection{Primitive Operations}
 
 \defn{Primitive Operations}{are \ita{low-level} instructions with constant execution time (e.g. variable assignment, function call)}
 
@@ -139,18 +138,64 @@ $$f(n) = \sum_{i=0}^{d} a_{i}n^{i}$$
 	\par{Note that the growth rate of the worst-case running time is an
 			intrinsic property of the algorithm which is not affected by by
 	hardware or software environments. These factors affect $T(n)$ by a constant
-	factor. Hence, when running an analysis one can \texbf{disregard} constant
+	factor. Hence, when running an analysis one can \textbf{disregard} constant
 	and lower-degree terms}
 
 	\rem{Ideally we want operations on data structures to run in times
 			proportional to the constant or log functions, and algorithms to run
 	in linear or n-log-n}
 
-\placeholder{Ch4.151}
-
+	
+	\begin{figure}[H] 
+\begin{center} 
+\includegraphics[width=\textwidth]{growth.png} 
+\end{center} 
+\end{figure}  
 
 \subsection{Big-Oh Notation}
 
 
 
-	
+		\defn{Big-Oh Notation}{we say that \ita{"$f(n)$ is big-Oh of $g(n)$"} if
+		$\exists c \in \real s.t f(n) \leq cg(n)$ , for $n \geq n_0$}	
+
+		\notation{$f(n) is O\left(g(n)\right)$}
+		\par{In essence we make use of the fact that growth run time is not affected by
+				constant factors, and encode this into function notation. In effect
+				bounding the function after a given input size $n_0$ by another
+		function ; i.e $f(x)$ is strictly less than or equal to $g(x)$ up to to a
+		constant factor and in the \ita{asymptotic sense}. Hence, we can use $g(x)$ to
+		approximate/characterize $f(x)$}
+
+		\par{We want this relation to be expressed in the simplest terms possible. Obviously it is easy to find such a function if one aims for the moon, i.e
+				clearly $3n^2 + 2$ is $O(n^{10})$ this is however not very useful.
+				Instead, simplifying the first expression by getting read of constant
+				factors , we see that we can be sure that it is for sure $O(n^2) < O(n^{10})$,
+		which is therefore a better approximation}
+
+		\rem{We want the \ita{simplest} expression of the class of bounding functions
+				($n^{2}$ Vs $4n^{2}$) and the \ita{smallest} possible class ($n^{2}$ Vs
+		$n^{10}$)}
+
+		\proposition{}{For any polynomial $p(n)$ of degree $d$ , $p(n) \in
+		O\left(n^d\right)$}
+
+\subsection{Big-Omega \& Big-Theta}
+
+		\defn{$\Omega\left(n\right)$}{$f(n) \geq cg(n)$}
+
+		\defn{$\Theta\left(n\right)$}{$c\prime g(n) \leq f(n) \leq c\prime\prime g(n)$}
+
+		\par{Similarly to $O\left(n\right)$ , these provide upper and upper+lower bounds
+		respectively}
+
+
+		\begin{figure}[H] 
+		\begin{center} 
+				\includegraphics[width=\textwidth]{big.png} 
+		\caption{Asymptotic Notation
+		\url{shorturl.at/xAFQ1}} 
+		\end{center} 
+		\end{figure}  
+		
+			
