@@ -1,4 +1,4 @@
-\section{Analysis Techniques} 
+\section{Analysis Techniques}
 
 \key{running time}{experimental analysis}{theoretical analysis}{primitive operations}{growth rate of running time}{Big-Oh}
 
@@ -40,7 +40,7 @@
 
 \par{In order to express running time as a function of input size we use primitive operations, which are identifiable from abstract implementations (like
 pseudocode) and taken to have a constant time of completion. In this way, one can compare the total number $t$ of ops for a given implementation, since by
-assuming a constant time for all ops one can assume that the total running time will be \ita{proportional} to $t$} 
+assuming a constant time for all ops one can assume that the total running time will be \ita{proportional} to $t$}
 
 \par{Ideally the average of all possible inputs would be used to characterize a given algorithm. However,finding the average often involves finding an
 		appropriate distribution for the sample inputs. Hence, we characterize it instead in terms of its \ita{worst case} input which is far easier to
@@ -58,7 +58,7 @@ inputs}
 	assigns a given constant $c$ to any input $n$ . It is particularly useful,
 	since it allows us to express the \ita{number of steps} needed to perform a basic
 	operation}
-	
+
 	$$f(n) = c , \forall n \in \text{ input set }$$
 
 	\rem{The essential constant functions if $g(n) = 1$ given that we can
@@ -80,9 +80,9 @@ inputs}
 			raised to give $x$. Hence, we define $\lceil\log_b x\rceil$ as the
 	smallest number for which $b$ has to be raised so that it includes $x$. So,
 	we can divide repeatedly divide $x$ by $b$ until we get a number less or
-	equal to 1} 
-	
-	\ex{ $\lceil\log_{2}12\rceil = 4$ since $2^3 < 12 < 2^4$} 
+	equal to 1}
+
+	\ex{ $\lceil\log_{2}12\rceil = 4$ since $2^3 < 12 < 2^4$}
 
 \subsubsection{Linear}
 
@@ -138,26 +138,29 @@ $$f(n) = \sum_{i=0}^{d} a_{i}n^{i}$$
 	\par{Note that the growth rate of the worst-case running time is an
 			intrinsic property of the algorithm which is not affected by by
 	hardware or software environments. These factors affect $T(n)$ by a constant
-	factor. Hence, when running an analysis one can \textbf{disregard} constant
+	factor. Hence, when running an asymptotic analysis one can \textbf{disregard} constant
 	and lower-degree terms}
 
 	\rem{Ideally we want operations on data structures to run in times
 			proportional to the constant or log functions, and algorithms to run
 	in linear or n-log-n}
 
-	
-	\begin{figure}[H] 
-\begin{center} 
-\includegraphics[width=\textwidth]{growth.png} 
-\end{center} 
-\end{figure}  
+	\defn{Asymptotic Analysis}{analysing how the running time of an algorithm
+			increases with the size of the input \ita{in the limit}, as the size
+	of the input increases with the bound}
+
+	\begin{figure}[H]
+		\begin{center}
+		\includegraphics[width=\textwidth]{growth.png}
+		\end{center}
+	\end{figure}
 
 \subsection{Big-Oh Notation}
 
 
 
 		\defn{Big-Oh Notation}{we say that \ita{"$f(n)$ is big-Oh of $g(n)$"} if
-		$\exists c \in \real s.t f(n) \leq cg(n)$ , for $n \geq n_0$}	
+		$\exists c \in \real s.t f(n) \leq cg(n)$ , for $n \geq n_0$}
 
 		\notation{$f(n) is O\left(g(n)\right)$}
 		\par{In essence we make use of the fact that growth run time is not affected by
@@ -180,6 +183,30 @@ $$f(n) = \sum_{i=0}^{d} a_{i}n^{i}$$
 		\proposition{}{For any polynomial $p(n)$ of degree $d$ , $p(n) \in
 		O\left(n^d\right)$}
 
+		\proposition{}{$T_1(n) \in O(f(n)) , T_2(n) \in O(g(n)) \implies T_1(n)
+		+ T_2(n) \in O(max(f(n),g(n)))$}
+
+		\proposition{}{$T_{1}(n) \in O(f(n))$ and $T_{2}(n) \in O(g(n)) \implies
+		T_{1}(n)T_{2}(n) = O(f(n)g(n))$}
+
+		\proof{$T_{1}T_{2} = klf(n)g(n)$ , for constants $k,l$ . Hence, ignoring
+		the constants we have the expected result}
+
+		\prop{$T(n) = (\log n)^k \implies T(n) = O(n)$}
+
+		\proof{$$T(n) \in O(f(n)) \iff \lim_{n\to\infty}(T(n) / f(n)) = 0)$$
+		 \par{By \ita{L'Hopital's},  }$$lim_{n\to\infty}(f(n) / g(n)) =
+				lim_{n\to\infty}(f\prime(n) / g\prime(n))$$
+
+				\par{Take $f(n) = (\log n)^{k+1}$ and $g(n) = n$. Then, by
+						induction on $k$ , $$(\log n)^1 = \log n \in O(n) \text{ and } (\log n)^k \in O(n)$$}
+
+				\par{Hence, $$\lim_{n\to\infty}\left(\frac{(\log n)^{k+1}}{n}\right) = 0$$
+						$$\lim_{n\to\infty}\left(\frac{(\log n)^{k+1}}{n}\right) =
+				\lim_{n\to\infty}\left(\frac{(k+1)(\log n)^k}{n}\right) = 0$$}
+
+				\par{Therefore, the result follows by induction}
+		}
 \subsection{Big-Omega \& Big-Theta}
 
 		\defn{$\Omega\left(n\right)$}{$f(n) \geq cg(n)$}
@@ -190,12 +217,71 @@ $$f(n) = \sum_{i=0}^{d} a_{i}n^{i}$$
 		respectively}
 
 
-		\begin{figure}[H] 
-		\begin{center} 
-				\includegraphics[width=\textwidth]{big.png} 
+		\begin{figure}[H]
+		\begin{center}
+				\includegraphics[width=\textwidth]{big.png}
 		\caption{Asymptotic Notation
-		\url{shorturl.at/xAFQ1}} 
-		\end{center} 
-		\end{figure}  
-		
-			
+		\url{shorturl.at/xAFQ1}}
+		\end{center}
+		\end{figure}
+
+\subsection{Computing Running Times}
+
+	\par{The following, follows from the propositions above}
+
+	\begin{enumerate}
+			\item\textbf{Loops : } at most the running time of its contents times
+					the number of iterations
+			\item\textbf{Nested Loops : } it should be analysed inside out. Take
+					the runtime of the expression and multiply it by the product
+					of of the sizes of all the loops
+			\item\textbf{Consecutive Statements : } add
+			\item\textbf{If-then-else : } at most the time of the test condition
+					with the maximum of the running times of the two branches
+	\end{enumerate}
+
+	\example{
+
+		\begin{lstlisting}
+			sum = 0;
+			for (i=1; i<=n; i++)
+				sum += n;
+		\end{lstlisting}
+
+
+
+	\par{See more examples
+	\href{https://opendsa-server.cs.vt.edu/ODSA/Books/CS2/html/AnalProgram.html}{here}}
+	}
+\subsubsection{Analysis of Insertion-Sort}
+	\example{Insertion-Sort \\
+	\begin{algorithm}[H]
+	\DontPrintSemicolon
+	\SetAlgoLined\KwData{Array of integers : A}
+	\SetKwFunction{KwFn}{Insert}
+	\KwResult{Permutation of A such that A[0] $\leq$ A[1] $\leq \dots$ A[n-1] }
+	\KwFn{A}\\
+	\For{$j=1$ \KwTo $n-1$}{\tcc*[r]{$n$}
+	    key := A[j]\tcc*[r]{$n-1$}\;
+	    i := j-1\tcc*[r]{$n-1$}\;
+	    \While{$i \geq 0$ {\bf and} $A[i] > key$}{\tcc*[r]{$\sum_{1}^{n-1}t_j$}
+	        A[i+1] := A[i]\tcc*[r]{$\sum_{1}^{n-1}(t_{j}-1)$}\;
+	        i := i-1\tcc*[r]{$\sum_{1}^{n-1}(t_{j}-1)$}\;
+	    }
+	    A[i+1] := key\tcc*[r]{$n-1$}\;
+	}
+		\caption{Insertion-Sort}
+	\end{algorithm}
+	\vspace{3mm}
+	\par{Hence, summing the individual operations $$T(n) = n + (n-1) + (n-1)  + \sum_{1}^{n-1}t_{j} + \sum_{1}^{n-1}(t_{j}-1) + \sum_{1}^{n-1}(t_{j}-1) + (n-1)$$ }
+
+	\par{\textbf{Best Case:} $A$ is already sorted , which means that the while loop is never executed and $t_j = 1$. Hence,
+	$$ T(n) = n + (n-1) + (n-1)  + (n-1) + 0 + 0 + (n-1) = O(n)$$}
+
+	\par{\textbf{Worst Case:} At every iteration we shift $j$ elements : $t_j = j$. So,
+		$$\sum_{1}^{n-1}t_{j} = \sum_{1}^{n-1}j = \frac{n(n-1)}{2} = O(n^2)$$
+		$$\sum_{1}^{n-1}t_{j}-1 = \sum_{1}^{n-1}(j-1) = \frac{n(n-1)}{2} - (n-1) = O(n^2)$$
+		Hence,
+		$$T(n) = n + (n-1) + (n-1)  + O(n^2) + O(n^2) + O(n^2) + (n-1) = O(^2)$$
+	}
+}
