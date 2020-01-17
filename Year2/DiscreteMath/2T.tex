@@ -1,0 +1,83 @@
+
+%% CLASS MANUAL FOUND IN http://blog.poormansmath.net/latex-class-for-lecture-notes/ %%
+%% CLASS AUTHOR Stefano Maggiolo %%
+
+%%%%%%%%%%%%%%%  TITLE PAGE  %%%%%%%%%%%%%%%%%%%
+\documentclass[english,course]{Notes}
+\title{2T}
+\subject{Discrete Mathematics}
+\author{Joao Almeida-Domingues}
+\email{2334590D@student.gla.ac.uk}
+\speaker{Dr Christian Korff}
+\date{13}{01}{2020}
+\dateend{25}{03}{2020}
+\place{University of Glasgow}
+
+
+%%%%%%%%%%%% BIB CONFIG %%%%%%%%%%%%%%%
+\usepackage[backend=biber, style=reading]{biblatex} 
+
+\bibliography{2T} %add bib file name
+
+%%%%%%%%%%% LAYOUT  %%%%%%%%%%%%%%%
+
+\renewcommand{\abstractname}{\vspace{3\baselineskip}} %hack to remove abstract
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%% KEEP HERE (conflict when in class) %%%%%%%%%%%%%%%%%%%%
+
+ %%%%%MATRICES
+    
+    \let\mat=\spalignmat
+    \let\amat=\spalignaugmat
+    \let\vec=\spalignvector
+    
+%%%%%% row ops
+    \newcommand\ro[2]{\xrightarrow[#2]{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%  PACKAGES (NOT INCLUDED IN CLASS) %%%%%%%%%%%%%%
+\usepackage[delims={[]}]{spalign}
+
+%%%%%%%%%%%%%%%% ALGORITHM TEMPLATE %%%%%%%%%%%%%%%%%%%%
+
+%\begin{algorithm}[H]
+%\SetAlgoLined\KwData{this text}
+%\KwResult{how to write algorithm with \LaTeX2e }initialization\;
+%\While{not at end of this document}
+%	{read current\;\eIf{understand}{go to next section\;current section becomes this one\;}{go back to the beginning of current section\;}}
+%	\caption{How to write algorithms}
+%\end{algorithm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%  DISCLAIMER  %%%%%%%%%%%%%%%%%%%%%
+
+\begin{abstract}
+	\par{These lecture notes were collated by me from a mixture of sources , the two main sources being the lecture notes provided by the lecturer and the 
+content presented in-lecture. All other referenced material (if used) can be found in the \ita{Bibliography} and \ita{References} sections.}
+	\par{The primary goal of these notes is to function as a succinct but comprehensive revision aid, hence if you came by them via a search engine , please note 
+that they're not intended to be a reflection of the quality of the materials referenced or the content lectured.}
+	\par{Lastly, with regards to formatting, the pdf doc was typeset in \LaTeX , using a modified version of Stefano Maggiolo's \href{http://blog.poormansmath.net/
+latex-class-for-lecture-notes/}{\underline{\textcolor{blue}{class}}}}
+\end{abstract}
+\newpage
+
+%%%%%%%%%%%%% LECTURES %%%%%%%%%%%%%%%%%%%%%%%
+
+\include{counting}
+
+
+
+%%%%%%%%%%%%%%  BIBLIOGRAPHY  %%%%%%%%%%%%%%%%%%%
+\newpage
+\nocite{*}
+\printbibliography
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

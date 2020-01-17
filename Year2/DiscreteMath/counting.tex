@@ -1,0 +1,63 @@
+
+\section{Sets}
+
+	\rem{This topic has been covered in length on other courses. See 2F, 2R
+notes}
+
+	\key{set}{cardinality}{subset}{union}{intersection}{complement}{cartesian
+product}{domain}{codomain}{image}{injective}{surjective}{bijective}{set
+operations}
+
+\section{Basic Counting Principles}
+
+	\rem{Most of this has also been covered in 2R. It is partially presented here with a
+greater emphasis on the cardinalities of sets. See 2R for more}
+
+	\key{sample space}{event}{$\sigma$-algebra}{Borel $\sigma$-algebra}{distribution}{Kolmogrov
+axioms}{probability rules}{power set}{conditional probability}{Bayes' theorem}
+	\printDefn
+
+	\defn{$\sigma$-algebra}{on a set L is a collection $\Sigma$ of subsets of
+$L$ which includes $L$ itself and is \ita{closed under complement} and
+\ita{under countable unions}}
+
+	\begin{itemize}
+		\item $L \in \Sigma$	
+		\item $E \in L \implies E^\complement \in \Sigma$
+		\item $E_{1},\dots,E_{n} \in \Sigma \implies \bigcup_{i=1}^{n} E_{i} \in
+\Sigma$
+	\end{itemize}
+
+	\par{An event of the sample space $L$ must therefore form a $\sigma$-algebra
+on $L$. In light of this view, a probability distribution can be defined as the
+following mapping}
+
+	\defn{Probability Distribution}{$P : \Sigma \to [0,1]$ s.t. $P(L) = 1$ and
+$P(\bigcup_{i=1}^{n} E_{i}) = \sum_{i=1}^{n} P(E_{i})$ , for disjoint events}
+
+	\par{In words, a probability distribution is just a function which maps
+events in $L$ to a valid probability}
+
+	\defn{Probability Space}{is represented by the triple ($L , \Sigma , P$)}
+
+
+\subsection{Discrete Uniform Distribution}
+
+	\par{The distribution where all outcomes $S \in L$ are equally likely to
+	occur}
+	\par{Let $\Sigma = \set{E | E \subset L}$ the the classical definition of
+			probability can be written in terms of the cardinalities of sets $E
+	, L$ such that $P(E) = \frac{|E|}{|L|}$}
+
+	\subsubsection{Probability Rules}
+
+	\par{The following probability rules follow from the set rules}
+
+	\defn{Addition}{$P(A \cup B) = P(A) + P(B) - P(A \cap B)$}
+	\defn{Subtraction}{$P(A^\complement) = 1 - P(A)$}
+	\defn{Multiplication}{For a sequence of independent experiments with sample
+	spaces $L_k$ , then $L = L_1 , \dots , L_n$}
+
+	\rem{Using cardinality as a map from the category of finite sets to the
+	natural set $\set{\n \cup 0}$ we see that the set operations
+	\ita{induce} arithmetic operations}
