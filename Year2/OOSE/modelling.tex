@@ -57,4 +57,110 @@ returning}
 		via operations and how this affects the end-user} 
 \end{enumerate}
 
+\subsection{UML}
 
+	\defn{Design}{specify the structure of a system and its behaviour}
+
+	\defn{Domain Model}{conceptual model of the domain that includes both data
+	and behaviour}
+
+	\par{When designing software we go from \ita{"what"} to \ita{"how"}, i.e. we
+			worry about how we can represent real world systems in software. In
+	particular, how we can use classes, fields etc. Out of this process a
+	\ita{domain model} emerges which represents, at the required level of
+	formality, the system with concepts, roles and their interaction}
+
+	\par{\ita{UML} is an open standard language created to represent
+			diagrammatically an OO system. It has a \ita{descriptive} side which
+			provides a formal syntax as well as a more flexible
+	\ita{prescriptive} one, where usage shapes conventions}
+	\par{Given this flexibility UML has several uses, from providing a sketch of
+		 the software, which can be used to give the client an idea of the
+		 current stage of the design, and improve upon it given her feedback
+		 (e.g \ita{use cases} modeling) or more like a blueprint, where the complete
+ design is given to engineers for implementation.}
+	
+ \subsubsection{Class Diagrams}
+
+	\defn{Class Diagrams}{represent the classes in an OO system, their fields,
+	methods and their interactions}
+	\par{\mymarginpar{Pros \& Cons} In this course we'll focus on class diagrams, which focus on the
+	representation of classes. These are particularly good for providing an
+	overview of the data and attributes, as well as the main entities in play in
+	the design along with the complexity of their interaction. They are however
+	not adequate for prying into the logic of the program or its control flow.}
+	
+	\par{Given the wide adoption of the language in industry, the following
+	conventions were adopted:}
+
+	\begin{enumerate}
+		\item Name
+				\begin{itemize}
+						\item Name : top of the box
+						\item Interfaces : in between \texttt{<< >>}
+						\item Abstract : italics
+				\end{itemize}
+		\item Methods
+				\begin{itemize}
+						\item Methods : \texttt{mName(arg:type)}
+						\item Getter/Setter : may be ommited
+						\item Interface : do not omit
+						\item Inherited : omit
+						\item Return : omit if constructor or void
+				\end{itemize}
+		\item Attributes
+				\begin{itemize}
+						\item Signature : \texttt{visibility name : type}
+						\item Derived : \texttt{/}~\mymarginpar{not stored, but
+								can be computed from other attributes (e.g area,
+						given width and height attributes)}
+				\end{itemize}
+		\item Visibility
+				\begin{itemize}
+						\item Public/Private : \texttt{+ / -} 
+						\item Protected/Package : \texttt{\# / $\sim$}
+						\item Static : underlined
+				\end{itemize}	
+		\item Generalization Relationships
+				\begin{itemize}
+						\item Top-Down i.e , Parent-Child
+						\item Class : Solid line , black head
+						\item Abstract : Solid line, white head
+						\item Interface : dashed
+				\end{itemize}
+		\item Usage Relationships
+				\begin{itemize}
+						\item Multiplicity : * = 0+ , m..n = [m,n]
+						\item Navigability : Yes \texttt{->} , No X
+						\item Aggregation : White diamond
+						\item Composition : Black Diamond
+						\item Dependency : Dotted 
+				\end{itemize}
+	\end{enumerate}
+
+	\defn{Generalization Relationships}{represent inheritance and interfaces}
+
+	\defn{Association Relationships}{used to show that instances of classifiers
+			could be either linked to each other or combined logically or
+	physically into some aggregation}
+
+	\par{There are 3 major types of associational/usage relationships classified
+			by the degrees to which the related entities are linked. So,
+			dependent types represent a \ita{"uses temporarily"} relation ;
+			aggregation represent \ita{"is part of"} and composition
+	represents an \ita{"is entirely made of"}.}
+	\par{To illustrate the differences between them take the "engine-car"
+			relation. We say that the engine is part of the car, and the car has
+			an engine. A stronger relation would be that of a book and its
+			pages. Note that it is conceivable to image a car without a motor, a
+			car would still be a car, even if it lost its motor. However, what
+			is a book without pages? Lastly, the dependency relation are the
+			weakest connectors, and simply state a sort of relation where
+	one object \ita{might} use another. It is often an implementation detail,
+	not an intrinsic part of the object itself (e.g. \ita{hasRead} method in
+	\ita{Person} and a \ita{Book} object)}
+
+	\begin{figure}[H]
+			\includegraphics[width=\textwidth]{uml.png}
+			\caption{GUI Class Diagram \cite{umlVisual}}
+	\end{figure}
