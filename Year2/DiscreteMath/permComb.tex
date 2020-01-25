@@ -1,0 +1,70 @@
+\section{Permutations \& Combinations}
+
+\defn{Arrangement}{selection of objects in a particular order}
+
+\defn{k-Permutation}{The number of arrangements of $k$ elements from a set of
+size $n$ wihout repetition. $^{n}P_{k} = \frac{^{n}P_{n}}{^{n-k}P_{n-k}}$}
+
+\nota{$^{n}P_{k}$}
+
+\rem{When $k=n$, then we have the total number of permutations of the set}
+
+\rem{with repetition, we have the total number of arrangements equal to $n^r$,
+i.e. the number of maps $A \to B$ , with $|A| = r \; |B| = n$}
+
+\defn{k-Combination}{the number of unordered selections of $k$-objects of a set
+$A$ of size $n$ without repetition, is equal to the number of subsets of size
+$k$}
+
+$$
+\begin{array}{l}{n C_{r}=\left|\left\{B \in 2^{A}|| B |=r\right\}\right|=\frac{n(n-1) \cdots(n+r)}{r(r-1) \cdots 1}=\left(\begin{array}{c}{n} \\ {r}\end{array}\right)}\end{array}
+$$
+\nota{${n \choose k}$}
+
+\defn{k-subsets of $A$}{${A \choose k}$}
+
+\defn{Power set of $A$}{$2^{A}$}
+
+\par{Hence, for a finite set $A$, we can also represent the $k$-subsets of $A$
+as ${A \choose k} \subset 2^{A}$}
+
+\prop{}{$\left|{A \choose k}\right| = \left({|A| \choose k}\right)$}
+
+\subsection{Binomial Theorem : Combinational Proof}
+
+\defn{Binomial Theorem}{$
+(x+y)^{n}=\sum_{r=0}^{n}\left(\begin{array}{l}{n} \\ {r}\end{array}\right) x^{r} y^{n-r}
+$}
+
+\proof{\vphantom{.\\}
+
+\par{For $(x+y)^{n}$ we have $(x+y)(x+y)\cdots(x+y)$ , $n$ times. Hence for the
+$r^{th}$ term, we want the $r-subset$, i.e. given $r$ factors we need all
+possible combinations of $x , y$. We count how many times we obtain $x^ry^{n-r}$
+, and sum the individual $r-subsets$ of $n$, to get the desired result}}
+
+\rem{Note that the symmetric nature of combinations, follows from the above.
+Since, the order does not matter, and given the commutative nature of
+multiplication;  for example , for the $x^2y^3$ term in a $(x+y)^5$
+expansion we can see it as either choosing $x$ 2 times, or $y$ 3 times, i.e
+${5 \choose 2} = {5 \choose 3}$}
+
+\defn{Combinatorial Proof : double counting}{or identity, is when one counts the
+same set in different ways}
+
+\ex{$$
+2^{n}=\sum_{r=0}^{n}\left(\begin{array}{l}{n} \\ {r}\end{array}\right)
+$$
+
+\par{For an $n-set , A$ , we have $2^{A} = \bigcup_{r=0}^n {n \choose r}$.
+Hence,} $$
+\left|2^{A}\right|=2^{|A|}=\left|\bigcup_{r=0}^{n}\left(\begin{array}{c}{A}
+ \\ {r}\end{array}\right)\right|=\sum_{r=0}^{n}\left|\left(\begin{array}{l}{A}
+ \\ {r}\end{array}\right)\right|=\sum_{r=0}^{n}\left(\begin{array}{c}{|A|}
+ \\ {r}\end{array}\right)
+$$
+}
+\defn{Combinatorial Proof : bijective}{where two sets are shown to have the same
+cardinality by proving the existence of a bijection between them}
+
+
