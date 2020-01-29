@@ -1,0 +1,156 @@
+\section{Software Quality}
+
+	\key{Static Analysis}{Bug
+Patterns}{Soundness}{Precision}{Debugger}{Bug}{Debugging
+Techniques}{Bytecode}{Source Code}{Bug Triage}{Software Reliability}
+
+	\subsection{Introduction}
+
+		\defn{Software Reliability}{denotes a product's trustworthiness or
+dependability}
+
+	\rem{software reliability varies \ita{directly} with the number of bugs}
+
+		\defn{Bug}{a failure in a computer system that produces an incorrect or
+unexpected result}
+
+	\par{We can define a bug in terms of which outcome it produces given its
+spec. In particular, we classify something as a bug, if one of the following
+occurs}
+
+		\begin{enumerate}\mymarginpar{$S$ is spec , $O$ is outcome, and $X$ is a
+behaviour}
+			\item $X \in S \land X \not\in O$
+			\item $\neg X \in S \land X \in O$ 
+			\item $X \not\in S \land X \in O$
+			\item broken spec and broken outcome ; i.e. doesn't do X and it
+isn't mentioned \ita{but it should}
+			\item clunky software, broken from an untrained user's perspective 
+		\end{enumerate}
+	
+		\subsubsection{Bug Causes}
+
+		\par{The major cause of bugs occur at the specification level, followed
+by the design stage and actual code}
+		\par{At the spec level is often due to a breakdown in communication, or
+a lack of formality in its implementation (e.g. not written, incomplete, sketch
+only). The design stage is often overlooked or rushed, leading to
+inappropriate modelling, or a lack of modeling tools. Coding errors can occur
+due to a complex nature of the software, or simpler things like poor
+documentation or limited time for project completion leading to rushed work}
+
+	\rem{some coding codes examples are wrong messages, overflow errors,
+override errors, misuse local variable, syntax ...}
+
+	\rem{the cost of fixing a bug grows linearly with the life of a project,
+from spec design to release}
+
+	\subsection{Debugging Techniques}
+
+	\defn{Bug Triaging}{is the assignment of a bug to the most
+appropriate/capable developer who will fix it}
+
+	\par{The triager needs to be aware of both the project, the bug reports and
+the team involved in the project. A general workflow for bug is as follows:}
+
+		\begin{itemize}
+			\item a bug is reported
+			\item bug is assigned to manager for triage
+			\item if fixed END , else assign to developer to fix
+			\item re-test new code ; if fixed END else goto 2
+		\end{itemize}
+ 
+	\defn{Static Analysis}{a method of a computer program debugging that is done
+by examining the code without executing the program. It provides an
+understanding of the code structure}
+
+	\defn{Threat Modelling}{inspect at design stage, and draw out possible error
+paths}
+	
+	\defn{Manual Code Reviews}{read source code, and reason based on your
+knowledge whether bugs can occur}
+
+	\rem{Note that this process can be quite subjective, depending on the
+inspector}
+
+	\defn{Automated Tools}{tools which parse program code, and automatically
+detect common bugs}
+
+	\rem{AT is particularly efficient for finding common bugs/bug patterns}
+
+	\defn{Bug Pattern}{recurring correlations between signalled errors and
+underlying bugs}
+
+	\begin{enumerate}
+		\item\textbf{Predictable random number generator} \par{given the
+\ita{pseudo} nature of random generators, it is easy for a malicious user to get
+hold of the next random number in a series. In Java, there's a better way to
+generate random numbers by using the \texttt{SecureRandom} library instead of
+the \texttt{Random}}
+		\item\textbf{Object Deserialization} \par{object deserialization of
+untrusted data can lead to remote code execution (e.g open attachments in
+untrusted email sources).}
+		\par{It is best to avoid untrusted sources, but when not possible, then
+input validation is robustly applied for sanitation. Thus mitigating any
+malicious input strings being converted to executable binary}
+
+		\item\textbf{Trust Boundary Violation}\par{when the trust boundary is
+blurred, and data is passed over the boundary without proper validation}
+		\item\textbf{Null Pointer Exception}\par{when an object which does not
+exist is accessed}
+		\item\textbf{Infinite Recursion}a call to a recursive function that
+never reaches the base case
+	\end{enumerate}	
+
+	\defn{Deserialization}{taking structured data (e.g JSON) and rebuild it into
+an object} 
+
+	\defn{Trust Boundary}{an imaginary line drawn through logical pieces of a
+program where on one side we assume that the data is trustworthy, and on the other
+untrustworthy}	
+
+%%% COPY BUG CATEGORIES %%%
+
+\par{Manually examine source code can be labour intensive and subjective
+depending on the inspector}
+
+	\defn{Debugger}{special program used to analyse other programs in order to
+find bugs}
+
+	\par{The debugger will analyse program code (e.g source, bytecode , etc) and
+will analyse it in terms of the correctness of its statements, control flow,
+method class , etc. without actually executing the code}
+	
+	\subsubsection{The Limitis of Static Analysis}
+		
+		\par{We can't really tell whether a program $P$ has some property $Q$ ,
+instead we \ita{approximate} $Q$ in analysis $P$}	
+
+	\rem{Recall \ita{Church-Turing's} introduction of the \ita{Halting
+Problem}~\cite{turing1937}~\cite{church1936}}
+
+	\defn{Soundness}{ if sound then an alert is
+raised; unsound means that the detection system can generate false negatives
+}
+
+	\defn{Precision}{measures accuracy of bug detection. If precise then every
+bug alert is an actual bug ; imprecise implies possible false positives}
+
+	\par{Most analysis tools involve a trade-off between soundness, precision
+and execution time. Though, the majority of tools are \ita{conservative} in
+nature, i.e soundness is often preferred}
+
+	\par{So, depending on the project, one can approximate towards:}
+		\begin{itemize}
+			\item\textbf{Completeness}\par{where the detection tool is
+designed in a such a way so as to \ita{overestimate} possible program behaviours ;
+with the drawback that the false positives might overshadow the real bugs}
+			\item\textbf{Soundness}\par{where the detection tool
+\ita{underestimates} the possible program behaviours ; with the drawback that the analysis is
+incomplete}
+		\end{itemize}
+
+	\rem{in practice a \ita{balanced approximation}, which is neither sound nor
+complete, allows for enough flexibility so that the program behaviour is more
+easily estimated}
+ 
