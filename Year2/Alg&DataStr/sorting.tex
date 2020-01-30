@@ -1,5 +1,13 @@
 \section{Efficient Sorting}
 
+\key{recursion}{divide-and-conquer}{merge}{Merge-sort}{Quick-Sort}{Stable
+Solution}{recurrence equations}
+
+\defn{divide-and-conquer}{an algorithm design paradigm based on multi-branched
+		recursion; the problem is recursively broken down into simpler problems
+		until one is simple enough to be solved directly. The solutions to each
+sub-problem are then merged back together}
+
 \subsection{Merge Algorithm}
 
 		\defn{Sentinel}{a number which is much larger than any other number in the
@@ -32,7 +40,7 @@
 
 \begin{algorithm}[H]
 	\DontPrintSemicolon
-	\SetAlgoLined\KwData{Array $A$ , indeces $p,q,r$}
+	\SetAlgoLined\KwData{Array $A$ , indices $p,q,r$}
 	\SetKwFunction{KwFn}{Merge}
 	\KwResult{sorted subarray $A[p..r]$}
 	\KwFn{A,p,q,r}\\
@@ -75,16 +83,16 @@ contains only constant-time operations
 
 	\begin{algorithm}[H]
 	\DontPrintSemicolon
-	\SetAlgoLined\KwData{Array $A$ , indeces $p,r$}
+	\SetAlgoLined\KwData{Array $A$ , indices $p,r$}
 	\SetKwFunction{KwFn}{Merge-Sort}
-	\SetKwFunction{KwFn2}{Merge}
+	\SetKwFunction{KwFnn}{Merge}
 	\KwResult{sorted array $A[p..r]$}
 	\KwFn{A,p,r}\\
 	\uIf{p < r}{
 		q := (p + r) / 2\;
 		\KwFn(A,p,q)\;
 		\KwFn{A,q+1,r}\;
-		\KwFn2{A,p,q,r}\;
+		\KwFnn{A,p,q,r}\;
 	}
 	\caption{Merge-Sort Algorithm}
 	\end{algorithm}
@@ -111,6 +119,13 @@ repeated in the right branch}
 	\item\textbf{Running Time} $O(n \log n)$
 \end{itemize}
 
+\subsubsection{Improvements}
+
+	\begin{itemize}
+			\item[]\textbf{In-place Merge}
+			\item[]\textbf{Bottom-up Iterative}
+			\item[]\textbf{\texttt{IS} for small $n$}
+	\end{itemize}
 \subsection{Recurrence Equations}
 
 
@@ -198,5 +213,151 @@ n)$}
 \rem{See lecture 5 slides 52-60}
 
 
-\subsection{Quicksort}
+\subsection{Quick-Sort}
 
+\subsubsection{Overview}
+
+	\par{The \texttt{Quick-Sort} algorithm is also of the
+			\ita{divide-and-conquer} type, the main difference from the previous
+			one being that the bulk of the work happens in the \ita{divide}
+	stage}
+
+	\rem{The following partition method \ita{Lomuto} is not as efficient as
+	\ita{Hoares'}}
+
+	\begin{itemize}
+			\item\textbf{Divide : }\par{ given an array $A$ and an index $q$
+							we partition $A$ into $A[lo..q-1]$ to $A[q+1..hi]$
+							with the former containing all elements smaller than
+							$A[q]$ and the latter all the ones which are greater
+					than $A[q]$}
+			\item\textbf{Conquer :}\par{sort by recurring ; the initial call
+							will branch out on one of the main subarrays and the
+					second on the other}
+
+	\end{itemize}
+
+	\rem{No merge stage required, since each subarray will be sorted
+	\ita{in-place}}
+
+\subsubsection{Informal Definition}
+
+\begin{itemize}
+		\item\textbf{Partition}
+				\begin{enumerate}\mymarginpar{$lo , hi$ are passed on as
+								arguments and represent the first and last index
+						of $A$}
+						\item set $i$ index to $lo$ , which will keep track of
+								the \ita{less-than} subarray
+						\item set the pivot to $A[hi]$
+						\item set $j$ index to $lo$, which will keep track of
+								the \ita{greater-equal} subarray
+						\item scan the array from $j$ to $hi-1$
+						\begin{enumerate}
+								\item compare the current element $A[j]$ with
+										the pivot $p$
+										\begin{itemize}
+												\item $A[j] < p$ : \texttt{i++}
+														;$ A[i]
+														\leftrightarrow A[j]$ 
+												\item $A[j] \geq p$ : keep
+														scanning (i.e
+														\texttt{j++}) 
+										\end{itemize}
+						\end{enumerate}
+						\item in order to create the $L, R$ partitions
+								we swap $p$ with $A[i]$ (i.e the first
+								element of $R$)
+						\item Lastly, we return $i$, the pivot index in order to
+								be used as $hi, lo$ index for the recurrence
+								calls
+				\end{enumerate}
+		\item\textbf{Recur}
+					\begin{enumerate}
+							\item check that the base case has not been reached
+									$lo < hi$
+							\item set $p$ to be the return value of
+									\texttt{PARTITION}
+							\item call \texttt{quick-sort} on $L$, i.e. call it on
+									$A[lo..p-1]$
+							\item call \texttt{quick-sort} on $R$, i.e call it on
+									$A[p+1..hi]$
+					\end{enumerate}
+
+	\end{itemize}
+
+	\rem{Note that on each call we exclude $p$ from the subarrays, since it is
+	already sorted. This is why there is no need for merging}
+								
+\subsubsection{Formal Definition}
+
+	\begin{algorithm}[H]
+	\DontPrintSemicolon
+	\SetAlgoLined\KwData{Array $A$ , indices $lo , hi$}
+	\SetKwFunction{KwFn}{PARTITION}
+	\SetKwFunction{KwFnn}{SWAP}
+	\KwResult{pivot index $i$}
+	\KwFn{A,$lo, hi$}\\
+	pivot := A[hi]\;
+	$i$ := $lo$\;
+	\For{$j=lo$ \KwTo $hi$}{
+			\uIf{A[j] $<$  pivot}{
+					\KwFnn{A[j], A[i]}\;
+					i++\;
+			}
+			\KwFnn{A[i] , A[hi]}
+	}
+	\KwRet{$i$}
+	\caption{PARTITION}
+	\end{algorithm}
+
+	\begin{algorithm}[H]
+	\DontPrintSemicolon
+	\SetAlgoLined\KwData{Array $A$, indices $lo, hi$}
+	\SetKwFunction{KwFn}{QUICKSORT}
+	\SetKwFunction{KwFnn}{PARTITION}
+	\KwResult{sorted array $A[lo..hi]$}
+	\KwFn{A,$lo, hi$}\;
+	\uIf{$lo < hi$}{
+			p := \KwFnn{A , $lo, hi$}\;
+			\KwFn{A , $lo$ , $p-1$}\;
+			\KwFn{A , $p+1$, $hi$}\;
+	}
+	\caption{Quick-Sort}
+	\end{algorithm}
+	
+	\subsubsection{Properties}
+
+	\begin{itemize}
+			\item\textbf{Not Stable}
+			\item\textbf{Memory} $0$ ;  \ita{in-place}
+			\item\textbf{Running-Time} cost of partitioning is $O(n)$
+					\begin{itemize}
+							\item[]\ita{Best} the pivot is in the middle and so
+									each subarray is exactly $n/2$ . Hence, $O(n
+									\log n$
+							\item[]\ita{Average} approximately $O(n \log n)$
+							\item[]\ita{Worst} already sorted, which leads to a
+									hugely unbalanced split $(0, n-1)$. $T(n) =
+									T(n-1) + T(0) + O(n) = O(n^2)$
+					\end{itemize}
+	\end{itemize}
+
+	\subsubsection{Possible Improvements}
+		\begin{itemize}
+				\item[]\textbf{Switch to \texttt{INSERTION-SORT}}\par{note that
+								in the worst-case scenario it is much faster
+								$O(n)$. So when calling \texttt{QUICKSORT} on a
+								subarray with fewer than $k$ elements, return
+								without sorting, when the top-level call returns
+								run \texttt{IS}
+						}
+				\item[]\textbf{Tail Call Optimisation}\par{only one recursive
+								call ; hard to implement, but good compilers do
+						it automatically}
+				\item[]\textbf{Iterative with Stack}
+				\item[]\textbf{3-Way \texttt{Quick-Sort}}\par{split the initial
+								array into 3 subarrays, the new one including
+						the elements equal to the pivot\mymarginpar{based on the
+				dutch national flag algorithm}}
+		\end{itemize}
