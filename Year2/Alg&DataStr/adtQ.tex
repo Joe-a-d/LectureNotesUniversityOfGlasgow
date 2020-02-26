@@ -1,0 +1,77 @@
+\subsection{Queue}
+
+		\defn{Queue}{ is a collection of objects which are inserted and deleted following the \ita{FIFO} principle}
+
+		\rem{sharing services (e.g printer) , waiting lists, multitasking}
+
+		\subsubsection{Operations}
+				\begin{itemize}
+						\item Essential Update Methods
+						\begin{enumerate}
+								\item enqueue
+								\item dequeue
+						\end{enumerate}
+				\end{itemize}
+				\begin{itemize}
+						\item Accessor Methods
+						\begin{enumerate}
+								\item first
+								\item size
+								\item isEmpty
+						\end{enumerate}
+				\end{itemize}
+				
+		\subsubsection{Array Implementation}
+				
+				\par{Using a \ita{wrap-around} array, let \texttt{Q.head , Q.tail} represent the head index and the \texttt{tail+1} index respectively. One leaves \texttt{Q[Q.tail]} empty to insert new values, and delete from \texttt{Q[Q.head]}}
+
+		\subsubsection{Operations}
+
+				%% lstlisting %%
+
+		\subsubsection{analysis}
+			\begin{itemize}
+				\item[] Memory : $O(n)$
+				\item[] Running Time : $O(1)$
+				\end{itemize}	
+
+		\rem{Queue max-size defined \ita{a priori}}
+
+		\subsection{Implementation : Linked List}
+
+		\par{Take \texttt{L.head == Q.head} and \texttt{L.tail == Q.tail} then, for a queue to align its front with the front of the list, and similarly their back then \texttt{ENQUEUE, DEQUEUE} are implemented via \texttt{INSERT@TAIL, DELETE@HEAD} respectively}
+
+		\subsection{Analysis}
+				\begin{itemize}
+						\item[] Running Time \mymarginpar{\texttt{SIZE} will need to keep track of \texttt{Q.tail}}: $O(1)$
+				\end{itemize}
+
+		\rem{Doubly-linked lists offer the same running time, but at a higher memory cost}
+
+\section{Double Ended Queue}
+
+		\par{Structures similar to queues which support data insertion and deletion at both the start and end}
+
+		\rem{\ita{deque} read as \ita{"deck"}}
+
+		\subsection{Operations}
+				\begin{itemize}
+						\item[] Update Methods
+				\begin{enumerate}
+						\item addFirst
+						\item addLast
+						\item delFirst
+						\item delLast
+				\end{enumerate}
+						\item[] Accessor Methods
+				\begin{enumerate}
+						\item first
+						\item last
+						\item size
+						\item isEmpty
+				\end{enumerate}
+		
+		\subsection{Analysis}
+				\par{All operations run on $O(1)$, and depending on their implementation $O(N)$ for an array of size $N$ and $O(n)$ , where $n < N$ is the actual number of elements in a doubly linked list}
+
+

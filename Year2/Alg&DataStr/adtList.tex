@@ -1,0 +1,29 @@
+\section{List}
+
+		\par{The ADTs presented above could all be implemented using either an array or a linked list, due to fact that they represent a \ita{linearly ordered} sequence of elements. The \texttt{List} however provides more general support for manipulating a sequence of countable elements at arbitrary positions, hence an efficient implementation with either an array or linked list is challenging}
+
+		\rem{fundamental data type in most functional languages}
+
+		\subsection{operations}
+				\begin{enumerate}
+						\item[] GET(L,i)
+						\item[] SET(L,i,x) : add x at i, return replaced 
+						\item[] ADD(L,x)
+						\item[] ADD-AT(L,i,x) : add x at i, shift right
+						\item[] REMOVE(L,i) : remove and shift left
+						\item[] SIZE()
+						\item[] isEmpty()
+						\item[] APPEND(L1,L2)
+				\end{enumerate}
+
+
+		\subsection{Analysis}
+												\begin{table}[]
+								\begin{tabular}{lcccc}
+								\cline{2-5}
+								\multicolumn{1}{l|}{}                        & \multicolumn{1}{c|}{\textbf{GET/SET (Indexing)}} & \multicolumn{1}{c|}{\textbf{ADD}} & \multicolumn{1}{c|}{\textbf{ADD-AT/REMOVE}} & \multicolumn{1}{c|}{\textbf{APPEND}}  \\ \hline
+								\multicolumn{1}{|l|}{\textbf{Dynamic Array}} & \multicolumn{1}{c|}{$O(1)$}                      & \multicolumn{1}{c|}{$O(n)$}       & \multicolumn{1}{c|}{$O(n)$}                 & \multicolumn{1}{c|}{\$O(n\_1 + n\_2)} \\ \hline
+								\multicolumn{1}{|l|}{\textbf{Linked List}}   & \multicolumn{1}{c|}{$O(n)$}                      & \multicolumn{1}{c|}{$O(1)$}       & \multicolumn{1}{c|}{$O(n)$}                 & \multicolumn{1}{c|}{$O(1)$}           \\ \hline
+																														 & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}              & \multicolumn{1}{l}{}                        & \multicolumn{1}{l}{}                 
+								\end{tabular}
+								\end{table}
