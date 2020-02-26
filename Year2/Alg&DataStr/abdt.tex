@@ -1,0 +1,75 @@
+\section{Abstract Data Types}
+
+\defn{ADT}{ is a mathematical model of a data structure that specifies the type of data stored, the operations supported on them, and the types of parameters of the operations}
+
+\par{ADTs are abstractions of the structure of data from the data itself, they define behaviour and state, a contract whose concrete instances must follow. When implemented in code we do so via \ita{data structures}. For example, a \texttt{List} can be implemented as an \texttt{array}}
+
+\rem{In \texttt{Java} you can think in terms of \texttt{Interfaces} and \texttt{Classes}}
+
+		\subsection{Stack}
+
+				\defn{Stack}{is a collection of objects that are inserted and removed following the \ita{LIFO} principle}
+
+				\rem{Web browsers' histories use stacks, and undo sequences in most other software work in a similar manner}
+  
+		\subsubsection{Operations}
+
+				\begin{itemize} 
+								\item Essential Update Methods 
+						\begin{enumerate}
+								\item push
+								\item pop
+						\end{enumerate}
+				\end{itemize}
+				\begin{itemize}
+								\item Accessor Methods
+						\begin{enumerate}
+								\item top : "pop" without removing
+								\item size
+								\item isEmpty
+						\end{enumerate}
+				\end{itemize}
+
+		\subsubsection{Implementation - Array}
+
+				\par{The array implementation of a stack is simple and efficient \ita{if} one has a good idea , in advance , of the number of elements it will contain. Then, given $n,t$ where $n$ represents the size of the stack and $t$ is a cursor var which keeps track of the index of top element, one adds elements from [0...n-1=t]}
+
+		\rem{by convention , $ S = \{\} \iff t = -1 $}
+
+		\defn{Stack Overflow}{ push() into full stack}
+		\defn{Stack Underflow}{ pop() empty stack}
+
+		\subsubsection{Operations}
+						%% add lstlisting %%
+
+		\subsubsection{Analysis}
+
+				\par{Each method executes a constant number of statements involving
+arithmetic operations, comparisons, and assignments, or calls to size and isEmpty,
+which both run in constant time, i.e they're all $O(1)$, and memory is $O(n)$}
+
+		\subsubsection{Implementation - Dynamic Array}
+
+				\par{One can overcome the fixed size constraint by adding a \texttt{RESIZE} operation, allowing the array to both shrink and grow.}
+				\par{Simple implementations are doubling its size when full, and half it when it is one quarter full. So, when an overflow is detected the following happens:}
+				\begin{enumerate}
+						\item Allocate a new array $S'$ with larger capacity
+						\item Set $S'[k] = S[k] , k = 0 , \dots , n-1$
+						\item Set $S = S'$
+				\end{enumerate}
+
+		\subsubsection{Operations}
+						%% add lstlisting %%
+
+		\subsubsection{Analysis}
+						\begin{itemize}
+								\item[] Memory : $O(kn)$
+								\item[] \mymarginpar{see L.8.35 for amortised analysis}Running Time : O(n) , since when expanding by a constant proportion each insertion takes \ita{amortised} constant time
+						\end{itemize}
+
+		\subsubsection{Implementation - Linked List}
+				\par{Let \texttt{l.head := S.top} , then \texttt{PUSH = INSERT@Head} , \texttt{POP = DEL@Head} and by keeping track of size with \texttt{S.size} we can perform \texttt{SIZE} at constant time}
+
+		%% add lstlisting %%
+
+	
