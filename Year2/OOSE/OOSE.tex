@@ -16,7 +16,8 @@
 \graphicspath{{assets/}}
 %%%%%%%%%%%% BIB CONFIG %%%%%%%%%%%%%%%
 \usepackage[backend=biber, style=reading, citestyle=numeric]{biblatex} 
-
+\usepackage{csquotes}
+\newcommand\quo[1]{\begin{displayquote}\ita{\large{#1}}\end{displayquote}}
 \bibliography{OOSE} %add bib file name
 
 %%%%%%%%%%% LAYOUT  %%%%%%%%%%%%%%%
@@ -71,7 +72,15 @@ latex-class-for-lecture-notes/}{\underline{\textcolor{blue}{class}}}}
 
 %\include{modelling}
 %\include{metrics}
-\include{bugs}
+%\include{bugs}
+\include{patterns}
+\include{patterns_state}
+\include{patterns_composite}
+\include{pattern_visitor}
+\include{pattern_strategy}
+\include{pattern_observer}
+\include{pattern_observer}
+\include{pattern_decorator}
 
 
 %%%%%%%%%%%%%%  BIBLIOGRAPHY  %%%%%%%%%%%%%%%%%%%

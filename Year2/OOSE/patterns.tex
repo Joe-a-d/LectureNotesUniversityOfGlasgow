@@ -1,0 +1,116 @@
+\section{Design Patterns}
+
+\subsection{Introduction}
+
+\defn{Design}{is the process of envisioning and planning the creation of objects, from a user-centered perspective. The goal is to address a specific need or problem and create solutions for some system.}
+
+\par{\ita{Software Design} is a subset of the Design field which concerncs itself with creating a specification for a software artifact, using a set of \ita{primitive} components and subject to some type of constraints}
+
+\defn{Design Patterns}{help designers apply best practices on how to realise software design principles}
+
+\defn{Anti-Patterns}{are common recurrences of poor solutions to problems addressed by design patterns}
+
+\subsection{PHAME}
+
+\defn{PHAME}{is an acronym representing the 4 fundamental software design principles : \ita{Hierarchy , Abstraction, Modularisation , Encapsulation}} 
+
+	\subsubsection{Hierarchy}
+
+		\par{An Hierarchy provides us with the ability to break a system design into a \ita{taxonomical} representation through the abstraction of packages and classes. We organise objects into classes, and each subclass inherits state and behaviour from its ancestors. The goal here is to have a clear overview of the software, knowing that as one goes down the hierarchy the behaviour becomes more specialised}
+
+		\defn{Hierarchy}{enables one to look at a \ita{problem space} and design a solution from the space by creating generalisation and inheritance relationships between the different objects that define that space.}
+
+	\subsubsection{Abstraction}
+ 		
+ 		\par{Abstraction is essential for optimisation at the user level, and is present all over. The goal is to simplify the context of any given problem by only presenting the user with the \ita{essential} details.}
+
+ 		\example{One can define a \texttt{User} object and a \texttt{Tool} object, and \texttt{User} does not need to know of any implementation details of \texttt{Tool}. We can \ita{abstract} away behaviour, by simply giving access to the object's methods}
+
+ 		\defn{Abstraction}{is the process of removing superfulous information/behaviour, and only keeping the relevant information for any given level of granularity}
+
+ 		\todo{Insert code snippet car, person}
+
+	\subsubsection{Modularisation}
+
+		\par{The goal of modularisation is to split the program into cohesive modules, by grouping logically related abstractions and by minimising the dependencies amongst them}
+
+		\defn{Modularisation}{consists of dividing a program into modules which can be compiled separately, but whih have connections with other modules}
+
+
+	\subsubsection{Encapsulation}
+
+
+		\par{The main goal of encapsulation is to provide explicit barriers amongst differenct abstractions, leading to a clear \ita{separation of concerns}. For any given unit (e.g a class, method, etc) one wants to restrict the manipulation of data, and the implementation of a certain behaviour to that unit. It is also useful for explicitily \ita{hiding} data from other parts of the software}
+		\par{For example, often the logic bit of an application is not available to the user for safety reasons}
+
+		\defn{Encapsulation}{the inclusion within an object of all the resources needed for the object to funciton (i.e data and methods). Other objects are not privy to this information, and they only interact via an \ita{object interface}, i.e the object decides what is visible and makes sure that this is accessible, via some sorte of \textt{getter}}
+
+\subsection{SOLID}
+
+	\defn{SOLID}{is an acronym which represent another 5 set of principles, which help developers design maintainable and extensable classes}
+
+
+	\subsubsection{Single Responsibility}
+
+		\par{The single responsibility principle, is closely related to the modularistaion principle.
+
+		\defn{Single Responsibility}{states that each unit of a program should have responsibility over a single part of a given functionality.}
+
+		\par{The main reason for abiding by this principle, is that makes one's program less bug prone. For example, by making sure that fixing a functionality will not directly break some other functionality just because they share the same class}
+
+		\quo{A class should have only one reason to change \\ Robert C. Martin}
+
+		\example{Martin offers the example of a class which compiles and prints a report. Wether one wants to change the format of the report, or its content, one would need to modify the same class, which would be wrong.}
+
+	\subsubsection{Open-Closed}
+
+		\defn{Open-Closed}{states that software objects should be open for extension, but closed for modification}
+
+		\par{In essence, one should always be able to extend an object's functionality without having to modify its source code}
+
+		\subsubsection{Liskov}
+
+		\defn{Liskov}{states that if $\theta(x)$ is a property of $x :: T$ , then $\theta(y)$ must be true for $y :: S \in T$}
+
+		\par{In essence, in a program one must be able to replace a supertype by any of its subtypes without altering the program's \ita{correctness}}
+
+	\subsubsection{Interface Segregation}
+
+		\defn{Interface Segregation}{states that no client should be forced to depend on methods which it does not use}
+
+		\par{When designing applications, one takes care to split interfaces into specific components so that clients only have access to what they need. Interfaces are fine-grained and client-specific. This is also closely related to encapsulation and abstraction, the main goal being of making refactoring easier and safer}
+
+		\subsubection{Dependency Inversion}
+
+		\defn{Dependency Inversion}{states that programs should depend on abstractions rather than concretions.}
+
+		\par{The dependency modules here are reverese, one should not implement superclasses which depend on its children, they should instead depend on abstractions such as interfaces, which in turn should not depend on their concrete implementations}
+
+
+\subsection{Types of Patterns}
+
+	\par{The seminal text CITE:GOF splits design patterns into two broad categories: (1) Creational , (2) Structural and (3) Behavioural}
+
+	\defn{Creational Patterns}{provide a way to create objects while hiding the creation logic}
+
+	\par{By instantiating objects in this way, as oposed to using the \texttt{new} operator, one has greater flexibility when it comes to deciding which objects need to be created for any given case}
+
+	\defn{Structural Patterns}{describe how objects can be associated and composed to form larger, more complex structures}
+
+	\par{The goal here is to provide ways to create complex structures from simpler ones, either by abstracting away using inheritance \ita{class patterns} or by describing how objects themselves can work together fo form larger structures}
+
+	\defn{Behavioural Patterns}{concern themselves wuth communication across objects}
+
+	\rem{There are 23 fundamental patterns which have now been expanded to include many more, we'll address only some of these}
+
+	\rem{There are those who argue that the need for these patterns is proof of the shortcomings of OOP languages}
+
+
+
+
+	
+
+
+
+
+
