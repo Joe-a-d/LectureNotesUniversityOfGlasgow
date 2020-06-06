@@ -1,0 +1,29 @@
+<html>
+<head>
+	<title>AJAX example</title>
+	<script type="text/javascript">
+	function loadDoc(url, cFunction) {
+		var xhttp = new XMLHttpRequest(); // create request object
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				cFunction(this);
+			}
+		};
+		xhttp.open("GET", url, true); // send request
+		xhttp.send();
+	}
+	function myFn1(xhttp) {
+		document.getElementById("demo1").innerHTML = xhttp.responseText;
+	}
+	function myFn2(xhttp) {
+		document.getElementById("demo2").innerHTML = xhttp.responseText;
+	}
+	</script>
+</head>
+<body>
+	<div id="demo1">
+		<h2>Let AJAX change this text</h2>
+		<button type="button" onclick="loadDoc('ajax.txt?t='+Math.random(),myFn1)">AJAX Info</button>
+		<button type="button" onclick="loadDoc('wad2.txt?t='+Math.random(),myFn2)">WAD2 Info
+		</button>
+<div id="demo2"> </div>

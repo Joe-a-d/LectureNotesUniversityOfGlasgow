@@ -34,7 +34,12 @@
       \newcommand\extra[3]{\shadowbox{
 	\parbox{\textwidth}{\textbf{#1}{\ #2} \\ \rule{\textwidth}{1pt} \\   #3}}}
      
-  
+    %% https://davidyat.es/2016/07/27/writing-a-latex-macro-that-takes-a-variable-number-of-arguments/
+    \newcommand{\key}[1]{%
+    \faKey \qquad #1\checknextarg}
+    \newcommand{\checknextarg}{\@ifnextchar\bgroup{\gobblenextarg}{ }}
+    \newcommand{\gobblenextarg}[1]{ , #1\@ifnextchar\bgroup{\gobblenextarg}{ \\ }}  
+
   %%%%%%%%%%%%%%%%% List Definitions %%%%%%%%%%%%%%%%%%%%%%
   \newcommand{\printDefn}{\defnlist\gdef\defnlist{}}
   \newcommand\defnlist{} 
@@ -66,6 +71,7 @@
   %%%%%%%%%%%%%%%%%%  OPERATORS & MATH NOTATION  %%%%%%%%%%%%%%%%%%%%
    
    
+     
    \newcommand\vc[1]{\mathbf{#1}}
    \newcommand\set[1]{\{#1\}}
     \newcommand{\n}{\mathbb{N}}
@@ -76,11 +82,14 @@
     \newcommand{\field}{\mathbb{F}}
     \newcommand{\ita}[1]{\textit{#1}}
     \newcommand{\oneton}{\{1,2,3,...,n\}}
+    \newcommand\comb[2]{^{#1}C_{#2}}
+    \newcommand\perm[2]{^{#1}P_{#2}}
     \newcommand\ef{\ita{f} }
     \newcommand\inv[1]{#1^{-1}}
     \newcommand\setb[1]{\{#1\}}
     \newcommand\en{\ita{n }}
     \newcommand\qedsymbol{QED} %QED instead of square
+    
     
     
 
@@ -169,11 +178,12 @@
 
 %%%%%%%%%%%%%%%%  PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\RequirePackage[pdftex,colorlinks,linkcolor=black,urlcolor=black,citecolor=black]{hyperref}
+\RequirePackage{listings}
 \RequirePackage{fancyhdr}
 \RequirePackage{framed,color,fancybox}
 \RequirePackage{tikz}
 \RequirePackage{bbding}
+\RequirePackage{fontawesome}
 \usetikzlibrary{arrows}
 \usetikzlibrary{patterns}
 \usetikzlibrary{shapes}
@@ -203,7 +213,7 @@
 \RequirePackage{todo,float}
 \RequirePackage{Commons}
 \RequirePackage[linesnumbered,ruled,vlined]{algorithm2e}
-
+\RequirePackage[pdftex,colorlinks,linkcolor=black,urlcolor=black,citecolor=black]{hyperref}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

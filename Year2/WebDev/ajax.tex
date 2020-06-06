@@ -1,0 +1,47 @@
+\section{AJAX}
+
+\par{AJAX stands for \ita{Asynchronous Javascript and XML}, and represents a set of key technologies which when used together allow web applications to be updated without needing to reload each time. With AJAX, web applications can send and retrieve data from a server asynchronously effectively decoupling the data interchange layer from the presentation layer}
+
+\rem{nowadays is far more common to use JSON instead of XML}
+
+
+	\subsection{Asynchronicity}
+
+
+		\par{The key element behind AJAX is the \texttt{XmlHttpRequest Object}, which is just a \texttt{DOM} object, with the special property of being able to exchange data with the server behind the scenes.}
+
+		\par{In contrast with classical webpages, the JS engine handles requests and is then able to update only the targetted parts of the web app which need updating. Unlike forms, or links the \texttt{XmlHttpRequest Object} does not block script execution the JS keeps running in the background, hence the asynchronous nature of the requests.}
+
+
+		\lstinputlisting[]{assets/ajax.js}
+
+
+	\subsubsection{Summary}
+
+		\begin{enumerate}
+			\item An event occurs
+			\item An \texttt{XmlHttpRequest Object} is created by JS
+			\item An HTTP request is sent to the server
+			\item The server processes the request
+			\item The server sends back the response
+			\item The JS engine processes the response
+			\item The DOM is manipulated appropriately by the JS
+		\end{enumerate}
+
+
+	\subsection{The \texttt{XmlHttpRequest Object}}
+
+		\url{https://www.w3schools.com/xml/ajax_xmlhttprequest_create.asp}
+
+
+	\subsection{Callbacks}
+
+		\par{When performing multiple tasks using AJAX, there should be a main function which sets the the request object and then there should be different \ita{callback} functions for each task.}
+
+		\rem{the main function call should contain the \texttt{URL} and which function to call when the response is ready}
+
+		\lstinputlisting[language=HTML]{assets/ajax_callback.html}
+
+
+
+
