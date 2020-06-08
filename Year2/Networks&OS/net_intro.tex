@@ -1,0 +1,52 @@
+\section{Networks}
+
+\subsection{Introduction - Networked Systems}
+
+	\defn{Networked System}{a collection of autonomous computing devices that exchange data to perform some goal}
+
+	\par{In this first part of the course we'll focus on 3 key aspects of these systems (1) how information is exchanged between the different devices involved ; (2) how we can build larger networks by linking devices ; (3) how systems communicate amongst themselves}
+
+	\defn{Signal}{a function which conveys information}
+
+	\defn{Communication Channel}{component of a a data transfer system responsible for carrying the signal}
+
+
+	\defn{Information Entrophy}{how much useful information a message is \ita{expected} to contain}
+
+	\par{\ita{Claude Shannon} the father of \ita{Information Theory} showed that the amount of information that can be coded into a message could be quantified, and is known as \ita{Information Enthropy}. Shannon stated that a data transfer system is composed of three parts: a source, a communication channel and a receiver. He identified the main problem within the system was to make sure that the information passed over the channel could be successuflly \ita{recreated} by the source.}
+
+	\par{This encoding and decoding of messages can be done in several ways, some introduce more noise than others, but they all follow the same process of taking some form of physical signal (e.g. a wave) and converting it into some sort of simplied form of itself and then recreating it at the source end}
+
+	\extra{Extra}{Information Enthropy Formal Definition}{
+		\par{If we take $X$ as the set of messages $\{x_1 , \dots , x_n\}$ } 
+		}
+
+	\defn{Analogue Signal}{a smooth continuum of values}
+
+	\defn{Digital Signal}{a discrete sequence of values}
+
+	\par{The simplest analogue signal is when information is encoded directly using amplitude (e.g. AM radio), however of particular interest to us is the process of converting analogue signals to digital, which can be done for any analogue signal. (see Physical Layer) \rem{the the rate at
+	which the signal must be sampled for accurate
+	reconstruction is given by the sampling theorem}}
+
+	\subsubsection{Switching}
+
+
+	\defn{Codign}{the act of mapping information to symbols}
+
+	\defn{Link}{the combination of a signal with a channel}
+
+	\defn{Hosts}{receivers and sources}
+
+	\defn{Network}{a collection of connected links}
+
+	\par{Within a networked system, information flows via channels forming links which connect hosts. The devices connecting the links are called \ita{switches} or \ita{routers} depending on the type of network. This \ita{network switching} is responsible for determining how the information flows through the network and can be setup so that there are dedicated connections between hosts - \ita{circuit switching} - or by splitting the messages into smaller packets before transmission allowing several hosts to share the same channell - \ita{packet switching}}
+
+	\defn{Circuit Switching}{a dedicated circuit between hosts}
+
+	\defn{Packet Switching}{a shared link where messages are split into packets before transmission}
+
+	\par{The main trade-off here is between capacity and availability. For example, traditional phone networks are circuit switched (the very first ones had actual humans switching the channels and connecting hosts) which means that the two hosts requested a channel and they had guaranteed capacity over that channel while the connection was active, but it also meant that if some other hosts needed to use any part of the same link then their connection would be refused.}
+	\par{The internet on the other hand, is packet switched, by breaking the messages apart into smalled chunks hosts can share links the catch here being that though connectivity is guaranteed the capacity/speed is dependent on how many users are using the same channel.}
+
+
