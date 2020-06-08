@@ -1,0 +1,102 @@
+
+%% CLASS MANUAL FOUND IN http://blog.poormansmath.net/latex-class-for-lecture-notes/ %%
+%% CLASS AUTHOR Stefano Maggiolo %%
+\documentclass[english,course]{Notes}
+
+\title{Statistics 2R}
+\subject{Statistics}
+\author{Joao Almeida-Domingues}
+\email{2334590D@student.gla.ac.uk}
+\speaker{Alexey Lindo}
+\date{23}{09}{2019}
+\dateend{04}{12}{2019}
+\place{University of Glasgow}
+
+\graphicspath{{assets/}}
+
+%%%%%%%%%%%% BIB CONFIG %%%%%%%%%%%%%%%
+\usepackage[backend=biber, style=reading, citestyle=numeric]{biblatex} 
+\usepackage{csquotes}
+\newcommand\quo[1]{\begin{displayquote}\ita{\large{#1}}\end{displayquote}}
+\bibliography{OOSE} %add bib file name
+
+%%%%%%%%%%% LAYOUT  %%%%%%%%%%%%%%%
+
+\renewcommand{\abstractname}{\vspace{3\baselineskip}} %hack to remove abstract
+\usepackage{setspace}
+\onehalfspacing
+
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  frame=single,
+  breaklines=true,
+ }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%% KEEP HERE (conflict when in class) %%%%%%%%%%%%%%%%%%%%
+
+ %%%%%MATRICES
+    
+    \let\mat=\spalignmat
+    \let\amat=\spalignaugmat
+    \let\vec=\spalignvector
+    
+%%%%%% row ops
+    \newcommand\ro[2]{\xrightarrow[#2]{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%  PACKAGES (NOT INCLUDED IN CLASS) %%%%%%%%%%%%%%
+\usepackage[delims={[]}]{spalign}
+
+%%%%%%%%%%%%%%%% ALGORITHM TEMPLATE %%%%%%%%%%%%%%%%%%%%
+
+%\begin{algorithm}[H]
+%\SetAlgoLined\KwData{this text}
+%\KwResult{how to write algorithm with \LaTeX2e }initialization\;
+%\While{not at end of this document}
+%	{read current\;\eIf{understand}{go to next section\;current section becomes this one\;}{go back to the beginning of current section\;}}
+%	\caption{How to write algorithms}
+%\end{algorithm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%  DISCLAIMER  %%%%%%%%%%%%%%%%%%%%%
+
+\begin{abstract}
+	\par{These lecture notes were collated by me from a mixture of sources , the two main sources being the lecture notes provided by the lecturer and the 
+content presented in-lecture. All other referenced material (if used) can be found in the \ita{Bibliography} and \ita{References} sections.}
+	\par{The primary goal of these notes is to function as a succinct but comprehensive revision aid, hence if you came by them via a search engine , please note 
+that they're not intended to be a reflection of the quality of the materials referenced or the content lectured.}
+	\par{Lastly, with regards to formatting, the pdf doc was typeset in \LaTeX , using a modified version of Stefano Maggiolo's \href{http://blog.poormansmath.net/
+latex-class-for-lecture-notes/}{\underline{\textcolor{blue}{class}}}}
+\end{abstract}
+\newpage
+\newpage
+
+%%%%%%%%%%%%% LECTURES %%%%%%%%%%%%%%%%%%%%%%%
+
+\include{intro}
+\include{counting}
+\include{rules_axioms}
+\include{random_discrete}
+\include{random_continuous}
+
+
+%%%%%%%%%%%%%%  BIBLIOGRAPHY  %%%%%%%%%%%%%%%%%%%
+\newpage
+
+\todo*{\url{https://en.wikipedia.org/wiki/Experiment_(probability_theory)}}
+\todo*{\url{https://www3.nd.edu/~dgalvin1/10120/10120_S16/Topic09_7p2_Galvin.pdf}}
+\todo*{\url{https://socratic.org/questions/how-do-you-use-a-probability-mass-function-to-calculate-the-mean-and-variance-of}}
+\todos
+
+
+\nocite{*}
+\printbibliography
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

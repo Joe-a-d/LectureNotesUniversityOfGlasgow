@@ -1,0 +1,62 @@
+\section{Counting ELOs}
+
+	\par{If $E$ is an event in a sample space, $S$, with $|S| = N$ equally likely (simple) outcomes , then $P(E)$ is the sum of the probabilities of the outcomes in E,}
+	$$ P(E) = \frac{\text{number of favourable outcomes}}{\text{number of total possible outcomes}} =  \frac{n(E)}{n(S)} = \frac{n(E)}{N}$$
+
+	\par{Note that the sizes of both $n(E)$ and $S$ can grow quite rapidly for relatively simple events, hence it is almost never desirable or feasible to exhaustively list them. Instead, we use combinatorics to count them.}
+
+	\subsection{Multiplication Principle}
+
+		\par{For a compound experiment $\lambda$ with component experiments $\lambda_{1} , \dots , \lambda_{n}$. If $\lambda_{1} $ has $k_{1}$ possible outcomes, then each of $k_{1}$ can pair with one of the $k_{2}$ possible outcomes of $\lambda_{2}$ and so on. So, no ``path'' needs to be necessarily taken, and therefore for each new experiment no new outcome needs to be excluded given the result of the previous. Hence, each event in $k_{2}$ could happen in any one of $k_{1}$ times, i.e the total possible number of outcomes for $\lambda$ is given my the \textbf{cartesian product} of its component's sample sets $$ |S| = \prod_{i=1}^{n}k_{i}$$}
+		\par{ Think of the way to create a one card as a compound experiment, where the first stage is picking the rank and the second is picking the suit. So our initial set is composed of 13 distinct possible outcomes. Our second set is composed of 4 distinct possible outcomes. Now note that choosing (1 out of the 4 possible suits) in the second stage can be achieved in 13 different ways, i.e our suit choice is not determined by the the rank chosen, each suit is available to each rank. Our  unique card is however determined by the combination of (R,S), so for each card I can choose 13 different ranks and I can do this 4 times for each different suit $(13C + 13D + 13H + 13S) = 13 \times 4  = |S1| \times |S2|$}
+
+	\subsection{Addition Principle}
+
+		\par{Unlike before, there are cases where certain outcomes can occur simultaneously. In this cases a choice in a component experiment will affect the number of possible outcomes available in the next experiment. Say for example if you can only score one 6 in a two-diced throw. Then, in the first stage you could either (A) get a 6 or (B) not get a 6. Note that if A, then the second stage cannot also involve A. If B, then the second stage cannot also involve B. So, we have $|S_{A}| = 1 \times 5$ which include all possible outcomes given that a 6 is scored in the first dice , and $|S_{B}| = 5 \times 1$ , which accounts for all cases where a 6 is scored in the second dice. In other words, for each stage we either exclude A or B given wether B or A happened before. $$|S| = \sum_{i=1}^{n} k_{n}$$}
+
+		\rem{Note that the number of distinct outcomes can still be the same, in which case $|S| = k \times n$}
+
+		\rem{In general, if we want to count the outcomes for $E_{1} \text{\textbf{ and }} B$ we use MP. $E_{1} \text{\textbf{ or }} B$ involves using AP}
+
+	\subsection{Counting using Combinatorics}
+
+		\par{In order to count the possible outcomes, we use the concept of Combinations and Permutations. Which gives us the total possible number of arrangements from a given set. The main difference between the two being the fact that one takes into consideration the order on which the elements are chosen, while the other is not.}
+
+	\subsubsection{Permutation}
+
+		\defn{Permutation}{total possible ordered arrangements from a set of distinct objects}
+
+		\notation{$\perm{n}{r}$}
+
+		$$\perm{n}{r} = \frac{n!}{(n-r)!}$$
+
+		\rem{Note from above that in the denominator we exclude all other distinct objects in the main set not chosen}
+
+		\rem{Note that if $n=r$, then $\perm{n}{r} = n!$}
+
+		\example{Say we need the total number of possible two distinct letter combination from the following set $\set{A,B,C,D}$. We could approach it as a multistage step problem, and use the multiplication principle in the following way: \\
+		\begin{enumerate}
+		\item From the $\set{A,B,C,D}$ choose 1 ; We know that there are 4 possible ways to do this. ; Say we choose A
+		\item Given that the objects need to be distinct we now have the set $\set{B,C,D}$ from which to choose, of which there are 3 possible ways to do so
+		\item Hence, we reach the conclusion that there are a total of $4 \times 3 = 12$ possible distinct arrangements
+		\end{enumerate}
+
+		\par{Note however that in a set of size 4 this is easy to see, but our initial goal was to find a method which works for large sets. Say, if you had 100 elements, and you needed a 50 element object then you would need $100 \times 99 \times 98 \dots \times 51$. Alternatively, we can attempt to generalize our method. }
+
+		\begin{enumerate}
+		\item We note that if we wanted to find the total number of arrangements for the original set, then that would just be $n!$ which is easy to compute with an aid of a calculator. 
+		\item Then we note that from that total number if we only need $r$ elements then there are $n-r$ elements for which we calculated possible arrangements which are not needed, and hence should not be accounted for in the total possible outcomes. In other words, there are $(n-r)!$ arrangements which we are not interested in
+		\item Finally, we exclude the arrangements in (2)  by dividing by (1). Giving us $$\frac{n!}{(n-r)!} = \perm{n}{r}$$
+		\end{enumerate}
+		}
+
+		\subsubsection{Combinations}
+
+			\defn{Combinations}{Subset of permutations, where the order does not matter. i.e $AB = BA$}
+
+			\par{Expanding on the notion of permutation above, all we need to do is to account for this repeated entries. We note that from the set of chosen objects, each object is composed of elements of size $r$, which can be arranged in $r!$ different ordered ways, i.e $\perm{r}{r}$. However, if the order doesn't matter, then this $r!$ count as 1 and need to be excluded.}
+
+			$$\comb{n}{r} = \frac{\perm{n}{r}}{\perm{r}{r}} = \frac{\frac{n!}{(n-r)!}}{\frac{r!}{(r-r)!}} = \frac{n!}{r!(n-r)!}$$
+
+			\rem{ The following useful results follow from above}
+			 $${ n \choose n} = {n \choose 0 } = 1 \qquad \text{ and } \qquad  {n \choose r }= {n \choose {n-r}}$$

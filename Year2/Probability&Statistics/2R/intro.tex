@@ -1,0 +1,68 @@
+\section{Introduction \& Terminology}
+
+	\defn{Experiment}{ any procedure that can be infinitely repeated and has a well-defined set of possible outcomes}
+
+	\defn{Trial}{ a single performance of an experiment}
+
+	\defn{Outcome}{ information obtained from one trial}
+
+	\defn{Stochastic Experiment}{ an experiment which has more than one possible outcome, even when performed under identical conditions, where it is not known in advance which of the outcomes will occur when next performed. (a.k.a random experiment)}
+
+	\defn{Sample Space}{a set that contains all the possible outcomes of a random experiment}
+
+	\rem{usually denoted by $S$ ; it can be finite, countable or uncountable}
+
+	\defn{Countable Set}{ infinite set whose elements can be counted (e.g. natural numbers)}
+
+	\defn{Uncountable Set}{not countable (e.g. real numbers)}
+
+	\defn{Event}{collection of outcomes}
+
+	\rem{Any event $E$ is necessarily a subset of $S$}
+
+	\defn{Simple Event}{an event that consists of a single outcome, i.e. $|E| = 1$}
+
+	\defn{Compound Event}{ $|E| \geq 2$}
+
+	\subsection{Sets}
+
+		\par{This material has been covered at length at most other courses, hence it is crucial for higher level mathematics. See 2F for proofs on some of the results presented below}
+
+
+		\defn{Universal Set (S)}{set which includes all possible outcomes}
+		\defn{Empty Set ($\emptyset$)}{set which includes no elements}
+		\defn{Complement Set ($E^{c}$)}{set which includes everything which is not in $E$.}
+		\defn{Union ($E \cup F$)}{set which includes elements which are in at least one of $E$ or $F$. \ita{``E or F or both''}}
+		\defn{Intersection ($E \cap F$)}{set which includes elements which are both in $E$ \textbf{and} $F$}
+		\defn{Disjoint Sets}{when $E \cap F$ = $\emptyset$}
+		\defn{Subset ($E \subset F$)}{all elements of $E$ which are also in $F$; $E \implies F$}
+		\defn{Relative Complement Set ($F \setminus E$)}{set which includes all elements in $E$ except those which are also in E ; $F \setminus E = F \cap E^{c}$ }
+		\defn{Disjoint Union of Sets}{$F = (F \cap E) \cup (F \cap E^{c})$}
+
+		\textbf{Laws of Sets} \mymarginpar{All these results apply conversely to the intersection of events}
+		\begin{itemize}
+		\item[] Commutative : $A \cup B = B \cup A $
+		\item[] Associative : $ A \cup (B \cup C) = (A \cup B) \cup C$
+		\item[] Distributive : $ A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
+		\item[] DeMorgan's : $(A \cup B)^{c} = A^{c} \cap B^{c}$
+		\end{itemize}
+
+	\subsection{Interpreting Probability}\label{sec:1}
+
+		\defn{Probability of E ($P(E)$)}{ informs us on how likely $E$ is to occur in a given experiment}
+
+		\par{There are 3 main views, or ways to interpret the meaning of $P(E)$, nevertheless almost all of them use the same methods for calculating and manipulating it within a certain probability model. These will be covered in the next section}
+
+		\begin{enumerate}
+		\item \textbf{Equally-Likely Outcome (ELO)} : Assumes that for $k$ possible outcomes in $S$, all have the same likelihood of occurring, i.e. $$ P(E_{1}) = P(E_{2}) = \dots = P(E_{k}) = \frac{1}{k} =  $$
+
+		\item \textbf{Frequentist} : Assumes that for $k$ possible outcomes in $S$, the probability of a given event occurring is weighted by considering how many times it occurs in a large number of trials of a given experiment. The concepts of limit and \textbf{relative frequency} are useful here, for practical reasons.
+
+		$$ P(E) = \lim_{n \to \infty}\set{rf_{n}(E)} = \frac{n(E)}{n} $$ \mymarginpar{where $n(E)$ represents the number of outcomes in E}
+
+		\item \textbf{Subjectivist} : The probability of an event is best treated as a statement of personal belief.
+
+		\end{enumerate}
+
+\newpage
+

@@ -1,0 +1,108 @@
+\section{Axioms of Probability}
+ 
+	 \par{As discussed in~\ref{sec:1} there is disagreement about the interpretation of $P(E)$ but there is general agreement about how valid deductions should be made within a probability model. There must be restrictions on the probabilities that can be assigned to events in S in order to make sure that the probabilities assigned to different events are consistent with each other. We say that a probability model is guaranteed to assign consistent probabilities to all events if it obeys the
+	following Axioms of Probability laid down by \ita{Kolmogorov (1933)}}
+	 
+	 \begin{itemize}
+	 \item[Axioms]
+	 \begin{enumerate}
+	 \item~\label{itm:ax1} $0 \leq P(E) \leq 1$ , for any event $E \subseteq S$ 
+	 \item~\label{itm:ax2} $P(S) = 1$ 
+	 \item~\label{itm:ax3}  $P(E_{1} \cup E_{2}) = P(E_{1}) + P(E_{2})$ if $E_{1} \cap E_{2} = \emptyset$ \mymarginpar{note that~\ref{itm:ax3} is a special case of~\ref{itm:ax4} where $E_{i>2} = \emptyset$}
+	 \item~\label{itm:ax4} If $\bigcap_{i=1}^{n}E_{i} = \emptyset$ , then $P(\bigcup_{i=1}^{n}E_{i}) = \sum_{i=1}^{n} P(E_{i})$ 
+	 \end{enumerate}
+	 \end{itemize}
+	 
+
+ 
+\section{Rules of Probability}
+
+	\par{A common task within a given probability model is to calculate unknown probabilities from known ones. This could be calculated by successful application of the axioms above, however there are more key general results which can be derived from the axioms which make this process here. We call these results the \ita{rules of probability}}
+
+	\rem{The axioms always refer to \textbf{disjoint events} \mymarginpar{\handleft}  , hence this is a crucial fact to be aware of when deriving the  rules ; a common step when proving them is to split a compound event into its disjoint parts }
+	 
+	\prop{}{$P(E^{c}) = 1 - P(E)$~\label{rule1}}
+
+	   
+	\proofs{
+	\begin{align}
+	 P(E \cup E^{c}) = P(E) + P(E^{c}) \qquad (Axiom \ref{itm:ax3})\\
+	 P(E \cup E^{c}) = P(S) = 1 \qquad (Axiom \ref{itm:ax2}) \\
+	 P(E) + P(E^{c}) = 1 \iff P(E^{c}) = 1 - P(E) \qquad (1) , (2)
+	 \end{align}
+	}
+
+	\prop{\label{rule2}}{$P(\emptyset) = 0$}
+
+	\proofs{ We take $S^{c} = \emptyset$ then,  from~\ref{rule1} $ , P(\emptyset) = 1 - P(S) = 0$}
+
+	\prop{\label{rule3}}{$P(E) \leq P(F)$, for $E \subseteq F$}
+
+	\proofs{
+	\begin{align}
+	F &= E \cup F \setminus E \qquad  (\text{union of disjoint events}) \\
+	P(F) &= P(E) + P(F \setminus E) (Axiom \ref{itm:ax3}) \\
+	 &\geq P(E) , \text{ since } F \setminus E \geq 0  \qquad (Axiom \ref{itm:ax1}) 
+	\end{align}
+	}
+
+	\example{See Workshop1.6}
+
+	\prop{\label{rule4}}{$P(A \cup B) = P(A) + P(B) - P(A \cap B)$ \mymarginpar{\handright Generalization of \ref{itm:ax3} , where we take into account the fact that for non-disjoint events $A \cap B$ is counted twice}}
+
+	\proofs{
+	\begin{enumerate}
+	\item Split the compound event $A \cup B$ into  3 disjoint events
+	$$A \setminus B = X = A \cap B^{c} \qquad B \setminus A = Y = B \cap A^{c}  \qquad Z = A \cap B $$
+	$$P(A \cup B) = P(X) + P(Y) + P(Z)  \qquad (Axiom \ref{itm:ax4})$$
+
+	\item Now using Axiom \ref{itm:ax3}, we can start reconstructing the original sets from the disjoint ones  \mymarginpar{Look ahead, $A \cap B$ is present in the RHS of the equality, so probably does not need to be simplified}
+
+	$$ P(A) = P(X \cup Z) = P(X) + P(Z)  ; \qquad P(B) = P(Y \cup Z) = P(Y) + P(Z) $$ 
+
+	\item Finally, substituting the last line back into $P(A \cup B)$
+
+	\begin{align*}
+	P(A \cup B) &=  P(X) + P(Y) + P(Z) \\
+	&= \big(P(A) - P(Z)\big) + \big(P(B) - \cancel{P(Z)}\big) + \cancel{P(Z)} \\
+	&= P(A) + P(B) - P(Z) \\
+	&= P(A) + P(B) - P(A \cap B)
+	\end{align*}
+	\end{enumerate}
+
+	}
+
+	\prop{\label{rule5}}{$P(A \cup B \cup C) = P(A) + P(B) + P(C) - P(A \cap B) - P(A \cap C) - P(B \cap C) + P(A \cap B \cap C)$}
+
+	\proofs{Similar to above, but there are 7 disjoint events, hence writing out all the disjoint unions becomes slightly hairy, but the procedure is the same. See Workshop1.5 for full proof}
+
+	\prop{Boole's Inequality~\label{rule6}}{$$ P\Bigg(\bigcup_{i=1}^{n}E_{i}\Bigg) \leq \sum_{i=1}^{n} P\Bigg(E_{i}\Bigg)$$}
+
+	\proofs{By induction
+
+	\begin{enumerate}
+	\item \textbf{Base Case: } Show true for $n = 2$. From \ref{rule4} we have that,
+	\begin{align*}
+	L.H.S = P(E_{1} \cup E_{2}) &= P(E_{1}) + P(E_{2}) - P(E_{1} \cap E_{2})  \\
+	&\leq P(E_{1}) + P(E_{2}) = R.H.S \qquad  ( Axiom \ref{itm:ax1} )
+	\end{align*} \mymarginpar{Alternatively we can just note that $max(P(E_{1} \cup E_{2}))$ happens when they're disjoint}
+
+	\item \textbf{Induction Hypothesis:} Assume true for $n \geq 2$
+
+	\item \textbf{Induction Step:} Proving true for $n+1$
+	 $$P\Bigg(\bigcup_{i=1}^{n+1}E_{i}\Bigg) \leq \sum_{i=1}^{n+1} P\Bigg(E_{i}\Bigg) $$
+	\begin{align*}
+	L.H.S = P\Bigg(\bigcup_{i=1}^{n+1}E_{i}\Bigg) &= P\Bigg(\bigcup_{i=1}^{n}E_{i}\Bigg) \cup E_{n+1}) \\
+	&\leq P\Bigg(\bigcup_{i=1}^{n}E_{i}\Bigg) + P\Bigg(E_{n+1}\Bigg) \qquad from \ \ref{rule4} \\
+	&\leq \sum_{i=1}^{n} P\Bigg(E_{i}\Bigg) + P(E_{n+1}) \qquad by \ the \ induction  \ hypothesis \\
+	&\leq \sum_{i=1}^{n+1} P\Bigg(E_{i}\Bigg) = R.H.S
+	\end{align*} 
+
+	\end{enumerate}
+	}
+
+	\example{See Workshop 1.6 , 1.7}
+
+
+
+	

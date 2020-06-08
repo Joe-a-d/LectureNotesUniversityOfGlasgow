@@ -1,0 +1,61 @@
+\section{Random Variables}
+
+	\defn{Random Variable}{A function $X : S \to \real $ , which associates a unique numerical value $X(s)$ with every outcome $s \in S$}
+
+	\par{When working with random variables, we can summarise each outcome of an experiment with a single numerical value. In general, R.V can be split into two broad categories ,  depending on the values they can assume, they can either be (i) Discrete (ii) Continuous .}
+
+	\subsection{Discrete Random Variables}
+
+		\defn{DRV}{a random variable with countable range, i.e where $X(s)$ is countable for all $s$}
+
+		\defn{Realisation}{Each $X(s)$}
+
+		\defn{Range Space}{All possible $X(s)$}
+
+		\notation{$R_{x}$}
+
+		\example{
+		\textbf{Likert scale} , we have $S = \set{\text{``Strongly disagree``} , \dots , \text{``Strongly Agree''}}$ , and we can map each response into a numerical value such that $X(s) = \set{-2 , \dots , 2}$}
+
+		\par{Although  usually we speak of probabilities associated with $X$ , $P(X = 0) , P(X < 2)$ , these probabilities are induced from probabilities of equivalent events in the original sample space. For example $P(X = x)$ corresponds to the probability of the equivalent event $\set{s \in S : X(S) = x}$}
+
+		\defn{Probability Mass Function}{list of probabilities associated with each of its possible values.  $p_{x}(x) = P(X = x) , x \in \real$ , such that $0 \leq p_{x}(X) \leq 1 , x \in \real$ and $\sum_{x \in R_{x}} p_{x}(x) =1$}
+
+		\par{In essence, \ita{p.m.f} maps all the possible discrete values a random variable could take on, and maps them to their probabilities}
+
+		\rem{$p_{x}(x) = 0 , \ \forall \ x \not\in R_{x}$}
+
+		\mymarginpar{ \ita{weighted} just means that one takes into consideration their likelihood/probability}
+
+		\defn{Expect Value / Mean}{the sum of the weighted possible values for $X$ $$\mu = E(X) = \sum_{x \in S}^{n} x p(x)$$}
+
+		\defn{Variance}{a measure of the spread of the possible values $$\sigma^{2} = E\left[(X - \mu)^{2}\right]$$ 
+
+		Where $E(X^{2})$ corresponds to the sum of the weighted possible values squared, i.e. 
+
+		$$E\left[X^{2}\right]=\sum_{x \in S} x^{2} \cdot p(x)$$
+
+		Therefore,
+
+		$$ \begin{aligned} \sigma^{2} &=\sum_{x \in S}\left[x^{2} \cdot p(x)\right]-\mu^{2} \\ &=\sum_{x \in S}\left[x^{2} \cdot p(x)\right]-\left[\sum_{x \in S} x \cdot p(x)\right]^{2} \end{aligned}$$
+		}
+
+		\rem{It is common to represent p.m.f as the set of pairs $\set{(x , p_{x}(x)) , x \in R_{x}}$}
+
+		\defn{Cumulative Distribution Function}{function giving the probability that  $X \leq x$ : $ F_{x}(x) = P(X \leq x)$ , such that 
+
+		\begin{enumerate}
+			\item $0 \leq F_{x}(X) \leq 1$ 
+			\item $F_{x}(-\infty) = P(X \leq -\infty) = 0 \text{  and  } F_{x}(\infty) = P(X \leq \infty) = 1$
+			\item $ x_{1} \leq x_{2}$ , then $P(X \leq x_{1}) \leq P(X \leq x_{2}) \equiv F_{x}(x_{1}) \leq F_{x}(x_{2})$ , i.e \textbf{increasing function}
+		\end{enumerate}
+		}
+
+		\rem{Given the discrete nature of the drv , then c.d.f for a given $x$ is just the sum of the p.m.f for each discrete value smaller than $x$ , i.e $F_{x}(x) = \sum_{r \in R_{x} \leq x} p_{x}(x) , x \in \real$} 
+
+		\par{Given the relation between p.m.f and c.d.f , we can always revert the relation and instead recover the first from the latter by subtracting consecutive terms : $p_{x}(1) = F_{x}(1) - F_{x}(0)$ , in general $$p_{x}(x) = F_{x}(x) - F_{x}(x-1)$$}
+
+		\todo{complete example 8.4 lecture notes ; p.45,56,48,49}
+		\section{Distributions}
+
+		\defn{Gamma Function}{ $$\Gamma(\alpha) = \int x^{\alpha - 1} e^{-x} dx = (\alpha - 1)! , \; \alpha = 1,2,\dots$$}

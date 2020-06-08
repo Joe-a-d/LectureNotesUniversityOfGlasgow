@@ -1,0 +1,80 @@
+\subsection{Continuous Random Variables}
+
+		\par{For continuous variables it doesn't make sense to look at $P(X = x)$, instead we look at the probability for a given range of $x$}
+
+		\prop{}{$P(X = x) = 0 \; \forall x $}
+
+		\rem{For continuous distributions, $P(X=x)=0$, so the expressions $P(X \leq x) = P(X < x)$}
+
+		\rem{Note that by definition of $\mu$ and c.d.f , we have $\mu = F_{X}(x)= \frac{1}{2}$ . We want the value for which $X \leq \frac{1}{2} \equiv X = \frac{1}{2}$}
+
+
+		\par{ The c.d.f can be expressed as the integral of its p.d.f} 
+
+		$$F_{X}(x)=\int_{-\infty}^{x} f_{X}(t) d t$$
+
+		\par{For $X$ within a range, we have}
+
+		$$\mathrm{P}(a<X \leq b)=F_{X}(b)-F_{X}(a) = \int_{a}^{b} f_{X}(t) dt$$
+
+		\example{ Take a distribution with the p.d.f $f_{X}(x) = \frac{2}{a}-\frac{2}{a^{2}} x, \quad 0<x<a$ . Then, }
+
+		\prop{Median}{ $x$ such that $F_{X}(x) = \frac{1}{2}$}
+
+		\par{More generally, given the definition of c.d.f, given $F_{X}(x)$ we can find the quartile of a given distribution by finding the $x$ which gives the desired cut-off point. For more complex distributions, which cannot be integrated in closed form, $x$ can be read from tables of numerical approximations}
+
+		\defn{Percentile}{$\varepsilon_{k} = F_{X}(x) \geq \frac{k}{100}$ , as discussed above, given the continuous nature of the variable $F_{X}(x) \geq \frac{k}{100}$}
+
+		\rem{Note that is just the same as asking for the cut-off point for quartiles, the $\frac{1}{100}$ is just a convention in order for quantiles to be expressed as percentages. e.g , median = $\varepsilon_{50} = \frac{50}{100} = \frac{1}{2} $}
+
+		\defn{Quantile Function}{$F_{X}^{-1}(x)$}
+
+
+		\defn{Mean}{$E(X) = \int_{a}^{b} xf_{X}(x)$}
+
+		\defn{Variance}{$\mathop{Var}(X) = [E(X^{2}) - E(X)^{2}]$ , where 
+
+		$$E(X^{2}) =  \int_{a}^{b} x^{2}f_{X}(x)$$}
+
+
+
+		\subsubsection{Normal}
+
+			\extra{Computation}{Standard Normal}{
+			\begin{enumerate}
+				\item Compute the mean $\mu = E(X)$ , and standard deviation $\sigma = \sqrt{Var(X)}$
+				\item Input into formula $Z = \frac{X -  \mu}{\sigma}$
+				\item Find appropriate $Z$ in cdf tables ; Recall for $x$ in table , we have $\phi(x) = Z  \leq x$ and for $-x$ we have $1-\phi(x)$ = $Z \leq -x $
+			\end{enumerate}
+			}
+
+
+
+			\example{ For $X\sim N(-1, 0.25)$ we have $Z = \frac{X - (-1)}{\sqrt{0.25}} \sim N(0,1)$. Hence,
+
+			\begin{enumerate}
+			\item  $\mathbf{P(X < 0.5)}$
+
+			$P(Z < \frac{0.5 - (-1)}{\sqrt{0.25}}) = P(Z < 3)$ , consulting the values of the $\mathop{c.d.f}$ we have $\phi(3) = P(X < 0.5) = 0.9987$
+
+			\item $\mathbf{P(X < -1.25)}$
+
+			$P(Z < \frac{-1.25 - (-1)}{\sqrt{0.25}}) = P(Z < -0.5)$ , consulting the values of the $\mathop{c.d.f}$ we have $1 - \phi(0.5) = P(X < -1.25) = 0.3805$
+
+			\item $\mathbf{P(-2 < X < 0)}$
+
+			$P(\frac{-2 - (-1)}{\sqrt{0.25}} < Z < \frac{0 - (-1)}{\sqrt{0.25}}) = P(-2 < Z < 2)$. Hence $Z > -2$ and $Z < 2$, which gives us the range $P(Z < 2) - P(Z < -2)$ consulting the values of the $\mathop{c.d.f}$ we have $\phi(2) = P(X < 2) = 0.9772$ and $ 1- \phi(2) = P(X < -2) $ therefore, $P(Z < 2) - P(Z < -2) = P(-2 < X < 0) = 2\phi(2) - 1 = 0.9544$ 
+
+			\item \textbf{Expected  value,  variance ,  standard deviation , median of X}
+
+			$E(X) = -1 \; ; \; \mathop{Var}(X) = 0.25 \; ; \; \sigma = 0.5 \; ; \; P(X < \varepsilon_{50}) = 0.5 \implies \varepsilon_{50} = -1 $
+
+
+			\end{enumerate}
+			}
+
+
+
+			\todo{Add to continuous subsec} 
+
+		\subsubsection{Gamma}
