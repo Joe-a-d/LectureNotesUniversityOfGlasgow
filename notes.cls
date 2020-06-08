@@ -31,7 +31,7 @@
      \newcommand\handright{\HandCuffRight}
      \setlength\parindent{0pt}
      
-      \newcommand\extra[3]{\shadowbox{
+      \newcommand\extra[3]{\vskip 5mm \shadowbox{
 	\parbox{\textwidth}{\textbf{#1}{\ #2} \\ \rule{\textwidth}{1pt} \\   #3}}}
      
     %% https://davidyat.es/2016/07/27/writing-a-latex-macro-that-takes-a-variable-number-of-arguments/
