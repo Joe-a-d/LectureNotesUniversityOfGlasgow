@@ -1,0 +1,66 @@
+\subsection{OSI - Physical Layer}
+
+	\par{The physical layer is concernerd with the transmission of raw data bits. In order for this to be possbile, the information needs to be transformed and encoded and a decision on the best medium for the job (e.g. cables, fibre optic etc.) and their phyiscal properties needs to be taken.}
+
+	\subsubsection{Transmission Channels - Enconding \& Modulation}
+
+	\defn{Wired Data Trasmission}{ the signal is transmited over a cable and is \ita{directly} enconded onto the channel, by varying the voltage/light intensity}
+
+	\defn{Wireless Data Transmssion}{ the signal is transmitted without the aid of an electrical conductor, most commonly using radio waves and some kind of modulation}
+
+	\par{A signal can travel with or without the aid of an electrical condutor, if it is directly encoded into a cable, then one of several \ita{enconding schemes} can be used in order to change the signal into discrete pieces of data (e.g. bits).}
+
+		\begin{itemize}
+			\setlength\itemsep{0.5em}
+			\mymarginpar{High $\approx [3,5]v$ , and Low $\approx [0,3)$}
+			\mymarginpar{NRZ : Non-Return to Zero}
+			\item\textbf{NRZ : }{1 -- High ; 0 -- Low}
+			\item\textbf{NRZ Inverted : }{1 -- Change ; 0 -- Constant}
+			\item\textbf{Manchester : }{1 -- High-Low ; 0 -- Low-High}
+		\end{itemize}
+		
+
+		\todo{Insert image from anki card}
+
+	\par{Alternatively one can encode information onto a channel by varying the properties of the carrier signal via a modulating signal, a process know as \ita{modulation} which allows the same channel to be shared by different signals}
+
+		\todo{Insert image from anki card}
+
+	\subsubsection{Bandwith, Capacity \& Noise}
+
+	\defn{Bandwith}{ determines the frequency range it can transport}
+
+	\defn{Sampling Theorem}{ states that to accurately digitise an analogue signal, $2H$ samples per second are needed, where $H$ is the bandwith in Hz}
+
+	\defn{Signal-to-Noise Ratio}{ the ration between signal power and noise floor, typically quoten in dB $= 10\log(\frac{S}{N})$}
+
+	\par{The bandwidth of a channel is determined by physicial limitations of the channel, and given the existence of noise in the real worl, the \ita{Signal-to-Noise} ratio and the bandwidth represent the fundamental limits for the rate at which information can be transmitted}
+
+	\rem{The maximum transmission rate of a channel grows lograithmically to the SNR}
+
+	\extra{Extra}{Theoretical Maximum Transmission Rate}{
+
+		$$ R_{max} = 2H\log_{2}V $$
+
+		where:
+		\begin{itemize}
+			\item[]$R_{max} =$ max trasmission rate in bits/s
+			\item[]$H =$ bandwith in Hz
+			\item[]$V =$ \# of discrete values per symbol
+		\end{itemize}
+	}
+
+	\extra{Extra}{Shannon's Theorem}{
+		$$ R_{max} = H\log_{2}(1 + SNR) $$
+
+	}
+
+	
+	\subsubsection{Summary}
+
+		\begin{itemize}
+			\item\textbf{PDU : } bits
+			\item\textbf{Function : } transmit a sequence of bits over an analogue channel
+			\item Information can be encoded directly into the channel or the signal can be modulated
+			\item Physicial limitations cap the transfer rate
+		\end{itemize} 
