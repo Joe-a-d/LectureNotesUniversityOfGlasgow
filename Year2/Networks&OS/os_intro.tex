@@ -28,7 +28,11 @@
 	\par{A modern computer system consists of 1+ CPUs and a number of device controllers which interact via a common bus that provides access between components and shared memory. It is the job of the device controller to transfer data between the devices and the local buffer storage which it maintains along with a set of special-purpose registers.}
 	\par{The CPU and the device controllers can execute in parallel, competing for memory cycles. The three key aspects of the computer-system - Interrupts, Storage Structure, I/O Structure - are deigned in such a way so as to allow for memory to be used as efficiently as possible }
 
-	!! INSTERT IMAGE FIGURE 1.2 TEXTBOOK !!
+	\begin{figure}[H]
+		\begin{center}
+		\includegraphics[width=\textwidth]{system}
+		\end{center}
+	\end{figure}
 
 
 	\subsubsection{CPU Interrupts}
@@ -46,7 +50,11 @@
 		\par{The controller accomplishes 4 via an \ita{interrupt}. When hardware triggers an interrupt, the CPU stops the execution of all programs and it transfers execution to a fixed location which will usually contain the starting address for the interrupted service so that execution can restart when the interrupt routine finishes.}
 		\par{Different architectures have different interrupt mechanisms, but they all share several essential functions, such as the transfer of control to the appropriate service routine. In order for this transfer to occur quickly a table of pointers to different interrupt routines - \ita{interrupt vector} - is kept in low memory and is used instead of an extra routine whose sole purpose would be to inspect the interrupt information. In this way the routine is called indirectly via the table.\mymarginpar{For implementation details see 1.2.1.2}}
 
-		!! INSERT TABLE OF INTERRUP VECTOR !!
+		\begin{figure}[H]
+		\begin{center}
+		\includegraphics[width=\textwidth]{eventVector}
+		\end{center}
+	\end{figure}
 
 
 	\subsection{Storage Structure}
@@ -54,7 +62,11 @@
 	\par{When looking at a storage system one can pick out three main characteristics of importance, whose importance differs depending on their function and at which level of the system they are to be implemented, and which compete against each other. These are: \ita{Speed, Cost, Persistence/Volatility}}
 	\par{Devices which need to process information immediately like the registers in the CPU are more costly,have a lower storage capacity and are in general volatile. In contrast, long-terms storage devices like the hard disk, or a flash drive are fairly inexpensive but their read/write speeds are significantly slower.}
 
-	!! INSERT IMAGE SLIDE 9.9 !!
+	\begin{figure}[H]
+		\begin{center}
+		\includegraphics[width=\textwidth]{mem_hierarchy.jpg}
+		\end{center}
+	\end{figure}
 
 	\defn{Caching}{the copy of information into faster storage systems}
 
@@ -91,8 +103,6 @@
 		\rem{Increasing the number of processors by $N$ does not imply a $N$-fold increase in speed, since some of the processing power will be lost as overhead to tasks which make sure that the processors behave correctly when working together and sharing resources}
 
 		\par{There are two main types of multiprocessor systems - \ita{Symmetric} and \ita{Asymmetric}, the former being the most common. They differ in the way tasks are split amongst different processors}
-
-		!! INSERT SMP side by side with AMP !!
 
 		\subsubsection{Symmetric}
 

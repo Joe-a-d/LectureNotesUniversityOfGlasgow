@@ -16,11 +16,19 @@
 
 	\par{Even with multiple cores, if there are more processes then cores then some processes will need to wait before they're able to run. Hence, there is the need for some sort of scheduling of processes. The main goal of the scheduler is to maximize CPU utilization at all times, in order to achieve this there exist several types of schedulers and several queues need to be maintained in order to keep track of each process state.}
 
-	!! INSTER DIAGRAM SLIDE 5!!
+	\begin{figure}[H]
+		\begin{center}
+		\includegraphics[width=0.75\textwidth , height=0.25\textwidth]{processLife}
+		\end{center}
+	\end{figure}
 
 	\par{The \ita{job scheduler} concerns itself with loading programs into memory, the \ita{medium-term} one performs possibly necessary swaps between active/holding states and the \ita{CPU scheduler} decides which process to execute next. These 3 schedulers can move processes among the various queues : all processes exist first in the \ita{job queue}, once they are in RAM and ready to execute they are put into the \ita{ready queue}, if the process is waiting for a particular device then it is put into that device's queue.} 
 
-	!! INSERT DIAGRAM SLIDE 8 !!
+	\begin{figure}[H]
+		\begin{center}
+		\includegraphics[width=\textwidth]{sched}
+		\end{center}
+	\end{figure}
 
 	\subsection{CPU Scheduler}
 
@@ -61,27 +69,75 @@
 				\item[]Response Time : minimize , in an interactive system this criteria can be better than turnaround time, we measure when the first response is issued
 			\end{itemize}
 
-	!! COPY EXAMPLES with time calculations !!
+			\example{ Find below the application of each algorithm for the following processes:
+
+			$$\begin{array}{|l|l|l|}\hline \begin{array}{l}\text { Process ID } \\ \text { (PID) }\end{array} & \begin{array}{l}\text { Arrival } \\ \text { Time }\end{array} & \begin{array}{l}\text { CPU Burst } \\ \text { Time }\end{array} \\ \hline \text { P1 } & 0 & 6 \\ \hline \text { P2 } & 4 & 14 \\ \hline \text { P3 } & 5 & 10 \\ \hline\end{array}$$
+			}
 
 	\subsection{FIFO}
 
 		\par{The \ita{First-In First-Out} algorithm, is a non-preemptive algorithm which executes the processes in order of arrival. It is very simple to implement but can lead to large waiting times}
 
+	\begin{figure}[H]
+		\begin{center}
+		\includegraphics[width=\textwidth]{FIFO}
+		\end{center}
+		\begin{center}
+		\includegraphics[width=\textwidth]{FIFOc}
+		\end{center}
+	\end{figure}
+
 	\subsection{SJF}
 
 		\par{The \ita{Shortest Job First} algorithm chooses the processes with the lowest CPU burst time to be executed first, if the processes have the same CPU burst time then it falls back to FIFO. This is also simple to implement, but an obvious problem is that processes with large CPU burst times may take much more to implement}
 
+		\begin{figure}[H]
+		\begin{center}
+		\includegraphics[width=\textwidth]{SJF}
+		\end{center}
+		\begin{center}
+		\includegraphics[width=\textwidth]{SJFc}
+		\end{center}
+	\end{figure}
+
 	\subsection{SRTF}
 
-		\par{The \ita{Shortest Remaining Time First} is a preemptive version of SJF, i.e. it looks at the list of processes in the ready queue with each new arrival and compares the total remaining completion times.}
+		\par{The \ita{Shortest Remaining Time First} is a preemptive version of SJF, i.e. it looks at the list of processes in the ready queue with each new arrival and compares the total remaining completion times, if the total time of a waiting process is lower than the one currently in execution then it will interrupt execution and swap them. }
+
+		\begin{figure}[H]
+		\begin{center}
+		\includegraphics[width=\textwidth]{SRTF}
+		\end{center}
+		\begin{center}
+		\includegraphics[width=\textwidth]{SRTFc}
+		\end{center}
+	\end{figure}
 
 	\subsection{NPP}
 
 		\par{The \ita{Non-Preemptive Priority Scheduling} adds processes to a queue according to their priority values; if processes share the same priority level, then it reverts back to FIFO. It is also fairly simple to implement, but similarly to SJF it might lead to \ita{starvation}, i.e processes with low priority may take ages or never run}
 
+		\begin{figure}[H]
+		\begin{center}
+		\includegraphics[width=\textwidth]{NPP}
+		\end{center}
+		\begin{center}
+		\includegraphics[width=\textwidth]{NPPc}
+		\end{center}
+	\end{figure}
+
 	\subsection{RR}
 
 		\par{The \ita{Round-Robin Scheduling} is the preemptive version of FIFO, where processes are executed according to time of arrival but only for a certain time period - \ita{quantum}. If the process finished early then the dispatcher moves down the queue, if the opposite happens the process is added to the back of the queue.}
+
+		\begin{figure}[H]
+		\begin{center}
+		\includegraphics[width=\textwidth]{RR}
+		\end{center}
+		\begin{center}
+		\includegraphics[width=\textwidth]{RRc}
+		\end{center}
+	\end{figure}
 
 	\subsection{MQ}
 
