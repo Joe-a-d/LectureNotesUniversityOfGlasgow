@@ -34,13 +34,52 @@
 
 				\par{The array implementation of a stack is simple and efficient \ita{if} one has a good idea , in advance , of the number of elements it will contain. Then, given $n,t$ where $n$ represents the size of the stack and $t$ is a cursor var which keeps track of the index of top element, one adds elements from [0...n-1=t]}
 
-		\rem{by convention , $ S = \{\} \iff t = -1 $}
+		\rem{by convention , $ S = \emptyset \iff t = -1 $}
 
 		\defn{Stack Overflow}{ push() into full stack}
 		\defn{Stack Underflow}{ pop() empty stack}
 
 		\subsubsection{Operations}
-						%% add lstlisting %%
+			\begin{algorithm}[H]
+				\DontPrintSemicolon
+				\SetAlgoLined\KwData{Stack $S$}
+				\SetKwFunction{KwFn}{STACK-EMPTY}
+				\KwResult{true, false}
+				\KwFn{S}\\
+				\Indp\Return S.top = -1
+
+				\caption{isEmpty}
+
+			\end{algorithm}
+
+			\begin{algorithm}[H]
+				\DontPrintSemicolon
+				\SetAlgoLined\KwData{Stack $S$ , $x$}
+				\SetKwFunction{KwFn}{PUSH}
+				\KwFn{S,$x$}{\\
+				\Indp S.top := S.top + 1 \;
+				\Indp S[S.top] := x 
+				}
+				\caption{Push}
+
+			\end{algorithm}
+
+		\begin{algorithm}[H]
+				\DontPrintSemicolon
+				\SetAlgoLined\KwData{Stack $S$}
+				\SetKwFunction{KwFn}{POP}
+				\KwResult{"underflow", S[S.top + 1]}
+				\KwFn{S}\\
+				\uIf{STACK-EMPTY(S)}
+					{return "underflow"}
+				\uElse{
+					S.top := S.top - 1 \;
+					\Return S[S.top + 1]
+					}
+
+				\caption{Pop}
+
+			\end{algorithm}
 
 		\subsubsection{Analysis}
 
@@ -59,7 +98,54 @@ which both run in constant time, i.e they're all $O(1)$, and memory is $O(n)$}
 				\end{enumerate}
 
 		\subsubsection{Operations}
-						%% add lstlisting %%
+						\begin{algorithm}[H]
+				\DontPrintSemicolon
+				\SetAlgoLined\KwData{Stack $S$ , new capacity $n'$}
+				\SetKwFunction{KwFn}{RESIZE}
+				\KwFn{S, n'}\\
+				\Indp new S’[0..n’-1] \;
+				\For{i = 0 to S.top}
+					{S’[i] := S[i]}
+				S := S'
+				\caption{Resize}
+
+			\end{algorithm}
+
+			\begin{algorithm}[H]
+				\DontPrintSemicolon
+				\SetAlgoLined\KwData{Stack $S$ , $x$}
+				\SetKwFunction{KwFn}{PUSH}
+				\KwFn{S,$x$}{\\
+				\uIf{S.top = n -1}
+					{RESIZE(S, 2*n) {\tcc*[r]{double array if full}}
+					}
+				S.top := S.top + 1 \;
+				S[S.top] := x 
+				}
+				\caption{Push}
+
+			\end{algorithm}
+
+		\begin{algorithm}[H]
+				\DontPrintSemicolon
+				\SetAlgoLined\KwData{Stack $S$}
+				\SetKwFunction{KwFn}{POP}
+				\KwResult{"underflow", S[S.top + 1]}
+				\KwFn{S}\\
+				\uIf{STACK-EMPTY(S)}
+					{return "underflow"}
+				\uElse{
+					x := S[S.top]\;
+					S.top := S.top - 1 \;
+					\If{S.top > 0 and S.top = n/4}
+						{RESIZE(S,n/2){\tcc*[r]{half array if 1/4 full}}
+					}
+					\Return S[S.top + 1]
+				}
+
+				\caption{Pop}
+
+			\end{algorithm}
 
 		\subsubsection{Analysis}
 						\begin{itemize}
@@ -70,6 +156,41 @@ which both run in constant time, i.e they're all $O(1)$, and memory is $O(n)$}
 		\subsubsection{Implementation - Linked List}
 				\par{Let \texttt{l.head := S.top} , then \texttt{PUSH = INSERT@Head} , \texttt{POP = DEL@Head} and by keeping track of size with \texttt{S.size} we can perform \texttt{SIZE} at constant time}
 
-		%% add lstlisting %%
+		\subsubsection{Operations}
 
+			\begin{algorithm}[H]
+				\DontPrintSemicolon
+				\SetAlgoLined\KwData{Stack $S$ , $x$}
+				\SetKwFunction{KwFn}{PUSH}
+				\KwFn{S,$x$}{\\
+				\Indp x.next := S.top {\tcc*[r]{S.top == L.head}} \;
+				\Indp S[S.top] := x 
+				}
+				\caption{Push}
+
+			\end{algorithm}
+
+		\begin{algorithm}[H]
+				\DontPrintSemicolon
+				\SetAlgoLined\KwData{Stack $S$}
+				\SetKwFunction{KwFn}{POP}
+				\KwResult{"underflow", x}
+				\KwFn{S}\\
+				\uIf{S.top != NILL}
+					{x := S.top \;
+					 S.top := S.top.next \;
+					 \Return x
+					}
+				\uElse{
+					\Return "underflow"
+					}
+
+				\caption{Pop}
+		\end{algorithm}
 	
+		\subsubsection{Analysis}
+						\begin{itemize}
+								\item[] Memory : $O(n)$
+								\item[] Running Time : O(1)
+						\end{itemize}
+
