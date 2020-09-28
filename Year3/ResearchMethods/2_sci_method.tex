@@ -1,0 +1,80 @@
+\section{The Scientific Method - Controls \& Sample Sizes in Experimental Design}
+
+    \par{A quick introduction to the \ita{scientific method} and the \ita{philosophy of science} }
+
+ 	\begin{itemize}
+ 		\item Introduces high level of concepts of inference and how this can be used in the search for new knowledge.
+ 		\item Discusses the basics of the scientific method, hypotheses, and hypothesis testing. 
+ 		\item Finishes with a broad look at some methods often used in computing science research.
+ 	\end{itemize}
+
+ 	\subsection{Philosophy of Science}
+
+ 		\par{PS is a branch of philosophy that analyses methods of scientific inquiry. It challenges practices and assumptions which are taken for granted, and in doing so challenges the way we look at the world and gives us a way of reflecting on the scientific method and the knowledge generated so far.}
+
+ 		\par{Some philosophers do not believe however, that a simple criterion for identifying what Science is can ever be found. Karl Popper a prominent 20\textsuperscript{th} century philosopher attempted to suggest that scientific theories \ita{must} be falsifiable. For Popper, the line between science and pseudo-science is drawn when a theory cannot be shown to be incompatible with possible empirical observations, whether by virtue of it being tweaked so as to accommodate them (e.g. \ita{Marxism}) or by virtue of it being consistent with all possible observations (e.g. \ita{Psychoanalysis}.)
+ 		\par{Critics of Popper's theory point out that data can sometimes be at odds with theory, a contradicting observation does not necessarily falsifies a theory, and where to draw the line between a false theory or an aberrant observation is usually up to groups of scientists who work in the field. Furthermore, falsification can not help us decide between two competing but corroborated theories. To explore this in any more depth is far beyond the scope of this course, but the key takeaway, which Popper mentions in his response to its critics, is that:}
+
+ 		\quo{"the usefulness of falsifiability is that falsifiable conjectures say more, because they prohibit more and, in the case of their falsification, they lead to useful problems, which steer the creative process of science"}
+
+ 	\subsection{Scientific Inference}
+
+ 		\defn{Scientific Inference}{a conclusion reached on the basis of evidence and theories}
+
+ 		\defn{Deductive Inference}{the truth of its conclusion is \ita{guaranteed} by its premisses}
+
+ 		\defn{Inductive Inference}{the truth of its conclusion can not be solely determined by the truthfulness of its premisses}
+
+ 		\par{When reasoning by induction on the other hand, we draw conclusions about unobserved objects resorting to reasoning and \ita{past} observations of similar objects. Unlike in deduction true premisses might lead to false conclusions. Hume when discussing causation presents his famous illustration on how it is impossible to guarantee that a billiard ball will move when hit by another because to do so will mean that we assume the (more general)conclusion to be true right from the start, i.e. we believe that things that happen in the past in similar circumstances will happen again in the future \ita{because} in some other past, some other future \ita{was} indeed like that past. We are trying to reason about states of affairs in the world by appealing to logical necessity, but that the future \ita{must be} like the past is not necessarily true. The problem, according to Hume, lies in the fact that we conflate intuitions about our observed world with logical reasoning (\ita{relations of ideas).}
+
+ 		\par{Despite this problem, empirical sciences mostly use inductive inference when conducting research, this is because it is just not possible to observe every instance of our object of study. It is therefore important to be aware that certain truth is something that can not be achieved by induction and when conducting studies great importance must be taken when drawing conclusions about a given \ita{population} from a \ita{sample}. Note however that this does not mean that induction is not a valid method, and that empirical sciences have no legs to stand on, since though the problem of induction has not been solved there are strong critiques which are widely accepted. For example, \ita{Peter Strawson} argues that Hume himself is confused on what it means to reason about something. According to Strawson using induction is intrinsic to the act of reasoning}
+
+ 		\quo{The question whether induction is rational resembles ... the question whether the law is legal.}{Einstein}
+
+ 		\defn{Inference to the Best Explanation}{inductive reasoning which chooses the simplest hypothesis if several competing ones exist}
+
+ 		\par{As a compromise then, we can describe the goal of science to be that of drawing the \ita{most plausible} conclusion from observation where we define the most plausible explanation to be that which is \ita{as simple as possible, but no simpler}, said Einstein paraphrasing Occam.  
+
+ 		\quo{"entities should not be multiplied without necessity" Occam}{Occam}
+
+ 		\defn{Causal inference}{using induction to assert the causal connection between events}
+
+ 			\par{A common type of question that scientific research aims to answer is that of the source of causes of events and this is often achieved via inference. Hence, it still suffers from the problems discussed above, in particular here one has to be careful not to identify an event as a cause of another just because they are correlated. There might be a third unknown cause which causes both events to occur simultaneously.}
+ 			\par{In order to safely make causal inferences we use control groups in our experiments in order to isolate the factor being studied and control for the others.}
+
+ 			\defn{Control Group}{works as base line measure}
+
+ 			\defn{Treatment}{is the one where we should expect to see the effects of the \ita{"treatment"}}
+
+ 			\par{For example, if you wanted to study if small buttons lead to poor text entry then you would give devices with large buttons to the control and small to the treatment group. We would then compare the two groups, if we observe a significant difference between the groups, and given that both samples were taking from the same population, we can then be more inclined to infer causality. There can still be some \ita{confounding factors}, in order to help weed out those scientists often will also use randomised controls or more commonly in computer science, \ita{repeated-measures} where participants experience \ita{all} conditions}. In our example you could give the participants both type of devices}
+
+ 	\subsection{The Scientific Method}
+
+ 		\defn{Scientific Method}{a set of common principles, procedures and criteria for the objective investigation of the world}
+
+ 		$$\begin{array}{l}\text { General scientific method: } \\ \text { - Beliefs or observations about some something; } \\ \text { - Formulate a hypothesis to explain and predict that something; } \\ \text { - Test the hypothesis against empirical evidence; }\end{array}$$
+
+ 		\defn{Hypothesis}{a specific, falsifiable, parsimonious and predictive explanation for phenomena}
+
+ 		\par{Unlike Popper, Kuhn argues that during the period of what he calls \ita{normal science} data which contradicts an accepted hypothesis as a theory is initially seen as an error on the scientist's part. If enough of these build up then the current \ita{paradigm} reaches an existential crisis and that's when new hypothesis are proposed until eventually a new theory is accepted which subsumes parts of the older one. One should see the scientific method as iterative and the progress of science not as linear but instead brought by these sudden shifts in thought brought by dissonance within a field.}
+
+ 		\subsubsection{Experiments}
+
+ 		\defn{Experiment}{a series of steps used to gather data in against which we can test our hypotheses}
+
+ 		\par{An essential part of this process is the testing of hypotheses which is achieved by experiments carefully controlled by scientists\mymarginpar{we'll delve more into this in a future lecture}. Once we've gathered the data we use \ita{statistical analysis} to determine if the variance in data was caused by the experiment design or if occurred by chance.}
+
+ 		\rem{Do not take published \ita{"science"} at face value, always engage with the work. See the slides for examples of intentional and unintentional errors which can lead to \ita{"bad science"} and wrong conclusions}
+
+ 	\subsection{Science Dissemination}
+
+ 		\par{}
+
+ 	\subsection{Computing Science Research Method}
+ 		
+
+
+
+
+
+
