@@ -1,0 +1,115 @@
+\lecture{}{}{}
+
+\par{TOPICS: introduction to C, fundamental features, differences, strong
+typing, lexical scope, lifetime of variables, call by value, declarations and definitions, compiler
+errors and warnings,how data is represented in memory, why data types are fundamental in
+C}
+
+\section{Main}
+\par{The main function is the entry point into the program. By default it returns 0 if the end
+is reached when executing, any other non-negative return value indicates an unsuccessful execution}
+\par{There are two valid versions of main, one of them is able to process command line
+arguments} !!INSERT CODE!!
+
+\dection{printf}
+\par{printf is a function defined in the stdio.h library, which takes a format string as its
+first argument, and the following arguments as the values to be printed out}
+
+!! INSERT LINK TO COMMON FORMAT STRINGS !!
+
+
+\section{Variables}
+
+\par{Variables are composed of a \ita{data type}, and \ita{identifier} and optionally an
+\ita{initialisation expression}}
+
+\rem{C is a \ita{statically typed} language, it is not possible to declare a variable without
+declaring its type}
+
+\subsection{Data Types}
+
+\par{A \ita{bit-pattern} on it's own has no meaning, its meaning is context dependent. Data
+types give bits meaning. By declaring a variable with a data type one decides what a bit-pattern
+means when stored in memory}
+\par{By enforcing operations to respect data types the compiler prevents meaningless
+computations so that we preserve meaningful representation of the data. If \texttt{x} is a
+\texttt{char} then \textttt{x + 1} has a very different meaning than if \texttt{x} was a float. The
+resulting bit-patterns stored in memory would be totally different}
+
+!! INSERT EXAMPLE FROM LECTURE SLIDES !!
+
+\subsection{Representation in Memory}
+
+\par{A variable is allocated a space in memory when it is declared and that location remains unchanged throughout
+its lifetime, it is the data type of the variable which determine the bits being stored in memory.
+It follows that for optimal performance one should take into consideration which data type to choose
+depending on one's needs. For example, if one needs to store an array of small integers then one
+could save almost 3MB of data by choosing to use \texttt{char} over \texttt{int}. Though in terms of
+storage/tertiary memory this improvement is marginal, in terms of memory this can lead to a significant improve in
+performance since primary memory provides faster access speeds at the cost of much lower capacity} 
+\par{A lifetime of a variable depends on how the memory for that variable was allocated. There
+are 3 possible cases:}
+\begin{itemize}
+	\item[Automatic] allocation happens for variables which are declared locally within a scope
+	\item[Static] allocation means that the variable will persist throughout the execution of
+	the program. Hence, every time that variable is needed the program will look at the same location
+	\item[Allocated] allocation requires the programmer to manage the lifetime of the variable
+	themselves by  explicitly request memory using \ita{dynamic memory function} such as \texttt{malloc}
+\end{itemize}
+
+\subsection{Stack-Based Memory Management}
+\par{Automatically allocated variables' memory is automatically freed up once they expire. This
+is achieved by following a LIFO \ita{stack-based memory management} approach. When the compiler sees a
+start of the block it puts aside a location in memory for every variable in scope, when it reaches
+the end of the block it frees up all previously assigned memory.}
+
+\section{Other Data Types}
+
+\subsection{Struct}
+\par{Structs consist of a sequence of members which need not necessarily be all of the same
+type. They are comparable to a public Java class without any methods, and similarly to Java a
+struct's members can be accessed using dot notation. A major advantage of structs is that there is
+no overhead in memory management since its variables are stored in memory sequentially in the order
+in which they were declared.}
+\par{One declares a struct type by using the keyword \texttt{struct} before the identifier, but
+because one might want to initialise multiple structs with different values \texttt{typedef} can be
+used to name that struct. After doing so, the struct keyword can be dropped}
+
+\subsection{Arrays}
+\par{Arrays consist of multiple elements of the same type. So that the memory is automatically
+managed the size of an array stored in the stack  must have a fixed size \mymarginpar{Dynamic arrays
+are possible if stored in the heap, see next week's lecture notes}}
+
+\rem{array elements are stored next to each other in memory}
+
+\rem{Arrays in C do not carry any information regarding their size. This means that it is not
+possible to generate arrays dynamically, and one should always make sure to keep track of this
+information}
+
+\subsection{Strings and Characters}
+
+\par{In C strings are just an array of characters, the compiler identifies the end of the array
+by the \texttt{\0} character which is appended to its end. This happens automatically if the string
+is defines as a string literal \texttt{""} but must be added manually if the string is defined as an
+array of chars \texttt{''}}
+
+\subsection{Function}
+\par{Function declarations represent its interface, i.e they let one know what is expected when
+the function is called; the behaviour of the function can then be \ita{defined} inside a block. In C
+all identifiers must be declared before they are used. To declare a identifier just means to
+assign a name and type to that identifier, it allows the compiler to know the properties of that
+identifier. Functions are no different, except that one must also identify the type of their
+parameters. When defining a function one must give it a body specifying its behaviour}    
+
+\rem{the linker is responsible for linking the reference of a function to its implementation}
+
+\subsubsection{Call-by-value}
+\par{When an argument is passed to a function its value is passed to the function's parameter,
+hence changes made to the parameter have no effect on the argument. What happens is that a copy of
+the argument's value is created and a new local variable whose scope is the function's body is
+allocated some other space in memory; as it was mentioned above once the function ends execution
+that location is automatically freed up, hence the changes will not persist unless the value is
+returned}
+\par{Arrays are special because when passed to a function they are not copied (expensive),
+instead the address/pointer of its first element is passed\mymarginpar{remember your first attempt
+at trying to write a function which returned an array's size}}
