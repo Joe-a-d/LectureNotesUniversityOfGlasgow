@@ -1,0 +1,25 @@
+\section{Synchronization}
+
+\par{Nowadays virtually all modern multicore systems explore opportunities for parallelism and rely on the use of multiple threads for controlling executing programs.}
+
+\defn{Parallelism}{when multiple tasks can be executed simultaneously}
+
+\defn{Concurrency}{when multiple tasks are performed in such a way that allows for all to make some progress}
+
+\par{The distinction between parallelism and concurrency is particularly important when comparing single core and multicore systems. In a system with a single core concurrency just means that the system will interleave all tasks to allow for all to make progress, whilst in a multicore system concurrency will in effect mean that multiple tasks will be able to be performed simultaneously because separate threads can just be assigned to separate cores.}
+
+\subsection{Threads and Processes}
+
+	\defn{Thread}{independent sequence of execution which share the memory space within a process}
+
+	\par{Threads have several advantages over regular processes when it comes to sharing work. Unlike processes, threads share memory and resources by default, they are easier and more economical to create. However, if a single thread within a process fails, the whole process crashes.}
+
+	\rem{Depending on the implementation it is possible to have separate schedulers for threads and processes}
+
+	\extra{Extra}{Amdahl's Law}{For a program where part of the code can only be executed serially $S$ and another part can be parallelised across $N$ cores, the maximum speed-up is given by:
+
+	$$\frac{1}{S + \frac{1-S}{N}}$$}
+
+\subsection{The Critical Section Problem}
+
+	\defn{Critical Section}{a section of code where a process touches shared resources}
