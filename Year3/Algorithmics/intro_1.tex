@@ -1,0 +1,243 @@
+
+\section{Introduction}
+
+\lecture{01}{10}{20}
+
+	\subsection{Topics}
+
+		\begin{itemize}
+			\item Sorting and Tries
+			\item Graphs and graph algorithms
+			\item Strings and text algorithms
+			\item An introduction to NP completeness
+			\item A (very) brief introduction to computability
+		\end{itemize}
+
+		\par{It is assumed that you're familiar with the following from year 2}
+
+		\begin{itemize}
+			\item Java
+			\item fundamentals of graph theory
+			\item sets, relations, functions
+			\item proofs
+			\item ADTs, lists, arrays, queues, binary trees, red-black trees, b-trees, hash tables
+			\item algorithms analysis
+			\item insertion-sort, selection-sort, bubblesort, merge-sort, quicksort, heapsort, counting-sort, radix sort
+			\item linear search, binary search
+		\end{itemize}
+
+\subsection{Revision}
+
+	\key{big O notation}{polynomial algos}{exponential algos}{stack}{queues}{asymptotic behaviour}
+
+	\rem{See ADS2 \& AF2 notes for a more in-depth explanation of these topics}
+
+	\subsubsection{Algorithm Analysis}
+
+		\par{\ita{Time Complexity} as a function of input size, i.e given a certain input how long will it take for the algorithm to terminate. Because we are interested in what will happen as the input grows, so that we can have a \ita{guarantee} on the algorithm's performance, we are usually concerned with the \ita{worst-case} scenario}
+
+		\rem{This asymptotic behaviour is generally expressed using the \ita{Big O} $\mathcal{O}$ notation}
+
+		\rem{For some algorithms is is also important to consider \ita{space complexity}}
+
+		\subsubsection{Big O}
+
+			$$f(n) = \mathcal{O}(g(n))$$
+
+			\par{We say that $f$ grows \ita{strictly} slower than $g$. Formally, for two functions $f, g \in \n$ we have }
+
+			$$|f(n)| \leq |cg(n)| \forall n \geq N , c \in \real , N \in \z$$
+
+
+			\par{Usually $f$ is a complex function which is not known precisely and $g$ is a known function (linear, quadratic etc.) which essentially \ita{bounds} $f$}
+
+			\par{We want to be as precise as possible, so we use the \ita{"tightest"} bound as possible, e.g whilst $n^3$ is also an upper bound on a linear time $n$ algorithm, if we know that the algorithm grows no faster than $n^2$ then that is the lowest/tightest bound, and the one we should use}
+
+	\subsubsection{ADT - Stack}
+
+		\par{Stacks order of removal is \ita{LIFO} and can be represented as an an array or a linked list, all operations are $\mathcal{O}(1)$}
+
+		\par{\textbf{Basic Ops:}}
+			\begin{itemize}
+				\item \texttt{create}
+				\item \texttt{isEmpty}
+				\item \texttt{push}
+				\item \texttt{pop}
+			\end{itemize}
+
+
+	\subsubsection{ADT - Queue}
+
+		\par{Stacks order of removal is \ita{FIFO} and can be represented as an an array or a linked list, all operations are $\mathcal{O}(1)$}
+
+		\rem{the array must wraparound, i.e once \texttt{ end == a.len() ; end = 0}}
+
+		\par{\textbf{Basic Ops:}}
+			\begin{itemize}
+				\item \texttt{create}
+				\item \texttt{isEmpty}
+				\item \texttt{inser}
+				\item \texttt{delete}
+			\end{itemize}
+
+		\subsubsection{Priority Queue}
+
+			$$\begin{array}{l}-\text { as an unordered list (insert is } 0(1) \text { while delete is } 0(n)) \\ -\text { as an ordered list (insert is } 0(n) \text { while delete is } 0(1)) \\ -\text { as a heap (insert and delete are } 0(\log n))\end{array}$$
+
+
+
+\section{Sorting and Tries}
+
+	\key{comparison based algorithms}{Decision tree}{Information-Theoretic}{Lower Bound $\Omega$}{Radix Sort}
+
+	\rem{Even though Quicksort has a worst case running time of $O(n^2)$ , in practice it is the fastest sorting algorithm of the ones we've seen with a running time of $O(n \log n)$}
+
+	\defn{Comparison Based Sorting}{algortihms can only access the input elements by the comparisons $A[i] < A[j] , A[i] \leq A[j], A[i]=A[j], A[i] \geq A[j], A[i]>A[j]$}
+
+	\example{Insertion-Sort , Quicksort, Merge-Sort, Heapsort}
+
+	\cite{mayr_2020}
+
+	\defn{Decision Tree Model}{a tree where at each node two elements are compared so that each node represents the output of a comparison-based algorithm $S$ on an input array $A = \set{A[1],\dots,A[n]}$ , and a full execution is represented by a path from the root to a leaf node}
+
+	%INSERT FIGURE https://cdn.mathpix.com/snip/images/B6tGmiCbxKzV5D8jp_EJKNCReE1-saXQgiGIpVZEjwA.original.fullsize.png
+
+	\par{For $S$, we have :}
+
+	$$\begin{aligned} C_{S}(n)=& \text { worst-case number of comparisons performed } \\ & \text { by } S \text { on an input array of size } n . \end{aligned}$$
+
+	\theorem{For all comparison based sorting algorithms $S$ 
+
+		$$ C_s(n) = \Omega(n \log n) $$
+
+		where $\Omega$ represents the lower bound, i.e best possible running time
+	}
+
+	\rem{We assume that the rare case where $A[i] = A[j]$ does not happen, for simplicity. We can do this because we are looking for a lower bound not an upper bound}
+
+
+	\proof{
+
+		\lemma{For every $n, C_s(n)$ is the height of the decision tree of $S$ on inputs $n$}
+
+		\par{This follows from the fact that the longest path from the root to a leaf is the maximum number of comparison that $S$ will do on an input of length $n$}
+
+		\lemma{Each permutation of the inputs must occur at least one leaf of the decision tree}
+
+		\par{This is necessarily true if the algorithm works properly for \ita{all} inputs, since the number of leaf nodes in the tree must be \ita{at least} the number of possible outcomes of the algorithm}
+
+		\par{The simplified decision tree is a binary tree, which means that for a binary tree of height $h$ we have at most $2^h$ leaves. Hence,}
+
+		$$\begin{aligned} n ! & \leq \text { number of leaves of decision tree } \\ & \leq 2^{\text {height of decision tree }} \\ & \leq 2^{C_{S}(n)} \end{aligned}$$
+
+		\par{Hence, we have that the height of the tree, and therefore one possible execution of the algorithm, is at least $\log(n!)$ we have found our upper bound. We now observe that $n^{n / 2} \leq n ! \leq n^{n}$}
+
+		\par{Which tells us that,}
+
+					$$ \lg n ! \geq \log \left(n^{n / 2}\right)=(n / 2) \log n=\Omega(n \log (n)) $$
+
+	}
+
+
+	\subsection{Radix Sorting}
+
+		\par{Radix sort uses a different approach than comparison based algos and can therefore achieve $O(n)$ complexity by exploiting the structure of the items being sorted\mymarginpar{this does imply that it is less versatile}}
+
+		\par{Assume that the items to be sorted can be treated as bit-sequences of length $m$ and let $b | m$. We can then label each bit position from $\set{0,1,\dots,m-1}$. }
+
+		\par{The algorithm uses $\frac{m}{b}$ iterations where in each iteration the times are distributed into $2^b$ \ita{"buckets"}/lists, which are themselves labelled from $\set{0,\dots,2^b-1}$ * \mymarginpar{*$\text { equivalently, } \overbrace{00 \ldots 0}^{\text {length } b}, \overbrace{11 \ldots 1}^{\text {length } b}}$.} 
+		\par{During the $i^{th}$ iteration an item is placed in the list corresponding to the integer represented by the bits in position $b \times i-1, \dots, b\times(i-1)$}
+
+		\example{For $b=4, i=2$, consider the bits in position $7,\dots,4$
+
+			$$\text { item }=00101001[0011]0001$$
+
+			\par{$0011$ represents the integer $3$, so the item is placed in the bucket labelled $3$ or $0011$}
+
+		}
+
+		\subsubsection{Algorithm Step-by-Step}
+		\begin{enumerate}
+				\item Find the max value so that we know how many bits we need for our binary enconding
+				\item Write each element in binary
+				\item Calculate $m$, choose $b$ and find the required number of $2^b$ buckets and $i$ iterations
+				\item Sort the items into appropriate buckets by matching the integer represented by the bits at position $b \times i-1, \dots, b\times(i-1)$ with the corresponding bucket's integer label
+				\item Concatenate the buckets and repeat $i-1$ times
+		\end{enumerate} 
+
+		\example{For the sequence $15, 43, 5, 27, 60, 18, 26, 2$
+
+
+			\href{run:assets/1_alg3_radix_example.pdf}{See here}
+
+		}
+
+
+		\subsubsection{Pseudocode Implementation}
+
+			\lstinputlisting[language=Java, breaklines=true, columns=flexible]{assets/radix.java}
+
+		\newpage
+
+		\subsubsection{Correctness}
+
+			\par{For the algorithm to be correct we need to know that $\forall \ x,y | x <y$ in the last iteration $j$ , $x$ must precede $y$. Since $x < y$ and $j$ is the last iteration that $x$ and $y$ bits differ, then the relevant bits of $x$ must be smaller than those of $y$. Hence, $x$ goes into an \ita{"earlier"} bucker than $y$ and so follows that $x$ precedes $y$ in the sequence after this iteration}
+			\par{Finally, since $j$ is the last iteration where bits differ it follows that in all later iterations $x,y$ go in the same bucket so their relative order is unchanged}
+
+
+
+		\subsubsection{Complexity}
+
+			\par{We have that $i = \frac{m}{b}$ and $B = 2^b$, and during each of the iterations we go through the list and allocate items to corresponding buckets so this takes $O(n)$ time because you just need to take each item and look at the corresponding bits and move it to the bucket. However, there are $2^b$ buckets, hence concatenating them will take $O(2^b)$ time. Hence, overall}
+
+			$$O(\frac{m}{b} (n+2^b)) = O(n) , \text{  since $m,b$ are constants}$$
+
+
+			\rem{there is a time-space trade-off involving our choice of $b$. larger $b$ implies less iterations, but more buckets}
+
+
+
+	\subsection{Tries Data Structure}
+
+		\par{A trie is a tree-based data structure for storing strings in order to support fast pattern matching}
+
+		\rem{\ita{Tries} are to trees what Radixsort is to comparison-based algos}
+
+		\rem{The main application for tries is in information retrieval. Indeed, the name comes from the word "retrieval"}
+
+
+		\defn{Standard Trie \cite{goodrich_tamassia_2011}}{ Let $S$ be a set of $s$ strings from alphabet $L$, such that no string in $S$ is a prefix of another string. A standard trie for $S$ is an ordered tree $T$with the following properties:
+		\begin{enumerate}
+			\item Each node of $T$, except the root, is labelled with a character of $L$
+			\item The ordering of the children of an internal node of $T$ is determined by a
+			canonical ordering of the alphabet $L$.
+			\item $T$ has $s$ external nodes, each associated with a string of $S$, such that the concatenation of the labels of the nodes on the path from the root to an external node $y$ of $T$ yields the string of $S$ associated with $y$.
+		\end{enumerate}
+		}
+
+		% INSERT FIGURE trie
+
+		\subsubsection{Implementation}
+
+		\par{Tries can be implemented using an array of pointers to represent the children of each node, or via a linked list to represent the children of each node.}
+
+		\rem{There is a space/time trade-off between the two}
+
+		\par{The list implementation essentially consists of a node with at most 4 elements:}
+
+			\begin{itemize}
+				\item label
+				\item word flag , a T/F value indicating whether that node is part of a word
+				\item [0-2] pointers, pointing to a child and/or sibling
+			\end{itemize}
+
+			\href{assets/Trie.java}{Java implementation Trie}
+			\href{assets/Node.java}{Java implementation Node}
+
+		\subsubsection{Search Pseudocode}
+
+		\rem{the complexity of trie operations is essentially linear in the string length and is almost independent of the number of items}
+
+			\lstinputlisting[language=Java, breaklines=true, columns=flexible]{assets/trie_search.java}
+
+
