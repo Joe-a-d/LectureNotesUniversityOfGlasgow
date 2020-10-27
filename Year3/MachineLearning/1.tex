@@ -8,7 +8,6 @@
 
 \par{AI move in the 70s evolves towards NN which can be seen as a function. During that time some studies shown that those functions did quite well at approximating certain kinds of behaviours, and so they tried to scale up to more complex tasks. They quickly realise that the real world was far too complex to be modelled in this manner, and so researchers focused on 2 key aspects : modelling the brain and predictions from data}
 
-
 \subsection{Course Topics}
 
 	\begin{itemize}
@@ -60,13 +59,13 @@
 
 	\subsubsection{Unsupervised}
 
-		\defn{Clustering}{}
+		\defn{Clustering}{grouping together data points according to some criteria}
 
 		\par{We'll focus on the problem of clustering, i.e trying to find subgroups in the measures that we have. The key difference being that the data is not labelled}
 
 		\example{people with similar tastes, genes with similar functions}
 
-		\defn{Projection}{}
+		\defn{Projection}{reduces the dimensionality of data (e.g PCA)}
 
 		\par{Projection, when we have data with a lot of dimensions which can be hard to visualise. We can use projection to reduce the number of related variables without losing the essential meaning/info.}
 
@@ -80,7 +79,6 @@
 	$\begin{array}{l}\text { Linear models } \\ \text { - Introduce the idea of building models. } \\ \text { - Talk about assumptions. } \\ \text { - Use a linear model. } \\ \text { - What constitutes a good model? } \\ \text { - Find the best linear model. } \\ \text { - Use it to predict the winning time in 2012. }\end{array}\\$
 
 	\par{In this lecture we'll use the dataset provided in section 1.1 of the textbook. Our goal will be to formalise this fitting and prediction process via a mathematical model which will allow us to scale this method to bigger problems}
-
 
 
 	\subsection{Building Models}
@@ -171,23 +169,24 @@
 
 			\defn{Loss/Cost Function}{a function used for parameter estimation that maps an event like our (expected - estimated) function to a real number}
 
-			\IfFileExists{assets/loss1}{}{\immediate\write18{wget https://cdn.mathpix.com/snip/images/fuITHo1Hde0D4wyjlh3gSEUFnVBzBiJISBe9McB4hdQ.original.fullsize.png -O assets/loss1}}
-			\IfFileExists{assets/loss2}{}{\immediate\write18{wget https://cdn.mathpix.com/snip/images/BOfyRGM1XhT1qxUUDi5rHdc1jGcpn5C6ytwh3XXwiBM.original.fullsize.png -O assets/loss2}}
+			\IfFileExists{assets/loss1.png}{}{\immediate\write18{wget https://cdn.mathpix.com/snip/images/fuITHo1Hde0D4wyjlh3gSEUFnVBzBiJISBe9McB4hdQ.original.fullsize.png -O assets/loss1.png}}
+			\IfFileExists{assets/loss2.png}{}{\immediate\write18{wget https://cdn.mathpix.com/snip/images/BOfyRGM1XhT1qxUUDi5rHdc1jGcpn5C6ytwh3XXwiBM.original.fullsize.png -O assets/loss2.png}}
 
 			\begin{minipage}{\linewidth}
 			\centering
 			\begin{minipage}{0.45\linewidth}
-			\begin{figure}[ht]
-			\includegraphics[width=0.5\textwidth]{assets/loss1}
+			\begin{figure}[H]
+			\includegraphics[width=\textwidth]{assets/loss1}
 			\end{figure}
 			\end{minipage}
 			\hspace{0.05\linewidth}
 			\begin{minipage}{0.45\linewidth}
-			\begin{figure}[ht]
-			\includegraphics[width=0.5\textwidth]{assets/loss2}
+			\begin{figure}[H]
+			\includegraphics[width=\textwidth]{assets/loss2}
 			\end{figure}
 			\end{minipage}
 			\end{minipage}
+
 
 			\defn{Squared Loss}{The average squared loss per example, which is calculated by diving the squared loss by the number of examples}
 
@@ -199,13 +198,121 @@
 
 			$$\mathcal{L}=\frac{1}{N} \sum_{n=1}^{N}\left(t_{n}-f\left(x_{n} ; w_{0}, w_{1}\right)\right)^{2}$$
 
-			
+			\par{More generally for more complex models such as polynomial ones we have}
+
+			$$t=w_{0}+w_{1} x+w_{2} x^{2}+w_{3} x^{2}+\ldots+w_{K} x^{K}=\sum_{k=0}^{K} w_{k} x^{k}$$
+
+			\subsubsection{Vectorizing}
+
+			\par{In order to work with these models in a simplified manner we encapsulate the parameters and data into two vectors $\vc{w} , \vc{x}$ respectively. For our original example with two parameters now get }
+
+			$$f\left(x_{n} ; w_{0}, w_{1}\right)=\mathbf{w}^{\prime} \mathbf{x}_{n}=w_{0}+w_{1} x_{n}$$
+
+			$$\mathcal{L}_{n}=\left(t_{n}-\mathbf{w}^{\top} \mathbf{x}_{n}\right)^{2}$$
+
+			\par{We can vectorize our lost function further by encapsulating $t$ also}
+
+			$$\mathbf{q}=\left[\begin{array}{c}t_{1}-\mathbf{w}^{\top} \mathbf{x}_{1} \\ t_{2}-\mathbf{w}^{\top} \mathbf{x}_{2} \\ t_{3}-\mathbf{w}^{\top} \mathbf{x}_{3} \\ \vdots \\ t_{N}-\mathbf{w}^{\top} \mathbf{x}_{N}\end{array}\right]=\mathbf{t}-\mathbf{X} \mathbf{w}$$
+
+			\par{We can now rewrite our mean loss in its final vector form}
+
+			$$\mathcal{L}=\frac{1}{N}(\mathbf{t}-\mathbf{X} \mathbf{w})^{\top}(\mathbf{t}-\mathbf{X} \mathbf{w})$$
+
+		\subsubsection{Minimising the Loss}
+
+			\par{Now that we have a vector/matrix loss we can minimise it by taking the partial derivatives with respective to $\vc{w}$ and set it to $0$}
+
+			$$\begin{aligned} \frac{\partial \mathcal{L}}{\partial \mathbf{w}}=\mathbf{0} = \frac{\partial}{\partial \mathbf{w}}\left(\frac{1}{N}(\mathbf{t}-\mathbf{X} \mathbf{w})^{\top}(\mathbf{t}-\mathbf{X} \mathbf{w})\right) &=\frac{1}{N}\left(2 \mathbf{X}^{\top} \mathbf{X} \mathbf{w}-2 \mathbf{X}^{\top} \mathbf{t}\right) \\ \mathbf{X}^{\top} \mathbf{X} \mathbf{w} &=\mathbf{X}^{\top} \mathbf{t} \end{aligned}$$
+
+			\par{Finally by premultiplying both sides we can solve for $\vc{w}$ giving us the optimum value of $\vc{w}$, i.e $\hat{\vc{w}}$}
+
+			$$\widehat{\mathbf{w}}=\left(\mathbf{X}^{\top} \mathbf{X}\right)^{-1} \mathbf{X}^{\top} \mathbf{t}$$
+
+			\rem{Useful identities for vector differentiation}
+
+			$$\begin{array}{c|c}f(\mathbf{w}) & \frac{\partial f}{\partial \mathbf{w}} \\ \hline \mathbf{w}^{\mathrm{T}} \mathbf{x} & \mathbf{x} \\ \mathbf{x}^{\top} \mathbf{w} & \mathbf{x} \\ \mathbf{w}^{\top} \mathbf{w} & 2 \mathbf{w} \\ \mathbf{w}^{\top} \mathbf{C} \mathbf{w} & 2 \mathbf{C} \mathbf{w}\end{array}$$
 
 
+		\subsubsection{More General Models}
 
 
+		\par{So far we've considered models which are linear in the parameter, and we've used many powers of $x$ to get a polynomial function of any order with which we can better fit non-linear data. However, we are not restricted to polynomial functions, we can augment our data matrix $X$ with any set of functions of $x$}
+
+		$$\mathbf{X}=\left[\begin{array}{cccc}h_{1}\left(x_{1}\right) & h_{2}\left(x_{1}\right) & \cdots & h_{K}\left(x_{1}\right) \\ h_{1}\left(x_{2}\right) & h_{2}\left(x_{2}\right) & \cdots & h_{K}\left(x_{2}\right) \\ \vdots & \vdots & \cdots & \vdots \\ h_{1}\left(x_{N}\right) & h_{2}\left(x_{N}\right) & \cdots & h_{K}\left(x_{N}\right)\end{array}\right]$$
+
+		\par{Take the set of functions to be}
+
+		$$\begin{aligned} h_{1}(x) &=1 \\ h_{2}(x) &=x \\ h_{3}(x) &=\sin \left(\frac{x-a}{b}\right)  \end{aligned}$$
+
+		\par{Our model can then be defined as}
+
+		$$f(x ; \mathbf{w}) =w_{0}+w_{1} x+w_{2} \sin \left(\frac{x-a}{b}\right)$$
+
+		\par{This model has 5 parameters $w_{0}, w_{1}, w_{2}, a, b$, we'll fix $a,b$ because at this stage we do not know how to derive them analytically. We can derive the $w$'s using the methods presented above, and we get an approximation better than that of the linear. Furthermore, the various model components are still clearly visible. We can see the constant term ($w0 = 36.610$), the downward linear trend ($w1 = -0.013$) and the non-linear sinusoidal term ($w3 = -0.133$) causing oscillations.}
+
+		\IfFileExists{assets/genModel.png}{}{\immediate\write18{wget https://cdn.mathpix.com/snip/images/gVKynemTFkjrI7-sLjiX4s4RdkALdKRVlYhAkT1oCE0.original.fullsize.png -O assets/genModel.png}}
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{assets/genModel.png}
+		\end{figure}
+
+		\rem{see lecture notes for common basis functions}
 
 
+		\subsection{Making Predictions}
+
+		\par{Given a new vector of attributes $x_{\text{new}}$, and our original $X$ matrix}
+
+		$$\mathbf{X}=\left[\begin{array}{cccc}h_{0}\left(x_{1}\right) & h_{1}\left(x_{1}\right) & \ldots & h_{K}\left(x_{1}\right) \\ \vdots & \vdots & \ddots & \vdots \\ h_{0}\left(x_{N}\right) & h_{1}\left(x_{N}\right) & \ldots & h_{K}\left(x_{N}\right)\end{array}\right] \qquad \qquad \mathbf{x}_{\text {new }}=\left[\begin{array}{c}h_{0}\left(x_{\text {new }}\right) \\ \vdots \\ h_{K}\left(x_{\text {new }}\right)\end{array}\right]$$
+
+		\par{the prediction from the model, $t_{\text{new}}$, is computed as}
+		
+		$$t_{\text {new }}=\widehat{\mathbf{w}}^{\top} \mathbf{x}_{\text {new }}$$
+
+		\par{We can then just compute the loss and compare our accurate different models are. However, care must be taken not to \ita{overfit} our model to the data, i.e if our approximation too closely resembles the training data then predictions on unseen data will be poor because of noise}
+
+		\rem{There is a trade-off between generalisation (predictive ability) and over-fitting (decreasing the loss)}
+
+		\defn{Overfitting}{Creating a model that matches the training data so closely that the model fails to make correct predictions on new data}
+
+		\subsection{Validation}
+
+		\defn{Validation Set}{A subset of the dataset disjoint from the training set}
+
+		\par{In order to prevent over-fitting we can validate our model using a \ita{validation set}. We can create a validation set by simply removing a few examples from our original dataset prior to training. Say we have $N$ examples at the start, we can train our model using $N-C$ examples and validate our data using $C$. We can then choose the model which makes the best predictions on $C$}
+
+		\par{Note below how (as expected) the loss reduces as model complexity increases due to a better approximation to the data, but also how the loss rapidly increases when computed using the validation set. This indicates that even though the linear model performs worse on the testing data, it generalises better, hence it performs better on unseen data.}
+
+		\IfFileExists{assets/validLoss.png}{}{\immediate\write18{wget https://cdn.mathpix.com/snip/images/gVKynemTFkjrI7-sLjiX4s4RdkALdKRVlYhAkT1oCE0.original.fullsize.png -O assets/validLoss.png}}
+		\begin{figure}[ht]
+		\centering
+		\includegraphics[width=0.5\textwidth]{assets/validLoss.png}
+		\end{figure}
+
+		\par{Another worry one should have is how to split the data. There is no one right answer, it will sometimes be clear from the model, often one can just split it randomly or go a step further and do it several times with different and average the results. The most comprehensive way is to perform \ita{cross-validation}.}
+
+		\defn{Cross-validation}{testing the model against one or more non-overlapping data subsets withheld from the training set}
+
+		\par{When using \ita{C-fold} cross-validation the training set is split into $C$ \ita{non-overlapping} folds of equal size, we then average the loss over all $C$ folds.}
+
+		\rem{If $C=N$ it's called \ita{"Leave-one-out" CV}. Each example is held out in turn and used to test a model trained on the other $N-1$}
+
+		\rem{CV is computationally expensive and the cost-benefit is too high for large datasets }
+
+		\subsubsection{Model Selection}
+
+		\par{If we were to perform LOOCV in the same dataset we would see that a 3rd order polynomial performs best. Using different methods can confuse the results. How can we know which one is right?}
+
+		\par{We can overcome this problem by generating a synthetic dataset. We then have some target pairs from a noisy third-order polynomial function and can use them to learn polynomial functions of increasing order. We can then use generate test targets using the original 3rd order polynomial to compute the true expected loss}
+
+		\IfFileExists{assets/selectLoss.png}{}{\immediate\write18{wget https://cdn.mathpix.com/snip/images/HH06qYWGvg73-lnhaqTDVahNjV535TxMQAdtTj20wUk.original.fullsize.png -O assets/selectLoss.png}}
+		\begin{figure}[ht]
+		\centering
+		\includegraphics[width=0.7\textwidth]{assets/selectLoss.png}
+		\end{figure}
+
+		
+		\subsection{Regularisation}
 
 
 
