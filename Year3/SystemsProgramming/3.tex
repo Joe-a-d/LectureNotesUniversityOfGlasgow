@@ -1,0 +1,75 @@
+\lecture{01}{01}{01}
+\section{Memory}
+
+\par{In this lecture we'll look into how to conceptually understand what is meant by computer
+memory. One of the crucial points is to understand why programs and data are both kept in memory and how programs themselves can sometimes be treated as data themselves, and how this gives certain
+flexibility to programs}
+\par{The simplest comparison to the real world would be to think of memory as a file cabinet where
+storing a piece of data would be equivalent to storing a file in a folder and labelling it so that
+it can be easily retrieved. In this view we can see the folders as the variables which are labelled. An alternatively view is to think of memory as a bunch of streets with variables represented by specific buildings with unique addresses. This view is useful to introduce the concept of \ita{spacial locality}, which is explored by \ita{caches}, i.e by forming "neighbourhoods" of closely related pieces of data which are usually accessed more often}
+
+\par{Take memory as a large one dimensional array, where we use names instead of indices to retrieve
+values. The named variables are just there to help the programmer reason about the program better,
+they are simply an abstraction, but the compiler will essentially see it as just a bunch of
+addresses in memory} 
+
+\subsection{Byte Addressable Memory}
+
+\defn{Byte Addressable Memory}{a type of memory where each byte has its own unique address}
+
+\par{In modern machines most architectures are \texttt{64-bit} which mean that each address is 8
+bytes long, hence theoretically they are capable to address up to $2^64$ bytes of memory, though in
+reality they only use the first 48 bits of an address , supporting $2^48$ bytes}
+\par{A crucial consequence of this type of memory is that we always work with full bytes, hence
+even if performing bitwise operations we always have to load and store an entire byte}
+
+\example{Take the following program where we start with a single byte which lives in memory and
+has an address and then we wish to modify a single bit within it. We simply use C's bitwise
+operators, the left shift and the bitwise or and then store the new value back into memory
+
+\begin{lstlisting}[language=C]
+
+    int main() {
+        unsigned char byte = 0; // byte = 00000000
+        byte = byte | (1 << 3); // byte = (00000000 OR (00000001 << 3))  
+        // << shift operator shifts the left operand's bits by the right operand
+        printf("%d\n", byte); // prints 8 (== 2^3)
+    }
+\end{lstlisting}
+}
+
+\subsection{Variables in Memory}
+
+\par{Depending on the size of the data type the value of the variables might span multiple bytes
+in memory, so for example one can explore the spacial locality of variables by being aware of where
+exactly two adjacent variables are stored.}
+
+\rem{To print the physical address of a variable we use the \ita{address-of} operator
+\texttt{&}}
+
+\subsection{Pointers}
+
+\defn{Pointer}{an object which stores a memory address}
+
+\par{Pointers are just variables which hold memory addresses. For a variable of type \texttt{t}
+its pointer will have type \texttt{t *} , the \texttt{*} represents the \ita{dereference operator}
+and returns the value of the variable the pointer points to}
+
+\rem{Every pointer has the same size, which in 64-bit architecture are 8 bytes, since they only
+need to represent memory addresses} 
+
+\par{If one tries to dereference a \texttt{NULL} pointer this will cause the program to crash,
+because there is no meaningful value behind that pointer (0 can also be used instead). Another
+particularity of pointers is how they work with the qualifier \texttt{const}. Any const variable
+will by definition (and this is enforced by the compiler) never be allowed to change, pointers can
+remain constant in three different ways, and the position of the qualifier indicates which to the
+compiler:}
+
+\begin{itemize}
+    \item the pointer itself \texttt{float * const ptr;}
+    \item the value referenced \texttt{const float * ptr;}
+    \item both \texttt{const float * const ptr;}
+\end{itemize}
+
+\subsubsection{Linked List - pointers \& structs}
+
