@@ -12,8 +12,6 @@ Computer Science, Economics, Mathematics, Philosophy
 
 The following notes were typeset using a modified version of [@stefano-maggiolo](https://github.com/stefano-maggiolo) custom class.
 
-These will be updated every Sunday. If you're a fellow student at the University of Glasgow, or just mathematically inclined, and would like to use these notes feel free to do so. The best way to do it, would be to fork this repository. If you find any mistakes or wish to improve them in some way you can just submit a pull request.
-
 The modified version I'm using can be found in this repo [here](https://github.com/Joe-a-d/https://github.com/Joe-a-d/LectureNotesUniversityOfGlasgow/notes.cls). It has some neat additions like the following "one command macros" for:
 
 Shadowed Box           |  SMatrices & EROs
