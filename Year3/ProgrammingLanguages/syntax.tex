@@ -1,0 +1,174 @@
+
+\section{Syntax}
+
+\key{syntax}{specification}{BNF}{EBNF}{Regex}{terminal, nonterminal, sentence symbols}{production rule}{syntax tree}{grammar}{phrase}
+
+\defn{Syntax}{concerns the \emph{form} of the program, i.e how constructs of
+the PL (e.g expressions) need to be arranged to make a
+\emph{well-formed} program}
+
+\defn{Semantics}{has to do with the \emph{meaning} of the program, i.e its
+behaviours when run}
+
+\defn{Pragmatics}{how the language is to be used in practice}
+
+\par{Syntax is important because it influences how programs are
+\emph{written} by the programmer, \emph{read} by other programmers, and
+\emph{parsed} by the computer. On the whole scheme of things though, the
+other two are more important since they weigh more heavily on \emph{how}
+a programmer goes about writing her program. Semantics determines how
+programs are composed by the programmer, understood by other
+programmers, and interpreted by the computer. Pragmatics influences how
+programmers are expected to design and implement programs in practice.}
+
+\mymarginpar{it's the content of the message which is important, not
+the language in which it is written sort of thing}
+
+
+\subsection{Specification}
+
+\par{The syntax of a language must be specified , this can either be done
+\emph{informally} or \emph{formally} the obvious trade-offs are between
+accessibility and practicality vs precision and consistency}
+
+
+\example{Informal}{
+
+A while-command consists of \texttt{'while'}, followed by an expression enclosed
+in parentheses, followed by a command.
+}
+
+\example{Formal}{
+
+\begin{verbatim}
+while-command = 'while' '(' expression ')' command
+\end{verbatim}
+
+}
+
+\subsubsection{Formal Specification
+Notations}
+
+\begin{quote}
+REs are good for specifying the syntax of lexical elements of programs
+(e.g identifiers)
+\end{quote}
+
+\begin{quote}
+Backus Naur Form (BNF) works well when specifying larger and nested
+program constructs (e.g expressions, commands)
+\end{quote}
+
+\begin{quote}
+Extended BNF (EBNF) combines RE and BNF
+\end{quote}
+
+
+\subsection{Grammar}
+
+
+\defn{Grammar}{describes how to form strings from a language's alphabet that
+are valid according to the language's syntax}
+
+
+\defn{Context-Free Grammar}{grammar in which every \emph{production rule} is
+of the form \(A \to \alpha\) where \(A\) is a single \emph{nonterminal}
+symbol, and \(\alpha\) is a string of terminals and/or (\(\alpha\) can
+be empty)}
+
+
+\defn{Production Rule}{rules specifying a symbol substitution that can be
+recursively performed to generate new symbol sequences .}
+
+\example{}{
+\(\langle\mathrm{Stmt}\rangle \rightarrow\langle\mathrm{Id}\rangle=\langle\operatorname{Expr}\rangle\)
+replaces \(\langle\mathrm{Stmt}\rangle\) by
+\(\langle\mathrm{Id}\rangle=\langle\operatorname{Expr}\rangle\)}
+
+
+\defn{Terminal Symbols}{are literal symbols which occur in the language and may
+show up in the output of the rules but cannot be changed by them, e.g
+\texttt{a}}
+
+\defn{Nonterminal symbols}{are symbols which can be replaced like
+\(\langle\mathrm{Stmt}\rangle\)}
+
+
+\defn{Sentence Symbol}{the nonterminal symbol that stands for a \emph{complete}
+sentence}
+
+\par{We use terminal and nonterminal symbols to specify the production rules.}
+
+
+\subsection{BNF}
+
+\par{BNF is a notation for expressing a grammar, where each element $\alpha , \beta, \lambda$ is a sequence of terminal and nonterminal symbols}
+
+$$N = \alpha \ | \ \beta \ | \ \lambda$$
+
+\example{mini-English \\}{
+
+\texttt{subject\ =\ \textquotesingle{}I\textquotesingle{}\ \textbar{}\ \textquotesingle{}a\textquotesingle{}\ noun\ \textbar{}\ \textquotesingle{}the\textquotesingle{}\ noun}
+  \ with
+\texttt{\textquotesingle{}I\textquotesingle{},\ \textquotesingle{}a\textquotesingle{},\ \textquotesingle{}the\textquotesingle{}}
+being terminal symbols and \texttt{noun} nonterminal
+
+}
+
+\example{Calc \\}{
+
+\begin{itemize}
+\item
+  variables : \texttt{{[}a\ ...\ z{]}}
+\item
+  expressions made of variables , numerals and arithmetic operators
+\item
+  assignment and output commands
+\item
+  terminal :
+  \texttt{‘put’\ ‘set’\ ‘=’\ ‘+’\ ‘-’\ ‘*’\ ‘(’\ ‘)’\ ‘\textbackslash{}n’\ ‘a’\ ‘b’\ ‘c’\ \ldots{}\ ‘z’\ ‘0’\ ‘1’\ \ldots{}\ ‘9’}
+\item
+  nonterminal : \texttt{prog\ expr\ num\ com\ prim\ id}
+\item
+  sentence : \texttt{prog} ( a sequence of 0+ \texttt{coms} followed by
+  an \texttt{EOF})
+\item
+  production rules (two examples)
+\end{itemize}
+
+\mymarginpar{see lecture 1@28 for full spec}
+
+\begin{verbatim}
+expr = prim                         prim = num
+     | expr `+` prim                     | id
+     | expr `-` prim                     | '(' expr ')'
+     | expr `*` prim
+\end{verbatim}
+
+
+}
+\subsection{Phrase Structure \& Syntax
+Trees}
+
+
+\defn{Phrase Structure}{how phrases may be formed from sub-phrases}
+
+Every phrase in the language has a \emph{syntax tree} that explicitly
+represents its phrase structure. For a grammar \(G\) a syntax tree of
+\(G\) is a tree with the following properties:
+
+\begin{itemize}
+\item
+  Every terminal node is labeled by a terminal symbol of \(G\)
+\item
+  Every nonterminal node is labeled by a nonterminal symbol of \(G\)
+\item
+  A nonterminal node labeled \(N\) may have children labeled \(X,Y,Z\)
+  only if \(G\) has a production rule \(N = X\ Y\ Z\) or
+  \(N = \dots | X \ Y \ Z | \dots\)
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{assets/syntax.png}
+\end{figure}

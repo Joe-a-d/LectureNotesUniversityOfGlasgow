@@ -1,4 +1,5 @@
 draft*
+assets/
 .*
 !.gitignore
 !*.bib
