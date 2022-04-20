@@ -1,25 +1,16 @@
----
-aliases: [AI, Artificial Intelligence]
----
-**tags** : #uni #BjornJensen  #AI #y4
-
-**syllabus** : [[AI_syllabus_v20192020a.pdf]]
-
-# 2 - Intro
-
 #intelligence #AI #rationality #PEAS_analysis #task_environments #agent_types
 
 ### Pre
 - Read [[AIMA]] [^1] 
 	- [x]  ch1  
 	- [x] ch2 
-- [ ] Read lecture notes
+- [x] Read lecture notes
 
 ### Post
-- [ ] [Quiz](https://moodle.gla.ac.uk/mod/quiz/view.php?id=2566151)
+- [x] [Quiz](https://moodle.gla.ac.uk/mod/quiz/view.php?id=2566151)
 - [ ] Read [[Turing_1950_Computing Machinery and Intelligence]]
 - [ ] Summary
-- [ ] [Norvig probability refresher](https://nbviewer.jupyter.org/url/norvig.com/ipython/Probability.ipynb)
+- [x] [Norvig probability refresher](https://nbviewer.jupyter.org/url/norvig.com/ipython/Probability.ipynb)
 
 ### Outline
 
@@ -36,6 +27,7 @@ aliases: [AI, Artificial Intelligence]
 - _thinking humanly_
 	- closely related with cognitive science
 	- understanding how humans think and try and replicate those processes
+- _acting humanly_
 - _thinking rationally_
 	- logic 
 	- [[problems with formalisation of informal knowledge]]
@@ -57,37 +49,6 @@ aliases: [AI, Artificial Intelligence]
 - [[is the agent rational]]
 - [[the importance of setting up a performance measure which is not defined and cannot be gammed by the agent]]
 - everytime you see a problem , you should aim to frame it in light of its [[task environment]]
-
-# 3 - Deterministic Problems - Search and Optimisation
-
-### Pre
-
-- Read [[AIMA]]
-	- [ ] 3
-	- [ ] 4-4.2.2
-- [ ]   have a crack at the lab
-
-### Post
-- [Quiz](https://moodle.gla.ac.uk/mod/quiz/view.php?id=2566157)
-
-# 4
-
-- 🗓 tentative release date for the assessed exercise
-
-### Pre
-
-- Probability prep
-	- [ ] AIMA 13
-	- [ ] [Norvig intro](https://nbviewer.jupyter.org/url/norvig.com/ipython/Probability.ipynb)
-	- [ ] David Mackay, [2,3]
-- [ ] AIMA Ch 14 (focus on 14-14.4,14.7-14.8)
-
-
-
-
-
-
-
-# Footnotes
+- [[types of intelligent agents]]
 
 [^1]: general sense of the field, minutia excluded (e.g. timelines, scientists)
